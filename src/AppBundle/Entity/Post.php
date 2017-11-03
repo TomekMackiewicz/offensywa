@@ -32,6 +32,13 @@ class Post
     /**
      * @var string
      *
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;    
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="body", type="text", nullable=true)
      */
     private $body;
@@ -94,6 +101,30 @@ class Post
         return $this->title;
     }
 
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }    
+    
     /**
      * Set body
      *

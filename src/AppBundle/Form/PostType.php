@@ -16,6 +16,7 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('slug')
             ->add('body')
             ->add('categories', EntityType::class, array(
                 'class' => 'AppBundle:Category',
