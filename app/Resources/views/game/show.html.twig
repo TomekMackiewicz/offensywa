@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Game</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ game.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if game.date %}{{ game.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ game.location }}</td>
+            </tr>
+            <tr>
+                <th>Hometeamid</th>
+                <td>{{ game.homeTeamId }}</td>
+            </tr>
+            <tr>
+                <th>Awayteamid</th>
+                <td>{{ game.awayTeamId }}</td>
+            </tr>
+            <tr>
+                <th>Hometeamscore</th>
+                <td>{{ game.homeTeamScore }}</td>
+            </tr>
+            <tr>
+                <th>Awayteamscore</th>
+                <td>{{ game.awayTeamScore }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('game_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('game_edit', { 'id': game.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

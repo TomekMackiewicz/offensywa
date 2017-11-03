@@ -24,21 +24,21 @@ class Player
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255)
+     * @ORM\Column(name="first_name", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=255)
+     * @ORM\Column(name="last_name", type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="date", nullable=true)
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
     private $birthDate;
 

@@ -46,14 +46,14 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="publishDate", type="datetime", nullable=true)
+     * @ORM\Column(name="publish_date", type="datetime", nullable=true)
      */
     private $publishDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="modifyDate", type="datetime", nullable=true)
+     * @ORM\Column(name="modify_date", type="datetime", nullable=true)
      */
     private $modifyDate;
 
