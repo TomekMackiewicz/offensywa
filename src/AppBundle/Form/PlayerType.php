@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class PostType extends AbstractType
+class PlayerType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -15,13 +15,15 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('body')
-            ->add('categories', EntityType::class, array(
-                'class' => 'AppBundle:Category',
+            ->add('firstName')
+            ->add('lastName')
+            ->add('birthDate')
+            ->add('position')
+            ->add('team', EntityType::class, array(
+                'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
+                'multiple' => false,
+                'expanded' => false,
             ));
     }
     
@@ -31,7 +33,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Post'
+            'data_class' => 'AppBundle\Entity\Player'
         ));
     }
 
@@ -40,7 +42,7 @@ class PostType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_post';
+        return 'appbundle_player';
     }
 
 

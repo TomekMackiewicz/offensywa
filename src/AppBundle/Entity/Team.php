@@ -39,10 +39,10 @@ class Team
     /**
      * @ORM\OneToMany(targetEntity="Player", mappedBy="team")
      */
-    private $playres;
+    private $players;
 
     public function __construct() {
-        $this->playres = new ArrayCollection();
+        $this->players = new ArrayCollection();
     }    
 
     /**
@@ -102,5 +102,25 @@ class Team
     {
         return $this->year;
     }
+    
+    /**
+     * Get players
+     *
+     * @return array
+     */
+    public function getPlayers()
+    {
+        return $this->players;
+    }
+    
+//    public function addPlayer(Category $category)
+//    {
+//        $this->categories->add($category);
+//    }
+//
+//    public function removeCategory(Category $category)
+//    {
+//        $this->categories->removeElement($category);
+//    }    
 }
 

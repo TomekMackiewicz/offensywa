@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Player</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ player.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ player.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ player.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{% if player.birthDate %}{{ player.birthDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{ player.position }}</td>
+            </tr>
+            <tr>
+                <th>Team</th>
+                <td>{{ player.team.name }}</td>
+            </tr>            
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('player_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('player_edit', { 'id': player.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
