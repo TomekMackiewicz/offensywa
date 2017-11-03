@@ -1,4 +1,4 @@
 offensywa
 =========
+App to manage football teams. News, fixtures, top scorers, league table.
 
-A Symfony project created on November 3, 2017, 10:04 am.
