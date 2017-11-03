@@ -31,19 +31,22 @@
                         <li>
                             <a href="{{ path('game_show', { 'id': game.id }) }}">show</a>
                         </li>
-                        <li>
-                            <a href="{{ path('game_edit', { 'id': game.id }) }}">edit</a>
-                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a href="{{ path('game_edit', { 'id': game.id }) }}">edit</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('game_new') }}">Create a new game</a>
-        </li>
-    </ul>
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li>
+                <a href="{{ path('game_new') }}">Create a new game</a>
+            </li>
+        </ul>
+    {% endif %}
 {% endblock %}
