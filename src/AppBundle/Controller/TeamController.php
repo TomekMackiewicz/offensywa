@@ -9,15 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 
 /**
  * Team controller.
- *
- * @Route("team")
  */
 class TeamController extends Controller
 {
     /**
      * Lists all team entities.
      *
-     * @Route("/", name="team_index")
+     * @Route("/teams", name="team_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +32,7 @@ class TeamController extends Controller
     /**
      * Creates a new team entity.
      *
-     * @Route("/new", name="team_new")
+     * @Route("/admin/teams/new", name="team_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +58,7 @@ class TeamController extends Controller
     /**
      * Finds and displays a team entity.
      *
-     * @Route("/{id}", name="team_show")
+     * @Route("/teams/{id}", name="team_show")
      * @Method("GET")
      */
     public function showAction(Team $team)
@@ -76,7 +74,7 @@ class TeamController extends Controller
     /**
      * Displays a form to edit an existing team entity.
      *
-     * @Route("/{id}/edit", name="team_edit")
+     * @Route("/admin/teams/{id}/edit", name="team_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Team $team)
@@ -101,7 +99,7 @@ class TeamController extends Controller
     /**
      * Deletes a team entity.
      *
-     * @Route("/{id}", name="team_delete")
+     * @Route("/admin/teams/{id}", name="team_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Team $team)

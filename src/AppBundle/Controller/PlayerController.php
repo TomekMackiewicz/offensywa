@@ -10,15 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Player controller.
- *
- * @Route("player")
  */
 class PlayerController extends Controller
 {
     /**
      * Lists all player entities.
      *
-     * @Route("/", name="player_index")
+     * @Route("/players", name="player_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +32,7 @@ class PlayerController extends Controller
     /**
      * Creates a new player entity.
      *
-     * @Route("/new", name="player_new")
+     * @Route("/admin/players/new", name="player_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +58,7 @@ class PlayerController extends Controller
     /**
      * Finds and displays a player entity.
      *
-     * @Route("/{id}", name="player_show")
+     * @Route("/players/{id}", name="player_show")
      * @Method("GET")
      */
     public function showAction(Player $player)
@@ -76,7 +74,7 @@ class PlayerController extends Controller
     /**
      * Displays a form to edit an existing player entity.
      *
-     * @Route("/{id}/edit", name="player_edit")
+     * @Route("/admin/players/{id}/edit", name="player_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Player $player)
@@ -101,7 +99,7 @@ class PlayerController extends Controller
     /**
      * Deletes a player entity.
      *
-     * @Route("/{id}", name="player_delete")
+     * @Route("/admin/players/{id}", name="player_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Player $player)

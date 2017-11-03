@@ -10,15 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Post controller.
- *
- * @Route("post")
  */
 class PostController extends Controller
 {
     /**
      * Lists all post entities.
      *
-     * @Route("/", name="post_index")
+     * @Route("/posts", name="post_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -35,7 +33,7 @@ class PostController extends Controller
     /**
      * Creates a new post entity.
      *
-     * @Route("/new", name="post_new")
+     * @Route("/admin/posts/new", name="post_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -62,7 +60,7 @@ class PostController extends Controller
     /**
      * Finds and displays a post entity.
      *
-     * @Route("/{id}", name="post_show")
+     * @Route("/posts/{id}", name="post_show")
      * @Method("GET")
      */
     public function showAction(Post $post)
@@ -78,7 +76,7 @@ class PostController extends Controller
     /**
      * Displays a form to edit an existing post entity.
      *
-     * @Route("/{id}/edit", name="post_edit")
+     * @Route("/admin/posts/{id}/edit", name="post_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Post $post)
@@ -104,7 +102,7 @@ class PostController extends Controller
     /**
      * Deletes a post entity.
      *
-     * @Route("/{id}", name="post_delete")
+     * @Route("/admin/posts/{id}", name="post_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Post $post)
