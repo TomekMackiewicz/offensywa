@@ -3,16 +3,16 @@
 {% block body %}
     <h1>Games list</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Date</th>
                 <th>Location</th>
-                <th>Hometeamid</th>
-                <th>Awayteamid</th>
-                <th>Hometeamscore</th>
-                <th>Awayteamscore</th>
+                <th>Home team</th>
+                <th>Away team</th>
+                <th>Home team score</th>
+                <th>Away team score</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,8 +22,8 @@
                 <td><a href="{{ path('game_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
                 <td>{% if game.date %}{{ game.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ game.location }}</td>
-                <td>{{ game.homeTeamId }}</td>
-                <td>{{ game.awayTeamId }}</td>
+                <td>{{ game.homeTeam.name }}</td>
+                <td>{{ game.awayTeam.name }}</td>
                 <td>{{ game.homeTeamScore }}</td>
                 <td>{{ game.awayTeamScore }}</td>
                 <td>

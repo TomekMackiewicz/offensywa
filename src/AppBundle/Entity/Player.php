@@ -164,16 +164,25 @@ class Player
     /**
      * Get team
      *
-     * @return string
+     * @return Team
      */
     public function getTeam()
     {
         return $this->team;
     }
-    
+
+    /**
+     * Set Team
+     *
+     * @param Team $team
+     *
+     * @return Player
+     */    
     public function setTeam(Team $team)
     {
         $this->team = $team;
+        
+        return $this;
     }
     
 }

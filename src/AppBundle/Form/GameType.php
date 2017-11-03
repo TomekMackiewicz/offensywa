@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class GameType extends AbstractType
 {
@@ -16,8 +17,20 @@ class GameType extends AbstractType
         $builder
             ->add('date')
             ->add('location')
-            ->add('homeTeamId')
-            ->add('awayTeamId')
+            //->add('homeTeamId')
+            //->add('awayTeamId')
+            ->add('homeTeam', EntityType::class, array(
+                'class' => 'AppBundle:Team',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+            ))
+            ->add('awayTeam', EntityType::class, array(
+                'class' => 'AppBundle:Team',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+            ))                
             ->add('homeTeamScore')
             ->add('awayTeamScore');
     }

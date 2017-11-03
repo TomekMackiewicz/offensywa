@@ -38,20 +38,6 @@ class Game
     /**
      * @var int
      *
-     * @ORM\Column(name="home_team_id", type="integer")
-     */
-    private $homeTeamId;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="away_team_id", type="integer")
-     */
-    private $awayTeamId;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="home_team_score", type="integer", nullable=true)
      */
     private $homeTeamScore;
@@ -63,6 +49,17 @@ class Game
      */
     private $awayTeamScore;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="games")
+     * @ORM\JoinColumn(name="home_team", referencedColumnName="id")
+     */
+    private $homeTeam;    
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="games")
+     * @ORM\JoinColumn(name="away_team", referencedColumnName="id")
+     */
+    private $awayTeam;    
 
     /**
      * Get id
@@ -217,5 +214,54 @@ class Game
     {
         return $this->awayTeamScore;
     }
+    
+    /**
+     * Get home team
+     *
+     * @return Team
+     */
+    public function getHomeTeam()
+    {
+        return $this->homeTeam;
+    }
+
+    /**
+     * Set homeTeam
+     *
+     * @param Team $homeTeam
+     *
+     * @return Game
+     */     
+    public function setHomeTeam(Team $homeTeam)
+    {
+        $this->homeTeam = $homeTeam;
+        
+        return $this;
+    }    
+
+    /**
+     * Get away team
+     *
+     * @return Team
+     */
+    public function getAwayTeam()
+    {
+        return $this->awayTeam;
+    }
+
+    /**
+     * Set awayTeam
+     *
+     * @param Team $awayTeam
+     *
+     * @return Game
+     */     
+    public function setAwayTeam(Team $awayTeam)
+    {
+        $this->awayTeam = $awayTeam;
+        
+        return $this;
+    } 
+    
 }
 

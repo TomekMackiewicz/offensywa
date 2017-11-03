@@ -41,8 +41,14 @@ class Team
      */
     private $players;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="team")
+     */
+    private $games;    
+    
     public function __construct() {
         $this->players = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }    
 
     /**
@@ -121,6 +127,17 @@ class Team
 //    public function removeCategory(Category $category)
 //    {
 //        $this->categories->removeElement($category);
-//    }    
+//    }
+
+    /**
+     * Get games
+     *
+     * @return array
+     */
+    public function getGames()
+    {
+        return $this->games;
+    }
+    
 }
 
