@@ -165,5 +165,25 @@ class Post
     {
         return $this->modifyDate;
     }
+
+    /**
+     * Get categories
+     *
+     * @return \DateTime
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+    
+    public function addCategory(Category $category)
+    {
+        $this->categories->add($category);
+    }
+
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
+    }    
 }
 
