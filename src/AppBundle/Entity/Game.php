@@ -50,17 +50,23 @@ class Game
     private $awayTeamScore;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team", inversedBy="games")
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="homeGames")
      * @ORM\JoinColumn(name="home_team", referencedColumnName="id")
      */
     private $homeTeam;    
 
     /**
-     * @ORM\ManyToOne(targetEntity="Team", inversedBy="games")
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="awayGames")
      * @ORM\JoinColumn(name="away_team", referencedColumnName="id")
      */
     private $awayTeam;    
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="games")
+     * @ORM\JoinColumn(name="team", referencedColumnName="id")
+     */
+    private $team;    
+    
     /**
      * Get id
      *

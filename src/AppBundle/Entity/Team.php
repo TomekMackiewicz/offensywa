@@ -45,10 +45,22 @@ class Team
      * @ORM\OneToMany(targetEntity="Game", mappedBy="team")
      */
     private $games;    
+
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="homeTeam")
+     */
+    private $homeGames; 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Game", mappedBy="awayTeam")
+     */
+    private $awayGames;     
     
     public function __construct() {
         $this->players = new ArrayCollection();
         $this->games = new ArrayCollection();
+        $this->homeGames = new ArrayCollection();
+        $this->awayGames = new ArrayCollection();
     }    
 
     /**
