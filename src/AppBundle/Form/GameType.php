@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class GameType extends AbstractType
 {
@@ -15,10 +16,17 @@ class GameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date')
+            //->add('date')
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr' => [
+                    'class' => 'form-control input-inline datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'dd-MM-yyyy'
+                ]
+            ])                
             ->add('location')
-            //->add('homeTeamId')
-            //->add('awayTeamId')
             ->add('homeTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',

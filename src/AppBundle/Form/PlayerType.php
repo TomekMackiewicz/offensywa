@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class PlayerType extends AbstractType
 {
@@ -17,7 +18,16 @@ class PlayerType extends AbstractType
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('birthDate')
+            //->add('birthDate')
+            ->add('birthDate', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+                'attr' => [
+                    'class' => 'form-control input-inline datepicker',
+                    'data-provide' => 'datepicker',
+                    'data-date-format' => 'dd-MM-yyyy'
+                ]
+            ])                 
             ->add('position')
             ->add('team', EntityType::class, array(
                 'class' => 'AppBundle:Team',
