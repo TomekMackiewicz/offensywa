@@ -132,4 +132,24 @@ class GameController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+     * Show league table.
+     *
+     * @Route("/tables", name="leaguetables")
+     * @Method("GET")
+     */
+    public function leagueTablesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('AppBundle:Game')->getLeagueTables();        
+        $statement = $em->getConnection()->prepare($query);
+        $statement->execute();
+        $table = $statement->fetchAll();
+        
+        return $this->render('game/leaguetables.html.twig', array(
+            'table' => $table
+        ));
+    }    
+    
 }
