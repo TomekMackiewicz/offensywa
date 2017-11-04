@@ -141,17 +141,21 @@ class GameController extends Controller
      */
     public function leagueTablesAction()
     {
-        $year = 2000;
+        $tables = [];
         $em = $this->getDoctrine()->getManager();
-        $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);        
-        $statement = $em->getConnection()->prepare($query);
-        $statement->bindValue('year', $year);
-        $statement->execute();
-        $table = $statement->fetchAll();
+        $years = $em->getRepository('AppBundle:Team')->getYears();
+        foreach($years as $year) {
+            $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
+            $statement = $em->getConnection()->prepare($query);
+            $statement->bindValue('year', $year);
+            $statement->execute();
+            $table['table'] = $statement->fetchAll(); 
+            $table['year'] = $year;
+            $tables[] = $table;
+        }
         
         return $this->render('game/leaguetables.html.twig', array(
-            'table' => $table,
-            'year' => $year
+            'tables' => $tables
         ));
     }    
     

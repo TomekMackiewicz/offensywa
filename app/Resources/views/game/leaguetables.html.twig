@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>League tables ({{ year }})</h1>
+    {% for table in tables %}
+    <h2>League table ({{ table.year }})</h2>        
     <table class="table">
         <tbody>
             <tr>
@@ -15,7 +16,7 @@
                 <th>GD</th>
                 <th>Pts</th>
             </tr>            
-            {% for team in table %}
+            {% for team in table.table %}
                 <tr>
                     <td>{{ team.Team }}</td>
                     <td>{{ team.P }}</td>
@@ -30,5 +31,5 @@
             {% endfor %}
         </tbody>
     </table>
-
+    {% endfor %}
 {% endblock %}

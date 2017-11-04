@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class TeamRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getYears() {
+        $query = $this->getEntityManager()->createQuery(
+                "SELECT DISTINCT t.year FROM AppBundle:Team t"
+        )->getScalarResult();
+        $years = array_column($query, "year");
+        
+        return $years;        
+    }
 }
