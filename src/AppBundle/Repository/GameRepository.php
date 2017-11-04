@@ -12,7 +12,7 @@ use Doctrine\ORM\Query\ResultSetMapping;
  */
 class GameRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getLeagueTables()
+    public function getLeagueTables($year)
     {        
         $query = 'SELECT
             name AS Team, Sum(P) AS P,Sum(W) AS W,Sum(D) AS D,Sum(L) AS L,
@@ -43,6 +43,7 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
             FROM game
           ) as tot
           JOIN team t ON tot.Team=t.id
+          WHERE year = :year
           GROUP BY Team
           ORDER BY SUM(Pts) DESC';
         
