@@ -26,7 +26,6 @@
                     {{ post.body | purify }}
                 {% endif %}                
                 </td>
-                {#<td>{{ post.body | purify | length > 55550 ? post.body | slice(0, 50) ~ '...' : post.body }}</td>#}
                 <td>{% if post.publishDate %}{{ post.publishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if post.modifyDate %}{{ post.modifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
