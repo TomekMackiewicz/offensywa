@@ -19,7 +19,7 @@
             <tr>
                 <td><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.id }}</a></td>
                 <td>{{ post.title }}</td>
-                <td>{{ post.body }}</td>
+                <td>{{ post.body | purify }}</td>
                 <td>{% if post.publishDate %}{{ post.publishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if post.modifyDate %}{{ post.modifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>

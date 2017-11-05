@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class PostType extends AbstractType
 {
@@ -17,7 +18,12 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('slug')
-            ->add('body')
+            ->add('body', CKEditorType::class, array(
+                'config' => array(
+                    'uiColor' => '#ffffff',
+                    //...
+                ),
+            ))               
             ->add('categories', EntityType::class, array(
                 'class' => 'AppBundle:Category',
                 'choice_label' => 'name',

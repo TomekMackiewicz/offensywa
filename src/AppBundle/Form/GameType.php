@@ -16,7 +16,6 @@ class GameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('date')
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',

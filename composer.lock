@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3b6a67a87a0e2e130018c9ec127a8b5c",
-    "content-hash": "fdea4a0f8a349fe60bee344cbdbcbd08",
+    "hash": "795b06876024000a496790194a845579",
+    "content-hash": "7170d5f99b3b77c07590e3c842728013",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -833,6 +833,226 @@
                 "orm"
             ],
             "time": "2017-09-18 06:50:20"
+        },
+        {
+            "name": "egeloen/ckeditor-bundle",
+            "version": "6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/egeloen/IvoryCKEditorBundle.git",
+                "reference": "9c9926918d3ae4b4d89ca2db578766ab9829ee7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/egeloen/IvoryCKEditorBundle/zipball/9c9926918d3ae4b4d89ca2db578766ab9829ee7a",
+                "reference": "9c9926918d3ae4b4d89ca2db578766ab9829ee7a",
+                "shasum": ""
+            },
+            "require": {
+                "egeloen/json-builder": "^2.0|^3.0",
+                "php": "^5.6|^7.0",
+                "symfony/dependency-injection": "^2.7|^3.0",
+                "symfony/form": "^2.7|^3.0",
+                "symfony/framework-bundle": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0",
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "phpunit/phpunit": "^5.0|^6.0",
+                "sensio/distribution-bundle": "^3.0.12|^4.0|^5.0",
+                "symfony/asset": "^2.7|^3.0",
+                "symfony/console": "^2.7|^3.0",
+                "symfony/phpunit-bridge": "^2.7|^3.0",
+                "symfony/templating": "^2.7|^3.0",
+                "symfony/twig-bridge": "^2.7|^3.0",
+                "symfony/yaml": "^2.7|^3.0",
+                "twig/twig": "^1.12"
+            },
+            "suggest": {
+                "egeloen/form-extra-bundle": "Allows to load CKEditor asynchronously",
+                "sensio/distribution-bundle": "Allows to install CKEditor via a script handler",
+                "symfony/asset": "Allows to rewrite/version assets",
+                "symfony/templating": "Allows to use PHP templates",
+                "symfony/twig-bridge": "Allows to use Twig templates",
+                "twig/twig": "Allows to use Twig templates"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ivory\\CKEditorBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com"
+                }
+            ],
+            "description": "Provides a CKEditor integration for your Symfony2 Project.",
+            "keywords": [
+                "CKEditor"
+            ],
+            "time": "2017-08-18 08:19:45"
+        },
+        {
+            "name": "egeloen/json-builder",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/egeloen/ivory-json-builder.git",
+                "reference": "3e70bc681891d8aca88dd72164caea659739f284"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/egeloen/ivory-json-builder/zipball/3e70bc681891d8aca88dd72164caea659739f284",
+                "reference": "3e70bc681891d8aca88dd72164caea659739f284",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^5.6|^7.0",
+                "symfony/property-access": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "phpunit/phpunit": "^5.0",
+                "symfony/phpunit-bridge": "^2.7|^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ivory\\JsonBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com"
+                }
+            ],
+            "description": "JSON builder with escaping control for PHP 5.6+",
+            "keywords": [
+                "Escape",
+                "builder",
+                "json"
+            ],
+            "time": "2017-02-27 20:18:54"
+        },
+        {
+            "name": "exercise/htmlpurifier-bundle",
+            "version": "v0.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Exercise/HTMLPurifierBundle.git",
+                "reference": "07c1ab56741c0b9771f30a45fed63a63b1c87b5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Exercise/HTMLPurifierBundle/zipball/07c1ab56741c0b9771f30a45fed63a63b1c87b5d",
+                "reference": "07c1ab56741c0b9771f30a45fed63a63b1c87b5d",
+                "shasum": ""
+            },
+            "require": {
+                "ezyang/htmlpurifier": "~4.0",
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.0|~3.0"
+            },
+            "require-dev": {
+                "symfony/form": "~2.0",
+                "twig/twig": "~1.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Exercise\\HTMLPurifierBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "contributors",
+                    "homepage": "https://github.com/Exercise/HTMLPurifierBundle/contributors"
+                }
+            ],
+            "description": "HTMLPurifier integration for your Symfony2 project",
+            "homepage": "https://github.com/Exercise/HTMLPurifierBundle",
+            "keywords": [
+                "htmlpurifier"
+            ],
+            "time": "2016-08-25 13:24:39"
+        },
+        {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "95e1bae3182efc0f3422896a3236e991049dac69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/95e1bae3182efc0f3422896a3236e991049dac69",
+                "reference": "95e1bae3182efc0f3422896a3236e991049dac69",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "time": "2017-06-03 02:28:16"
         },
         {
             "name": "fig/link-util",
