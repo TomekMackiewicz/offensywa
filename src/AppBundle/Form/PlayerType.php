@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PlayerType extends AbstractType
 {
@@ -27,7 +28,15 @@ class PlayerType extends AbstractType
                     'data-date-format' => 'dd-MM-yyyy'
                 ]
             ])                 
-            ->add('position')
+            //->add('position')
+            ->add('position', ChoiceType::class, array(
+                'choices'  => array(
+                    'goalkeeper' => 'goalkeeper',
+                    'defender' => 'defender',
+                    'midfielder' => 'midfielder',
+                    'attacker' => 'attacker',
+                ),
+            ))
             ->add('team', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',

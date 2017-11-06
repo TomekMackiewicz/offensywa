@@ -22,7 +22,11 @@
                 <td>
                     <ul>
                     {% for player in team.players %}
-                        <li>{{ player.firstname }} {{ player.lastname }}</li>
+                        <li>
+                            <a href="{{ path('player_show', { 'id': player.id }) }}">
+                                {{ player.firstname }} {{ player.lastname }}
+                            </a>
+                        </li>
                     {% endfor %}
                     </ul>
                 </td>

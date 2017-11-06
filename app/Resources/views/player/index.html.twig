@@ -21,9 +21,17 @@
                 <td><a href="{{ path('player_show', { 'id': player.id }) }}">{{ player.id }}</a></td>
                 <td>{{ player.firstName }}</td>
                 <td>{{ player.lastName }}</td>
-                <td>{% if player.birthDate %}{{ player.birthDate|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    {% if player.birthDate %}
+                        {{ player.birthDate|date('Y-m-d') }}
+                    {% endif %}
+                </td>
                 <td>{{ player.position }}</td>
-                <td>{{ player.team.name }}</td>
+                <td>
+                    {% if player.team %}
+                        {{ player.team.name }}
+                    {% endif %}
+                </td>
                 <td>
                     <ul>
                         <li>
