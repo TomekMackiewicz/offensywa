@@ -86,10 +86,42 @@ exercise_html_purifier:
 
 sonata_admin:
     title: Sonata Admin Area
-    #title_logo: img/logo_small.png
     templates:
-        show: AppBundle:admin:base_show.html.twig
-        dashboard: AppBundle::admin:dashboard.html.twig
+        layout:                         ::standard_layout.html.twig
+        ajax:                           ::ajax_layout.html.twig
+        list:                           CRUD/list.html.twig
+        show:                           CRUD/show.html.twig
+        show_compare:                   CRUD/show_compare.html.twig
+        edit:                           CRUD/edit.html.twig
+        history:                        CRUD/history.html.twig
+        preview:                        CRUD/preview.html.twig
+        delete:                         CRUD/delete.html.twig
+        batch:                          CRUD/list__batch.html.twig
+        acl:                            CRUD/acl.html.twig
+        action:                         CRUD/action.html.twig
+        select:                         CRUD/list__select.html.twig
+        filter:                         Form/filter_admin_fields.html.twig
+        dashboard:                      Core/dashboard.html.twig
+        search:                         Core/search.html.twig
+        batch_confirmation:             CRUD/batch_confirmation.html.twig
+        inner_list_row:                 CRUD/list_inner_row.html.twig
+        base_list_field:                CRUD/base_list_field.html.twig
+        list_block:                     Block/block_admin_list.html.twig
+        user_block:                     Core/user_block.html.twig
+        add_block:                      Core/add_block.html.twig
+        pager_links:                    Pager/links.html.twig
+        pager_results:                  Pager/results.html.twig
+        tab_menu_template:              Core/tab_menu_template.html.twig
+        history_revision_timestamp:     CRUD/history_revision_timestamp.html.twig
+        short_object_description:       Helper/short-object-description.html.twig
+        search_result_block:            Block/block_search_result.html.twig
+        action_create:                  CRUD/dashboard__action_create.html.twig
+        button_acl:                     Button/acl_button.html.twig
+        button_create:                  Button/create_button.html.twig
+        button_edit:                    Button/edit_button.html.twig
+        button_history:                 Button/history_button.html.twig
+        button_list:                    Button/list_button.html.twig
+        button_show:                    Button/show_button.html.twig        
         
 sonata_media:
     db_driver: doctrine_orm

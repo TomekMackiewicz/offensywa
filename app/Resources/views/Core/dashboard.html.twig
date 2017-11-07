@@ -10,9 +10,9 @@ file that was distributed with this source code.
 #}
 
 {% extends base_template %}
-dupa
-{% block title %}{{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}{% endblock%}
-{% block breadcrumb %}{% endblock %}
+
+{% block title %}t{{ 'title_dashboard'|trans({}, 'SonataAdminBundle') }}{% endblock%}
+{% block breadcrumb %}<a class="navbar-brand" href="{{ path('homepage') }}">Back to website</a>{% endblock %}
 {% block content %}
 
     {% set has_left = false %}
