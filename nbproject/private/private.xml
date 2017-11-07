@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/tomek/Workspace/offensywa/src/AppBundle/Form/PlayerType.php</file>
-            <file>file:/home/tomek/Workspace/offensywa/src/AppBundle/Form/GameType.php</file>
-            <file>file:/home/tomek/Workspace/offensywa/app/Resources/views/base.html.twig</file>
+            <file>file:/var/www/offensywa/app/config/routing.yml</file>
+            <file>file:/var/www/offensywa/composer.json</file>
+            <file>file:/var/www/offensywa/app/config/config.yml</file>
+            <file>file:/var/www/offensywa/app/AppKernel.php</file>
+            <file>file:/var/www/offensywa/src/AppBundle/Controller/DefaultController.php</file>
         </group>
     </open-files>
 </project-private>
