@@ -49,7 +49,12 @@
           <ul class="dropdown-menu">
             <li><a href="{{ path('player_index') }}">Players</a></li>
           </ul>
-        </li>        
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('sonata_admin_dashboard') }}">Media</a>
+            </li>
+        {% endif %}
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">

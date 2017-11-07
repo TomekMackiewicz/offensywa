@@ -83,6 +83,13 @@ fos_user:
 exercise_html_purifier:
     default:
         Cache.SerializerPath: '%kernel.cache_dir%/htmlpurifier'
+
+sonata_admin:
+    title: Sonata Admin Area
+    #title_logo: img/logo_small.png
+    templates:
+        show: AppBundle:admin:base_show.html.twig
+        dashboard: AppBundle::admin:dashboard.html.twig
         
 sonata_media:
     db_driver: doctrine_orm
