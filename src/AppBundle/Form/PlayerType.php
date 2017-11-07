@@ -27,8 +27,11 @@ class PlayerType extends AbstractType
                     'data-provide' => 'datepicker',
                     'data-date-format' => 'dd-MM-yyyy'
                 ]
-            ])                 
-            //->add('position')
+            ])
+            ->add('image', 'sonata_media_type', array(
+                 'provider' => 'sonata.media.provider.image',
+                 'context'  => 'user'
+            ))                
             ->add('position', ChoiceType::class, array(
                 'choices'  => array(
                     'goalkeeper' => 'goalkeeper',

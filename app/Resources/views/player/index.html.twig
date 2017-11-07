@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
+                <th>Image</th>
                 <th>Birthdate</th>
                 <th>Position</th>
                 <th>Team</th>
@@ -21,6 +22,11 @@
                 <td><a href="{{ path('player_show', { 'id': player.id }) }}">{{ player.id }}</a></td>
                 <td>{{ player.firstName }}</td>
                 <td>{{ player.lastName }}</td>
+                <td>
+                    {% if player.image %}
+                        <img src="{% path player.image, 'small' %}">
+                    {% endif %}                    
+                </td>
                 <td>
                     {% if player.birthDate %}
                         {{ player.birthDate|date('Y-m-d') }}

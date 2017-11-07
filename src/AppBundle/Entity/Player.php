@@ -50,6 +50,26 @@ class Player
     private $position;
 
     /**
+     * @var Media
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="image", referencedColumnName="id")
+     * })
+     */
+   private $image;    
+
+    /**
+     * @var Gallery
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"persist", "remove"})
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="gallery", referencedColumnName="id")
+     * })
+     */
+    private $gallery;   
+   
+    /**
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="players")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
      */
@@ -185,5 +205,51 @@ class Player
         return $this;
     }
     
-}
+    /**
+     * Set image
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $image
+     *
+     * @return Player
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
 
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set gallery
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $gallery
+     *
+     * @return Player
+     */
+    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+}
