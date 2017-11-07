@@ -94,10 +94,31 @@ sonata_media:
                 - sonata.media.provider.image
                 - sonata.media.provider.file
                 - sonata.media.provider.vimeo
-
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
+                
+        post:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+            formats:
+                small: { width: 150 , quality: 70}
+                big:   { width: 400 , quality: 70}
+
+        user:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 300 , quality: 70}
 
     cdn:
         server:
@@ -106,4 +127,28 @@ sonata_media:
     filesystem:
         local:
             directory:  "%kernel.root_dir%/../web/uploads/media"
-            create:     false        
+            create:     false  
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]            
+            
+ivory_ck_editor:
+    default_config: default
+    configs:
+        default:
+            filebrowserBrowseRoute: admin_sonata_media_media_browser
+            filebrowserImageBrowseRoute: admin_sonata_media_media_browser
+            # Display images by default when clicking the image dialog browse button
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+            filebrowserUploadRoute: admin_sonata_media_media_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+            # Upload file as image when sending a file from the image dialog
+            filebrowserImageUploadRoute: admin_sonata_media_media_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                context: post            
