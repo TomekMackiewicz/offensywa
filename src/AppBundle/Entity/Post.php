@@ -44,6 +44,16 @@ class Post
     private $body;
 
     /**
+     * @var Media
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="image", referencedColumnName="id")
+     * })
+     */
+   private $image;    
+    
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="publish_date", type="datetime", nullable=true)
@@ -149,6 +159,30 @@ class Post
         return $this->body;
     }
 
+    /**
+     * Set image
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $image
+     *
+     * @return Player
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }    
+    
     /**
      * Set publishDate
      *

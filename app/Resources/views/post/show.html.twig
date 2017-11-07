@@ -4,6 +4,9 @@
     <i class="fa fa-backward" aria-hidden="true"></i>
     <a href="{{ path('post_index') }}"> Back to the list</a>
     <h1>{{ post.title }}</h1>
+    {% if post.image %}
+        <img src="{% path post.image, 'big' %}">
+    {% endif %}    
     <p>
         <small class="text-muted"> 
             {% if post.publishDate %}

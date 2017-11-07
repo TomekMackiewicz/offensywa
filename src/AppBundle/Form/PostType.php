@@ -21,7 +21,6 @@ class PostType extends AbstractType
             ->add('body', CKEditorType::class, array(
                 'config' => array(
                     'uiColor' => '#ffffff',
-                    //...
                 ),
             ))               
             ->add('categories', EntityType::class, array(
@@ -29,6 +28,10 @@ class PostType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+            ))
+            ->add('image', 'sonata_media_type', array(
+                 'provider' => 'sonata.media.provider.image',
+                 'context'  => 'post'
             ));
     }
     

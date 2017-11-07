@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Title</th>
+                <th>Image</th>
                 <th>Body</th>
                 <th>Publishdate</th>
                 <th>Modifydate</th>
@@ -19,6 +20,11 @@
             <tr>
                 <td><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.id }}</a></td>
                 <td>{{ post.title }}</td>
+                <td>
+                    {% if post.image %}
+                        <img src="{% path post.image, 'small' %}">
+                    {% endif %} 
+                </td>    
                 <td>
                 {% if post.body | length > 160 %}
                     {{ (post.body | slice(0, 161) | split(' ') | slice(0, -1) | join(' ') ~ '…') | purify }}
