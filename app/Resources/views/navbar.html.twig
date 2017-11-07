@@ -1,79 +1,108 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ path('homepage') }}">Offensywa</a>
+<div class="row">
+    <div class="col-xs-12 col-fluid">
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="upper-navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="">
+                                <i class="fa fa-facebook glyph-white-background" aria-hidden="true"></i>
+                            </a>
+                        </li> 
+                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>       
+                    </ul>                 
+                </div>
+            </div>
+        </nav>        
     </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-fluid">
+        <nav class="navbar navbar-default">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{{ path('homepage') }}">Offensywa</a>
+            </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown active">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tables <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('leaguetables') }}">Tables</a></li>
-          </ul>
-        </li>         
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('game_index') }}">Games</a></li>
-          </ul>
-        </li>        
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('category_index') }}">Categories</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('post_index') }}">Posts</a></li>
-          </ul>
-        </li>        
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teams <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('team_index') }}">Teams</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Players <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('player_index') }}">Players</a></li>
-          </ul>
-        </li>
-        {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                <a href="{{ path('sonata_admin_dashboard') }}">Media</a>
-            </li>
-        {% endif %}
-      </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        {% if app.user %}
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="dropdown active">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tables <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ path('leaguetables') }}">Tables</a></li>
+                  </ul>
+                </li>         
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ path('game_index') }}">Games</a></li>
+                  </ul>
+                </li>        
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ path('category_index') }}">Categories</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Posts <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ path('post_index') }}">Posts</a></li>
+                  </ul>
+                </li>        
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teams <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ path('team_index') }}">Teams</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Players <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ path('player_index') }}">Players</a></li>
+                  </ul>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li>
+                        <a href="{{ path('sonata_admin_dashboard') }}">Media</a>
+                    </li>
+                {% endif %}
               </ul>
-            </li>            
-        {% else %}
-            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-        {% endif %}        
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+              <form class="navbar-form navbar-left">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+              <ul class="nav navbar-nav navbar-right">
+                {% if app.user %}
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                      </ul>
+                    </li>            
+                {% else %}
+                    <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                {% endif %}        
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>        
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-fluid">
+        <img src="{{ asset('/images/offensywa.jpg') }}" class="img-responsive" alt="Offensywa Książenice">
+    </div>
+</div>
+
+
