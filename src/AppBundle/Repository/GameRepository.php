@@ -12,6 +12,17 @@ use Doctrine\ORM\Query\ResultSetMapping;
  */
 class GameRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getUpcomingFixtures()
+    {               
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery(
+                'SELECT g FROM AppBundle:Game g WHERE g.date > :now ORDER BY g.date'
+                )->setParameter('now', new \DateTime());
+        $fixtures = $query->getResult();
+        
+        return $fixtures;
+    }
+    
     public function getLeagueTables($year)
     {        
         $query = 'SELECT
