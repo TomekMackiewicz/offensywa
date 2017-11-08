@@ -1,3 +1,24 @@
+body {
+    font-family: 'Open Sans',sans-serif;
+    line-height: 23px;
+    font-size: 14px;    
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+/*h3 span::before {
+    content: "";
+    position: absolute;
+    left: 100%;
+    background: url(../images/heading-pettren.png) repeat-x center center;
+    height: 100%;
+    width: 999px;
+    top: 0;
+}*/
+
 code,
 kbd,
 pre,
@@ -36,17 +57,112 @@ pre,
 
 .navbar {
     margin-bottom: 0px;
+    border: 0;
 }
 
 .navbar-default {
     background-color: #ffffff;
 }
 
+.navbar-form {
+    padding: 0px;
+}
+
 .col-fluid {
     padding: 0px;
 }
 
-.glyph-white-background {
-  background-color:#ffffff;
-  border-radius: 50%;
+#upper-navbar > ul {
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-list {
+    border-left: 1px solid rgba(255,255,255,0.1);    
+}
+
+.btn:hover {
+    color: #ffffff;
+    background-color: red;
+    border-color: red;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;    
+}
+
+.navbar-toggle:hover {
+    color: #ffffff !important;
+    background-color: red !important;
+    border-color: red !important;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;    
+}
+
+.navbar-nav > li > a {
+    font-weight: 600;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #ffffff !important;
+    background-color: red !important;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;    
+}
+
+.dropdown-menu {
+    padding: 0px;
+    border: 0px;
+}
+
+.dropdown-menu > li > a:hover {
+    color: #ffffff !important;
+    background-color: red !important;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;    
+}
+
+.open > a {
+    color: #ffffff !important;
+    background-color: red !important;
+}
+
+.form-control:focus {
+    border-color: #ff0000;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px rgba(255, 0, 0, 0.6);    
+}
+
+@media only screen and (min-width : 992px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+/* Prevent upper navbar collapse */
+
+#upper-navbar {
+    display: block !important;
+}
+
+#upper-navbar > ul {
+    float: right !important;
+}
+
+#upper-navbar > ul > li {
+    float: left !important;
+}
+
+@media only screen and (max-width : 992px) {
+    .social-list {
+        margin-right: 20px;
+    }
 }
