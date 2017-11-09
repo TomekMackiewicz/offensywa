@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class TeamType extends AbstractType
 {
@@ -20,6 +21,10 @@ class TeamType extends AbstractType
             ->add('isMy', CheckboxType::class, array(
                 'label'    => 'Twoja drużyna?',
                 'required' => false,
+            ))
+            ->add('logo', 'sonata_media_type', array(
+                 'provider' => 'sonata.media.provider.image',
+                 'context'  => 'team'
             ));                
     }
     

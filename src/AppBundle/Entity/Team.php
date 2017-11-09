@@ -42,6 +42,16 @@ class Team
      * @ORM\Column(name="is_my", type="boolean")
      */
     private $isMy;
+
+    /**
+     * @var Media
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="logo", referencedColumnName="id")
+     * })
+     */
+   private $logo; 
     
     /**
      * @ORM\OneToMany(targetEntity="Player", mappedBy="team")
@@ -150,6 +160,30 @@ class Team
     public function getIsMy()
     {
         return $this->isMy;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $logo
+     *
+     * @return Player
+     */
+    public function setLogo(\Application\Sonata\MediaBundle\Entity\Media $logo = null)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
     
     /**
