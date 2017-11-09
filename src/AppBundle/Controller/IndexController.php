@@ -14,11 +14,13 @@ class IndexController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-       
+        
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $upcomingFixtures = $em->getRepository('AppBundle:Game')->getUpcomingFixtures();
                
         return $this->render('index/index.html.twig', [
-            'upcomingFixtures' => $upcomingFixtures
+            'upcomingFixtures' => $upcomingFixtures,
+            'nextMatch' => $nextMatch
         ]);
               
     }

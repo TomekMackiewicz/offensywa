@@ -37,6 +37,13 @@ class Team
     private $year;
 
     /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="is_my", type="boolean")
+     */
+    private $isMy;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Player", mappedBy="team")
      */
     private $players;
@@ -119,6 +126,30 @@ class Team
     public function getYear()
     {
         return $this->year;
+    }
+
+    /**
+     * Set my team
+     *
+     * @param bool $isMy
+     *
+     * @return Team
+     */
+    public function setIsMy($isMy)
+    {
+        $this->isMy = $isMy;
+
+        return $this;
+    }
+
+    /**
+     * Get is my team
+     *
+     * @return bool
+     */
+    public function getIsMy()
+    {
+        return $this->isMy;
     }
     
     /**

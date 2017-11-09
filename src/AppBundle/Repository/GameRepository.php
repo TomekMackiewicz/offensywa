@@ -12,6 +12,23 @@ use Doctrine\ORM\Query\ResultSetMapping;
  */
 class GameRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function getNextMatch()
+    {               
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery('
+                SELECT g FROM AppBundle:Game g
+                JOIN AppBundle:Team t               
+                WHERE t.isMy = 1 
+                AND g.date < :now
+                ORDER BY g.date DESC
+                ')->setParameter('now', new \DateTime())->setMaxResults(1);
+               
+        $nextMatch = $query->getSingleResult();
+        
+        return $nextMatch;
+    }    
+    
     public function getUpcomingFixtures()
     {               
         $em = $this->getEntityManager();        
