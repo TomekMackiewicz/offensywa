@@ -167,6 +167,24 @@ pre,
     }
 }
 
+.logo-with-name {
+    color: #555;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.fixture-date {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+.fixture-text {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 35px;
+}
+
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
 .ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
