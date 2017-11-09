@@ -21,7 +21,7 @@ class GameType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy HH:mm',
                 'attr' => [
-                    'class' => 'form-control input-inline datepicker',
+                    'class' => 'form-control input-inline datetimepicker',
                     'data-provide' => 'datetimepicker'
                 ]
             ])                
