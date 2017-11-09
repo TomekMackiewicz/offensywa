@@ -34,10 +34,49 @@
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-5 col-xs-6 r-full-width">
-                    Ostatni mecz
+                    <h3>Ostatni mecz</h3>
+                    {% if lastMatch %}
+                        <p>{{ lastMatch.date | date('d-m-Y H:i') }}</p>
+                        <p>{{ lastMatch.homeTeam.name }}</p>
+                        <p>{{ lastMatch.homeTeamScore }} : {{ lastMatch.awayTeamScore }}</p>
+                        <p>{{ lastMatch.awayTeam.name }}</p>
+                    {% else %}
+                        Brak ostatniego meczu.
+                    {% endif %}                    
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-7 col-xs-6 r-full-width">
-                    Tabele
+                    <h3>Tabele</h3>
+                    {% for table in leagueTables %}
+                    <h4>Tabela rocznika ({{ table.year }})</h4>        
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Team</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>F</th>
+                                <th>A</th>
+                                <th>GD</th>
+                                <th>Pts</th>
+                            </tr>            
+                            {% for team in table.table %}
+                                <tr>
+                                    <td>{{ team.Team }}</td>
+                                    <td>{{ team.P }}</td>
+                                    <td>{{ team.W }}</td>
+                                    <td>{{ team.D }}</td>
+                                    <td>{{ team.L }}</td>
+                                    <td>{{ team.F }}</td>
+                                    <td>{{ team.A }}</td>
+                                    <td>{{ team.GD }}</td>
+                                    <td>{{ team.Pts }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endfor %}                    
                 </div>                    
             </div>
         </div>

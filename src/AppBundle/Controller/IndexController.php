@@ -16,12 +16,37 @@ class IndexController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $upcomingFixtures = $em->getRepository('AppBundle:Game')->getUpcomingFixtures();
+        $leagueTables = $this->getLeagueTables();
                
         return $this->render('index/index.html.twig', [
+            'nextMatch' => $nextMatch,
+            'lastMatch' => $lastMatch,
             'upcomingFixtures' => $upcomingFixtures,
-            'nextMatch' => $nextMatch
+            'leagueTables' => $leagueTables
         ]);
               
     }
+    
+    /**
+     * Get league tables.
+     */
+    public function getleagueTables()
+    {
+        $tables = [];
+        $em = $this->getDoctrine()->getManager();
+        $years = $em->getRepository('AppBundle:Team')->getYears();
+        foreach($years as $year) {
+            $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
+            $statement = $em->getConnection()->prepare($query);
+            $statement->bindValue('year', $year);
+            $statement->execute();
+            $table['table'] = $statement->fetchAll(); 
+            $table['year'] = $year;
+            $tables[] = $table;
+        }
+        
+        return $tables;
+    }    
 }

@@ -29,6 +29,23 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
         
         return $nextMatch;
     }    
+
+    public function getLastMatch()
+    {               
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery('
+                SELECT g FROM AppBundle:Game g              
+                JOIN AppBundle:Team h WITH g.homeTeam = h.id
+                JOIN AppBundle:Team a WITH g.awayTeam = a.id
+                WHERE (g.date < :now)
+                AND (h.isMy = 1 OR a.isMy = 1) 
+                ORDER BY g.date DESC
+                ')->setParameter('now', new \DateTime())->setMaxResults(1);
+              
+        $nextMatch = $query->getOneOrNullResult();
+        
+        return $nextMatch;
+    }
     
     public function getUpcomingFixtures()
     {               
