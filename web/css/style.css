@@ -185,6 +185,47 @@ pre,
     line-height: 35px;
 }
 
+.next-match-details {
+    background: linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../images/tribunes1.jpg);
+    background-size: cover;                      
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: #ffffff;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.next-match-details > h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px 0;
+    background: red;
+    color: #fff;    
+}
+
+.next-match-details > div {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+    padding: 15px 0;
+    color: #fff;    
+}
+
+.next-match-details > p {
+    margin: 0;
+    text-align: center;
+    padding: 15px 0;
+    color: #fff;
+}
+
+.borderless td, .borderless th {
+    border: none !important;
+}
+
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
 .ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
