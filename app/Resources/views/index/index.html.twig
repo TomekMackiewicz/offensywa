@@ -28,7 +28,34 @@
                         {% endfor %}
                     </table>
                 </div>
-                <div class="col-xs-12">Aktualności</div>
+                <div class="col-xs-12">
+                    <h3>Aktualności</h3>
+                    {% for post in recentPosts %}
+                        <h4>{{ post.title }}</h4>
+                        {% if post.image %}
+                            <img src="{% path post.image, 'small' %}">
+                        {% endif %}  
+                        <p>
+                            <small class="text-muted"> 
+                                {% if post.publishDate %}
+                                    <i class="fa fa-calendar" aria-hidden="true"></i> &nbsp; 
+                                    <abbr title="Publish date">{{ post.publishDate|date('Y-m-d H:i:s') }}</abbr>
+                                {% endif %}
+                                &nbsp;
+                                {% if post.modifyDate %}
+                                    <i class="fa fa-pencil" aria-hidden="true"></i> &nbsp; 
+                                    <abbr title="Modify date">{{ post.modifyDate|date('Y-m-d H:i:s') }}</abbr>
+                                {% endif %}
+                            </small>
+                        </p>                        
+                        {% if post.body | length > 160 %}
+                            {{ (post.body | slice(0, 161) | split(' ') | slice(0, -1) | join(' ') ~ '…') | purify }}
+                        {% else %}
+                            {{ post.body | purify }}
+                        {% endif %}
+                        <small><a href="{{ path('post_show', { 'id': post.id }) }}">Czytaj dalej...</a></small>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -47,7 +74,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-7 col-xs-6 r-full-width">
                     <h3>Tabele</h3>
                     {% for table in leagueTables %}
-                    <h4>Tabela rocznika ({{ table.year }})</h4>        
+                    <h4>Tabela rocznika {{ table.year }}</h4>        
                     <table class="table">
                         <tbody>
                             <tr>

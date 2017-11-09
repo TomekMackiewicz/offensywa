@@ -19,12 +19,14 @@ class IndexController extends Controller
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $upcomingFixtures = $em->getRepository('AppBundle:Game')->getUpcomingFixtures();
         $leagueTables = $this->getLeagueTables();
+        $recentPosts = $em->getRepository('AppBundle:Post')->getRecentPosts();
                
         return $this->render('index/index.html.twig', [
             'nextMatch' => $nextMatch,
             'lastMatch' => $lastMatch,
             'upcomingFixtures' => $upcomingFixtures,
-            'leagueTables' => $leagueTables
+            'leagueTables' => $leagueTables,
+            'recentPosts' => $recentPosts
         ]);
               
     }

@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getRecentPosts()
+    {               
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery(
+            'SELECT p FROM AppBundle:Post p ORDER BY p.publishDate'
+            )->setMaxResults(5);
+        $recentPosts = $query->getResult();
+        
+        return $recentPosts;
+    }    
 }
