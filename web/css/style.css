@@ -185,7 +185,7 @@ pre,
     line-height: 35px;
 }
 
-.next-match-details {
+.match-details {
     background: linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../images/tribunes1.jpg);
     background-size: cover;                      
     background-repeat: no-repeat;
@@ -195,7 +195,7 @@ pre,
     text-align: center;
 }
 
-.next-match-details > h4 {
+.match-details > h4 {
     font-size: 16px;
     font-weight: bold;
     margin: 0;
@@ -206,7 +206,7 @@ pre,
     color: #fff;    
 }
 
-.next-match-details > div {
+.match-details > div {
     font-size: 16px;
     font-weight: bold;
     margin: 0;
@@ -215,7 +215,7 @@ pre,
     color: #fff;    
 }
 
-.next-match-details > p {
+.match-details > p {
     margin: 0;
     text-align: center;
     padding: 15px 0;
@@ -225,6 +225,61 @@ pre,
 .borderless td, .borderless th {
     border: none !important;
 }
+
+.upcoming-fixtures {
+    border-top: 2px solid red;
+}
+
+.simple-league-table {
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 2px solid red;
+}
+
+.simple-league-table thead {
+    background-color: #000;
+    color: #fff;
+}
+
+.simple-league-table th, .simple-league-table td {
+    padding: 6px !important;
+}
+
+/*NEWS CAROUSEL*/
+
+#myCarousel .carousel-caption {
+    left:0;
+    right:0;
+    bottom:0;
+    text-align:left;
+    padding:10px;
+    background:rgba(0,0,0,0.6);
+    text-shadow:none;
+}
+
+#myCarousel .list-group {
+    position:absolute;
+    top:0;
+    right:0;
+}
+#myCarousel .list-group-item {
+    border-radius:0px;
+    cursor:pointer;
+}
+#myCarousel .list-group .active {
+    background-color:#eee;	
+}
+
+@media (min-width: 992px) { 
+    #myCarousel { padding-right:33.3333%; }
+    #myCarousel .carousel-controls { display:none; } 	
+}
+@media (max-width: 991px) { 
+    .carousel-caption p,
+    #myCarousel .list-group { display:none; } 
+}
+
+/*TIMEPICKER*/
 
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
