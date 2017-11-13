@@ -1,6 +1,6 @@
 $(document).ready(function() {    
     var clickEvent = false;
-    $('#myCarousel').carousel({
+    $('#newsCarousel').carousel({
         interval: 4000	
     }).on('click', '.list-group li', function() {
         clickEvent = true;
@@ -18,10 +18,10 @@ $(document).ready(function() {
         }
         clickEvent = false;
     });
-    var boxheight = $('#myCarousel .carousel-inner').innerHeight();
-    var itemlength = $('#myCarousel .item').length;
+    var boxheight = $('#newsCarousel .carousel-inner').innerHeight();
+    var itemlength = $('#newsCarousel .item').length;
     var triggerheight = Math.round(boxheight/itemlength+1);
-    $('#myCarousel .list-group-item').outerHeight(triggerheight);    
+    $('#newsCarousel .list-group-item').outerHeight(triggerheight);    
 });
 
 //$(window).load(function() {

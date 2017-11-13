@@ -10,4 +10,25 @@ namespace AppBundle\Repository;
  */
 class PlayerRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getRandomPlayers()
+    {               
+        $em = $this->getEntityManager();
+        $count = $em->createQuery('SELECT COUNT(p) FROM AppBundle:Player p')->getSingleScalarResult();
+        $randomIds = $this->randomIds(1, $count, 4);        
+        $query = $em->createQuery('
+                SELECT p FROM AppBundle:Player p              
+                WHERE p.id IN (:randomIds)
+                ')->setParameter('randomIds', $randomIds);              
+        $randomPlayers = $query->getResult();
+        
+        return $randomPlayers;
+    }
+    
+    private function randomIds($min, $max, $quantity) {
+        $ids = range($min, $max);
+        shuffle($ids);
+        return array_slice($ids, 0, $quantity);        
+    }
+       
+    
 }

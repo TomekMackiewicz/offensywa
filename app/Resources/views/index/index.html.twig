@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="col-sm-8 col-xs-7">
-                    <h3>KOLEJNE MECZE</h3>
+                    <h2>KOLEJNE MECZE</h2>
                     <div class="table-responsive upcoming-fixtures">
                         <table class="table table-bordered table-striped"> 
                             <tbody>
@@ -75,8 +75,8 @@
                     </div>
                 </div>
                 <div class="col-xs-12">
-                    <h3>AKTUALNOŚCI</h3>
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <h2>AKTUALNOŚCI</h2>
+                    <div id="newsCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             {% for post in recentPosts %}
                                 {% if loop.index0 == 0 %}
@@ -112,27 +112,53 @@
                         <ul class="list-group col-sm-4">
                             {% for post in recentPosts %}
                                 {% if loop.index0 == 0 %}
-                                    <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="list-group-item active">
+                                    <li data-target="#newsCarousel" data-slide-to="{{ loop.index0 }}" class="list-group-item active">
                                         <h4>{{ post.title }}</h4>
                                     </li>
                                 {% else %}
-                                    <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="list-group-item">
+                                    <li data-target="#newsCarousel" data-slide-to="{{ loop.index0 }}" class="list-group-item">
                                         <h4>{{ post.title }}</h4>
                                     </li>
                                 {% endif %}                                
                             {% endfor %}
                         </ul>
                         <div class="carousel-controls">
-                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <a class="left carousel-control" href="#newsCarousel" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a>
-                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <a class="right carousel-control" href="#newsCarousel" data-slide="next">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
                         </div>
                     </div>
                     </div>
-                </div>
+                    <div class="col-xs-12">
+                        <h2>NASI ZAWODNICY</h2>
+                        <a href="{{ path('player_index') }}">
+                            Zobacz wszystkich 
+                            <i class="fa fa-forward" aria-hidden="true"></i>
+                        </a>
+                        <div class="row">
+                            {% for player in players %}
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <div class="thumbnail">
+                                        <a href="{{ path('player_show', { 'id': player.id }) }}">
+                                            {% if player.image %}
+                                                <img src="{% path player.image, 'small' %}" class="img-responsive" alt="{{ player.firstName }} {{ player.lastName }}">
+                                            {% else %}
+                                                <img src="http://placehold.it/150x200/cccccc/ffffff">
+                                            {% endif %}
+                                            <div class="caption">
+                                                <h4>{{ player.firstName }} {{ player.lastName }}</h4>
+                                                <p>{{ player.position }}</p>
+                                            </div>
+                                        </a>
+                                    </div>                        
+                                </div>
+                            {% endfor %}                
+                        </div>
+                    </div>                        
+                </div>                       
             </div>
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="row">
@@ -186,9 +212,13 @@
                     </div>                    
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-7 col-xs-6">
-                    <h3>TABELE</h3>
+                    <h2>TABELE</h2>
+                    <a href="{{ path('leaguetables') }}">
+                        Zobacz wszystkie 
+                        <i class="fa fa-forward" aria-hidden="true"></i>
+                    </a>                    
                     {% for table in leagueTables %}
-                    <h4>Tabela rocznika {{ table.year }}</h4> 
+                    <h4>Rocznik {{ table.year }}</h4> 
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped simple-league-table">
                             <thead>
@@ -221,16 +251,6 @@
                 </div>                    
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            GALERIA
-        </div>
-    </div> 
-    <div class="row">
-        <div class="col-xs-12">
-            NASI ZAWODNICY
-        </div>
-    </div>     
+    </div>   
 {% endblock %}
 

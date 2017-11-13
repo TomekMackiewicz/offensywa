@@ -157,15 +157,15 @@ sonata_media:
                 - sonata.media.provider.file
                 - sonata.media.provider.vimeo
             formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 300 , quality: 70}
+                small: { width: 150 , quality: 70 }
+                big:   { width: 300 , quality: 70 }
 
         team:
             providers:
                 - sonata.media.provider.image
             formats:
-                small: { width: 30, quality: 70}
-                big:   { width: 900, quality: 70}
+                small: { width: 30, quality: 70 }
+                big:   { width: 900, quality: 70 }
 
     cdn:
         server:

@@ -9,6 +9,15 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
+a {
+    color: red;
+}
+
+a:hover {
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
 .list-group-item {
     border: 0;
 }
@@ -241,7 +250,7 @@ pre,
 
 /* NEWS CAROUSEL */
 
-#myCarousel .carousel-caption {
+#newsCarousel .carousel-caption {
     left: 0;
     right: 0;
     bottom: 0;
@@ -251,16 +260,16 @@ pre,
     text-shadow: none;
 }
 
-#myCarousel .list-group {
+#newsCarousel .list-group {
     position: absolute;
     top: 0;
     right: 0;
 }
-#myCarousel .list-group-item {
+#newsCarousel .list-group-item {
     border-radius: 0px;
     cursor: pointer;
 }
-#myCarousel .list-group .active {
+#newsCarousel .list-group .active {
     color: red;
     background-color: #eee;	
 }
@@ -274,12 +283,12 @@ pre,
 }
 
 @media (min-width: 992px) { 
-    #myCarousel { padding-right: 33.3333%; }
-    #myCarousel .carousel-controls { display: none; } 	
+    #newsCarousel { padding-right: 33.3333%; }
+    #newsCarousel .carousel-controls { display: none; } 	
 }
 @media (max-width: 991px) { 
     .carousel-caption p,
-    #myCarousel .list-group { display: none; } 
+    #newsCarousel .list-group { display: none; } 
 }
 
 /* TIMEPICKER */
