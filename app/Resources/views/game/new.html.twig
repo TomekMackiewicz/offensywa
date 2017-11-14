@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Game creation</h1>
-
+    <h1>Nowy mecz</h1>
+    <a href="{{ path('game_index') }}">Wróć do listy</a>
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        {{ form_row(form.date) }}    
+        {{ form_row(form.location) }} 
+        {{ form_row(form.homeTeam) }}
+        {{ form_row(form.awayTeam) }}
+        {{ form_row(form.homeTeamScore) }}
+        {{ form_row(form.awayTeamScore) }}
+        <input type="submit" value="Zapisz" />
     {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('game_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}
+
+

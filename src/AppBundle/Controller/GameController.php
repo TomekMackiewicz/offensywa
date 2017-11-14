@@ -38,8 +38,11 @@ class GameController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $game = new Game();
-        $form = $this->createForm('AppBundle\Form\GameType', $game);
+        $form = $this->createForm('AppBundle\Form\GameType', $game, array(
+            'entity_manager' => $em,
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -80,8 +83,11 @@ class GameController extends Controller
      */
     public function editAction(Request $request, Game $game)
     {
+        $em = $this->getDoctrine()->getManager();              
         $deleteForm = $this->createDeleteForm($game);
-        $editForm = $this->createForm('AppBundle\Form\GameType', $game);
+        $editForm = $this->createForm('AppBundle\Form\GameType', $game, array(
+            'entity_manager' => $em,
+        ));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

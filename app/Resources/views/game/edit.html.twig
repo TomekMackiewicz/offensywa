@@ -2,12 +2,15 @@
 
 {% block body %}
     <h1>Game edit</h1>
-
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        {{ form_row(edit_form.date) }}    
+        {{ form_row(edit_form.location) }} 
+        {{ form_row(edit_form.homeTeam) }}
+        {{ form_row(edit_form.awayTeam) }}
+        {{ form_row(edit_form.homeTeamScore) }}
+        {{ form_row(edit_form.awayTeamScore) }}
+        <input type="submit" value="Zapisz" />
     {{ form_end(edit_form) }}
-
     <ul>
         <li>
             <a href="{{ path('game_index') }}">Back to the list</a>

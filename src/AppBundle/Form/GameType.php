@@ -9,6 +9,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
+use AppBundle\Entity\Team;
 
 class GameType extends AbstractType
 {
@@ -17,6 +19,8 @@ class GameType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $em = $options['entity_manager'];
+        
         $builder
             ->add('date', DateTimeType::class, [
                 'widget' => 'single_text',
@@ -32,26 +36,42 @@ class GameType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
+                'placeholder' => 'Wybierz...'
             ))
             ->add('awayTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
+                'placeholder' => 'Wybierz...'
+            ))
+            ->add('homeTeamScore')
+            ->add('awayTeamScore');
+
+        $formModifier = function (FormInterface $form, Team $homeTeam = null, $em) {            
+            if($homeTeam !== null) {
+                $awayTeam = $em
+                    ->getRepository('AppBundle:Team')
+                    ->getTeamsByYear($homeTeam->getId(), $homeTeam->getYear());                
+            }                        
+            $choices = null === $homeTeam ? array() : $awayTeam;
+            $form->add('awayTeam', EntityType::class, array(
+                'class' => 'AppBundle:Team',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+                'placeholder' => 'Wybierz...',
+                'choices' => $choices,
             ));
-        
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) {
-                $form = $event->getForm();
-                $data = $event->getData();
-                $date = $data->getDate();
+        };
                 
-                if($date !== null && $date < new \DateTime()) {
-                    $form->add('homeTeamScore')->add('awayTeamScore');
-                }               
+        $builder->get('homeTeam')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier, $em) {
+                $homeTeam = $event->getForm()->getData();
+                $formModifier($event->getForm()->getParent(), $homeTeam, $em);
             }
-        );        
+        );                
     }
     
     /**
@@ -62,6 +82,7 @@ class GameType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Game'
         ));
+        $resolver->setRequired('entity_manager');
     }
 
     /**

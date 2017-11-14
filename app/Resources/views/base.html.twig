@@ -49,6 +49,70 @@
                     });                    
                 });                
             </script>
+            <script>
+                $(function() {
+                    var $homeTeam = $('#appbundle_game_homeTeam');
+                    $homeTeam.change(function() {
+                      var $form = $(this).closest('form');
+                      var data = {};
+                      data[$homeTeam.attr('name')] = $homeTeam.val();
+                      $.ajax({
+                        url : $form.attr('action'),
+                        type: $form.attr('method'),
+                        data : data,
+                        success: function(html) {
+                          $('#appbundle_game_awayTeam').replaceWith(
+                            $(html).find('#appbundle_game_awayTeam')
+                          );
+                        }
+                      });
+                    });                    
+                });                
+            </script>
+            <script>
+                $(function() {
+                    var matchDateInput = $('#appbundle_game_date');
+                    if(typeof matchDateInput.val() !== 'undefined') {
+                        var now = new Date();                        
+                        var homeTeamScore = $('#appbundle_game_homeTeamScore');
+                        var awayTeamScore = $('#appbundle_game_awayTeamScore');
+                        if(!matchDateInput.val().trim()) {
+                            $("#appbundle_game_homeTeamScore").prop('disabled', true);
+                            $("#appbundle_game_awayTeamScore").prop('disabled', true);                        
+                        } else {
+                            var splitHours = matchDateInput.val().split(" ");
+                            var splitMinutes = splitHours[1].split(":"); 
+                            var splitDate = splitHours[0].split("-");
+                            var matchDate = new Date(splitDate[2], splitDate[1] - 1, splitDate[0]);
+                            matchDate.setHours(splitMinutes[0],splitMinutes[1]);
+                            if(matchDate < now) {
+                                $("#appbundle_game_homeTeamScore").prop('disabled', false);
+                                $("#appbundle_game_awayTeamScore").prop('disabled', false);                                
+                            } else {
+                                $("#appbundle_game_homeTeamScore").prop('disabled', true);
+                                $("#appbundle_game_awayTeamScore").prop('disabled', true);                                 
+                            }
+                        
+                        }
+                        
+                        matchDateInput.change(function() {
+                            var splitHours = matchDateInput.val().split(" ");
+                            var splitMinutes = splitHours[1].split(":"); 
+                            var splitDate = splitHours[0].split("-");
+                            var matchDate = new Date(splitDate[2], splitDate[1] - 1, splitDate[0]);
+                            matchDate.setHours(splitMinutes[0],splitMinutes[1]);
+
+                            if(matchDate > now || !matchDateInput.val().trim()) {
+                                $("#appbundle_game_homeTeamScore").prop('disabled', true);
+                                $("#appbundle_game_awayTeamScore").prop('disabled', true);                        
+                            } else {
+                                $("#appbundle_game_homeTeamScore").prop('disabled', false);
+                                $("#appbundle_game_awayTeamScore").prop('disabled', false);                        
+                            }                    
+                        });                         
+                    }                   
+                });
+            </script>
         {% endblock %}                
     </body>
 </html>
