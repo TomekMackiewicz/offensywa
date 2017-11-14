@@ -20,7 +20,7 @@ class GameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $em = $options['entity_manager'];
-        
+     
         $builder
             ->add('date', DateTimeType::class, [
                 'widget' => 'single_text',
@@ -52,8 +52,8 @@ class GameType extends AbstractType
             if($homeTeam !== null) {
                 $awayTeam = $em
                     ->getRepository('AppBundle:Team')
-                    ->getTeamsByYear($homeTeam->getId(), $homeTeam->getYear());                
-            }                        
+                    ->getTeamsByYear($homeTeam->getId(), $homeTeam->getYear());
+            }
             $choices = null === $homeTeam ? array() : $awayTeam;
             $form->add('awayTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
@@ -62,16 +62,18 @@ class GameType extends AbstractType
                 'expanded' => false,
                 'placeholder' => 'Wybierz...',
                 'choices' => $choices,
+                'required'    => false,
+                'empty_data'  => 'string'                
             ));
         };
-                
+       
         $builder->get('homeTeam')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($formModifier, $em) {
                 $homeTeam = $event->getForm()->getData();
                 $formModifier($event->getForm()->getParent(), $homeTeam, $em);
             }
-        );                
+        );              
     }
     
     /**
