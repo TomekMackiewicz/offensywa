@@ -46,4 +46,12 @@ services:
         arguments: [~, AppBundle\Entity\Game, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: , group: "Mecze" }
-        public: true        
+        public: true
+        
+    admin.game.block:
+        class: AppBundle\Admin\Block\GameBlock
+        arguments:
+            - sonata.block.service.rss
+            - "@templating"
+        tags:
+            - { name: sonata.block }        
