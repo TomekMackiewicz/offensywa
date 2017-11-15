@@ -86,24 +86,20 @@ exercise_html_purifier:
 
 sonata_admin:
     title: Sonata Admin Area
-    dashboard:
-        blocks:
-            -
-                class:    col-lg-3 col-xs-6          # twitter bootstrap responsive code
-                position: top                        # zone in the dashboard
-                type:     admin.game.block   # block id
-                settings:
-                    code:  admin.game    # admin code - service id
-                    icon:  fa-magic                  # font awesome icon
-                    text:  Edited Pages
-                    color: bg-yellow                 # colors: bg-green, bg-red and bg-aqua
-                    filters:                         # filter values
-                        edited: { value: 1 }            
+#    dashboard:
+#        blocks:
 #            -
-#                position: right
-#                type: sonata.block.service.text           
-#            - { position: right, type: admin.game }          
-#            admin.game: ~ 
+#                class:    col-lg-3 col-xs-6          # twitter bootstrap responsive code
+#                position: top                        # zone in the dashboard
+#                type:     admin.game.block   # block id
+#                settings:
+#                    code:  admin.game    # admin code - service id
+#                    icon:  fa-magic                  # font awesome icon
+#                    text:  Edited Pages
+#                    color: bg-yellow                 # colors: bg-green, bg-red and bg-aqua
+#                    filters:                         # filter values
+#                        edited: { value: 1 }            
+
     templates:
         layout:                         ::standard_layout.html.twig
         ajax:                           ::ajax_layout.html.twig

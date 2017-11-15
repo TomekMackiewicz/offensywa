@@ -12,8 +12,8 @@ class GameAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-                ->add('home_team', 'text')
-                ->add('away_team', 'text');
+            ->add('home_team', 'text')
+            ->add('away_team', 'text');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -24,8 +24,8 @@ class GameAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-                ->addIdentifier('id')
-                ->addIdentifier('location');
+            ->addIdentifier('id')
+            ->addIdentifier('location');
 //                ->addIdentifier('home_team')
 //                ->addIdentifier('away_team');
     }
