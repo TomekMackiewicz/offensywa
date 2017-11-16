@@ -45,10 +45,24 @@ class Player
     /**
      * @var string
      *
+     * @ORM\Column(name="year", type="string", nullable=false)
+     */
+    private $year;    
+    
+    /**
+     * @var string
+     *
      * @ORM\Column(name="position", type="string", length=255, nullable=true)
      */
     private $position;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parent_email", type="string", length=255, nullable=true)
+     */
+    private $parentYear;    
+    
     /**
      * @var Media
      *
@@ -158,6 +172,30 @@ class Player
     }
 
     /**
+     * Set year
+     *
+     * @param string $year
+     *
+     * @return Player
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get year
+     *
+     * @return string
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }    
+    
+    /**
      * Set position
      *
      * @param string $position
@@ -179,6 +217,30 @@ class Player
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set parent email
+     *
+     * @param string $parentEmail
+     *
+     * @return Player
+     */
+    public function setParentEmail($parentEmail)
+    {
+        $this->parentEmail = $parentEmail;
+
+        return $this;
+    }
+
+    /**
+     * Get parent email
+     *
+     * @return string
+     */
+    public function getParentEmail()
+    {
+        return $this->parentEmail;
     }
     
     /**
