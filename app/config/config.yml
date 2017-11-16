@@ -85,21 +85,7 @@ exercise_html_purifier:
         Cache.SerializerPath: '%kernel.cache_dir%/htmlpurifier'
 
 sonata_admin:
-    title: Sonata Admin Area
-#    dashboard:
-#        blocks:
-#            -
-#                class:    col-lg-3 col-xs-6          # twitter bootstrap responsive code
-#                position: top                        # zone in the dashboard
-#                type:     admin.game.block   # block id
-#                settings:
-#                    code:  admin.game    # admin code - service id
-#                    icon:  fa-magic                  # font awesome icon
-#                    text:  Edited Pages
-#                    color: bg-yellow                 # colors: bg-green, bg-red and bg-aqua
-#                    filters:                         # filter values
-#                        edited: { value: 1 }            
-
+    title: Sonata Admin Area           
     templates:
         layout:                         ::standard_layout.html.twig
         ajax:                           ::ajax_layout.html.twig
@@ -194,10 +180,7 @@ sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
-            contexts: [admin] 
-#        sonata.admin.block.search_result:
-#            contexts: [admin]    
-        admin.game.block: ~            
+            contexts: [admin]            
             
 ivory_ck_editor:
     default_config: default

@@ -16,16 +16,21 @@ class PlayerController extends Controller
     /**
      * Lists all player entities.
      *
-     * @Route("/players", name="player_index")
+     * @Route("/admin/players", name="player_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $players = $em->getRepository('AppBundle:Player')->findAll();
-
+        $deleteForms = array();
+        foreach($players as $player) {
+            $deleteForms[$player->getId()] = $this->createDeleteForm($player)->createView();
+        }
+        
         return $this->render('player/index.html.twig', array(
             'players' => $players,
+            'deleteForms' => $deleteForms,
         ));
     }
 
@@ -58,7 +63,7 @@ class PlayerController extends Controller
     /**
      * Finds and displays a player entity.
      *
-     * @Route("/players/{id}", name="player_show")
+     * @Route("/admin/players/{id}", name="player_show")
      * @Method("GET")
      */
     public function showAction(Player $player)
@@ -130,5 +135,5 @@ class PlayerController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
-    }
+    }    
 }

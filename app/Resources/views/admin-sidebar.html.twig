@@ -11,8 +11,24 @@
     </div>
     <div class="navbar-collapse collapse sidebar-navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Menu Item 1</a></li>
-        <li><a href="#">Menu Item 2</a></li>
+        <li class="active">
+            <a href="{{ path('admin_dashboard') }}">Kokpit</a>
+        </li>
+        <li>
+            <a href="#" 
+               data-toggle="collapse" 
+               data-target="#collapseExample" 
+               aria-expanded="false" 
+               aria-controls="collapseExample">
+                Zawodnicy
+            </a>
+            <div class="collapse" id="collapseExample">
+                <ul class="list-unstyled">
+                    <li><a href="{{ path('player_index') }}">Lista</a></li>
+                    <li><a href="{{ path('player_new') }}">Dodaj</a></li>
+                </ul>
+            </div>            
+        </li>
         <li><a href="#">Menu Item 3</a></li>
         <li><a href="#">Menu Item 4</a></li>
         <li><a href="#">Reviews <span class="badge">1,118</span></a></li>

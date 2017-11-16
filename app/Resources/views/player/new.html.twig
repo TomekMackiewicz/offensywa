@@ -1,16 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block body %}
-    <h1>Player creation</h1>
-
+{% block admin_body %}
+    <h2>Dodaj gracza</h2>
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('player_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}

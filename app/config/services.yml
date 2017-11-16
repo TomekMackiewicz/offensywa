@@ -33,26 +33,4 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-        
-    admin.category:
-        class: AppBundle\Admin\CategoryAdmin
-        arguments: [~, AppBundle\Entity\Category, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: Kategorie, group: "Posty" }
-        public: true 
-        
-    admin.game:
-        class: AppBundle\Admin\GameAdmin
-        arguments: [~, AppBundle\Entity\Game, ~]
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: , group: "Mecze" }
-        public: true
-        
-    admin.game.block:
-        class: AppBundle\Admin\Block\GameBlock
-        arguments:
-            - sonata.block.service.rss
-            - "@templating"
-        tags:
-            - { name: sonata.block }
-        public: true    
+           

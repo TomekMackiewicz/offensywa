@@ -1,19 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block body %}
-    <h1>Players list</h1>
-
+{% block admin_body %}
+    <h2>Zawodnicy</h2>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Image</th>
-                <th>Birthdate</th>
-                <th>Position</th>
-                <th>Team</th>
-                <th>Actions</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Zdjęcie</th>
+                <th>Data urodzenia</th>
+                <th>Pozycja</th>
+                <th>Grupa</th>
+                <th>Edycja</th>
             </tr>
         </thead>
         <tbody>
@@ -39,26 +38,25 @@
                     {% endif %}
                 </td>
                 <td>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <ul>
                         <li>
-                            <a href="{{ path('player_show', { 'id': player.id }) }}">show</a>
+                            <a href="{{ path('player_show', { 'id': player.id }) }}">Pokaż</a>
+                        </li>                       
+                        <li>
+                            <a href="{{ path('player_edit', { 'id': player.id }) }}">Edytuj</a>
                         </li>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li>
-                                <a href="{{ path('player_edit', { 'id': player.id }) }}">edit</a>
-                            </li>
-                        {% endif %}
+                        <li>
+                            <form action="{{ path('player_delete', { 'id': player.id }) }}" method="post">
+                                {{ form_widget(deleteForms[player.id]) }}
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </form>                            
+                        </li>
                     </ul>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    {% if is_granted('ROLE_ADMIN') %}
-        <ul>
-            <li>
-                <a href="{{ path('player_new') }}">Create a new player</a>
-            </li>
-        </ul>
-    {% endif %}
 {% endblock %}

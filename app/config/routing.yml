@@ -7,16 +7,16 @@ fos_user:
 
 admin_area:
     resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
-    prefix: /admin    
+    prefix: /admi    
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /admin
+    prefix: /admi
 
 _sonata_admin:
     resource: .
     type: sonata_admin
-    prefix: /admin    
+    prefix: /admi    
     
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'

@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block body %}
+{% block admin_body %}
     <h1>{{ player.firstName }} {{ player.lastName }}</h1>
     {% if player.image %}
         <img src="{% path player.image, 'big' %}">
