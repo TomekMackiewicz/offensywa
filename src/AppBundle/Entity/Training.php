@@ -35,6 +35,11 @@ class Training
      */
     private $location;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="trainings")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     */
+    private $team;    
 
     /**
      * Get id
@@ -93,5 +98,30 @@ class Training
     {
         return $this->location;
     }
+
+    /**
+     * Get team
+     *
+     * @return Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Set Team
+     *
+     * @param Team $team
+     *
+     * @return Training
+     */    
+    public function setTeam(Team $team)
+    {
+        $this->team = $team;
+        
+        return $this;
+    }    
+    
 }
 

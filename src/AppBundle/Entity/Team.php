@@ -72,12 +72,24 @@ class Team
      * @ORM\OneToMany(targetEntity="Game", mappedBy="awayTeam")
      */
     private $awayGames;     
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="teams")
+     * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
+     */
+    private $trainer;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Training", mappedBy="team")
+     */
+    private $trainings; 
     
     public function __construct() {
         $this->players = new ArrayCollection();
         $this->games = new ArrayCollection();
         $this->homeGames = new ArrayCollection();
         $this->awayGames = new ArrayCollection();
+        $this->trainings = new ArrayCollection();
     }    
 
     /**
@@ -215,6 +227,80 @@ class Team
     {
         return $this->games;
     }
+
+    /**
+     * Get trainer
+     *
+     * @return Trainer
+     */
+    public function getTrainer()
+    {
+        return $this->trainer;
+    }
+
+    /**
+     * Set Trainer
+     *
+     * @param Trainer $trainer
+     *
+     * @return Team
+     */    
+    public function setTrainer(Trainer $trainer)
+    {
+        $this->trainer = $trainer;
+        
+        return $this;
+    }
+
+    /**
+     * Set training
+     *
+     * @param Training $training
+     *
+     * @return Team
+     */
+    public function setTraining($training)
+    {
+        $this->training = $training;
+
+        return $this;
+    }
+
+    /**
+     * Get training
+     *
+     * @return Training
+     */
+    public function getTraining()
+    {
+        return $this->training;
+    }    
+    
+    /**
+     * Add training
+     *
+     * @param Training $training
+     *
+     * @return Team
+     */    
+    public function addTraining(Training $training)
+    {
+        $this->trainings->add($training);
+        
+        return $this;
+    }
+
+    /**
+     * Remove training
+     *
+     * @return Team
+     */    
+    public function removeTraining(Training $training)
+    {
+        $this->trainings->removeElement($training);
+        
+        return $this;
+    } 
     
 }
 

@@ -56,7 +56,15 @@ class Trainer
      */
     private $status;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="trainer")
+     */
+    private $teams;    
 
+    public function __construct() {
+        $this->teams = new ArrayCollection();
+    }     
+    
     /**
      * Get id
      *
@@ -186,5 +194,56 @@ class Trainer
     {
         return $this->status;
     }
+
+    /**
+     * Set team
+     *
+     * @param Team $team
+     *
+     * @return Trainer
+     */
+    public function setTeam($team)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }    
+    
+    /**
+     * Add team
+     *
+     * @param Team $team
+     *
+     * @return Trainer
+     */    
+    public function addTeam(Team $team)
+    {
+        $this->teams->add($team);
+        
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @return Trainer
+     */    
+    public function removeRequest(Team $team)
+    {
+        $this->teams->removeElement($team);
+        
+        return $this;
+    }    
+    
 }
 
