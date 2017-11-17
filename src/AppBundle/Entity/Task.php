@@ -49,6 +49,11 @@ class Task
      */
     private $outline;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="trainings")
+     * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
+     */
+    private $trainer;    
 
     /**
      * Get id
@@ -155,5 +160,30 @@ class Task
     {
         return $this->outline;
     }
+
+    /**
+     * Get trainer
+     *
+     * @return Trainer
+     */
+    public function getTrainer()
+    {
+        return $this->trainer;
+    }
+
+    /**
+     * Set Trainer
+     *
+     * @param Trainer $trainer
+     *
+     * @return Task
+     */    
+    public function setTrainer(Trainer $trainer)
+    {
+        $this->trainer = $trainer;
+        
+        return $this;
+    }    
+    
 }
 

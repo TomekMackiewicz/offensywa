@@ -14,7 +14,7 @@ składki
 
 - wykres wpłat http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/column-basic/
 
-- kalendarz treningów https://fullcalendar.io/
++ kalendarz treningów https://fullcalendar.io/
 
 9) rekrutacja
 ?

@@ -65,10 +65,16 @@ class Trainer
      * @ORM\OneToMany(targetEntity="Training", mappedBy="trainer")
      */
     private $trainings;    
+
+    /**
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="trainer")
+     */
+    private $tasks;
     
     public function __construct() {
         $this->teams = new ArrayCollection();
         $this->trainings = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }     
     
     /**
@@ -297,6 +303,56 @@ class Trainer
     public function removeTraining(Training $training)
     {
         $this->trainings->removeElement($training);
+        
+        return $this;
+    } 
+
+    /**
+     * Set task
+     *
+     * @param Task $task
+     *
+     * @return Trainer
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+
+        return $this;
+    }
+
+    /**
+     * Get task
+     *
+     * @return Task
+     */
+    public function getTask()
+    {
+        return $this->task;
+    }    
+    
+    /**
+     * Add task
+     *
+     * @param Task $task
+     *
+     * @return Trainer
+     */    
+    public function addTask(Task $task)
+    {
+        $this->tasks->add($task);
+        
+        return $this;
+    }
+
+    /**
+     * Remove task
+     *
+     * @return Trainer
+     */    
+    public function removeTask(Task $task)
+    {
+        $this->tasks->removeElement($task);
         
         return $this;
     } 
