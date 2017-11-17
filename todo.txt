@@ -1,5 +1,4 @@
-Powiązania: 
-trener-trening*
+Powiązania:
 składka-zawodnik
 task - grupa
 trener - task

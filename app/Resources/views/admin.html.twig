@@ -12,8 +12,9 @@
             <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             {#<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> #} 
-            <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,600" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,600" rel="stylesheet">            
             <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('/css/fullcalendar.min.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -42,18 +43,26 @@
                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
                     crossorigin="anonymous">
             </script>
+            <script src="{{ asset('/js/moment.min.js') }}"></script>
+            <script src="{{ asset('/js/fullcalendar.min.js') }}"></script>
             <script>
-                $('.btn-danger').on('click', function(e) {
-                    e.preventDefault();
-                    confirmDelete(this.closest("form"));
-                });
+                $(document).ready(function() {
+                    $('#calendar').fullCalendar({
+                        // put your options and callbacks here
+                    }); 
+                    
+                    $('.btn-danger').on('click', function(e) {
+                        e.preventDefault();
+                        confirmDelete(this.closest("form"));
+                    });
 
-                function confirmDelete(form) {
-                    var result = confirm('Are you sure you want to delete this question?');
-                    if (result === true) {
-                        $(form).submit();
-                    }
-                }                
+                    function confirmDelete(form) {
+                        var result = confirm('Are you sure you want to delete this question?');
+                        if (result === true) {
+                            $(form).submit();
+                        }
+                    };                     
+                });               
             </script>
         {% endblock %}              
     </body>
