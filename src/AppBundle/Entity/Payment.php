@@ -56,6 +56,11 @@ class Payment
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Player", inversedBy="payments")
+     * @ORM\JoinColumn(name="player_id", referencedColumnName="id")
+     */
+    private $player;    
 
     /**
      * Get id
@@ -186,5 +191,30 @@ class Payment
     {
         return $this->date;
     }
+    
+    /**
+     * Get player
+     *
+     * @return Player
+     */
+    public function getPlayer()
+    {
+        return $this->player;
+    }
+
+    /**
+     * Set Player
+     *
+     * @param Player $player
+     *
+     * @return Payment
+     */    
+    public function setPlayer(Player $player)
+    {
+        $this->player = $player;
+        
+        return $this;
+    }    
+    
 }
 

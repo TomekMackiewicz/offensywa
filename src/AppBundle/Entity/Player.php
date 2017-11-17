@@ -90,6 +90,15 @@ class Player
     private $team;  
 
     /**
+     * @ORM\OneToMany(targetEntity="Payment", mappedBy="player")
+     */
+    private $payments;    
+
+    public function __construct() {
+        $this->payments = new ArrayCollection();
+    } 
+    
+    /**
      * Get id
      *
      * @return int
@@ -314,4 +323,55 @@ class Player
     {
         return $this->gallery;
     }
+    
+    /**
+     * Set payment
+     *
+     * @param Payment $payment
+     *
+     * @return Player
+     */
+    public function setPayment($payment)
+    {
+        $this->payment = $payment;
+
+        return $this;
+    }
+
+    /**
+     * Get payment
+     *
+     * @return Payment
+     */
+    public function getPayment()
+    {
+        return $this->payment;
+    }    
+    
+    /**
+     * Add payment
+     *
+     * @param Payment $payment
+     *
+     * @return Player
+     */    
+    public function addPayment(payment $payment)
+    {
+        $this->payment->add($payment);
+        
+        return $this;
+    }
+
+    /**
+     * Remove payment
+     *
+     * @return Player
+     */    
+    public function removePayment(Payment $payment)
+    {
+        $this->payments->removeElement($payment);
+        
+        return $this;
+    } 
+    
 }

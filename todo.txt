@@ -1,6 +1,5 @@
 Powiązania:
 składka-zawodnik
-task - grupa
 
 składki
 - ilość składek w tym miesiącu
