@@ -83,6 +83,11 @@ class Team
      * @ORM\OneToMany(targetEntity="Training", mappedBy="team")
      */
     private $trainings; 
+
+    /**
+     * @ORM\OneToOne(targetEntity="Task", mappedBy="team")
+     */
+    private $task;
     
     public function __construct() {
         $this->players = new ArrayCollection();
@@ -300,6 +305,30 @@ class Team
         $this->trainings->removeElement($training);
         
         return $this;
+    } 
+
+    /**
+     * Set task
+     *
+     * @param Task $task
+     *
+     * @return Team
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+
+        return $this;
+    }
+
+    /**
+     * Get task
+     *
+     * @return Task
+     */
+    public function getTask()
+    {
+        return $this->task;
     } 
     
 }

@@ -56,6 +56,12 @@ class Task
     private $trainer;    
 
     /**
+     * @ORM\OneToOne(targetEntity="Team", inversedBy="task")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     */
+    private $team;   
+    
+    /**
      * Get id
      *
      * @return int
@@ -184,6 +190,30 @@ class Task
         
         return $this;
     }    
+
+    /**
+     * Set team
+     *
+     * @param Team $team
+     *
+     * @return Task
+     */
+    public function setTeam($team)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
     
 }
 

@@ -1,7 +1,6 @@
 Powiązania:
 składka-zawodnik
 task - grupa
-trener - task
 
 składki
 - ilość składek w tym miesiącu
