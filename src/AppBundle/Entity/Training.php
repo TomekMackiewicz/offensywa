@@ -42,6 +42,12 @@ class Training
     private $team;    
 
     /**
+     * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="trainings")
+     * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
+     */
+    private $trainer;    
+    
+    /**
      * Get id
      *
      * @return int
@@ -122,6 +128,30 @@ class Training
         
         return $this;
     }    
+
+    /**
+     * Get trainer
+     *
+     * @return Trainer
+     */
+    public function getTrainer()
+    {
+        return $this->trainer;
+    }
+
+    /**
+     * Set Trainer
+     *
+     * @param Trainer $trainer
+     *
+     * @return Training
+     */    
+    public function setTrainer(Trainer $trainer)
+    {
+        $this->trainer = $trainer;
+        
+        return $this;
+    }
     
 }
 
