@@ -3,7 +3,7 @@
 {% block admin_body %}
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-default admin-box">
                 <div class="panel-heading">zawodników / w tym płacących + ikona (ludzik)</div>
                 <div class="panel-body">
                     Więcej, link do zawodników
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-default admin-box">
                 <div class="panel-heading">[liczba] grup</div>
                 <div class="panel-body">
                     Więcej, link do grup
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-default admin-box">
                 <div class="panel-heading">Składek w tym miesiącu</div>
                 <div class="panel-body">
                     Lnk do składek
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="panel panel-default">
+            <div class="panel panel-default admin-box">
                 <div class="panel-heading">Zaległych składek w tym miesiącu</div>
                 <div class="panel-body">
                     składki? zaległe?
@@ -39,13 +39,43 @@
         <div class="col-sm-12 col-md-6">
             <div class="row">
                 <div class="col-xs-12">
-                    Wpłaty (wykres)                    
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    plan zajęć (wykres)
-                    <div id='calendar'></div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="admin-box">
+                                <h3>Wpłaty (wykres)</h3>                            
+                                <div id="chart">
+                                  <ul id="numbers">
+                                    <li><span>100%</span></li>
+                                    <li><span>90%</span></li>
+                                    <li><span>80%</span></li>
+                                    <li><span>70%</span></li>
+                                    <li><span>60%</span></li>
+                                    <li><span>50%</span></li>
+                                    <li><span>40%</span></li>
+                                    <li><span>30%</span></li>
+                                    <li><span>20%</span></li>
+                                    <li><span>10%</span></li>
+                                    <li><span>0%</span></li>
+                                  </ul>
+                                  <ul id="bars">
+                                    <li><div data-percentage="56" class="bar"></div><span>Option 1</span></li>
+                                    <li><div data-percentage="33" class="bar"></div><span>Option 2</span></li>
+                                    <li><div data-percentage="54" class="bar"></div><span>Option 3</span></li>
+                                    <li><div data-percentage="94" class="bar"></div><span>Option 4</span></li>
+                                    <li><div data-percentage="44" class="bar"></div><span>Option 5</span></li>
+                                    <li><div data-percentage="23" class="bar"></div><span>Option 6</span></li>
+                                  </ul>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="admin-box">
+                                <div id="calendar"></div>
+                            </div>
+                        </div>
+                    </div>                                        
                 </div>
             </div>            
         </div>

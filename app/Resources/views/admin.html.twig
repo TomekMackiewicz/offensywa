@@ -29,7 +29,7 @@
                         <div class="col-md-2">
                             {% include 'admin-sidebar.html.twig' %}
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-10 admin-main">
                             {% block admin_body %}{% endblock %}
                         </div>
                     </div>
@@ -61,7 +61,17 @@
                         if (result === true) {
                             $(form).submit();
                         }
-                    };                     
+                    }; 
+                    
+                    $(function(){
+                        $("#bars li .bar").each(function(key, bar){
+                            var percentage = $(this).data('percentage');
+
+                            $(this).animate({
+                                'height':percentage+'%'
+                            }, 1000);
+                        });
+                    });                     
                 });               
             </script>
         {% endblock %}              
