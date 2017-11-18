@@ -263,6 +263,10 @@ pre,
     padding: 6px !important;
 }
 
+.vertical-nav > li {
+    float: none;
+}
+
 /* NEWS CAROUSEL */
 
 #newsCarousel .carousel-caption {
@@ -431,3 +435,4 @@ pre,
     margin: 10px;
     padding: 10px;
 }
+
