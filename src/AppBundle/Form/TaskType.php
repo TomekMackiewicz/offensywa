@@ -22,22 +22,31 @@ class TaskType extends AbstractType
                 'attr' => [
                     'class' => 'form-control input-inline datetimepicker',
                     'data-provide' => 'datetimepicker'
-                ]
+                ],
+                'label' => 'Data'
             ])
-            ->add('trainerPresence')
-            ->add('attendanceList')
-            ->add('outline')
+            ->add('trainerPresence', null, array(
+                'label' => 'Obecność trenera'
+            ))
+            ->add('attendanceList', null, array(
+                'label' => 'Lista obecności'
+            ))
+            ->add('outline', null, array(
+                'label' => 'Konspekt'
+            ))
             ->add('trainer', EntityType::class, array(
                 'class' => 'AppBundle:Trainer',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
+                'label' => 'Trener'
             ))                
             ->add('team', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
+                'label' => 'Drużyna'
             ));                
         ;
     }

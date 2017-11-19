@@ -434,3 +434,11 @@ pre,
 .admin-list-icon {
     padding-right: 5px;
 }
+
+.admin-form {
+    margin-bottom: 15px;
+}
+
+.admin-form-btn-margin {
+    margin-right: 10px;
+}

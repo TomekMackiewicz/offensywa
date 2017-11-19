@@ -1,16 +1,14 @@
 {% extends 'admin.html.twig' %}
 
 {% block admin_body %}
-    <h1>Task creation</h1>
+    <div class="admin-box">
+        <h1>Dodaj zadanie</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-default" value="Utwórz" />
+        {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('task_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <a href="{{ path('task_index') }}" class="btn btn-default">Wróć do listy</a>
+    </div>
 {% endblock %}

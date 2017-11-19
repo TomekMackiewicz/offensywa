@@ -1,21 +1,15 @@
 {% extends 'admin.html.twig' %}
 
 {% block admin_body %}
-    <h1>Task edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('task_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="admin-box">
+        <h1>Edytuj zadanie</h1>
+        {{ form_start(edit_form, { 'attr': {'class': 'admin-form'} }) }}
+            {{ form_widget(edit_form) }}
+            <input type="submit" class="btn btn-default" value="Edytuj" />
+        {{ form_end(edit_form) }}
+        <a href="{{ path('task_index') }}" class="btn btn-default pull-left admin-form-btn-margin">Wróć do listy</a>
+        {{ form_start(delete_form) }}
+            <input type="submit" class="btn btn-danger" value="Usuń">
+        {{ form_end(delete_form) }}
+    </div>
 {% endblock %}
