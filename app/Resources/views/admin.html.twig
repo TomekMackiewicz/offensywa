@@ -22,27 +22,24 @@
         <div class="container-fluid">
             {% include 'admin-navbar.html.twig' %}
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid admin-main">
             <div class="row"> 
-                <div class="col-xs-12 col-fluid">
-                    <div class="row"> 
-                        <div class="col-md-2">
-                            {% include 'admin-sidebar.html.twig' %}
-                        </div>
-                        <div class="col-md-10 admin-main">
-                            {% block admin_body %}{% endblock %}
-                        </div>
-                    </div>
+                <div class="col-md-2 col-fluid">
+                    {% include 'admin-sidebar.html.twig' %}
+                </div>
+                <div class="col-md-10">
+                    {% block admin_body %}{% endblock %}
                 </div>
             </div>    
         </div>
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-{#            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
                     crossorigin="anonymous">
             </script>
+            <script src="{{ asset('/js/timepicker.js') }}"></script>
             <script src="{{ asset('/js/moment.min.js') }}"></script>
             <script src="{{ asset('/js/fullcalendar.min.js') }}"></script>
             <script>
@@ -74,6 +71,19 @@
                     });                     
                 });               
             </script>
+            <script>
+                $(function() {
+                    $(".datetimepicker").datetimepicker({
+                        timeFormat: 'HH:mm',
+                        dateFormat : 'dd-mm-yy'
+                    });                    
+                });
+                $(function() {
+                    $(".datepicker").datepicker({
+                        dateFormat : 'dd-mm-yy'
+                    });                    
+                });                
+            </script>            
         {% endblock %}              
     </body>
 </html>

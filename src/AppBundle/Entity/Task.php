@@ -50,7 +50,7 @@ class Task
     private $outline;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="trainings")
+     * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="tasks")
      * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
      */
     private $trainer;    

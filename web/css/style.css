@@ -24,15 +24,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
-a {
-    color: red;
-}
-
-a:hover {
-    text-decoration: underline;
-    text-decoration-color: red;
-}
-
 .list-group-item {
     border: 0;
 }
@@ -432,7 +423,14 @@ pre,
 .admin-box {
     background-color: #fff;
     border-top: 2px solid red;
-    margin: 10px;
+    margin-top: 10px;
     padding: 10px;
 }
 
+.admin-list > li > a {
+    padding-left: 15px;
+}
+
+.admin-list-icon {
+    padding-right: 5px;
+}

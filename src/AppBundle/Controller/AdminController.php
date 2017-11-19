@@ -22,11 +22,11 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        //$em = $this->getDoctrine()->getManager();
-        //$categories = $em->getRepository('AppBundle:Category')->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $tasks = $em->getRepository('AppBundle:Task')->findAll();
 
         return $this->render('admin/dashboard.html.twig', array(
-            'bla' => 'bla',
+            'tasks' => $tasks,
         ));
     }
 
