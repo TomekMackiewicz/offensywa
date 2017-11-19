@@ -25,7 +25,7 @@
             </tbody>
         </table>
         <a href="{{ path('task_index') }}" class="btn btn-default pull-left admin-form-btn-margin">Wróć do listy</a>
-        <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-default pull-left admin-form-btn-margin">Edytuj</a>
+        <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-primary pull-left admin-form-btn-margin">Edytuj</a>
         {{ form_start(delete_form) }}
             <input type="submit" class="btn btn-danger" value="Usuń">
         {{ form_end(delete_form) }}

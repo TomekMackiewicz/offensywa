@@ -23,20 +23,14 @@
                 <td>{% if task.attendanceList %}Tak{% else %}Nie{% endif %}</td>
                 <td>{% if task.outline %}Tak{% else %}Nie{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('task_show', { 'id': task.id }) }}">Pokaż</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('task_edit', { 'id': task.id }) }}">Edytuj</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('task_show', { 'id': task.id }) }}" class="btn btn-default">Pokaż</a>
+                    <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-primary">Edytuj</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('task_new') }}" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i> Dodaj</a>
+    <a href="{{ path('task_new') }}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Dodaj</a>
 
 {% endblock %}
