@@ -1,14 +1,18 @@
 {% extends 'admin.html.twig' %}
 
 {% block admin_body %}
-    <div class="admin-box">
-        <h1>Dodaj zadanie</h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+            <div class="admin-box">
+                <h1>Dodaj zadanie</h1>
 
-        {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
-            {{ form_widget(form) }}
-            <input type="submit" class="btn btn-success" value="Utwórz" />
-        {{ form_end(form) }}
+                {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" class="btn btn-success" value="Utwórz" />
+                {{ form_end(form) }}
 
-        <a href="{{ path('task_index') }}" class="btn btn-default">Wróć do listy</a>
+                <a href="{{ path('task_index') }}" class="btn btn-default">Wróć do listy</a>
+            </div>
+        </div>
     </div>
 {% endblock %}

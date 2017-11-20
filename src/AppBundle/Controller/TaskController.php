@@ -23,11 +23,15 @@ class TaskController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $tasks = $em->getRepository('AppBundle:Task')->findAll();
-
+        $deleteForms = array();
+        foreach($tasks as $task) {
+            $deleteForms[$task->getId()] = $this->createDeleteForm($task)->createView();
+        }
+        
         return $this->render('task/index.html.twig', array(
             'tasks' => $tasks,
+            'deleteForms' => $deleteForms,
         ));
     }
 
