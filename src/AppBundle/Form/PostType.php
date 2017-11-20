@@ -16,22 +16,29 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('slug')
+            ->add('title', null, array(
+                'label' => 'Tytuł'
+            ))
+            ->add('slug', null, array(
+                'label' => 'Url'
+            ))
             ->add('body', CKEditorType::class, array(
                 'config' => array(
                     'uiColor' => '#ffffff',
                 ),
+                'label' => 'Treść'
             ))               
             ->add('categories', EntityType::class, array(
                 'class' => 'AppBundle:Category',
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+                'label' => 'Kategorie'
             ))
             ->add('image', 'sonata_media_type', array(
-                 'provider' => 'sonata.media.provider.image',
-                 'context'  => 'post'
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'post',
+                'label' => 'Zdjęcie'
             ));
     }
     

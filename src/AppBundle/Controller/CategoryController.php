@@ -16,16 +16,21 @@ class CategoryController extends Controller
     /**
      * Lists all category entities.
      *
-     * @Route("/categories", name="category_index")
+     * @Route("/admin/categories", name="category_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('AppBundle:Category')->findAll();
-
+        $deleteForms = array();
+        foreach($categories as $category) {
+            $deleteForms[$category->getId()] = $this->createDeleteForm($category)->createView();
+        }
+        
         return $this->render('category/index.html.twig', array(
             'categories' => $categories,
+            'deleteForms' => $deleteForms,
         ));
     }
 
@@ -58,7 +63,7 @@ class CategoryController extends Controller
     /**
      * Finds and displays a category entity.
      *
-     * @Route("/categories/{id}", name="category_show")
+     * @Route("/admin/categories/{id}", name="category_show")
      * @Method("GET")
      */
     public function showAction(Category $category)

@@ -1,21 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block body %}
-    <h1>Category edit</h1>
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block admin_body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+            <div class="admin-box">     
+                <h1>Edytuj kategorię</h1>
+                {{ form_start(edit_form, { 'attr': {'class': 'admin-form'} }) }}
+                    {{ form_widget(edit_form) }}
+                    <input type="submit" class="btn btn-primary" value="Edytuj" />
+                {{ form_end(edit_form) }}
+                <a href="{{ path('category_index') }}" class="btn btn-default pull-left admin-form-btn-margin">
+                    Wróć do listy
+                </a>
+                {{ form_start(delete_form) }}
+                    <input type="submit" class="btn btn-danger" value="Usuń">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

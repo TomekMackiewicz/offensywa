@@ -12,17 +12,38 @@
     <div class="navbar-collapse collapse sidebar-navbar-collapse">
       <ul class="nav navbar-nav vertical-nav">
         <li class="active">
-            <a href="{{ path('admin_dashboard') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> Kokpit</a>
+            <a href="{{ path('admin_dashboard') }}">
+                <i class="fa fa-tachometer admin-list-icon" aria-hidden="true"></i>
+                Kokpit
+            </a>
         </li>
         <li>
-            <a href="#" 
+            <a href="#!" 
                data-toggle="collapse" 
-               data-target="#collapseExample" 
+               data-target="#posts" 
                aria-expanded="false" 
-               aria-controls="collapseExample">
-                <i class="fa fa-user-o" aria-hidden="true"></i> Zawodnicy
+               aria-controls="posts">
+                <i class="fa fa-book admin-list-icon" aria-hidden="true"></i>
+                Posty
             </a>
-            <div class="collapse" id="collapseExample">
+            <div class="collapse" id="posts">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('admin_post_index') }}">Lista</a></li>
+                    <li><a href="{{ path('post_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('category_index') }}">Kategorie</a></li>
+                </ul>
+            </div>            
+        </li>        
+        <li>
+            <a href="#!" 
+               data-toggle="collapse" 
+               data-target="#players" 
+               aria-expanded="false" 
+               aria-controls="players">
+                <i class="fa fa-user-o admin-list-icon" aria-hidden="true"></i>
+                Zawodnicy
+            </a>
+            <div class="collapse" id="players">
                 <ul class="list-unstyled admin-list">
                     <li><a href="{{ path('player_index') }}">Lista</a></li>
                     <li><a href="{{ path('player_new') }}">Dodaj</a></li>

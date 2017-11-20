@@ -31,6 +31,27 @@ class PostController extends Controller
     }
 
     /**
+     * Lists all post entities.
+     *
+     * @Route("/admin/posts", name="admin_post_index")
+     * @Method("GET")
+     */
+    public function adminIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository('AppBundle:Post')->findAll();
+        $deleteForms = array();
+        foreach($posts as $post) {
+            $deleteForms[$post->getId()] = $this->createDeleteForm($post)->createView();
+        }
+        
+        return $this->render('post/admin-index.html.twig', array(
+            'posts' => $posts,
+            'deleteForms' => $deleteForms,
+        ));
+    }    
+    
+    /**
      * Creates a new post entity.
      *
      * @Route("/admin/posts/new", name="post_new")

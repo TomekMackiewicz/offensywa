@@ -1,16 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block body %}
-    <h1>Post creation</h1>
+{% block admin_body %}
+    <div class="admin-box">
+        <h1>Nowy post</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-success" value="Utwórz" />
+        {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('post_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <a href="{{ path('admin_post_index') }}" class="btn btn-default">Wróć do listy</a>
+    </div>
 {% endblock %}

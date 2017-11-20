@@ -1,16 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block body %}
-    <h1>Category creation</h1>
+{% block admin_body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+            <div class="admin-box">    
+                <h1>Utwórz kategorię</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" class="btn btn-success" value="Utwórz" />
+                {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                <a href="{{ path('category_index') }}" class="btn btn-default">Wróć do listy</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
