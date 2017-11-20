@@ -15,6 +15,7 @@
             <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,600" rel="stylesheet">            
             <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
             <link rel="stylesheet" href="{{ asset('/css/fullcalendar.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('/css/data-tables.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -42,6 +43,7 @@
             <script src="{{ asset('/js/timepicker.js') }}"></script>
             <script src="{{ asset('/js/moment.min.js') }}"></script>
             <script src="{{ asset('/js/fullcalendar.min.js') }}"></script>
+            <script src="{{ asset('/js/data-tables.js') }}"></script>
             <script>
                 $(document).ready(function() {
                     $('#calendar').fullCalendar({
@@ -147,6 +149,73 @@
                         });                         
                     }                   
                 });
+            </script>
+            <script>
+{#                $(document).ready(function(){
+                    $('.data-table').DataTable({
+                        "order": [[ 1, 'asc' ]],
+                        language: {
+                            processing:     "Przetwarzam...",
+                            search:         "Szukaj:",
+                            lengthMenu:    "Pokazuj _MENU_ elementów",
+                            info:           "Pokazuje od _START_ do _END_ z _TOTAL_ elementów",
+                            infoEmpty:      "Pokazuje od 0 do 0 z 0 elementów",
+                            infoFiltered:   "(z _MAX_ elementów w ogóle)",
+                            infoPostFix:    "",
+                            loadingRecords: "Ładuję...",
+                            zeroRecords:    "Brak wyników",
+                            emptyTable:     "Pusta tablica",
+                            paginate: {
+                                first:      "Pierwsza",
+                                previous:   "Poprzednia",
+                                next:       "Następna",
+                                last:       "Ostatnia"
+                            },
+                            aria: {
+                                sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                            }
+                        }                        
+                    });
+                }); #}
+                $(document).ready(function() {
+                    var t = $('.data-table').DataTable( {
+                        "columnDefs": [ {
+                            "searchable": false,
+                            "orderable": false,
+                            "targets": 0
+                        } ],
+                        "order": [[ 1, 'asc' ]],
+                        language: {
+                            processing:     "Przetwarzam...",
+                            search:         "Szukaj:",
+                            lengthMenu:    "Pokazuj _MENU_ elementów",
+                            info:           "Pokazuje od _START_ do _END_ z _TOTAL_ elementów",
+                            infoEmpty:      "Pokazuje od 0 do 0 z 0 elementów",
+                            infoFiltered:   "(z _MAX_ elementów ogółem)",
+                            infoPostFix:    "",
+                            loadingRecords: "Ładuję...",
+                            zeroRecords:    "Brak wyników",
+                            emptyTable:     "Pusta tablica",
+                            paginate: {
+                                first:      "Pierwsza",
+                                previous:   "Poprzednia",
+                                next:       "Następna",
+                                last:       "Ostatnia"
+                            },
+                            aria: {
+                                sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                            }
+                        }                         
+                    });
+
+                    t.on( 'order.dt search.dt', function () {
+                        t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                            cell.innerHTML = i+1;
+                        } );
+                    }).draw();
+                });                
             </script>            
         {% endblock %}              
     </body>

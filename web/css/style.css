@@ -442,3 +442,11 @@ pre,
 .admin-form-btn-margin {
     margin-right: 10px;
 }
+
+#DataTables_Table_0_filter > label {
+    font-weight: normal;
+}
+
+#DataTables_Table_0_length > label {
+    font-weight: normal;
+}
