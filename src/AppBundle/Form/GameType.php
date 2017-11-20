@@ -28,25 +28,34 @@ class GameType extends AbstractType
                 'attr' => [
                     'class' => 'form-control input-inline datetimepicker',
                     'data-provide' => 'datetimepicker'
-                ]
+                ],
+                'label' => 'Data'
             ])                
-            ->add('location')
+            ->add('location', null, array(
+                'label' => 'Miejsce'
+            ))
             ->add('homeTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Wybierz...'
+                'placeholder' => 'Wybierz...',
+                'label' => 'Gospodarze'
             ))
             ->add('awayTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Wybierz...'
+                'placeholder' => 'Wybierz...',
+                'label' => 'Goście'
             ))
-            ->add('homeTeamScore')
-            ->add('awayTeamScore');
+            ->add('homeTeamScore', null, array(
+                'label' => 'Bramki gospodarzy'
+            ))
+            ->add('awayTeamScore', null, array(
+                'label' => 'Bramki gości'
+            ));
 
         $formModifier = function (FormInterface $form, Team $homeTeam = null, $em) {            
             if($homeTeam !== null) {

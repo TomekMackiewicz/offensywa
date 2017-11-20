@@ -1,17 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block body %}
-    <h1>Nowy mecz</h1>
-    <a href="{{ path('game_index') }}">Wróć do listy</a>
-    {{ form_start(form) }}
-        {{ form_row(form.date) }}    
-        {{ form_row(form.location) }} 
-        {{ form_row(form.homeTeam) }}
-        {{ form_row(form.awayTeam) }}
-        {{ form_row(form.homeTeamScore) }}
-        {{ form_row(form.awayTeamScore) }}
-        <input type="submit" value="Zapisz" />
-    {{ form_end(form) }}
+{% block admin_body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+            <div class="admin-box">    
+                <h1>Dodaj mecz</h1>
+                
+                {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+                    {{ form_row(form.date) }}    
+                    {{ form_row(form.location) }} 
+                    {{ form_row(form.homeTeam) }}
+                    {{ form_row(form.awayTeam) }}
+                    {{ form_row(form.homeTeamScore) }}
+                    {{ form_row(form.awayTeamScore) }}
+                    <input type="submit" class="btn btn-success" value="Zapisz" />
+                {{ form_end(form) }}
+                <a href="{{ path('admin_game_index') }}" class="btn btn-default">Wróć do listy</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

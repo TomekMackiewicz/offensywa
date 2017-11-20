@@ -31,6 +31,27 @@ class GameController extends Controller
     }
 
     /**
+     * Lists all game entities.
+     *
+     * @Route("/admin/games", name="admin_game_index")
+     * @Method("GET")
+     */
+    public function adminIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $games = $em->getRepository('AppBundle:Game')->findAll();
+        $deleteForms = array();
+        foreach($games as $game) {
+            $deleteForms[$game->getId()] = $this->createDeleteForm($game)->createView();
+        }
+        
+        return $this->render('game/admin-index.html.twig', array(
+            'games' => $games,
+            'deleteForms' => $deleteForms,
+        ));
+    }    
+    
+    /**
      * Creates a new game entity.
      *
      * @Route("/admin/games/new", name="game_new")

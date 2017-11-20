@@ -93,11 +93,21 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="#!" 
+               data-toggle="collapse" 
+               data-target="#games" 
+               aria-expanded="false" 
+               aria-controls="games">
                 <i class="fa fa-futbol-o admin-list-icon" aria-hidden="true"></i>
                 Mecze
             </a>
-        </li>
+            <div class="collapse" id="games">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('admin_game_index') }}">Lista</a></li>
+                    <li><a href="{{ path('game_new') }}">Dodaj</a></li>
+                </ul>
+            </div>            
+        </li>         
         <li>
             <a href="#">
                 <i class="fa fa-trophy admin-list-icon" aria-hidden="true"></i>

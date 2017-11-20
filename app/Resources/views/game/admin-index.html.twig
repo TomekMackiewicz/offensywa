@@ -1,0 +1,53 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <div class="admin-box">
+        <h1>Mecze</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Data</th>
+                    <th>Miejsce</th>
+                    <th>Gospodarze</th>
+                    <th>Goście</th>
+                    <th>Bramki gospodarzy</th>
+                    <th>Bramki gości</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for game in games %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{% if game.date %}{{ game.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ game.location }}</td>
+                    <td>{{ game.homeTeam.name }}</td>
+                    <td>{{ game.awayTeam.name }}</td>
+                    <td>{{ game.homeTeamScore }}</td>
+                    <td>{{ game.awayTeamScore }}</td>
+                    <td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('game_edit', { 'id': game.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                            Edytuj
+                        </a>
+                        <form action="{{ path('game_delete', { 'id': game.id }) }}" method="post">
+                            {{ form_widget(deleteForms[game.id]) }}
+                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
+                        </form>                             
+                    {% endif %}                    
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('game_new') }}" class="btn btn-success">
+            <i class="fa fa-plus" aria-hidden="true"></i> 
+            Dodaj
+        </a>
+        {% endif %}
+    </div>
+{% endblock %}
+
