@@ -1,18 +1,23 @@
 {% extends 'admin.html.twig' %}
 
 {% block admin_body %}
+    <h1>Posty</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('post_new') }}" class="btn btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i> 
+        Dodaj
+    </a>
+    {% endif %}
     <div class="admin-box">
-        <h1>Posty</h1>
-
-        <table class="table">
+        <table class="table data-table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Tytuł</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Tytuł</th>
                     <th>Zdjęcie</th>
                     <th>Treść</th>
-                    <th>Data publikacji</th>
-                    <th>Data modyfikacji</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Data publikacji</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Data modyfikacji</th>
                     <th>Akcje</th>
                 </tr>
             </thead>
@@ -36,7 +41,7 @@
                     <td>{% if post.publishDate %}{{ post.publishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if post.modifyDate %}{{ post.modifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
 
-                    <td>
+                    <td class="col-md-2">
                     {% if is_granted('ROLE_ADMIN') %}    
                         <a href="{{ path('post_edit', { 'id': post.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
                             Edytuj
@@ -51,12 +56,6 @@
             {% endfor %}
             </tbody>
         </table>
-    </div>
-    {% if is_granted('ROLE_ADMIN') %}    
-        <a href="{{ path('post_new') }}" class="btn btn-success">
-            <i class="fa fa-plus" aria-hidden="true"></i> 
-            Dodaj
-        </a>            
-    {% endif %}
+    </div>   
 {% endblock %}
 
