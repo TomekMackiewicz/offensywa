@@ -1,4 +1,4 @@
-image types:
+image types / sizes:
 player big
 player small
 team logo
@@ -9,11 +9,7 @@ Asserts!!!
 
 image gallery
 
----
-
-crud & styling:
-
-player
+crud / view:
 team
 trainer
 training

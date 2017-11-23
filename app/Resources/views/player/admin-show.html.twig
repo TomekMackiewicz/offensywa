@@ -1,0 +1,68 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+            <div class="admin-box">      
+                <h1>{{ player.firstName }} {{ player.lastName }}</h1>
+                {% if player.image %}
+                    <img src="{% path player.image, 'big' %}">
+                {% endif %}
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Imię</th>
+                            <td>{{ player.firstName }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nazwisko</th>
+                            <td>{{ player.lastName }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email rodzica</th>
+                            <td>
+                                {% if player.parentEmail %}
+                                    {{ player.parentEmail }}
+                                {% else %}
+                                    ---
+                                {% endif %}                    
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <th>Data urodzenia</th>
+                            <td>
+                                {% if player.birthDate %}
+                                    {{ player.birthDate|date('Y-m-d') }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Pozycja</th>
+                            <td>{{ player.position }}</td>
+                        </tr>
+                        <tr>
+                            <th>Grupa</th>
+                            <td>
+                                {% if player.team %}
+                                    {{ player.team.name }}
+                                {% endif %}
+                            </td>
+                        </tr>            
+                    </tbody>
+                </table>
+                <a href="{{ path('admin_player_index') }}" class="btn btn-default pull-left admin-form-btn-margin">
+                    Wróć do listy
+                </a>                    
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('player_edit', { 'id': player.id }) }}" class="btn btn-primary pull-left admin-form-btn-margin">
+                    Edytuj
+                </a>
+                {{ form_start(delete_form) }}
+                    <input type="submit" class="btn btn-danger" value="Usuń">
+                {{ form_end(delete_form) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

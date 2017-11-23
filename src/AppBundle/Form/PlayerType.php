@@ -17,8 +17,12 @@ class PlayerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName')
-            ->add('lastName')
+            ->add('firstName', null, array(
+                'label' => 'Imię'
+            ))
+            ->add('lastName', null, array(
+                'label' => 'Nazwisko'
+            ))
             ->add('birthDate', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
@@ -26,25 +30,32 @@ class PlayerType extends AbstractType
                     'class' => 'form-control input-inline datepicker',
                     'data-provide' => 'datepicker',
                     'data-date-format' => 'dd-MM-yyyy'
-                ]
+                ],
+                'label' => 'Data urodzenia'
             ])
             ->add('image', 'sonata_media_type', array(
-                 'provider' => 'sonata.media.provider.image',
-                 'context'  => 'user'
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'user',
+                'label' => 'Zdjęcie'
             ))                
             ->add('position', ChoiceType::class, array(
                 'choices'  => array(
-                    'goalkeeper' => 'goalkeeper',
-                    'defender' => 'defender',
-                    'midfielder' => 'midfielder',
-                    'attacker' => 'attacker',
+                    'bramkarz' => 'goalkeeper',
+                    'obrońca' => 'defender',
+                    'pomocnik' => 'midfielder',
+                    'napastnik' => 'attacker',
                 ),
+                'label' => 'Pozycja'
             ))
             ->add('team', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
+                'label' => 'Grupa'
+            ))
+            ->add('parentEmail', null, array(
+                'label' => 'Email rodzica'
             ));
     }
     

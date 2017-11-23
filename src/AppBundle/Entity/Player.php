@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Player
@@ -40,14 +41,7 @@ class Player
      *
      * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
-    private $birthDate;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="year", type="string", nullable=false)
-     */
-    private $year;    
+    private $birthDate;   
     
     /**
      * @var string
@@ -61,7 +55,7 @@ class Player
      *
      * @ORM\Column(name="parent_email", type="string", length=255, nullable=true)
      */
-    private $parentYear;    
+    private $parentEmail;    
     
     /**
      * @var Media

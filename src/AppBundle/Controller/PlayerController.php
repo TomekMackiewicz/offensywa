@@ -16,10 +16,26 @@ class PlayerController extends Controller
     /**
      * Lists all player entities.
      *
-     * @Route("/admin/players", name="player_index")
+     * @Route("/players", name="player_index")
      * @Method("GET")
      */
     public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $players = $em->getRepository('AppBundle:Player')->findAll();
+        
+        return $this->render('player/index.html.twig', array(
+            'players' => $players,
+        ));
+    }
+
+    /**
+     * Lists all player entities.
+     *
+     * @Route("/admin/players", name="admin_player_index")
+     * @Method("GET")
+     */
+    public function adminIndexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $players = $em->getRepository('AppBundle:Player')->findAll();
@@ -28,12 +44,12 @@ class PlayerController extends Controller
             $deleteForms[$player->getId()] = $this->createDeleteForm($player)->createView();
         }
         
-        return $this->render('player/index.html.twig', array(
+        return $this->render('player/admin-index.html.twig', array(
             'players' => $players,
             'deleteForms' => $deleteForms,
         ));
-    }
-
+    }     
+    
     /**
      * Creates a new player entity.
      *
@@ -63,14 +79,14 @@ class PlayerController extends Controller
     /**
      * Finds and displays a player entity.
      *
-     * @Route("/admin/players/{id}", name="player_show")
+     * @Route("/admin/players/{id}", name="admin_player_show")
      * @Method("GET")
      */
-    public function showAction(Player $player)
+    public function adminShowAction(Player $player)
     {
         $deleteForm = $this->createDeleteForm($player);
 
-        return $this->render('player/show.html.twig', array(
+        return $this->render('player/admin-show.html.twig', array(
             'player' => $player,
             'delete_form' => $deleteForm->createView(),
         ));
