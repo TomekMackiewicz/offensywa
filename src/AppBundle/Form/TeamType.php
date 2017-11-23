@@ -16,15 +16,20 @@ class TeamType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('year')
+            ->add('name', null, array(
+                'label' => 'Nazwa'
+            ))
+            ->add('year', null, array(
+                'label' => 'Rocznik'
+            ))
             ->add('isMy', CheckboxType::class, array(
                 'label'    => 'Twoja drużyna?',
                 'required' => false,
             ))
             ->add('logo', 'sonata_media_type', array(
                  'provider' => 'sonata.media.provider.image',
-                 'context'  => 'team'
+                 'context'  => 'team',
+                'label' => 'Logo'
             ));                
     }
     

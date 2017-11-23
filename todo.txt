@@ -10,15 +10,17 @@ Asserts!!!
 image gallery
 
 crud / view:
-team
 trainer
 training
 tournament !
+task
 
 ---------------------------
 messages
 ---------------------------
 payment
+zamówienia
+wydarzenia
 ---------------------------
 security - roles (twig)
 
@@ -26,7 +28,6 @@ security - roles (twig)
 null, isset itd (twig)
 
 ---------------------------
-move media to dashboard
 
 admi/sonata/media/media/list
 admi/sonata/media/media/create?

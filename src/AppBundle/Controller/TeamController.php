@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Team;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Team controller.
@@ -29,6 +30,27 @@ class TeamController extends Controller
         ));
     }
 
+    /**
+     * Lists all team entities.
+     *
+     * @Route("/admin/teams", name="admin_team_index")
+     * @Method("GET")
+     */
+    public function adminIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $teams = $em->getRepository('AppBundle:Team')->findAll();
+        $deleteForms = array();
+        foreach($teams as $team) {
+            $deleteForms[$team->getId()] = $this->createDeleteForm($team)->createView();
+        }
+        
+        return $this->render('team/admin-index.html.twig', array(
+            'teams' => $teams,
+            'deleteForms' => $deleteForms,
+        ));
+    }    
+    
     /**
      * Creates a new team entity.
      *

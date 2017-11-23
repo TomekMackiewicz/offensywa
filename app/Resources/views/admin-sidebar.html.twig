@@ -67,10 +67,20 @@
             </div>            
         </li>
         <li>
-            <a href="#">
+            <a href="#!"
+               data-toggle="collapse" 
+               data-target="#teams" 
+               aria-expanded="false" 
+               aria-controls="teams">
                 <i class="fa fa-users admin-list-icon" aria-hidden="true"></i>
-                Grupy
+                Drużyny
             </a>
+            <div class="collapse" id="teams">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('admin_team_index') }}">Lista</a></li>
+                    <li><a href="{{ path('team_new') }}">Dodaj</a></li>
+                </ul>
+            </div>             
         </li>
         <li>
             <a href="#">
