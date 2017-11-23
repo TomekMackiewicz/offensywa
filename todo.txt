@@ -1,69 +1,52 @@
+image types:
+player big
+player small
+team logo
+post big
+post small
 
-składki
-- ilość składek w tym miesiącu
-- ilość zaległych
-- wyślij powiadomienie, zaksięguj wpłatę
-- rozlicz miesiąc
-- raport finansowy
-(miesiącami)
-- drukuj raport finansowy
+Asserts!!!
 
-- wykres wpłat http://jsfiddle.net/gh/get/jquery/1.9.1/highslide-software/highcharts.com/tree/master/samples/highcharts/demo/column-basic/
-
-+ kalendarz treningów https://fullcalendar.io/
-
-9) rekrutacja
-?
-
-10) wiadomości grupowe
-
-11) zamówienia strojów i sprzętu
-?
-
-12) wydarzenia
-?
-
-14) zawody
-?
-
-15) obozy
-?
-
-16) skauting
-?
-
-17) badania lekarskie
-?
-
-18) kontuzje
-?
-
-19) baza ćwiczeń
-?
+image gallery
 
 ---
 
+crud & styling:
+
+player
+team
+trainer
+training
+tournament !
+
+---------------------------
+messages
+---------------------------
+payment
+---------------------------
+security - roles (twig)
+
+---------------------------
+null, isset itd (twig)
+
+---------------------------
+move media to dashboard
+
+admi/sonata/media/media/list
+admi/sonata/media/media/create?
+---------------------------
+admin - indexes - sortowanie, filtrowanie
+
+---
 mzpn 4 drużyny: 2006-2009
 
 ligi: mzpn.pl
 ligi mazowieckie
 
-mecz u siebie i na wyjeździe
-
-turnieje
-
-sparingi
-
 Offensywa
-
 2011 i młodsi
-
 2010
-
 2009
-
 2008
-
 2007
-
 2006

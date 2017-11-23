@@ -33,7 +33,23 @@
                     <li><a href="{{ path('category_index') }}">Kategorie</a></li>
                 </ul>
             </div>            
-        </li>        
+        </li> 
+        <li>
+            <a href="#!" 
+               data-toggle="collapse" 
+               data-target="#media" 
+               aria-expanded="false" 
+               aria-controls="media">
+                <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                Media
+            </a>
+            <div class="collapse" id="media">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('admin_sonata_media_media_list') }}">Media</a></li>
+                    <li><a href="{{ path('admin_sonata_media_gallery_list') }}">Galeria</a></li>
+                </ul>
+            </div>            
+        </li>         
         <li>
             <a href="#!" 
                data-toggle="collapse" 
