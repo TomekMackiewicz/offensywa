@@ -428,7 +428,8 @@ pre,
 }
 
 .admin-list > li > a {
-    padding-left: 15px;
+    padding-left: 39px;
+    color: #9d9d9d;
 }
 
 .admin-list-icon {

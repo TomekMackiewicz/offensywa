@@ -32,7 +32,7 @@ null, isset itd (twig)
 admi/sonata/media/media/list
 admi/sonata/media/media/create?
 ---------------------------
-admin - indexes - sortowanie, filtrowanie
+admin - indexes - sortowanie, filtrowanie +
 
 ---
 mzpn 4 drużyny: 2006-2009
