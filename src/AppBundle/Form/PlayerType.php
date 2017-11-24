@@ -52,7 +52,7 @@ class PlayerType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-                'label' => 'Grupa'
+                'label' => 'Drużyna'
             ))
             ->add('parentEmail', null, array(
                 'label' => 'Email rodzica'

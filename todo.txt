@@ -1,3 +1,5 @@
+trener - drużyny (zaznaczone przy edycji)
+
 image types / sizes:
 player big
 player small
@@ -10,7 +12,6 @@ Asserts!!!
 image gallery
 
 crud / view:
-trainer
 training
 tournament !
 task
@@ -21,6 +22,7 @@ messages
 payment
 zamówienia
 wydarzenia
+rekrutacja?
 ---------------------------
 security - roles (twig)
 

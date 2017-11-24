@@ -1,0 +1,48 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <h1>Trenerzy</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('trainer_new') }}" class="btn btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i> 
+        Dodaj
+    </a>
+    {% endif %}    
+    <div class="admin-box">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Login</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Edycja</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for trainer in trainers %}
+                <tr>
+                    <td>{{ trainer.firstName }}</td>
+                    <td>{{ trainer.lastName }}</td>
+                    <td>{{ trainer.login }}</td>
+                    <td>{{ trainer.email }}</td>
+                    <td>{% if trainer.status %}Aktywny{% else %}Nieaktywny{% endif %}</td>
+                    <td class="col-md-2">
+                    {% if is_granted('ROLE_ADMIN') %}                        
+                        <a href="{{ path('trainer_edit', { 'id': trainer.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                            Edytuj
+                        </a>
+                        <form action="{{ path('trainer_delete', { 'id': trainer.id }) }}" method="post">
+                            {{ form_widget(deleteForms[trainer.id]) }}
+                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
+                        </form>                             
+                    {% endif %}                    
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

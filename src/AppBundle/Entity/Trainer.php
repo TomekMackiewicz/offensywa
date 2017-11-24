@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Trainer
@@ -208,27 +209,13 @@ class Trainer
     }
 
     /**
-     * Set team
-     *
-     * @param Team $team
-     *
-     * @return Trainer
-     */
-    public function setTeam($team)
-    {
-        $this->team = $team;
-
-        return $this;
-    }
-
-    /**
-     * Get team
+     * Get teams
      *
      * @return Team
      */
-    public function getTeam()
+    public function getTeams()
     {
-        return $this->team;
+        return $this->teams;
     }    
     
     /**
@@ -238,7 +225,7 @@ class Trainer
      *
      * @return Trainer
      */    
-    public function addTeam(Team $team)
+    public function addTeams(Team $team)
     {
         $this->teams->add($team);
         
@@ -250,7 +237,7 @@ class Trainer
      *
      * @return Trainer
      */    
-    public function removeTeam(Team $team)
+    public function removeTeams(Team $team)
     {
         $this->teams->removeElement($team);
         
