@@ -79,6 +79,22 @@ class PlayerController extends Controller
     /**
      * Finds and displays a player entity.
      *
+     * @Route("/players/{id}", name="player_show")
+     * @Method("GET")
+     */
+    public function showAction(Player $player)
+    {
+        $deleteForm = $this->createDeleteForm($player);
+
+        return $this->render('player/show.html.twig', array(
+            'player' => $player,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }    
+    
+    /**
+     * Finds and displays a player entity.
+     *
      * @Route("/admin/players/{id}", name="admin_player_show")
      * @Method("GET")
      */

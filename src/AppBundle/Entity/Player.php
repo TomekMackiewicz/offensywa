@@ -317,29 +317,15 @@ class Player
     {
         return $this->gallery;
     }
-    
-    /**
-     * Set payment
-     *
-     * @param Payment $payment
-     *
-     * @return Player
-     */
-    public function setPayment($payment)
-    {
-        $this->payment = $payment;
-
-        return $this;
-    }
 
     /**
-     * Get payment
+     * Get payments
      *
      * @return Payment
      */
-    public function getPayment()
+    public function getPayments()
     {
-        return $this->payment;
+        return $this->payments;
     }    
     
     /**

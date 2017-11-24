@@ -257,28 +257,28 @@ class Team
         return $this;
     }
 
-    /**
-     * Set training
-     *
-     * @param Training $training
-     *
-     * @return Team
-     */
-    public function setTraining($training)
-    {
-        $this->training = $training;
+//    /**
+//     * Add Trainer
+//     *
+//     * @param Trainer $trainer
+//     *
+//     * @return Team
+//     */    
+//    public function addTrainer(Trainer $trainer)
+//    {
+//        $this->trainer = $trainer;
+//        
+//        return $this;
+//    }    
 
-        return $this;
-    }
-
     /**
-     * Get training
+     * Get trainings
      *
      * @return Training
      */
-    public function getTraining()
+    public function getTrainings()
     {
-        return $this->training;
+        return $this->trainings;
     }    
     
     /**
@@ -307,29 +307,29 @@ class Team
         return $this;
     } 
 
-    /**
-     * Set task
-     *
-     * @param Task $task
-     *
-     * @return Team
-     */
-    public function setTask($task)
-    {
-        $this->task = $task;
-
-        return $this;
-    }
-
-    /**
-     * Get task
-     *
-     * @return Task
-     */
-    public function getTask()
-    {
-        return $this->task;
-    } 
+//    /**
+//     * Set task
+//     *
+//     * @param Task $task
+//     *
+//     * @return Team
+//     */
+//    public function setTask($task)
+//    {
+//        $this->task = $task;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get task
+//     *
+//     * @return Task
+//     */
+//    public function getTask()
+//    {
+//        return $this->task;
+//    } 
     
 }
 

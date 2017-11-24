@@ -1,4 +1,7 @@
-trener - dlaczego nie dodaje się drużyna?
+html 5
+meta, seo
+
+trener - dlaczego nie dodaje się drużyna? relacja!!!
 
 image types / sizes:
 player big
@@ -8,8 +11,6 @@ post big
 post small
 
 Asserts!!!
-
-image gallery
 
 crud / view:
 training
@@ -33,10 +34,8 @@ null, isset itd (twig)
 
 admi/sonata/media/media/list
 admi/sonata/media/media/create?
----------------------------
-admin - indexes - sortowanie, filtrowanie +
 
----
+--------------------------------------------------------------------------------
 mzpn 4 drużyny: 2006-2009
 
 ligi: mzpn.pl

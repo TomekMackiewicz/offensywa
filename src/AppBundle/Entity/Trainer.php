@@ -61,7 +61,7 @@ class Trainer
      * @ORM\OneToMany(targetEntity="Team", mappedBy="trainer")
      */
     private $teams;    
-
+      
     /**
      * @ORM\OneToMany(targetEntity="Training", mappedBy="trainer")
      */
@@ -245,27 +245,13 @@ class Trainer
     }    
 
     /**
-     * Set training
-     *
-     * @param Training $training
-     *
-     * @return Trainer
-     */
-    public function setTraining($training)
-    {
-        $this->training = $training;
-
-        return $this;
-    }
-
-    /**
      * Get training
      *
      * @return Training
      */
-    public function getTraining()
+    public function getTrainings()
     {
-        return $this->training;
+        return $this->trainings;
     }    
     
     /**
@@ -295,27 +281,13 @@ class Trainer
     } 
 
     /**
-     * Set task
-     *
-     * @param Task $task
-     *
-     * @return Trainer
-     */
-    public function setTask($task)
-    {
-        $this->task = $task;
-
-        return $this;
-    }
-
-    /**
      * Get task
      *
      * @return Task
      */
-    public function getTask()
+    public function getTasks()
     {
-        return $this->task;
+        return $this->tasks;
     }    
     
     /**
