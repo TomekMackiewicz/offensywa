@@ -225,7 +225,7 @@ class Trainer
      *
      * @return Trainer
      */    
-    public function addTeams(Team $team)
+    public function addTeam(Team $team)
     {
         $this->teams->add($team);
         
@@ -237,7 +237,7 @@ class Trainer
      *
      * @return Trainer
      */    
-    public function removeTeams(Team $team)
+    public function removeTeam(Team $team)
     {
         $this->teams->removeElement($team);
         
