@@ -1,0 +1,21 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+            <div class="admin-box">     
+                <h1>Edytuj trening</h1>
+                {{ form_start(edit_form, { 'attr': {'class': 'admin-form'} }) }}
+                    {{ form_widget(edit_form) }}
+                    <input type="submit" class="btn btn-primary" value="Edytuj" />
+                {{ form_end(edit_form) }}
+                <a href="{{ path('admin_training_index') }}" class="btn btn-default pull-left admin-form-btn-margin">
+                    Wróć do listy
+                </a>
+                {{ form_start(delete_form) }}
+                    <input type="submit" class="btn btn-danger" value="Usuń">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>                        
+{% endblock %}

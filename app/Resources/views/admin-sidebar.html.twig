@@ -105,6 +105,22 @@
             </div>             
         </li>
         <li>
+            <a href="#!"
+               data-toggle="collapse" 
+               data-target="#trainings" 
+               aria-expanded="false" 
+               aria-controls="trainings">
+                <i class="fa fa-bullhorn admin-list-icon" aria-hidden="true"></i>
+                Treningi
+            </a>
+            <div class="collapse" id="trainings">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('admin_training_index') }}">Lista</a></li>
+                    <li><a href="{{ path('training_new') }}">Dodaj</a></li>
+                </ul>
+            </div>             
+        </li>        
+        <li>
             <a href="#">
                 <i class="fa fa-money admin-list-icon" aria-hidden="true"></i>
                 Wpłaty

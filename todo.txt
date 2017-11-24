@@ -1,3 +1,7 @@
+on delete cascade
+
+test crud!
+
 html 5
 meta, seo
 
@@ -13,7 +17,6 @@ post small
 Asserts!!!
 
 crud / view:
-training
 tournament !
 task
 
