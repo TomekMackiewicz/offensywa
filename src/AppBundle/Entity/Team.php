@@ -73,11 +73,11 @@ class Team
      */
     private $awayGames;     
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="teams")
-     * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
-     */
-    private $trainer;
+//    /**
+//     * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="teams")
+//     * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
+//     */
+//    private $trainer;
 
     /**
      * @ORM\OneToMany(targetEntity="Training", mappedBy="team")
@@ -233,29 +233,29 @@ class Team
         return $this->games;
     }
 
-    /**
-     * Get trainer
-     *
-     * @return Trainer
-     */
-    public function getTrainer()
-    {
-        return $this->trainer;
-    }
-
-    /**
-     * Set Trainer
-     *
-     * @param Trainer $trainer
-     *
-     * @return Team
-     */    
-    public function setTrainer(Trainer $trainer)
-    {
-        $this->trainer = $trainer;
-        
-        return $this;
-    }
+//    /**
+//     * Get trainer
+//     *
+//     * @return Trainer
+//     */
+//    public function getTrainer()
+//    {
+//        return $this->trainer;
+//    }
+//
+//    /**
+//     * Set Trainer
+//     *
+//     * @param Trainer $trainer
+//     *
+//     * @return Team
+//     */    
+//    public function setTrainer(Trainer $trainer)
+//    {
+//        $this->trainer = $trainer;
+//        
+//        return $this;
+//    }
 
 //    /**
 //     * Add Trainer

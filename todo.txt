@@ -5,8 +5,6 @@ test crud!
 html 5
 meta, seo
 
-trener - dlaczego nie dodaje się drużyna? relacja!!!
-
 image types / sizes:
 player big
 player small
@@ -15,6 +13,46 @@ post big
 post small
 
 Asserts!!!
+
+use Symfony\Component\Validator\Constraints as Assert;
+     * @Assert\NotBlank(
+     *  message = "Title cannot be blank."
+     * )
+    NotNull
+    IsNull
+    IsTrue
+    IsFalse
+    Type
+
+    Email
+    Length
+    Url
+    Regex
+    Ip
+    Uuid
+
+    EqualTo
+    NotEqualTo
+    IdenticalTo
+    NotIdenticalTo
+    LessThan
+    LessThanOrEqual
+    GreaterThan
+    GreaterThanOrEqual
+
+     * @Assert\Date()(
+     *  message = "Invalid value (expected: date format)."
+     * )
+    DateTime
+    Time
+
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"image/jpeg", "image/png"},
+     *     mimeTypesMessage = "Please upload a valid image type (jpg)"
+     * ) 
+    Image
+
 
 crud / view:
 tournament !

@@ -57,11 +57,20 @@ class Trainer
      */
     private $status;
 
+//    /**
+//     * @ORM\OneToMany(targetEntity="Team", mappedBy="trainer")
+//     */
+//    private $teams;    
+
     /**
-     * @ORM\OneToMany(targetEntity="Team", mappedBy="trainer")
+     * @ORM\ManyToMany(targetEntity="Team")
+     * @ORM\JoinTable(name="trainers_teams",
+     *      joinColumns={@ORM\JoinColumn(name="trainer_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id", unique=true)}
+     * )
      */
     private $teams;    
-      
+    
     /**
      * @ORM\OneToMany(targetEntity="Training", mappedBy="trainer")
      */
