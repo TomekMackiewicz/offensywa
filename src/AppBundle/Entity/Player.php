@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Player
@@ -24,21 +25,21 @@ class Player
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="first_name", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="last_name", type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\DateTime(message = "field.invalid_date")
      * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
     private $birthDate;   
@@ -52,7 +53,7 @@ class Player
 
     /**
      * @var string
-     *
+     * @Assert\Email(message = "field.invalid_email")
      * @ORM\Column(name="parent_email", type="string", length=255, nullable=true)
      */
     private $parentEmail;    

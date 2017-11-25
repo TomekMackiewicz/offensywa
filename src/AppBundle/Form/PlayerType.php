@@ -18,10 +18,10 @@ class PlayerType extends AbstractType
     {
         $builder
             ->add('firstName', null, array(
-                'label' => 'Imię'
+                'label' => 'FirstName'
             ))
             ->add('lastName', null, array(
-                'label' => 'Nazwisko'
+                'label' => 'LastName'
             ))
             ->add('birthDate', DateType::class, [
                 'widget' => 'single_text',
@@ -31,12 +31,12 @@ class PlayerType extends AbstractType
                     'data-provide' => 'datepicker',
                     'data-date-format' => 'dd-MM-yyyy'
                 ],
-                'label' => 'Data urodzenia'
+                'label' => 'BirthDate'
             ])
             ->add('image', 'sonata_media_type', array(
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'user',
-                'label' => 'Zdjęcie'
+                'label' => 'Image'
             ))                
             ->add('position', ChoiceType::class, array(
                 'choices'  => array(
@@ -45,17 +45,17 @@ class PlayerType extends AbstractType
                     'pomocnik' => 'midfielder',
                     'napastnik' => 'attacker',
                 ),
-                'label' => 'Pozycja'
+                'label' => 'position'
             ))
             ->add('team', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-                'label' => 'Drużyna'
+                'label' => 'team'
             ))
             ->add('parentEmail', null, array(
-                'label' => 'Email rodzica'
+                'label' => 'parentEmail'
             ));
     }
     
