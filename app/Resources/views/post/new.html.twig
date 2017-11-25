@@ -4,7 +4,7 @@
     <div class="admin-box">
         <h1>Nowy post</h1>
 
-        {{ form_start(form, { 'attr': {'class': 'admin-form'} }) }}
+        {{ form_start(form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
             {{ form_widget(form) }}
             <input type="submit" class="btn btn-success" value="Utwórz" />
         {{ form_end(form) }}

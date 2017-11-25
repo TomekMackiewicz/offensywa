@@ -17,7 +17,7 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title', null, array(
-                'label' => 'Tytuł'
+                'label' => 'Title'
             ))
             ->add('slug', null, array(
                 'label' => 'Url'
@@ -26,19 +26,19 @@ class PostType extends AbstractType
                 'config' => array(
                     'uiColor' => '#ffffff',
                 ),
-                'label' => 'Treść'
+                'label' => 'Body'
             ))               
             ->add('categories', EntityType::class, array(
                 'class' => 'AppBundle:Category',
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'Kategorie'
+                'label' => 'Categories'
             ))
             ->add('image', 'sonata_media_type', array(
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'post',
-                'label' => 'Zdjęcie'
+                'label' => 'Image'
             ));
     }
     

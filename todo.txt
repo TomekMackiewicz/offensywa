@@ -1,5 +1,7 @@
 on delete cascade
 
+slug regex
+
 test crud!
 
 html 5

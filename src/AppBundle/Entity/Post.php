@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -24,22 +25,27 @@ class Post
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="title", type="text")
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @ORM\Column(name="title", type="string")
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @Assert\Regex(
+     *   pattern = "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+     *   match = true,
+     *   message = "field.regex"
+     * )
      * @ORM\Column(name="slug", type="string")
      */
     private $slug;    
     
     /**
      * @var string
-     *
-     * @ORM\Column(name="body", type="text", nullable=true)
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @ORM\Column(name="body", type="text", nullable=false)
      */
     private $body;
 
