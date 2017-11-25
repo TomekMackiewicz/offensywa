@@ -14,7 +14,10 @@ return array(
     'post' => 'Post',
     'position' => 'Pozycja',
     'team' => 'Drużyna',
-    'parentEmail' => 'Email rodzica'
+    'parentEmail' => 'Email rodzica',
+    'year' => 'Rocznik',
+    'isMyTeam' => 'Twoja drużyna?',
+    'logo' => 'Logo'
     
     
 );

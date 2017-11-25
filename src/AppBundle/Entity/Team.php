@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Team
@@ -24,14 +25,19 @@ class Team
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @Assert\Regex(
+     *   pattern = "^[12][0-9]{3}$^",
+     *   match = true,
+     *   message = "field.year"
+     * )
      * @ORM\Column(name="year", type="string", length=255)
      */
     private $year;

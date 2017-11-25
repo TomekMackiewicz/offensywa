@@ -389,7 +389,7 @@
             </trans-unit>
             <trans-unit id="widget_label_context">
                 <source>widget_label_context</source>
-                <target>Konteks</target>
+                <target>Kontekst</target>
             </trans-unit>
             <trans-unit id="widget_label_unlink">
                 <source>widget_label_unlink</source>
