@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -24,7 +25,7 @@ class Category
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
