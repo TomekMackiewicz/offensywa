@@ -110,7 +110,7 @@
                data-target="#trainings" 
                aria-expanded="false" 
                aria-controls="trainings">
-                <i class="fa fa-bullhorn admin-list-icon" aria-hidden="true"></i>
+                <i class="fa fa-heartbeat admin-list-icon" aria-hidden="true"></i>
                 Treningi
             </a>
             <div class="collapse" id="trainings">
@@ -172,12 +172,12 @@
                data-target="#tasks" 
                aria-expanded="false" 
                aria-controls="tasks">
-                <i class="fa fa-user-o" aria-hidden="true"></i> 
+                <i class="fa fa-tasks admin-list-icon" aria-hidden="true"></i> 
                 Zadania trenerskie
             </a>
             <div class="collapse" id="tasks">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('task_index') }}">Lista</a></li>
+                    <li><a href="{{ path('admin_task_index') }}">Lista</a></li>
                     <li><a href="{{ path('task_new') }}">Dodaj</a></li>
                 </ul>
             </div>            

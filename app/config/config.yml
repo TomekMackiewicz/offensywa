@@ -146,7 +146,7 @@ sonata_media:
                 - sonata.media.provider.file
                 - sonata.media.provider.vimeo
             formats:
-                small: { width: 400, quality: 70 }
+                small: { width: 200, quality: 70 }
                 big:   { width: 760, quality: 70 }
 
         user:
@@ -164,8 +164,8 @@ sonata_media:
             providers:
                 - sonata.media.provider.image
             formats:
-                small: { width: 30, quality: 70 }
-                big:   { width: 900, quality: 70 }
+                logo: { width: 30, quality: 70 }
+                #big:   { width: 900, quality: 70 }
 
     cdn:
         server:

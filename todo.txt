@@ -5,13 +5,6 @@ test crud!
 html 5
 meta, seo
 
-image types / sizes:
-player big
-player small
-team logo
-post big
-post small
-
 Asserts!!!
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -56,7 +49,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 crud / view:
 tournament !
-task
 
 ---------------------------
 messages

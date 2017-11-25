@@ -17,10 +17,10 @@ class TaskController extends Controller
     /**
      * Lists all task entities.
      *
-     * @Route("/", name="task_index")
+     * @Route("/", name="admin_task_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function adminIndexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $tasks = $em->getRepository('AppBundle:Task')->findAll();
@@ -29,7 +29,7 @@ class TaskController extends Controller
             $deleteForms[$task->getId()] = $this->createDeleteForm($task)->createView();
         }
         
-        return $this->render('task/index.html.twig', array(
+        return $this->render('task/admin-index.html.twig', array(
             'tasks' => $tasks,
             'deleteForms' => $deleteForms,
         ));

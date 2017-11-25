@@ -1,9 +1,15 @@
 {% extends 'admin.html.twig' %}
 
 {% block admin_body %}
-    <div class="admin-box">
-        <h1>Zadania trenerskie</h1>
-        <table class="table">
+    <h1>Zadania trenerskie</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('task_new') }}" class="btn btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i> 
+        Dodaj
+    </a>
+    {% endif %}    
+    <div class="admin-box">       
+        <table class="table data-table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -38,11 +44,5 @@
             {% endfor %}
             </tbody>
         </table>
-        {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('task_new') }}" class="btn btn-success">
-            <i class="fa fa-plus" aria-hidden="true"></i> 
-            Dodaj
-        </a>
-        {% endif %}
     </div>
 {% endblock %}

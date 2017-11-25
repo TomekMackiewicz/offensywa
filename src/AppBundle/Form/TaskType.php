@@ -36,7 +36,7 @@ class TaskType extends AbstractType
             ))
             ->add('trainer', EntityType::class, array(
                 'class' => 'AppBundle:Trainer',
-                'choice_label' => 'name',
+                'choice_label' => 'lastName',
                 'multiple' => false,
                 'expanded' => false,
                 'label' => 'Trener'
