@@ -1,5 +1,11 @@
 on delete cascade
 
+trainer first last name in form
+
+Zadania trenerskie - dodać trenera do listy
+
+Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
+
 sonata image validation - not working with @assert (player, post, team)
 
 player - add year
@@ -9,54 +15,11 @@ test crud!
 html 5
 meta, seo
 
-Asserts!!!
-
-use Symfony\Component\Validator\Constraints as Assert;
-     * @Assert\NotBlank(
-     *  message = "Title cannot be blank."
-     * )
-    NotNull
-    IsNull
-    IsTrue
-    IsFalse
-    Type
-
-    Email
-    Length
-    Url
-    Regex
-    Ip
-    Uuid
-
-    EqualTo
-    NotEqualTo
-    IdenticalTo
-    NotIdenticalTo
-    LessThan
-    LessThanOrEqual
-    GreaterThan
-    GreaterThanOrEqual
-
-     * @Assert\Date()(
-     *  message = "Invalid value (expected: date format)."
-     * )
-    DateTime
-    Time
-
-     * @Assert\File(
-     *     maxSize = "1024k",
-     *     mimeTypes = {"image/jpeg", "image/png"},
-     *     mimeTypesMessage = "Please upload a valid image type (jpg)"
-     * ) 
-    Image
-
-
-crud / view:
-tournament !
-
 ---------------------------
+Asserts! / crud / view
+
+tournament
 messages
----------------------------
 payment
 zamówienia
 wydarzenia

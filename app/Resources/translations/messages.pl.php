@@ -28,7 +28,9 @@ return array(
     'hosts' => 'Gospodarze',
     'guests' => 'Goście',
     'hostsGoals' => 'Bramki gospodarzy',
-    'guestsGoals' => 'Bramki gości'
-    
-    
+    'guestsGoals' => 'Bramki gości',
+    'trainerPresence' => 'Obecność trenera',
+    'attendanceList' => 'Lista obecności',
+    'outline' => 'Konspekt'
+
 );
