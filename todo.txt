@@ -1,3 +1,7 @@
+
+zmienić format daty treningów: wtorek, 18-19 (sprawdzić !!!!)
+dodać treningi do kalendarza
+
 on delete cascade
 
 trainer first last name in form

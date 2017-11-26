@@ -23,13 +23,28 @@ class Training
     private $id;
 
     /**
-     * @var \DateTime
+     * @var string
      * @Assert\NotBlank(message = "field.not_blank")
-     * @Assert\DateTime(message = "field.invalid_date")
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="day", type="string")
      */
-    private $date;
+    private $day;    
+    
+    /**
+     * @var \Time
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @Assert\Time(message = "field.invalid_date")
+     * @ORM\Column(name="start_hour", type="time")
+     */
+    private $startHour;
 
+    /**
+     * @var \Time
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @Assert\Time(message = "field.invalid_date")
+     * @ORM\Column(name="end_hour", type="time")
+     */
+    private $endHour;    
+    
     /**
      * @var string
      *
@@ -62,29 +77,77 @@ class Training
     }
 
     /**
-     * Set date
+     * Set day
      *
-     * @param \DateTime $date
+     * @param string $day
      *
      * @return Training
      */
-    public function setDate($date)
+    public function setDay($day)
     {
-        $this->date = $date;
+        $this->day = $day;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get day
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getDate()
+    public function getDay()
     {
-        return $this->date;
+        return $this->day;
+    }    
+    
+    /**
+     * Set start hour
+     *
+     * @param \Time $startHour
+     *
+     * @return Training
+     */
+    public function setStartHour($startHour)
+    {
+        $this->startHour = $startHour;
+
+        return $this;
     }
 
+    /**
+     * Get start hour
+     *
+     * @return \Time
+     */
+    public function getStartHour()
+    {
+        return $this->startHour;
+    }
+
+    /**
+     * Set end hour
+     *
+     * @param \Time $endHour
+     *
+     * @return Training
+     */
+    public function setEndHour($endHour)
+    {
+        $this->endHour = $endHour;
+
+        return $this;
+    }
+
+    /**
+     * Get end hour
+     *
+     * @return \Time
+     */
+    public function getEndHour()
+    {
+        return $this->endHour;
+    }    
+    
     /**
      * Set location
      *

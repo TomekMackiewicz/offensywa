@@ -31,6 +31,9 @@ return array(
     'guestsGoals' => 'Bramki gości',
     'trainerPresence' => 'Obecność trenera',
     'attendanceList' => 'Lista obecności',
-    'outline' => 'Konspekt'
+    'outline' => 'Konspekt',
+    'startHour' => 'Godzina rozpoczęcia',
+    'endHour' => 'Godzina zakończenia',
+    'day' => 'Dzień'
 
 );

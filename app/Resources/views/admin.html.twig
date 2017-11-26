@@ -83,12 +83,35 @@
                     $(".datetimepicker").datetimepicker({
                         timeFormat: 'HH:mm',
                         dateFormat : 'dd-mm-yy'
+                        //controlType: 'select'
+                        //addSliderAccess: true,
+                        //sliderAccessArgs: { touchonly: true }
                     });                    
                 });
                 $(function() {
                     $(".datepicker").datepicker({
                         dateFormat : 'dd-mm-yy'
                     });                    
+                });
+{#                $(function() {
+                    $(".daypicker").datetimepicker({
+                        timeFormat: 'HH:mm',
+                        dateFormat : 'DD'
+                    });                    
+                });#}
+                $(function() {
+                    var startDateTextBox = $('.startDate');
+                    var endDateTextBox = $('.endDate');
+                    
+                    $.timepicker.timeRange(
+                    startDateTextBox,
+                    endDateTextBox,
+                    {
+                        minInterval: (1000*60*60),
+                        timeFormat: 'HH:mm',
+                        start: {}, // start picker options
+                        end: {} // end picker options					
+                    });
                 });                
             </script>  
             <script>
@@ -156,33 +179,6 @@
                 });
             </script>
             <script>
-{#                $(document).ready(function(){
-                    $('.data-table').DataTable({
-                        "order": [[ 1, 'asc' ]],
-                        language: {
-                            processing:     "Przetwarzam...",
-                            search:         "Szukaj:",
-                            lengthMenu:    "Pokazuj _MENU_ elementów",
-                            info:           "Pokazuje od _START_ do _END_ z _TOTAL_ elementów",
-                            infoEmpty:      "Pokazuje od 0 do 0 z 0 elementów",
-                            infoFiltered:   "(z _MAX_ elementów w ogóle)",
-                            infoPostFix:    "",
-                            loadingRecords: "Ładuję...",
-                            zeroRecords:    "Brak wyników",
-                            emptyTable:     "Pusta tablica",
-                            paginate: {
-                                first:      "Pierwsza",
-                                previous:   "Poprzednia",
-                                next:       "Następna",
-                                last:       "Ostatnia"
-                            },
-                            aria: {
-                                sortAscending:  ": activer pour trier la colonne par ordre croissant",
-                                sortDescending: ": activer pour trier la colonne par ordre décroissant"
-                            }
-                        }                        
-                    });
-                }); #}
                 $(document).ready(function() {
                     var t = $('.data-table').DataTable( {
                         "columnDefs": [ {

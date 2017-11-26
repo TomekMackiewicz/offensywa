@@ -11,8 +11,12 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{% if training.date %}{{ training.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if training.startHour %}{{ training.startHour|date('H:i:') }}{% endif %}</td>
             </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if training.endHour %}{{ training.endHour|date('H:i') }}{% endif %}</td>
+            </tr>            
             <tr>
                 <th>Location</th>
                 <td>{{ training.location }}</td>
