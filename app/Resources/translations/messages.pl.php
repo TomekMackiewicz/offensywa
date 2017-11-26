@@ -24,7 +24,11 @@ return array(
     'isActive' => 'Aktywny?',
     'trainer' => 'Trener',
     'location' => 'Lokalizacja',
-    'choose' => 'Wybierz'
+    'choose' => 'Wybierz',
+    'hosts' => 'Gospodarze',
+    'guests' => 'Goście',
+    'hostsGoals' => 'Bramki gospodarzy',
+    'guestsGoals' => 'Bramki gości'
     
     
 );

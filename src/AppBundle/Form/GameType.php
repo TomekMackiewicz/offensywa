@@ -29,32 +29,32 @@ class GameType extends AbstractType
                     'class' => 'form-control input-inline datetimepicker',
                     'data-provide' => 'datetimepicker'
                 ],
-                'label' => 'Data'
+                'label' => 'date'
             ])                
             ->add('location', null, array(
-                'label' => 'Miejsce'
+                'label' => 'location'
             ))
             ->add('homeTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Wybierz...',
-                'label' => 'Gospodarze'
+                'placeholder' => 'choose',
+                'label' => 'hosts'
             ))
             ->add('awayTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Wybierz...',
-                'label' => 'Goście'
+                'placeholder' => 'choose',
+                'label' => 'guests'
             ))
             ->add('homeTeamScore', null, array(
-                'label' => 'Bramki gospodarzy'
+                'label' => 'hostsGoals'
             ))
             ->add('awayTeamScore', null, array(
-                'label' => 'Bramki gości'
+                'label' => 'guestsGoals'
             ));
 
         $formModifier = function (FormInterface $form, Team $homeTeam = null, $em) {            
@@ -69,10 +69,11 @@ class GameType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Wybierz...',
+                'placeholder' => 'choose',
                 'choices' => $choices,
                 'required'    => false,
-                'empty_data'  => 'string'                
+                'empty_data'  => 'string',
+                'label' => 'guests'
             ));
         };
        

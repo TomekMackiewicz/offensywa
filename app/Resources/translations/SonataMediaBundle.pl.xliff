@@ -546,7 +546,15 @@
             <trans-unit id="post">
                 <source>post</source>
                 <target>Post</target>
-            </trans-unit>                         
+            </trans-unit>
+            <trans-unit id="logo">
+                <source>logo</source>
+                <target>Logo</target>
+            </trans-unit> 
+            <trans-unit id="team">
+                <source>team</source>
+                <target>Drużyna</target>
+            </trans-unit>                                                  
         </body>
     </file>
 </xliff>

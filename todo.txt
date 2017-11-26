@@ -1,6 +1,8 @@
 on delete cascade
 
-slug regex
+sonata image validation - not working with @assert (player, post, team)
+
+player - add year
 
 test crud!
 
