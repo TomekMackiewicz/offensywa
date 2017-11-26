@@ -21,7 +21,10 @@ return array(
     'logo' => 'Logo',
     'login' => 'Login',
     'email' => 'Adres e-mail',
-    'isActive' => 'Aktywny?'
+    'isActive' => 'Aktywny?',
+    'trainer' => 'Trener',
+    'location' => 'Lokalizacja',
+    'choose' => 'Wybierz'
     
     
 );

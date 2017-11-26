@@ -23,26 +23,26 @@ class TrainingType extends AbstractType
                     'class' => 'form-control input-inline datetimepicker',
                     'data-provide' => 'datetimepicker'
                 ],
-                'label' => 'Data'
+                'label' => 'date'
             ])
             ->add('location', null, array(
-                'label' => 'Miejsce'
+                'label' => 'location'
             ))
             ->add('team', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Wybierz...',
-                'label' => 'Drużyna'
+                'placeholder' => 'choose',
+                'label' => 'team'
             ))
             ->add('trainer', EntityType::class, array(
                 'class' => 'AppBundle:Trainer',
                 'choice_label' => 'lastName',
                 'multiple' => false,
                 'expanded' => false,
-                'placeholder' => 'Wybierz...',
-                'label' => 'Trener'
+                'placeholder' => 'choose',
+                'label' => 'trainer'
             ));
     }
     

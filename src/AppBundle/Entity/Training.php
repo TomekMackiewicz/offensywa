@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Training
@@ -23,7 +24,8 @@ class Training
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @Assert\DateTime(message = "field.invalid_date")
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
@@ -36,12 +38,14 @@ class Training
     private $location;
 
     /**
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="trainings")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
      */
     private $team;    
 
     /**
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="trainings")
      * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
      */
