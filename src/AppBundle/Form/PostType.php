@@ -17,28 +17,28 @@ class PostType extends AbstractType
     {
         $builder
             ->add('title', null, array(
-                'label' => 'Title'
+                'label' => 'title'
             ))
             ->add('slug', null, array(
-                'label' => 'Url'
+                'label' => 'url'
             ))
             ->add('body', CKEditorType::class, array(
                 'config' => array(
                     'uiColor' => '#ffffff',
                 ),
-                'label' => 'Body'
+                'label' => 'body'
             ))               
             ->add('categories', EntityType::class, array(
                 'class' => 'AppBundle:Category',
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'Categories'
+                'label' => 'categories'
             ))
             ->add('image', 'sonata_media_type', array(
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'post',
-                'label' => 'Image'
+                'label' => 'image'
             ));
     }
     

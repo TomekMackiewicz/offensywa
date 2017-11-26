@@ -539,8 +539,8 @@
                 <source>form.label_class</source>
                 <target>form.label_class</target>
             </trans-unit>
-            <trans-unit id="Image">
-                <source>Image</source>
+            <trans-unit id="image">
+                <source>image</source>
                 <target>Zdjęcie</target>
             </trans-unit>
             <trans-unit id="post">

@@ -18,10 +18,10 @@ class PlayerType extends AbstractType
     {
         $builder
             ->add('firstName', null, array(
-                'label' => 'FirstName'
+                'label' => 'firstName'
             ))
             ->add('lastName', null, array(
-                'label' => 'LastName'
+                'label' => 'lastName'
             ))
             ->add('birthDate', DateType::class, [
                 'widget' => 'single_text',
@@ -31,12 +31,12 @@ class PlayerType extends AbstractType
                     'data-provide' => 'datepicker',
                     'data-date-format' => 'dd-MM-yyyy'
                 ],
-                'label' => 'BirthDate'
+                'label' => 'birthDate'
             ])
             ->add('image', 'sonata_media_type', array(
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'user',
-                'label' => 'Image'
+                'label' => 'image'
             ))                
             ->add('position', ChoiceType::class, array(
                 'choices'  => array(

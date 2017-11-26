@@ -18,19 +18,19 @@ class TrainerType extends AbstractType
     {
         $builder
             ->add('firstName', null, array(
-                'label' => 'Imię'
+                'label' => 'firstName'
             ))
             ->add('lastName', null, array(
-                'label' => 'Nazwisko'
+                'label' => 'lastName'
             ))
             ->add('login', null, array(
-                'label' => 'Login'
+                'label' => 'login'
             ))
             ->add('email', null, array(
-                'label' => 'Email'
+                'label' => 'email'
             ))
             ->add('status', CheckboxType::class, array(
-                'label'    => 'Aktywny?',
+                'label'    => 'isActive',
                 'required' => false,
             ))
             ->add('teams', EntityType::class, array(
@@ -38,7 +38,7 @@ class TrainerType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
-                'label' => 'Drużyny',
+                'label' => 'teams',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('t')
                         ->where('t.isMy = 1')    

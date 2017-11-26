@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trainer
@@ -24,28 +25,28 @@ class Trainer
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="login", type="string", length=255)
      */
     private $login;
 
     /**
      * @var string
-     *
+     * @Assert\Email(message = "field.invalid_email")
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
@@ -55,12 +56,7 @@ class Trainer
      *
      * @ORM\Column(name="status", type="boolean", nullable=true)
      */
-    private $status;
-
-//    /**
-//     * @ORM\OneToMany(targetEntity="Team", mappedBy="trainer")
-//     */
-//    private $teams;    
+    private $status;    
 
     /**
      * @ORM\ManyToMany(targetEntity="Team")

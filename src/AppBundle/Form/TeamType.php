@@ -16,7 +16,7 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name', null, array(
-                'label' => 'Name'
+                'label' => 'name'
             ))
             ->add('year', null, array(
                 'label' => 'year'
