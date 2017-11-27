@@ -14,6 +14,7 @@
                 <tr>
                     <th>#</th>
                     <th>Data</th>
+                    <th>Trener</th>
                     <th>Obecność trenera</th>
                     <th>Lista obecności</th>
                     <th>Konspekt</th>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{% if task.date %}{{ task.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if task.trainer %}{{ task.trainer.firstName }} {{ task.trainer.lastName }}{% endif %}</td>
                     <td>{% if task.trainerPresence %}Tak{% else %}Nie{% endif %}</td>
                     <td>{% if task.attendanceList %}Tak{% else %}Nie{% endif %}</td>
                     <td>{% if task.outline %}Tak{% else %}Nie{% endif %}</td>

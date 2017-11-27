@@ -34,6 +34,13 @@ return array(
     'outline' => 'Konspekt',
     'startHour' => 'Godzina rozpoczęcia',
     'endHour' => 'Godzina zakończenia',
-    'day' => 'Dzień'
+    'day' => 'Dzień',
+    'Monday' => 'poniedziałek',
+    'Tuesday' => 'wtorek',
+    'Wendesday' => 'środa',
+    'Thursday' => 'czwartek',
+    'Friday' => 'piątek',
+    'Saturday' => 'sobota',
+    'Sunday' => 'niedziela',
 
 );

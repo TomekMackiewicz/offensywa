@@ -24,7 +24,8 @@
             {% for training in trainings %}
                 <tr>
                     <td></td>
-                    <td>{% if training.date %}{{ training.date|date('Y-m-d H:i') }}{% endif %}</td>
+                    <td>{{ training.day|date("l")|trans }}<br>
+                        {{ training.startHour|date('H:i') }} - {{ training.endHour|date('H:i') }}</td>
                     <td>{{ training.location }}</td>
                     <td>{{ training.team.name }}</td>
                     <td>{{ training.trainer.firstName }} {{ training.trainer.lastName }}</td>

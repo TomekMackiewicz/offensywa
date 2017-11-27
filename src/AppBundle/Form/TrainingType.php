@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class TrainingType extends AbstractType
 {
@@ -29,7 +30,7 @@ class TrainingType extends AbstractType
                 ),
                 'placeholder' => 'choose',
                 'label' => 'day'
-            ))                
+            )) 
             ->add('startHour', TimeType::class, [
                 'widget' => 'single_text',
                 'attr' => [
