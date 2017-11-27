@@ -89,7 +89,7 @@
                     {% if tasks is defined %}
                         {% for task in tasks %}
                         <tr>
-                            <td>{{ task.date | date('Y-m-d H:i:s') }}</td>
+                            <td>{{ task.date | date('Y-m-d H:i') }}</td>
                             <td>{{ task.team.name }}</td>
                             {% if task.trainerPresence %}
                             <td>tak</td>
@@ -109,7 +109,7 @@
                         </tr> 
                         {% endfor %}
                     {% endif %}
-                </table>                
+                </table> 
             </div>
         </div>
     </div>    

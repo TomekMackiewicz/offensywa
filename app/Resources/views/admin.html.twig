@@ -22,8 +22,10 @@
     <body>
         <div class="container-fluid">
             {% include 'admin-navbar.html.twig' %}
-        </div>
+        </div> 
         <div class="container-fluid admin-main">
+{% if jsonTrainings is defined %}{{ dump(jsonTrainings|json_encode|raw) }}{% endif %}
+{% if trainings is defined %}{{ dump(trainings) }}{% endif %}
             <div class="row"> 
                 <div class="col-xs-2 col-fluid">
                     {% include 'admin-sidebar.html.twig' %}
@@ -37,7 +39,7 @@
             <div class="container-fluid">
                 {% include 'footer.html.twig' %}
             </div>
-        </footer>                
+        </footer>            
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -52,7 +54,7 @@
             <script>
                 $(document).ready(function() {
                     $('#calendar').fullCalendar({
-                        // put your options and callbacks here
+                        events: {% if jsonTrainings is defined %}{{ jsonTrainings|json_encode|raw }}{% endif %}
                     }); 
                     
                     $('.btn-danger').on('click', function(e) {

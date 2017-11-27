@@ -175,29 +175,29 @@ class Player
         return $this->birthDate;
     }
 
-    /**
-     * Set year
-     *
-     * @param string $year
-     *
-     * @return Player
-     */
-    public function setYear($year)
-    {
-        $this->year = $year;
-
-        return $this;
-    }
-
-    /**
-     * Get year
-     *
-     * @return string
-     */
-    public function getYear()
-    {
-        return $this->year;
-    }    
+//    /**
+//     * Set year
+//     *
+//     * @param string $year
+//     *
+//     * @return Player
+//     */
+//    public function setYear($year)
+//    {
+//        $this->year = $year;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get year
+//     *
+//     * @return string
+//     */
+//    public function getYear()
+//    {
+//        return $this->year;
+//    }    
     
     /**
      * Set position
