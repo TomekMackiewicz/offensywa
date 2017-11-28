@@ -22,20 +22,28 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $tasks = $em->getRepository('AppBundle:Task')->findAll();
-        $trainings = $em->getRepository('AppBundle:Training')->findAll();        
+        $trainings = $em->getRepository('AppBundle:Training')->findAll();  
+
+        $currentDate = date('Y-m-d');
 
         $jsonTrainings = [];
         foreach ($trainings as $training) {
-            $begin = new \DateTime('2017-11-01');
-            $begin->add(new \DateInterval("PT{$training->getStartHour()->format('H')}H"));
-            $end = new \DateTime('2017-11-30');
-            $begin->add(new \DateInterval("PT{$training->getEndHour()->format('H')}H"));            
+            $firstDayOfMonth = date("Y-m-01", strtotime($currentDate));
+            $lastDayOfMonth = date("Y-m-t", strtotime($currentDate));
+            $begin = new \DateTime($firstDayOfMonth);            
+            $end = new \DateTime($lastDayOfMonth);
+            
             while ($begin <= $end) {
                 if($begin->format("N") == $training->getDay()) {
+                    $startDate = $begin;
+                    $endDate = $begin;
+                    // czemu dodanie godziny wszystko chrzani?
+                    //$startDate->add(new \DateInterval("PT{$training->getStartHour()->format('H')}H"));
+                    //$endDate->add(new \DateInterval("PT{$training->getEndHour()->format('H')}H"));                    
                     $jsonTrainings[] = [
-                        'title' => 'Trening',
-                        'start' => $begin->format("Y-m-d H"),
-                        'end' => $end->format("Y-m-d H")           
+                        'title' => 'Trening: ' . $startDate->format("Y-m-d H") . '---' . $endDate->format("Y-m-d H"),
+                        'start' => $startDate->format("Y-m-d H"),
+                        'end' => $endDate->format("Y-m-d H")           
                     ];
                    
                 }
@@ -46,7 +54,9 @@ class AdminController extends Controller
         return $this->render('admin/dashboard.html.twig', array(
             'tasks' => $tasks,
             'jsonTrainings' => $jsonTrainings,
-            'trainings' => $trainings
+            'trainings' => $trainings,
+            'first' => $firstDayOfMonth,
+            'last' => $lastDayOfMonth
         ));
     }
     

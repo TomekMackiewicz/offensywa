@@ -26,6 +26,8 @@
         <div class="container-fluid admin-main">
 {% if jsonTrainings is defined %}{{ dump(jsonTrainings|json_encode|raw) }}{% endif %}
 {% if trainings is defined %}{{ dump(trainings) }}{% endif %}
+{% if first is defined %}{{ dump(first) }}{% endif %}
+{% if last is defined %}{{ dump(last) }}{% endif %}
             <div class="row"> 
                 <div class="col-xs-2 col-fluid">
                     {% include 'admin-sidebar.html.twig' %}
