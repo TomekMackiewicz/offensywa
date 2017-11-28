@@ -21,8 +21,8 @@ class AdminController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $tasks = $em->getRepository('AppBundle:Task')->findAll();
-        $trainings = $em->getRepository('AppBundle:Training')->findAll();  
+        $tasks = $em->getRepository('AppBundle:Task')->findAll(); // current month? year?
+        $trainings = $em->getRepository('AppBundle:Training')->findAll(); // current month? year? wtedy to poniżej niepotrzebne  
 
         $currentDate = date('Y-m-d');
 

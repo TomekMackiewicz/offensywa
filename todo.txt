@@ -2,7 +2,8 @@ startdt.getTime is not a function (timepicker)
 
 spr bazę pod kątem null / required i twig
 
-dodać treningi do kalendarza
+dodać taski i wydarzenia do kalendarza
+poprawić kalendarz
 
 on delete cascade
 
