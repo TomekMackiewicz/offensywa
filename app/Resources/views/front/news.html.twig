@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+        {% for article in category.posts %}
+            <h1>{{ article.title }}</h1>
+            <small>{% if article.publishDate %}
+                <i class="fa fa-clock-o" aria-hidden="true"></i> 
+                {{ article.publishDate|date('Y-m-d H:i') }}{% endif %}
+            </small>               
+            {% if article.image %}
+                <img src="{% path article.image, 'small' %}">
+            {% endif %} 
+            {{ article.body | purify }}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('post_edit', { 'id': article.id }) }}">Edytuj</a>
+            {% endif %}
+        {% endfor %}            
+        </div>
+    </div>
+{% endblock %}    

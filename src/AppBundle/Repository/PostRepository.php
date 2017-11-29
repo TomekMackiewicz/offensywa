@@ -19,5 +19,5 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         $recentPosts = $query->getResult();
         
         return $recentPosts;
-    }    
+    } 
 }

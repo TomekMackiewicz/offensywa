@@ -72,5 +72,15 @@ class Category
     {
         return $this->name;
     }
+    
+    /**
+     * Get posts
+     *
+     * @return Post
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }    
 }
 

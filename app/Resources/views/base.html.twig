@@ -16,17 +16,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="container-fluid">
-            {% include 'navbar.html.twig' %}
-        </div>
-        <div class="container">
-            {% block body %}{% endblock %}
-        </div>
-        <footer class="footer">
-            <div class="container-fluid">
-                {% include 'footer.html.twig' %}
-            </div>
-        </footer>
+        {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 

@@ -1,0 +1,84 @@
+<div class="match-details">
+    <h4>OSTATNI MECZ</h4>
+    {% if lastMatch %}
+        <p>{{ lastMatch.date | date('d-m-Y H:i') }}</p>
+        <div>
+            <table class="table borderless table-responsive">
+                <tbody>
+                    <tr>
+                        <td class="col-md-5">
+                            <h2>{{ lastMatch.homeTeamScore }}</h2>                                            
+                        </td>
+                        <td class="col-md-2">
+                            <h2>:</h2>
+                        </td>
+                        <td class="col-md-5">
+                            <h2>{{ lastMatch.awayTeamScore }}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-5">
+                            {% if lastMatch.homeTeam.logo %}
+                                <img src="{% path lastMatch.homeTeam.logo, 'small' %}">
+                            {% endif %}                                            
+                        </td>
+                        <td class="col-md-2"></td>
+                        <td class="col-md-5">
+                            {% if lastMatch.awayTeam.logo %}
+                                <img src="{% path lastMatch.awayTeam.logo, 'small' %}">
+                            {% endif %}                                                                                         
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-5">
+                            {{ lastMatch.homeTeam.name }}                                           
+                        </td>
+                        <td class="col-md-2">vs</td>
+                        <td class="col-md-5">
+                            {{ lastMatch.awayTeam.name }}                                            
+                        </td>                                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>                
+    {% else %}
+        Brak ostatniego meczu.
+    {% endif %}
+</div>                    
+<h2>TABELE</h2>
+<a href="{{ path('leaguetables') }}">
+    Zobacz wszystkie 
+    <i class="fa fa-forward" aria-hidden="true"></i>
+</a>                    
+{% for table in leagueTables %}
+<h4>Rocznik {{ table.year }}</h4> 
+<div class="table-responsive">
+    <table class="table table-bordered table-striped simple-league-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Drużyna</th>
+                <th>RM</th>
+                <th>W</th>
+                <th>R</th>
+                <th>P</th>
+                <th>Pkt</th>
+            </tr>
+        </thead>    
+        <tbody>    
+            {% for team in table.table %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ team.Team }}</td>
+                    <td>{{ team.P }}</td>
+                    <td>{{ team.W }}</td>
+                    <td>{{ team.D }}</td>
+                    <td>{{ team.L }}</td>
+                    <td>{{ team.Pts }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endfor %}                    
+

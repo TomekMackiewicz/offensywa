@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <header class="container-fluid">
+        {% include 'navbar.html.twig' %}   
+    </header>
+    <main class="container">
+        <div class="row">
+            <section class="col-xs-12 col-sm-12 col-md-9">
+                {% block content %}{% endblock %}
+            </section>
+            <aside class="col-xs-12 col-sm-12 col-md-3">
+                {% include 'sidebar.html.twig' %}
+            </aside>
+        </div>       
+    </main>
+    <footer class="footer">
+        <div class="container-fluid">
+            {% include 'footer.html.twig' %}
+        </div>
+    </footer> 
+    
+{% endblock %}    

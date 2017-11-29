@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class IndexController extends Controller
+class FrontController extends Controller
 {
     /**
      * @Route("/", name="homepage")
@@ -22,13 +22,49 @@ class IndexController extends Controller
         $recentPosts = $em->getRepository('AppBundle:Post')->getRecentPosts();
         $players = $em->getRepository('AppBundle:Player')->getRandomPlayers();
                
-        return $this->render('index/index.html.twig', [
+        return $this->render('front/index.html.twig', [
             'nextMatch' => $nextMatch,
             'lastMatch' => $lastMatch,
             'upcomingFixtures' => $upcomingFixtures,
             'leagueTables' => $leagueTables,
             'recentPosts' => $recentPosts,
-            'players' => $players
+            'players' => $players,
+        ]);
+              
+    }
+
+    /**
+     * @Route("/aktualnosci", name="news")
+     */
+    public function newsAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $category = $em->getRepository('AppBundle:Category')->findOneById(1);
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->getLeagueTables();
+               
+        return $this->render('front/news.html.twig', [
+            'category' => $category,
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables,
+        ]);
+              
+    }
+
+    /**
+     * @Route("/o-klubie", name="about")
+     */
+    public function aboutAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->getLeagueTables();
+               
+        return $this->render('front/about.html.twig', [
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables,
         ]);
               
     }

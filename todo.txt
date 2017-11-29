@@ -1,3 +1,5 @@
+fb
+
 startdt.getTime is not a function (timepicker)
 
 spr bazę pod kątem null / required i twig

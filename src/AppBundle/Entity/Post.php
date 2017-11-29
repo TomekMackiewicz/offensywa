@@ -240,7 +240,7 @@ class Post
     /**
      * Get categories
      *
-     * @return \DateTime
+     * @return Category
      */
     public function getCategories()
     {
