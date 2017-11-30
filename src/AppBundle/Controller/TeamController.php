@@ -157,13 +157,12 @@ class TeamController extends Controller
     /**
      * Lists all team entities.
      *
-     * @Route("/teams", name="team_index")
+     * @Route("/teams/navbar", name="team_index")
      * @Method("GET")
      */
     public function navbarAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $years = $em->getRepository('AppBundle:Team')->getNavbarTeamsByYear();
 
         return $this->render('partials/navbar-teams.html.twig', array(

@@ -1,5 +1,9 @@
 fb
 
+Jak zrobić, żeby tylko niektóre roczniki miały tabele ligowe?
+
+unique rocznik, jeśli my team
+
 startdt.getTime is not a function (timepicker)
 
 spr bazę pod kątem null / required i twig

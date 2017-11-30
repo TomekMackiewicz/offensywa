@@ -1,11 +1,11 @@
 {% for year in years %}
     <li class="dropdown-submenu">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            {{ year }}
+            Rocznik {{ year }}
         </a>
         <ul class="dropdown-menu">
-            <li>zawodnicy</li>
-            <li>treningi</li>
+            <li><a>treningi {{ year }} {{ loop.index }}</a></li>
+            <li><a>zawodnicy {{ year }} {{ loop.index }}</a></li>            
         </ul>
     </li> 
 {% endfor %}

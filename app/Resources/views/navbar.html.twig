@@ -55,27 +55,30 @@
               <ul class="nav navbar-nav">
                 <li>
                   <a href="{{ path('about') }}">O klubie</a>
-                </li>                   
-                <li>
+                </li>                 
+                <li {{ (app.request.attributes.get('_route') == 'news') ? ' class="active"' }}>
                   <a href="{{ path('news') }}">Aktualności</a>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown {{ (app.request.attributes.get('_route') == '...') ? ' active' }}">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kadra</a>
-                  <ul class="dropdown-menu multi-level">
+                  <ul class="dropdown-menu">
                     {{ render(controller('AppBundle:Team:navbar')) }}
                   </ul>
                 </li>                 
-                <li class="dropdown">
+                <li class="dropdown {{ (app.request.attributes.get('_route') == 'leaguetables') ? ' active' }}">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tabele</a>
                   <ul class="dropdown-menu">
                     <li><a href="{{ path('leaguetables') }}">Tabele</a></li>
                   </ul>
                 </li>         
-                <li class="dropdown">
+                <li class="dropdown {{ (app.request.attributes.get('_route') == 'game_index') ? ' active' }}">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mecze</a>
                   <ul class="dropdown-menu">
                     <li><a href="{{ path('game_index') }}">Mecze</a></li>
                   </ul>
+                </li> 
+                <li {{ (app.request.attributes.get('_route') == 'contact') ? ' class="active"' }}>
+                  <a href="{{ path('contact') }}">Kontakt</a>
                 </li>                
               </ul>
               <form class="navbar-form navbar-right">

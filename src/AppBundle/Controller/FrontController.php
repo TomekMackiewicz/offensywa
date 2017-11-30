@@ -68,6 +68,23 @@ class FrontController extends Controller
         ]);
               
     }
+
+    /**
+     * @Route("/kontakt", name="contact")
+     */
+    public function contactAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+               
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->getLeagueTables();
+               
+        return $this->render('front/contact.html.twig', [
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables,
+        ]);
+              
+    }
     
     /**
      * Get league tables.
