@@ -43,7 +43,7 @@ class Player
      * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
     private $birthDate;   
-    
+
     /**
      * @var string
      *

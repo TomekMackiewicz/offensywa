@@ -53,7 +53,7 @@
             </div>
             <div class="collapse navbar-collapse" id="lower-navbar">
               <ul class="nav navbar-nav">
-                <li>
+                <li {{ (app.request.attributes.get('_route') == 'about') ? ' class="active"' }}>
                   <a href="{{ path('about') }}">O klubie</a>
                 </li>                 
                 <li {{ (app.request.attributes.get('_route') == 'news') ? ' class="active"' }}>
@@ -94,7 +94,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-fluid">
-        {#<img src="{{ asset('/images/offensywa.jpg') }}" class="img-responsive" alt="Offensywa Książenice">#}
+        <img src="{{ asset('/images/offensywa.jpg') }}" class="img-responsive" alt="Offensywa Książenice">
     </div>
 </div>
 

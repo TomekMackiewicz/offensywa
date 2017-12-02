@@ -15,7 +15,7 @@
                     <th></th>
                     <th>Imię</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Nazwisko</th>
-                    <th>Zdjęcie</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Email rodzica</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Data urodzenia</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Pozycja</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Grupa</th>
@@ -43,7 +43,7 @@
                     <td>{{ player.position }}</td>
                     <td>
                         {% if player.team %}
-                            {{ player.team.name }}
+                            {{ player.team.name }} {{ player.team.year }}
                         {% endif %}
                     </td>
                     <td class="col-md-2">

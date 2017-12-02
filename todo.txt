@@ -1,6 +1,28 @@
+gracz: telefon rodzica
+
+wpłaty:
+- zawodnik
+- kwota
+- data
+- wpisowe dla nowych
+
+zamówienia:
+- zapotrzebowanie na sprzęt
+- lista zamówień (użytkownik, co)
+
 fb
 
-Jak zrobić, żeby tylko niektóre roczniki miały tabele ligowe?
+mecze:
+- kategorie (liga itd.)
+
+zamiast zawodów: liga, sparingi, turnieje
+
+wykreślić zadania trenerskie
+
+drużyna - czy gra w lidze - wtedy tabela
+
+
+search
 
 unique rocznik, jeśli my team
 
@@ -8,8 +30,10 @@ startdt.getTime is not a function (timepicker)
 
 spr bazę pod kątem null / required i twig
 
-dodać taski i wydarzenia do kalendarza
+dodać wydarzenia i mecze do kalendarza
 poprawić kalendarz
+
+wykres płatności
 
 on delete cascade
 
@@ -19,11 +43,10 @@ Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić w
 
 sonata image validation - not working with @assert (player, post, team)
 
-player - add year
-
 test crud!
 
 html 5
+
 meta, seo
 
 ---------------------------

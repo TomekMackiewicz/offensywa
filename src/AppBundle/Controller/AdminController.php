@@ -21,6 +21,11 @@ class AdminController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        
+        $playersCount = $em->getRepository('AppBundle:Player')->countPlayers();
+        $teamsCount = $em->getRepository('AppBundle:Team')->countMyTeams();
+        $paymentsByMonth = $em->getRepository('AppBundle:Payment')->getPaymentsByMonth();
+        
         $tasks = $em->getRepository('AppBundle:Task')->findAll(); // current month? year?
         $trainings = $em->getRepository('AppBundle:Training')->findAll(); // current month? year? wtedy to poniżej niepotrzebne  
 
@@ -56,7 +61,10 @@ class AdminController extends Controller
             'jsonTrainings' => $jsonTrainings,
             'trainings' => $trainings,
             'first' => $firstDayOfMonth,
-            'last' => $lastDayOfMonth
+            'last' => $lastDayOfMonth,
+            'playersCount' => $playersCount,
+            'teamsCount' => $teamsCount,
+            'paymentsByMonth' => $paymentsByMonth
         ));
     }
     

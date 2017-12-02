@@ -29,6 +29,15 @@ class PlayerRepository extends \Doctrine\ORM\EntityRepository
         shuffle($ids);
         return array_slice($ids, 0, $quantity);        
     }
-       
+
+    public function countPlayers()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('SELECT COUNT(p.id) FROM AppBundle:Player p');
+        $count = $query->getSingleScalarResult(); 
+        
+        return $count;
+    }
+    
     
 }

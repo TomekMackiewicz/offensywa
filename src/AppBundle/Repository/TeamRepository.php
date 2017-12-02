@@ -39,5 +39,14 @@ class TeamRepository extends \Doctrine\ORM\EntityRepository
         
         return $years;        
     }
+
+    public function countMyTeams()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('SELECT COUNT(t.id) FROM AppBundle:Team t WHERE t.isMy = 1');
+        $count = $query->getSingleScalarResult(); 
+        
+        return $count;
+    }
     
 }

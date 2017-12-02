@@ -125,6 +125,11 @@ pre,
     transition: .5s;    
 }
 
+.navbar-default .navbar-nav > .active > a {
+    color: #ffffff !important;
+    background-color: red !important;    
+}
+
 .dropdown-menu {
     padding: 0px;
     border: 0px;
@@ -460,4 +465,80 @@ pre,
     top: 0;
     left: 100%;
     margin-top: -1px;
+}
+
+.top-panel {
+    color: #fff;
+    margin-top: 10px;
+    padding: 0px;    
+}
+
+.top-panel > .panel-heading {
+    background-color: transparent !important;
+    color: #fff;
+    border-bottom: 0;
+}
+
+.top-panel-text {
+    font-size: 48px;
+}
+
+.top-panel > .panel-body > p {
+    margin: 0;
+}
+
+.top-panel-one {
+    background-color: #00719D; 
+}
+
+.top-panel-one > .panel-heading i {
+    color: #005E8B;
+    font-size: 120px;
+    margin: 0;
+}
+
+.top-panel-one > .panel-body {
+    background-color: #005E8B;
+}
+
+.top-panel-two {
+    background-color: #03602B; 
+}
+
+.top-panel-two > .panel-body {
+    background-color: #005430;
+}
+
+.top-panel-two > .panel-heading i {
+    color: #005430;
+    font-size: 120px;
+    margin: 0;
+}
+
+.top-panel-three {
+    background-color: #9C5005; 
+}
+
+.top-panel-three > .panel-body {
+    background-color: #874D04;
+}
+
+.top-panel-three > .panel-heading i {
+    color: #874D04;
+    font-size: 120px;
+    margin: 0;
+}
+
+.top-panel-four {
+    background-color: #832B21; 
+}
+
+.top-panel-four > .panel-body {
+    background-color: #3F0C08;
+}
+
+.top-panel-four > .panel-heading i {
+    color: #3F0C08;
+    font-size: 120px;
+    margin: 0;
 }
