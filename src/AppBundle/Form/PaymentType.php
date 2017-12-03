@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+//use Doctrine\ORM\EntityRepository;
+use AppBundle\Entity\PaymentCategory;
 
 class PaymentType extends AbstractType
 {
@@ -26,7 +28,11 @@ class PaymentType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'choose',
-                'label' => 'paymentCategory'
+                'label' => 'paymentCategory',
+                'choice_attr' => function(PaymentCategory $pc) {
+                    $amount = $pc->getAmount();
+                    return ['data-amount' => $amount];
+                },                       
             ))
             ->add('period', DateType::class, [
                 'widget' => 'single_text',
