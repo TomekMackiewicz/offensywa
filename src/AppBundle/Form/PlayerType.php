@@ -56,7 +56,10 @@ class PlayerType extends AbstractType
             ))
             ->add('parentEmail', null, array(
                 'label' => 'parentEmail'
-            ));
+            ))
+            ->add('parentPhone', null, array(
+                'label' => 'parentPhone'
+            ));                
     }
     
     /**

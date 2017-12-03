@@ -16,6 +16,7 @@ return array(
     'team' => 'Drużyna',
     'teams' => 'Drużyny',
     'parentEmail' => 'Email rodzica',
+    'parentPhone' => 'Telefon rodzica',
     'year' => 'Rocznik',
     'isMyTeam' => 'Twoja drużyna?',
     'logo' => 'Logo',

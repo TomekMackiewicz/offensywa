@@ -53,6 +53,17 @@ class Player
 
     /**
      * @var string
+     * @Assert\Regex(
+     *   pattern = "/^(0|[1-9][0-9]*)$/",
+     *   match = true,
+     *   message = "field.invalid.phone"
+     * ) 
+     * @ORM\Column(name="parent_phone", type="string", length=255, nullable=true)
+     */
+    private $parentPhone;     
+    
+    /**
+     * @var string
      * @Assert\Email(message = "field.invalid_email")
      * @ORM\Column(name="parent_email", type="string", length=255, nullable=true)
      */
@@ -245,6 +256,30 @@ class Player
     public function getParentEmail()
     {
         return $this->parentEmail;
+    }
+
+    /**
+     * Set parent phone
+     *
+     * @param string $parentPhone
+     *
+     * @return Player
+     */
+    public function setParentPhone($parentPhone)
+    {
+        $this->parentPhone = $parentPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get parent phone
+     *
+     * @return string
+     */
+    public function getParentPhone()
+    {
+        return $this->parentPhone;
     }
     
     /**

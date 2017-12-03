@@ -16,6 +16,7 @@
                     <th>Imię</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Nazwisko</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Email rodzica</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Telefon rodzica</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Data urodzenia</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Pozycja</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Grupa</th>
@@ -35,6 +36,13 @@
                             ---
                         {% endif %}                    
                     </td>
+                    <td>
+                        {% if player.parentPhone %}
+                            {{ player.parentPhone }}
+                        {% else %}
+                            ---
+                        {% endif %}                    
+                    </td>                    
                     <td>
                         {% if player.birthDate %}
                             {{ player.birthDate|date('Y-m-d') }}

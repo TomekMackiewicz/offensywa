@@ -1,4 +1,8 @@
-gracz: telefon rodzica
+konto usera:
+- profil
+- zapotrzebowanie
+
+data treningów - dlaczego unix stamp?
 
 wpłaty:
 - zawodnik
