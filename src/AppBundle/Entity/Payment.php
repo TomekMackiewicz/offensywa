@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Payment
@@ -23,7 +24,7 @@ class Payment
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="amount", type="integer")
      */
     private $amount;
@@ -33,30 +34,32 @@ class Payment
      *
      * @ORM\Column(name="method", type="string", length=255, nullable=true)
      */
-    private $method;
-
+    private $method;   
+    
     /**
-     * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255, nullable=true)
+     * @var PaymentCategory
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @ORM\ManyToOne(targetEntity="PaymentCategory", inversedBy="payments")
+     * @ORM\JoinColumn(name="paymentCategory", referencedColumnName="id")
      */
-    private $category;
+    private $paymentCategory;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\DateTime(message = "field.invalid_date")
      * @ORM\Column(name="period", type="date")
      */
     private $period;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\DateTime(message = "field.invalid_date")
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\ManyToOne(targetEntity="Player", inversedBy="payments")
      * @ORM\JoinColumn(name="player_id", referencedColumnName="id")
      */
@@ -121,27 +124,27 @@ class Payment
     }
 
     /**
-     * Set category
+     * Set paymentCategory
      *
-     * @param string $category
+     * @param string $paymentCategory
      *
      * @return Payment
      */
-    public function setCategory($category)
+    public function setPaymentCategory($paymentCategory)
     {
-        $this->category = $category;
+        $this->paymentCategory = $paymentCategory;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get paymentCategory
      *
      * @return string
      */
-    public function getCategory()
+    public function getPaymentCategory()
     {
-        return $this->category;
+        return $this->paymentCategory;
     }
 
     /**

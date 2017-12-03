@@ -1,0 +1,49 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <h1>Płatności</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('payment_new') }}" class="btn btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i> 
+        Dodaj
+    </a>
+    {% endif %}
+    <div class="admin-box">  
+        <table class="table data-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Kwota</th>
+                    <th>Zawodnik</th>
+                    <th>Rodzaj</th>
+                    <th>Okres</th>
+                    <th>Data</th>
+                    <th>Edycja</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for payment in payments %}
+                <tr>
+                    <td></td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.player.firstName }} {{ payment.player.lastName }}</td>
+                    <td>{{ payment.paymentCategory.name }}</td>
+                    <td>{{ payment.period|date('Y-m') }}</td>
+                    <td>{{ payment.date|date('Y-m-d') }}</td>
+                    <td class="col-md-2">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('payment_edit', { 'id': payment.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                            Edytuj
+                        </a>
+                        <form action="{{ path('payment_delete', { 'id': payment.id }) }}" method="post">
+                            {{ form_widget(deleteForms[payment.id]) }}
+                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
+                        </form>                             
+                    {% endif %}                    
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

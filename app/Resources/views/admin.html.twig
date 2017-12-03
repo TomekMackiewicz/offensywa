@@ -83,7 +83,9 @@
                 $(function() {
                     $(".datetimepicker").datetimepicker({
                         timeFormat: 'HH:mm',
-                        dateFormat : 'dd-mm-yy'
+                        dateFormat : 'dd-mm-yy',
+                        changeMonth: true,
+                        changeYear: true                        
                         //controlType: 'select'
                         //addSliderAccess: true,
                         //sliderAccessArgs: { touchonly: true }
@@ -91,9 +93,18 @@
                 });
                 $(function() {
                     $(".datepicker").datepicker({
-                        dateFormat : 'dd-mm-yy'
+                        dateFormat : 'dd-mm-yy',
+                        changeMonth: true,
+                        changeYear: true                        
                     });                    
                 });
+                $(function() {
+                    $(".monthpicker").datepicker({
+                        dateFormat : 'mm-yy',
+                        changeMonth: true,
+                        changeYear: true
+                    });                    
+                });                
 {#                $(function() {
                     $(".daypicker").datetimepicker({
                         timeFormat: 'HH:mm',

@@ -121,10 +121,21 @@
             </div>             
         </li>        
         <li>
-            <a href="#">
+            <a href="#!"
+               data-toggle="collapse" 
+               data-target="#payments" 
+               aria-expanded="false" 
+               aria-controls="payments">
                 <i class="fa fa-money admin-list-icon" aria-hidden="true"></i>
-                Wpłaty
+                Płatności
             </a>
+            <div class="collapse" id="payments">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('payment_index') }}">Lista</a></li>
+                    <li><a href="{{ path('payment_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('paymentcategory_index') }}">Rodzaje płatności</a></li>
+                </ul>
+            </div>             
         </li>
         <li>
             <a href="#">

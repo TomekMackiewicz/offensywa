@@ -8,7 +8,9 @@ wpłaty:
 - zawodnik
 - kwota
 - data
-- wpisowe dla nowych
+- wpisowe dla nowych (kategoria) + opłata miesięczna
+
+rodzaje wpłat - tu amount, żeby w payment samo się ustawiało
 
 zamówienia:
 - zapotrzebowanie na sprzęt
@@ -58,7 +60,6 @@ Asserts! / crud / view
 
 tournament
 messages
-payment
 zamówienia
 wydarzenia
 rekrutacja?

@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'player' => 'Zawodnik',
     'date' => 'Data',
     'birthDate' => 'Data urodzenia',
     'name' => 'Nazwa',
@@ -43,5 +44,8 @@ return array(
     'Friday' => 'piątek',
     'Saturday' => 'sobota',
     'Sunday' => 'niedziela',
+    'paymentCategory' => 'Typ płatności',
+    'amount' => 'Kwota',
+    'period' => 'Okres'
 
 );
