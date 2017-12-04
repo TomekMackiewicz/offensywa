@@ -32,9 +32,10 @@ class AdminController extends Controller
         $currentDate = date('Y-m-d');
 
         $jsonTrainings = [];
-        foreach ($trainings as $training) {
             $firstDayOfMonth = date("Y-m-01", strtotime($currentDate));
-            $lastDayOfMonth = date("Y-m-t", strtotime($currentDate));
+            $lastDayOfMonth = date("Y-m-t", strtotime($currentDate));        
+        foreach ($trainings as $training) {
+
             $begin = new \DateTime($firstDayOfMonth);            
             $end = new \DateTime($lastDayOfMonth);
             

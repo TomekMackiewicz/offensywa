@@ -34,16 +34,16 @@ class TrainingType extends AbstractType
             ->add('startHour', TimeType::class, [
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control input-inline daypicker startDate',
-                    'data-provide' => 'datetimepicker'
+                    'class' => 'form-control input-inline timepicker',
+                    'data-provide' => 'timepicker'
                 ],
                 'label' => 'startHour'
             ])
             ->add('endHour', TimeType::class, [
                 'widget' => 'single_text',
                 'attr' => [
-                    'class' => 'form-control input-inline daypicker endDate',
-                    'data-provide' => 'datetimepicker'
+                    'class' => 'form-control input-inline timepicker',
+                    'data-provide' => 'timepicker'
                 ],
                 'label' => 'endHour'
             ])                

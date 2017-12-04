@@ -4,14 +4,6 @@ konto usera:
 
 data treningów - dlaczego unix stamp?
 
-wpłaty:
-- zawodnik
-- kwota
-- data
-- wpisowe dla nowych (kategoria) + opłata miesięczna
-
-rodzaje wpłat - tu amount, żeby w payment samo się ustawiało
-
 zamówienia:
 - zapotrzebowanie na sprzęt
 - lista zamówień (użytkownik, co)
@@ -31,8 +23,6 @@ drużyna - czy gra w lidze - wtedy tabela
 search
 
 unique rocznik, jeśli my team
-
-startdt.getTime is not a function (timepicker)
 
 spr bazę pod kątem null / required i twig
 
