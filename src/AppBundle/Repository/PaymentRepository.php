@@ -10,13 +10,23 @@ namespace AppBundle\Repository;
  */
 class PaymentRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getPaymentsByMonth() {
-        $em = $this->getEntityManager();        
+    public function getThisMonthPayments() {
+        $em = $this->getEntityManager();
+        $currentDate = date('Y-m-d');
+        $firstDayOfMonth = date("Y-m-01", strtotime($currentDate));
+        $lastDayOfMonth = date("Y-m-t", strtotime($currentDate)); 
+        
         $query = $em->createQuery('
-            SELECT p.id, p.date FROM AppBundle:Game p
-        ');
-        $payments = $query->getResult();
+            SELECT COUNT(p.id) 
+            FROM AppBundle:Payment p
+            WHERE p.period >= :fromTime
+            AND p.period < :toTime            
+        ')
+        ->setParameter('fromTime', $firstDayOfMonth)
+        ->setParameter('toTime', $lastDayOfMonth);                
+                
+        $payments = $query->getSingleScalarResult();
         
         return $payments;        
-    }
+    }   
 }

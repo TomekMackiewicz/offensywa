@@ -2,13 +2,12 @@
 
 {% block admin_body %}
     <div class="row">
-        {#{{ dump(paymentsByMonth) }}#}
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="panel panel-default top-panel top-panel-one">
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-7">
-                            <h1 class="top-panel-text">{{ playersCount }} / {{ playersCount }}</h1>
+                            <h1 class="top-panel-text">{{ playersCount }} / {{ thisMonthPayments }}</h1>
                             <p><small>Zawodników /<br> w tym płacących</small></p>                            
                         </div>
                         <div class="col-md-5">
@@ -44,7 +43,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-7">
-                            <h1 class="top-panel-text">...</h1>
+                            <h1 class="top-panel-text">{{ thisMonthPayments }}</h1>
                             <p><small>Składek w tym miesiącu</small></p>                            
                         </div>
                         <div class="col-md-5">
@@ -62,7 +61,7 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-7">
-                            <h1 class="top-panel-text">...</h1>
+                            <h1 class="top-panel-text">{{ playersCount - thisMonthPayments }}</h1>
                             <p><small>Zaległych składek<br>za ten miesiąc</small></p>                            
                         </div>
                         <div class="col-md-5">

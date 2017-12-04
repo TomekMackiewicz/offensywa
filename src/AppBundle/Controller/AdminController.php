@@ -24,7 +24,7 @@ class AdminController extends Controller
         
         $playersCount = $em->getRepository('AppBundle:Player')->countPlayers();
         $teamsCount = $em->getRepository('AppBundle:Team')->countMyTeams();
-        $paymentsByMonth = $em->getRepository('AppBundle:Payment')->getPaymentsByMonth();
+        $thisMonthPayments = $em->getRepository('AppBundle:Payment')->getThisMonthPayments();
         
         $tasks = $em->getRepository('AppBundle:Task')->findAll(); // current month? year?
         $trainings = $em->getRepository('AppBundle:Training')->findAll(); // current month? year? wtedy to poniżej niepotrzebne  
@@ -32,8 +32,9 @@ class AdminController extends Controller
         $currentDate = date('Y-m-d');
 
         $jsonTrainings = [];
-            $firstDayOfMonth = date("Y-m-01", strtotime($currentDate));
-            $lastDayOfMonth = date("Y-m-t", strtotime($currentDate));        
+        $firstDayOfMonth = date("Y-m-01", strtotime($currentDate));
+        $lastDayOfMonth = date("Y-m-t", strtotime($currentDate));
+        
         foreach ($trainings as $training) {
 
             $begin = new \DateTime($firstDayOfMonth);            
@@ -65,7 +66,7 @@ class AdminController extends Controller
             'last' => $lastDayOfMonth,
             'playersCount' => $playersCount,
             'teamsCount' => $teamsCount,
-            'paymentsByMonth' => $paymentsByMonth
+            'thisMonthPayments' => $thisMonthPayments
         ));
     }
     

@@ -1,4 +1,3 @@
-synchro danych z górnymi panelami
 
 konto usera:
 - profil
