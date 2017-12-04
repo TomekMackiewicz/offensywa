@@ -1,3 +1,5 @@
+synchro danych z górnymi panelami
+
 konto usera:
 - profil
 - zapotrzebowanie
@@ -12,13 +14,11 @@ fb
 
 mecze:
 - kategorie (liga itd.)
-
 zamiast zawodów: liga, sparingi, turnieje
 
 wykreślić zadania trenerskie
 
 drużyna - czy gra w lidze - wtedy tabela
-
 
 search
 
