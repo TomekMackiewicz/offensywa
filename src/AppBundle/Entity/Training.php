@@ -23,9 +23,9 @@ class Training
     private $id;
 
     /**
-     * @var string
+     * @var integer
      * @Assert\NotBlank(message = "field.not_blank")
-     * @ORM\Column(name="day", type="string")
+     * @ORM\Column(name="day", type="integer")
      */
     private $day;    
     

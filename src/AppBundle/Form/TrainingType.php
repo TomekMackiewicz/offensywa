@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Doctrine\ORM\EntityRepository;
 
 class TrainingType extends AbstractType
 {
@@ -56,7 +57,12 @@ class TrainingType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'choose',
-                'label' => 'team'
+                'label' => 'team',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('t')
+                        ->where('t.isMy = 1')    
+                        ->orderBy('t.name', 'ASC');
+                },                
             ))
             ->add('trainer', EntityType::class, array(
                 'class' => 'AppBundle:Trainer',

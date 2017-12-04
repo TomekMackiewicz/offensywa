@@ -24,8 +24,25 @@
             {% for training in trainings %}
                 <tr>
                     <td></td>
-                    <td>{{ training.day|date("l")|trans }}<br>
-                        {{ training.startHour|date('H:i') }} - {{ training.endHour|date('H:i') }}</td>
+                    <td>
+                        {% if training.day == 1 %}
+                            poniedziałek
+                        {% elseif training.day == 2 %}
+                            wtorek
+                        {% elseif training.day == 3 %}
+                            środa
+                        {% elseif training.day == 4 %}
+                            czwartek
+                        {% elseif training.day == 5 %}
+                            piątek
+                        {% elseif training.day == 6 %}
+                            sobota!    
+                        {% else %}
+                            niedziela
+                        {% endif %}                        
+                        <br>
+                        {{ training.startHour|date('H:i') }} - {{ training.endHour|date('H:i') }}
+                    </td>
                     <td>{{ training.location }}</td>
                     <td>{{ training.team.name }}</td>
                     <td>{{ training.trainer.firstName }} {{ training.trainer.lastName }}</td>
