@@ -25,6 +25,10 @@ class TeamType extends AbstractType
                 'label'    => 'isMyTeam',
                 'required' => false,
             ))
+            ->add('playsLeague', CheckboxType::class, array(
+                'label'    => 'playsLeague',
+                'required' => false,
+            ))                
             ->add('logo', 'sonata_media_type', array(
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'team',

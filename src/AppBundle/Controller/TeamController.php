@@ -65,6 +65,10 @@ class TeamController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+//            if (isMy === 1) {
+//                
+//            }
             $em->persist($team);
             $em->flush();
 

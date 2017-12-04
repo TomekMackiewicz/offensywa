@@ -46,6 +46,7 @@ return array(
     'Sunday' => 'niedziela',
     'paymentCategory' => 'Typ płatności',
     'amount' => 'Kwota',
-    'period' => 'Okres'
+    'period' => 'Okres',
+    'playsLeague' => 'Gra w lidze?'
 
 );

@@ -5,11 +5,16 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Team
  *
- * @ORM\Table(name="team")
+ * @ORM\Table(name="team", uniqueConstraints={@ORM\UniqueConstraint(columns={"year", "is_my"}, options={"where": "(is_my = 1)"})})
+ * @UniqueEntity(
+ *      fields={"year", "isMy"},
+ *      message="Year for given (yours) team already exists in database."
+ * )
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TeamRepository")
  */
 class Team
@@ -49,6 +54,13 @@ class Team
      */
     private $isMy;
 
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="plays_league", type="boolean")
+     */
+    private $playsLeague;    
+    
     /**
      * @var Media
      *
@@ -185,6 +197,30 @@ class Team
         return $this->isMy;
     }
 
+    /**
+     * Set team plays league
+     *
+     * @param bool $playsLeague
+     *
+     * @return Team
+     */
+    public function setPlaysLeague($playsLeague)
+    {
+        $this->playsLeague = $playsLeague;
+
+        return $this;
+    }
+
+    /**
+     * Get team plays League
+     *
+     * @return bool
+     */
+    public function getPlaysLeague()
+    {
+        return $this->playsLeague;
+    }    
+    
     /**
      * Set logo
      *

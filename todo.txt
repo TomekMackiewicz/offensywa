@@ -1,9 +1,9 @@
 
+slider
+
 konto usera:
 - profil
 - zapotrzebowanie
-
-data treningów - dlaczego unix stamp?
 
 zamówienia:
 - zapotrzebowanie na sprzęt
@@ -15,13 +15,10 @@ mecze:
 - kategorie (liga itd.)
 zamiast zawodów: liga, sparingi, turnieje
 
-wykreślić zadania trenerskie
-
 drużyna - czy gra w lidze - wtedy tabela
+unique rocznik, jeśli my team
 
 search
-
-unique rocznik, jeśli my team
 
 spr bazę pod kątem null / required i twig
 
