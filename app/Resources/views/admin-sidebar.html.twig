@@ -11,6 +11,7 @@
     </div>
     <div class="navbar-collapse collapse sidebar-navbar-collapse">
       <ul class="nav navbar-nav vertical-nav">
+        {% if is_granted('ROLE_ADMIN') %}  
         <li class="active">
             <a href="{{ path('admin_dashboard') }}">
                 <i class="fa fa-tachometer admin-list-icon" aria-hidden="true"></i>
@@ -143,6 +144,7 @@
                 Wiadomości
             </a>
         </li>
+        {% endif %}
         <li>
             <a href="#!" 
                data-toggle="collapse" 
@@ -154,11 +156,14 @@
             </a>
             <div class="collapse" id="requests">
                 <ul class="list-unstyled admin-list">
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="{{ path('request_index') }}">Lista</a></li>
+                    {% endif %}
                     <li><a href="{{ path('request_new') }}">Złóż zamówienie</a></li>
                 </ul>
             </div>            
-        </li>         
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
         <li>
             <a href="#">
                 <i class="fa fa-calendar admin-list-icon" aria-hidden="true"></i>
@@ -187,6 +192,7 @@
                 Zawody
             </a>
         </li>
+        {% endif %}
 {#        <li>
             <a href="#!" 
                data-toggle="collapse" 

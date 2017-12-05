@@ -56,7 +56,7 @@ class RequestController extends Controller
             $em->persist($order);
             $em->flush();
 
-            return $this->redirectToRoute('request_index');
+            return $this->redirectToRoute('fos_user_profile_show');
         }
 
         return $this->render('request/new.html.twig', array(
