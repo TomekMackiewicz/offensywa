@@ -3,13 +3,12 @@
 {% block admin_body %}
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
-            <div class="admin-box">    
-                <h1>Utwórz kategorię</h1>
+            <div class="admin-box">      
+                <h1>Złóż zamówienie</h1>
                 {{ form_start(form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
                     {{ form_widget(form) }}
-                    <input type="submit" class="btn btn-success" value="Utwórz" />
+                    <input type="submit" class="btn btn-success" value="Zatwierdź" />
                 {{ form_end(form) }}
-                <a href="{{ path('category_index') }}" class="btn btn-default">Wróć do listy</a>
             </div>
         </div>
     </div>

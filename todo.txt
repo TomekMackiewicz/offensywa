@@ -1,13 +1,9 @@
 
 slider
 
-konto usera: lepiej przez formularz?
+konto usera
 - profil
 - zapotrzebowanie
-
-zamówienia:
-- zapotrzebowanie na sprzęt
-- lista zamówień (użytkownik, co)
 
 fb
 
@@ -42,7 +38,6 @@ Asserts! / crud / view
 
 tournament
 messages
-zamówienia
 
 ---------------------------
 security - roles (twig)

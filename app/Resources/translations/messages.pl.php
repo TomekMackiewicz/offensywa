@@ -47,6 +47,9 @@ return array(
     'paymentCategory' => 'Typ płatności',
     'amount' => 'Kwota',
     'period' => 'Okres',
-    'playsLeague' => 'Gra w lidze?'
+    'playsLeague' => 'Gra w lidze?',
+    'requestFor' => 'Zamówienie na...',
+    'outfit' => 'strój',
+    'shoes' => 'buty'
 
 );

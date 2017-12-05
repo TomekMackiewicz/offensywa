@@ -144,11 +144,21 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="#!" 
+               data-toggle="collapse" 
+               data-target="#requests" 
+               aria-expanded="false" 
+               aria-controls="requests">
                 <i class="fa fa-opencart admin-list-icon" aria-hidden="true"></i>
                 Zamówienia
             </a>
-        </li>
+            <div class="collapse" id="requests">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('request_index') }}">Lista</a></li>
+                    <li><a href="{{ path('request_new') }}">Złóż zamówienie</a></li>
+                </ul>
+            </div>            
+        </li>         
         <li>
             <a href="#">
                 <i class="fa fa-calendar admin-list-icon" aria-hidden="true"></i>

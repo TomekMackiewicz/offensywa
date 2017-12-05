@@ -1,0 +1,40 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+            <h1>Zamówienia</h1>
+            <div class="admin-box"> 
+                <table class="table data-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><i class="fa fa-sort" aria-hidden="true"></i> Zamówienie</th>
+                            <th><i class="fa fa-sort" aria-hidden="true"></i> Zamawiający</th>
+                            <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
+                            <th>Edycja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for request in requests %}
+                        <tr>
+                            <td></td>
+                            <td>{{ request.item|trans }}</td>
+                            <td>{% if request.user %}{{ request.user.username }}{% endif %}</td>
+                            <td>{% if request.date %}{{ request.date|date('Y-m-d H:i') }}{% endif %}</td>
+                            <td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <form action="{{ path('request_delete', { 'id': request.id }) }}" method="post">
+                                    {{ form_widget(deleteForms[request.id]) }}
+                                    <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
+                                </form>                             
+                            {% endif %}                    
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
