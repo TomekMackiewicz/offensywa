@@ -61,8 +61,8 @@
                             center: 'title',
                             right: 'month, agendaWeek, agendaDay'
                         },                        
-                        events: {% if jsonTrainings is defined %}
-                                    {{ jsonTrainings|json_encode|raw }}
+                        events: {% if calendarTrainings is defined %}
+                                    {{ calendarTrainings|json_encode|raw }}
                                 {% else %}
                                     null
                                 {% endif %}
