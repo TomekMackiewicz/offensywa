@@ -37,4 +37,8 @@ services:
     twig.extension.intl:
         class: Twig_Extensions_Extension_Intl
         tags:
-            - { name: twig.extension }             
+            - { name: twig.extension }
+
+    redirect.after.login:
+        class: Application\Redirection\AfterLoginRedirection
+        arguments: ['@router','@security.authorization_checker']            
