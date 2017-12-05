@@ -12,6 +12,30 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class AdminController extends Controller
 {
+
+    private function getCalendarData($games, $trainings)
+    {
+        $calendarData = array_merge($this->getCalendarGames($games), $this->getCalendarTrainings($trainings));
+        
+        return $calendarData;
+    }
+    
+    private function getCalendarGames($games)
+    {
+        $calendarGames = [];
+        
+        foreach ($games as $game) {            
+            $calendarGames[] = [
+                'title' => 'Mecz',
+                'start' => $game->getDate()->format("Y-m-d H:i"),
+                //'end' => $game->getDate()->format("Y-m-d H:i"),
+                'allDay' => false,
+                'color' => '#00719D'
+            ];                         
+        }
+        
+        return $calendarGames;
+    }
     
     private function getCalendarTrainings($trainings)
     {
@@ -35,7 +59,8 @@ class AdminController extends Controller
                         'title' => 'Trening',
                         'start' => $startx->format("Y-m-d H:i"),
                         'end' => $endx->format("Y-m-d H:i"),
-                        'allDay' => false
+                        'allDay' => false,
+                        'color' => '#9C5005'
                     ];                   
                 }              
                 $counter->modify('+1 day');                
@@ -59,12 +84,13 @@ class AdminController extends Controller
         $teamsCount = $em->getRepository('AppBundle:Team')->countMyTeams();
         $thisMonthPayments = $em->getRepository('AppBundle:Payment')->getThisMonthPayments();
         $tasks = $em->getRepository('AppBundle:Task')->findAll(); // current month? year?
-        $trainings = $em->getRepository('AppBundle:Training')->findAll(); // current month? year? wtedy to poniżej niepotrzebne 
-        $calendarTrainings = $this->getCalendarTrainings($trainings);
+        $trainings = $em->getRepository('AppBundle:Training')->findAll(); // current month? year? 
+        $games = $em->getRepository('AppBundle:Game')->findAll(); // current month? year?  
+        $calendarData = $this->getCalendarData($games, $trainings);        
 
         return $this->render('admin/dashboard.html.twig', array(
             'tasks' => $tasks,
-            'calendarTrainings' => $calendarTrainings,
+            'calendarData' => $calendarData,
             'trainings' => $trainings,
             'playersCount' => $playersCount,
             'teamsCount' => $teamsCount,

@@ -56,13 +56,14 @@
                     $('#calendar').fullCalendar({
                         minTime: '08:00:00',
                         maxTime: '21:00:00',
+                        defaultTimedEventDuration: '01:00:00',
                         header: {
                             left: 'prev,next',
                             center: 'title',
                             right: 'month, agendaWeek, agendaDay'
                         },                        
-                        events: {% if calendarTrainings is defined %}
-                                    {{ calendarTrainings|json_encode|raw }}
+                        events: {% if calendarData is defined %}
+                                    {{ calendarData|json_encode|raw }}
                                 {% else %}
                                     null
                                 {% endif %}

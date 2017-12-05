@@ -1,6 +1,4 @@
 
-gritter
-
 slider
 
 konto usera: lepiej przez formularz?
@@ -22,9 +20,6 @@ drużyna - czy gra w lidze - wtedy tabela
 search
 
 spr bazę pod kątem null / required i twig
-
-dodać wydarzenia i mecze do kalendarza
-poprawić kalendarz
 
 wykres płatności
 
@@ -48,8 +43,7 @@ Asserts! / crud / view
 tournament
 messages
 zamówienia
-wydarzenia
-rekrutacja?
+
 ---------------------------
 security - roles (twig)
 
@@ -74,3 +68,8 @@ Offensywa
 2008
 2007
 2006
+
+------------
+?
+wydarzenia?
+rekrutacja?
