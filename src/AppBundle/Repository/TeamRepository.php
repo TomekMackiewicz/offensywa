@@ -48,5 +48,16 @@ class TeamRepository extends \Doctrine\ORM\EntityRepository
         
         return $count;
     }
+
+    public function checkUniqueYear($year)
+    {
+        $query = $this
+            ->getEntityManager()
+            ->createQuery('SELECT t.id FROM AppBundle:Team t WHERE t.isMy = 1 AND t.year = :year')
+            ->setParameter("year", $year);
+        $result = $query->getResult(); 
+        
+        return $result;        
+    }
     
 }

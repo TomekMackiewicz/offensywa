@@ -1,7 +1,9 @@
 
+gritter
+
 slider
 
-konto usera:
+konto usera: lepiej przez formularz?
 - profil
 - zapotrzebowanie
 

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Team controller.
@@ -65,10 +66,6 @@ class TeamController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            
-//            if (isMy === 1) {
-//                
-//            }
             $em->persist($team);
             $em->flush();
 
@@ -164,7 +161,7 @@ class TeamController extends Controller
      * @Route("/teams/navbar", name="team_index")
      * @Method("GET")
      */
-    public function navbarAction()
+    public function navbarAction() // dlaczego nie /admin i dlaczego team_index?
     {
         $em = $this->getDoctrine()->getManager();
         $years = $em->getRepository('AppBundle:Team')->getNavbarTeamsByYear();
@@ -173,5 +170,22 @@ class TeamController extends Controller
             'years' => $years,
         ));
     }    
+
+    /**
+     * Check unique year.
+     *
+     * @Route("/admin/teams/unique-year/{year}", name="unique_year")
+     * @Method("GET")
+     */
+    public function checkUniqueYear($year)
+    {
+        if($year) {
+            $em = $this->getDoctrine()->getManager();
+            $isUnique = $em->getRepository('AppBundle:Team')->checkUniqueYear($year);
+            $response = new JsonResponse($isUnique);
+            
+            return $response;
+        } 
+    }
     
 }

@@ -10,11 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * Team
  *
- * @ORM\Table(name="team", uniqueConstraints={@ORM\UniqueConstraint(columns={"year", "is_my"}, options={"where": "(is_my = 1)"})})
- * @UniqueEntity(
- *      fields={"year", "isMy"},
- *      message="Year for given (yours) team already exists in database."
- * )
+ * @ORM\Table(name="team")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TeamRepository")
  */
 class Team
@@ -50,14 +46,14 @@ class Team
     /**
      * @var boolean
      * 
-     * @ORM\Column(name="is_my", type="boolean")
+     * @ORM\Column(name="is_my", type="boolean", nullable=true)
      */
     private $isMy;
 
     /**
      * @var boolean
      * 
-     * @ORM\Column(name="plays_league", type="boolean")
+     * @ORM\Column(name="plays_league", type="boolean", nullable=true)
      */
     private $playsLeague;    
     
