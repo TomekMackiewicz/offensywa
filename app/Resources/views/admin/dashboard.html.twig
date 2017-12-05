@@ -1,6 +1,7 @@
 {% extends 'admin.html.twig' %}
 
 {% block admin_body %}
+    {{ dump(jsonTrainings) }}
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-3">
             <div class="panel panel-default top-panel top-panel-one">
@@ -76,14 +77,12 @@
         </div>        
     </div>
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-12 col-md-8">
             <div class="admin-box">
                 <div id="calendar"></div>
             </div>            
         </div> 
-    </div>                             
-    <div class="row">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="admin-box">
                 <h3>Wpłaty 
                     <sup>
@@ -117,46 +116,9 @@
                     <li><div data-percentage="44" class="bar"></div><span>Option 5</span></li>
                     <li><div data-percentage="23" class="bar"></div><span>Option 6</span></li>
                   </ul>
-                </div> 
+                </div>                 
             </div>            
-        </div>
-        <div class="col-sm-12 col-md-6">
-            <div class="admin-box">
-                <h3>Zadania trenerskie</h3>
-                <table class="table">
-                    <tr>
-                        <th>Data</th>
-                        <th>Grupa</th>
-                        <th>obecność trenera</th>
-                        <th>Lista obecności</th>
-                        <th>Konspekt</th>
-                    </tr>
-                    {% if tasks is defined %}
-                        {% for task in tasks %}
-                        <tr>
-                            <td>{{ task.date | date('Y-m-d H:i') }}</td>
-                            <td>{{ task.team.name }}</td>
-                            {% if task.trainerPresence %}
-                            <td>tak</td>
-                            {% else %}
-                            <td>nie</td>    
-                            {% endif%}
-                            {% if task.attendanceList %}
-                            <td>tak</td>
-                            {% else %}
-                            <td>nie</td>    
-                            {% endif%}
-                            {% if task.outline %}
-                            <td>tak</td>
-                            {% else %}
-                            <td>nie</td>    
-                            {% endif%}
-                        </tr> 
-                        {% endfor %}
-                    {% endif %}
-                </table> 
-            </div>            
-        </div>
-    </div>  
+        </div>         
+    </div>                              
 {% endblock %}
 

@@ -38,23 +38,28 @@ class AdminController extends Controller
         foreach ($trainings as $training) {
 
             $begin = new \DateTime($firstDayOfMonth);            
-            $end = new \DateTime($lastDayOfMonth);
+            $end = new \DateTime($lastDayOfMonth); 
             
             while ($begin <= $end) {
                 if($begin->format("N") == $training->getDay()) {
-                    $startDate = $begin;
-                    $endDate = $begin;
-                    // czemu dodanie godziny wszystko chrzani?
-                    //$startDate->add(new \DateInterval("PT{$training->getStartHour()->format('H')}H"));
-                    //$endDate->add(new \DateInterval("PT{$training->getEndHour()->format('H')}H"));                    
+                    //$startDate = new \DateTime($firstDayOfMonth);
+                    //$endDate = new \DateTime($firstDayOfMonth);
+                    $begin->add(new \DateInterval('PT'.$training->getStartHour()->format('H').'H'));
+                    $end->add(new \DateInterval('PT'.$training->getEndHour()->format('H').'H'));
+                    //$startDate->add(new \DateInterval('PT'.$training->getStartHour()->format('H').'H'));
+                    //$endDate->add(new \DateInterval('PT'.$training->getEndHour()->format('H').'H'));
                     $jsonTrainings[] = [
-                        'title' => 'Trening: ' . $startDate->format("Y-m-d H") . '---' . $endDate->format("Y-m-d H"),
-                        'start' => $startDate->format("Y-m-d H"),
-                        'end' => $endDate->format("Y-m-d H")           
+                        'title' => 'Trening: ' . $begin->format("Y-m-d H:i") . ' -- ' . $end->format("Y-m-d H:i"),
+                        'start' => $begin->format("Y-m-d H:i"),
+                        'end' => $end->format("Y-m-d H:i"),
+                        'allDay' => false
                     ];
                    
                 }
+                $begin->add(new \DateInterval('PT0H'));
+                $end->add(new \DateInterval('PT0H'));                
                 $begin->modify('+1 day');
+                
             }            
         }
 
