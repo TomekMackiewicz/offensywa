@@ -18,7 +18,6 @@ mecze:
 zamiast zawodów: liga, sparingi, turnieje
 
 drużyna - czy gra w lidze - wtedy tabela
-unique rocznik, jeśli my team
 
 search
 

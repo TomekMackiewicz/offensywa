@@ -178,42 +178,55 @@ $(document).ready(function() {
             cell.innerHTML = i+1;
         } );
     }).draw();
+
+    function checkUniqueYear(value) {
+        $.ajax({
+            url: 'http://localhost:8000/admin/teams/unique-year/'+value,
+            type: 'GET',
+            data: value,
+            success: function(response) {
+                if (response.length > 0) {
+                    $("#appbundle_team_year").closest('.form-group').addClass("has-error");
+                    $("#appbundle_team_year")
+                        .closest('.form-group')
+                        .append(
+                            "<span class=\"help-block\">"
+                                +"<span class=\"glyphicon glyphicon-exclamation-sign\">"
+                                +"</span>"
+                                +" Ten rocznik już istnieje."
+                            +"</span>"
+                    );
+                } else {
+                    $("#appbundle_team_year").closest('.form-group').removeClass("has-error");
+                    $("#appbundle_team_year").closest('.form-group').find( "span.help-block" ).remove();
+                }
+
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });         
+    }    
     
+    $("#appbundle_team_year").keyup(function() {
+        var checked = $("#appbundle_team_isMy").prop('checked');
+        var value = $("#appbundle_team_year").val();
+        var isValidYear = /\d{4}/.test(value);
+
+        if(checked && isValidYear) {
+            checkUniqueYear(value);
+        }        
+    });     
+
     $("#appbundle_team_isMy").change(function() {
         var checked = $("#appbundle_team_isMy").prop('checked');
         var value = $("#appbundle_team_year").val();
         var isValidYear = /\d{4}/.test(value);
 
         if(checked && isValidYear) {
-            $.ajax({
-                url: 'http://localhost:8000/admin/teams/unique-year/'+value,
-                type: 'GET',
-                data: value,
-                success: function(response) {
-                    if (response.length > 0) {
-                        $("#appbundle_team_year").closest('.form-group').addClass("has-error");
-                        $("#appbundle_team_year")
-                            .closest('.form-group')
-                            .append(
-                                "<span class=\"help-block\">"
-                                    +"<span class=\"glyphicon glyphicon-exclamation-sign\">"
-                                    +"</span>"
-                                    +" Ten rocznik już istnieje."
-                                +"</span>"
-                        );
-                    } else {
-                        $("#appbundle_team_year").closest('.form-group').removeClass("has-error");
-                        $("#appbundle_team_year").closest('.form-group').find( "span.help-block" ).remove();
-                    }
-                    
-                },
-                error: function(response) {
-                    console.log(response);
-                }
-            });    
-        }
-        
-    });     
+            checkUniqueYear(value);
+        }        
+    });    
     
 });    
     
