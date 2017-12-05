@@ -30,36 +30,30 @@ class AdminController extends Controller
         $trainings = $em->getRepository('AppBundle:Training')->findAll(); // current month? year? wtedy to poniżej niepotrzebne  
         
         $currentDate = date('Y-m-d');
-
         $jsonTrainings = [];
         $firstDayOfMonth = date("Y-m-01", strtotime($currentDate));
         $lastDayOfMonth = date("Y-m-t", strtotime($currentDate));
         
         foreach ($trainings as $training) {
 
-            $begin = new \DateTime($firstDayOfMonth);            
+            $counter = new \DateTime($firstDayOfMonth);            
             $end = new \DateTime($lastDayOfMonth); 
             
-            while ($begin <= $end) {
-                if($begin->format("N") == $training->getDay()) {
-                    //$startDate = new \DateTime($firstDayOfMonth);
-                    //$endDate = new \DateTime($firstDayOfMonth);
-                    $begin->add(new \DateInterval('PT'.$training->getStartHour()->format('H').'H'));
-                    $end->add(new \DateInterval('PT'.$training->getEndHour()->format('H').'H'));
-                    //$startDate->add(new \DateInterval('PT'.$training->getStartHour()->format('H').'H'));
-                    //$endDate->add(new \DateInterval('PT'.$training->getEndHour()->format('H').'H'));
+            while ($counter <= $end) {
+                if($counter->format("N") == $training->getDay()) {
+                    $startx = new \DateTime($counter->format("Y-m-d H:i"));
+                    $startx->setTime($training->getStartHour()->format('H'), 0);
+                    $endx = new \DateTime($counter->format("Y-m-d H:i"));
+                    $endx->setTime($training->getEndHour()->format('H'), 0);
+                    
                     $jsonTrainings[] = [
-                        'title' => 'Trening: ' . $begin->format("Y-m-d H:i") . ' -- ' . $end->format("Y-m-d H:i"),
-                        'start' => $begin->format("Y-m-d H:i"),
-                        'end' => $end->format("Y-m-d H:i"),
+                        'title' => 'Trening',
+                        'start' => $startx->format("Y-m-d H:i"),
+                        'end' => $endx->format("Y-m-d H:i"),
                         'allDay' => false
-                    ];
-                   
-                }
-                $begin->add(new \DateInterval('PT0H'));
-                $end->add(new \DateInterval('PT0H'));                
-                $begin->modify('+1 day');
-                
+                    ];                   
+                }              
+                $counter->modify('+1 day');                
             }            
         }
 
