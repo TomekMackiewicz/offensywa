@@ -1,6 +1,4 @@
 
-slider
-
 add flash messages, wzór:
 /home/tomek/Workspace/offensywa/src/AppBundle/Controller/RequestController.php
 /home/tomek/Workspace/offensywa/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig

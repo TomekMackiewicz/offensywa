@@ -11,6 +11,7 @@
             >
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
             <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,600" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('/css/animate.min.css') }}">
             <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -24,6 +25,30 @@
                     crossorigin="anonymous">
             </script>
             <script src="{{ asset('/js/news-carousel.js') }}"></script>
+            <script>
+                (function( $ ) { 
+                    function doAnimations( elems ) {
+                        var animEndEv = 'webkitAnimationEnd animationend';
+                        elems.each(function () {
+                            var $this = $(this),
+                                $animationType = $this.data('animation');
+                            $this.addClass($animationType).one(animEndEv, function () {
+                                $this.removeClass($animationType);
+                            });
+                        });
+                    }
+                    var $myCarousel = $('#carousel-example-generic'),
+                    $firstAnimatingElems = $myCarousel.find('.item:first').find("[data-animation ^= 'animated']"); 
+                    $myCarousel.carousel({
+                        interval: 10000
+                    });
+                    doAnimations($firstAnimatingElems);
+                    $myCarousel.on('slide.bs.carousel', function (e) {
+                        var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
+                        doAnimations($animatingElems);
+                    });  
+                })(jQuery);
+            </script>            
         {% endblock %}                
     </body>
 </html>
