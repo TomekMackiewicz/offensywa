@@ -9,8 +9,6 @@ mecze:
 - kategorie (liga itd.)
 zamiast zawodów: liga, sparingi, turnieje
 
-drużyna - czy gra w lidze - wtedy tabela
-
 search
 
 spr bazę pod kątem null / required i twig

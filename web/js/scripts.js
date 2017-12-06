@@ -142,6 +142,16 @@ $(document).ready(function() {
         });                         
     }                   
 
+    $('input[name="appbundle_team[playsLeague]"]').attr("disabled", true);
+    $('input[name="appbundle_team[isMy]"]').on('click', function() {
+        if ($(this).is(':checked')) {
+            $('input[name="appbundle_team[playsLeague]"]').removeAttr("disabled");
+        } 
+        else {
+            $('input[name="appbundle_team[playsLeague]"]').attr("disabled", true);
+        }
+    });
+
     var t = $('.data-table').DataTable( {
         "columnDefs": [ {
             "searchable": false,
