@@ -4,4 +4,14 @@
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
     <p><a href="{{ path('fos_user_change_password') }}">Zmień hasło</a></p>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-notice">
+                <div class="alert alert-{{ label }} fade in">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    {{ message }}
+                </div>               
+            </div>
+        {% endfor %}
+    {% endfor %}    
 </div>

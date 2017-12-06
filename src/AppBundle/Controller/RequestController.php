@@ -56,6 +56,8 @@ class RequestController extends Controller
             $em->persist($order);
             $em->flush();
 
+            $this->addFlash("success", "Zamówienie dodane");
+            
             return $this->redirectToRoute('fos_user_profile_show');
         }
 
