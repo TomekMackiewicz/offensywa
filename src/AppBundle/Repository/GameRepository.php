@@ -60,8 +60,9 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
     
     public function getLeagueTables($year)
     {        
-        $query = 'SELECT
-            name AS Team, Sum(P) AS P,Sum(W) AS W,Sum(D) AS D,Sum(L) AS L,
+        $query = '
+          SELECT
+            name AS Team, plays_league, Sum(P) AS P,Sum(W) AS W,Sum(D) AS D,Sum(L) AS L,
             SUM(F) as F,SUM(A) AS A,SUM(GD) AS GD,SUM(Pts) AS Pts
           FROM(
             SELECT
@@ -91,7 +92,8 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
           JOIN team t ON tot.Team=t.id
           WHERE year = :year
           GROUP BY Team
-          ORDER BY SUM(Pts) DESC';
+          ORDER BY SUM(Pts) DESC
+        ';
         
         return $query;
        

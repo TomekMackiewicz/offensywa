@@ -12,7 +12,7 @@ class TeamRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getYears() {
         $query = $this->getEntityManager()->createQuery(
-                "SELECT DISTINCT t.year FROM AppBundle:Team t"
+            "SELECT DISTINCT t.year FROM AppBundle:Team t WHERE t.isMy = 1 AND t.playsLeague = 1"
         )->getScalarResult();
         $years = array_column($query, "year");
         
@@ -21,10 +21,10 @@ class TeamRepository extends \Doctrine\ORM\EntityRepository
     
     public function getTeamsByYear($id, $year) {
         $query = $this->getEntityManager()->createQuery("
-                SELECT t 
-                FROM AppBundle:Team t 
-                WHERE t.year = :year
-                AND t.id <> :id
+            SELECT t 
+            FROM AppBundle:Team t 
+            WHERE t.year = :year
+            AND t.id <> :id
         ")->setParameters(array('id' => $id, 'year' => $year));
         $teams = $query->getResult();
         
