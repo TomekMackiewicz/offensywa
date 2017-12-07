@@ -96,6 +96,11 @@ class Team
      * @ORM\OneToOne(targetEntity="Task", mappedBy="team", cascade={"persist", "remove"})
      */
     private $task;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Trainer", mappedBy="teams")
+     */
+    private $trainers;
     
     public function __construct() {
         $this->players = new ArrayCollection();
@@ -103,6 +108,7 @@ class Team
         $this->homeGames = new ArrayCollection();
         $this->awayGames = new ArrayCollection();
         $this->trainings = new ArrayCollection();
+        $this->trainers = new ArrayCollection();
     }    
 
     /**
@@ -339,6 +345,42 @@ class Team
         return $this;
     } 
 
+    /**
+     * Get trainers
+     *
+     * @return Trainer
+     */
+    public function getTrainers()
+    {
+        return $this->trainers;
+    }    
+    
+    /**
+     * Add trainer
+     *
+     * @param Trainer $rainer
+     *
+     * @return Team
+     */    
+    public function addTrainer(Trainer $trainer)
+    {
+        $this->trainers->add($trainer);
+        
+        return $this;
+    }
+
+    /**
+     * Remove trainer
+     *
+     * @return Team
+     */    
+    public function removeTrainer(Trainer $trainer)
+    {
+        $this->trainers->removeElement($trainer);
+        
+        return $this;
+    }    
+    
 //    /**
 //     * Set task
 //     *

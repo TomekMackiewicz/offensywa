@@ -59,11 +59,8 @@ class Trainer
     private $status;    
 
     /**
-     * @ORM\ManyToMany(targetEntity="Team")
-     * @ORM\JoinTable(name="trainers_teams",
-     *      joinColumns={@ORM\JoinColumn(name="trainer_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="team_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="trainers")
+     * @ORM\JoinTable(name="trainers_teams")
      */
     private $teams;    
     
