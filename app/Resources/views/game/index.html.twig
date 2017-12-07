@@ -20,10 +20,10 @@
         {% for game in games %}
             <tr>
                 <td><a href="{{ path('game_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
-                <td>{% if game.date %}{{ game.date|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{{ game.date|date('Y-m-d H:i') }}</td>
                 <td>{{ game.location }}</td>
-                <td>{{ game.homeTeam.name }}</td>
-                <td>{{ game.awayTeam.name }}</td>
+                <td>{% if game.homeTeam %}{{ game.homeTeam.name }}{% else %}Deleted team{% endif %}</td>
+                <td>{% if game.awayTeam %}{{ game.awayTeam.name }}{% else %}Deleted team{% endif %}</td>
                 <td>{{ game.homeTeamScore }}</td>
                 <td>{{ game.awayTeamScore }}</td>
                 <td>

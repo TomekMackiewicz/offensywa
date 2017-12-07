@@ -17,13 +17,13 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
     {               
         $em = $this->getEntityManager();        
         $query = $em->createQuery('
-                SELECT g FROM AppBundle:Game g              
-                JOIN AppBundle:Team h WITH g.homeTeam = h.id
-                JOIN AppBundle:Team a WITH g.awayTeam = a.id
-                WHERE (g.date > :now)
-                AND (h.isMy = 1 OR a.isMy = 1) 
-                ORDER BY g.date ASC
-                ')->setParameter('now', new \DateTime())->setMaxResults(1);
+            SELECT g FROM AppBundle:Game g              
+            JOIN AppBundle:Team h WITH g.homeTeam = h.id
+            JOIN AppBundle:Team a WITH g.awayTeam = a.id
+            WHERE (g.date > :now)
+            AND (h.isMy = 1 OR a.isMy = 1) 
+            ORDER BY g.date ASC
+            ')->setParameter('now', new \DateTime())->setMaxResults(1);
               
         $nextMatch = $query->getOneOrNullResult();
         
@@ -34,13 +34,13 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
     {               
         $em = $this->getEntityManager();        
         $query = $em->createQuery('
-                SELECT g FROM AppBundle:Game g              
-                JOIN AppBundle:Team h WITH g.homeTeam = h.id
-                JOIN AppBundle:Team a WITH g.awayTeam = a.id
-                WHERE (g.date < :now)
-                AND (h.isMy = 1 OR a.isMy = 1) 
-                ORDER BY g.date DESC
-                ')->setParameter('now', new \DateTime())->setMaxResults(1);
+            SELECT g FROM AppBundle:Game g              
+            JOIN AppBundle:Team h WITH g.homeTeam = h.id
+            JOIN AppBundle:Team a WITH g.awayTeam = a.id
+            WHERE (g.date < :now)
+            AND (h.isMy = 1 OR a.isMy = 1) 
+            ORDER BY g.date DESC
+            ')->setParameter('now', new \DateTime())->setMaxResults(1);
               
         $nextMatch = $query->getOneOrNullResult();
         
@@ -51,8 +51,8 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
     {               
         $em = $this->getEntityManager();        
         $query = $em->createQuery(
-                'SELECT g FROM AppBundle:Game g WHERE g.date > :now ORDER BY g.date'
-                )->setParameter('now', new \DateTime());
+            'SELECT g FROM AppBundle:Game g WHERE g.date > :now ORDER BY g.date'
+            )->setParameter('now', new \DateTime());
         $fixtures = $query->getResult();
         
         return $fixtures;
@@ -97,5 +97,16 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
         
         return $query;
        
-    }    
+    }
+
+    public function findTeamGames($team)
+    {
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery(
+            'SELECT g FROM AppBundle:Game g WHERE g.homeTeam = :team OR g.awayTeam = :team'
+            )->setParameter('team', $team);
+        $games = $query->getResult();
+        
+        return $games;        
+    }
 }

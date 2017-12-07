@@ -13,8 +13,6 @@ search
 
 spr bazę pod kątem null / required i twig
 
-jeden gracz, jeden miesiąc, jeden typ opłaty! (unique entity)
-
 on delete cascade
 
 trainer first last name in form
@@ -64,3 +62,5 @@ Offensywa
 ?
 wydarzenia?
 rekrutacja?
+
+możliwość usuwania rodzajów płatności (składka, wpisowe)

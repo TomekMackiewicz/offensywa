@@ -129,14 +129,24 @@ class TeamController extends Controller
     {
         $form = $this->createDeleteForm($team);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $games = $em->getRepository('AppBundle:Game')->findTeamGames($team);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            foreach($games as $game) {
+                if($team->getId() === $game->getHomeTeam()->getId()) {
+                    $game->setHomeTeam(null);
+                }
+                if($team->getId() === $game->getAwayTeam()->getId()) {
+                    $game->setAwayTeam(null);
+                }                
+            }
             $em->remove($team);
             $em->flush();
         }
 
-        return $this->redirectToRoute('team_index');
+        return $this->redirectToRoute('admin_team_index');
     }
 
     /**

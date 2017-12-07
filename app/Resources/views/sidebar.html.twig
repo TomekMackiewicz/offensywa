@@ -18,24 +18,36 @@
                     </tr>
                     <tr>
                         <td class="col-md-5">
-                            {% if lastMatch.homeTeam.logo %}
-                                <img src="{% path lastMatch.homeTeam.logo, 'small' %}">
-                            {% endif %}                                            
+                            {% if lastMatch.homeTeam %}
+                                {% if lastMatch.homeTeam.logo %}
+                                    <img src="{% path lastMatch.homeTeam.logo, 'small' %}">
+                                {% endif %} 
+                            {% endif %}                                
                         </td>
                         <td class="col-md-2"></td>
                         <td class="col-md-5">
-                            {% if lastMatch.awayTeam.logo %}
-                                <img src="{% path lastMatch.awayTeam.logo, 'small' %}">
-                            {% endif %}                                                                                         
+                            {% if lastMatch.awayTeam %}
+                                {% if lastMatch.awayTeam.logo %}
+                                    <img src="{% path lastMatch.awayTeam.logo, 'small' %}">
+                                {% endif %}
+                            {% endif %} 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-5">
-                            {{ lastMatch.homeTeam.name }}                                           
+                            {% if lastMatch.homeTeam %}
+                                {{ lastMatch.homeTeam.name }}
+                            {% else %}
+                                Deleted
+                            {% endif %}
                         </td>
                         <td class="col-md-2">vs</td>
                         <td class="col-md-5">
-                            {{ lastMatch.awayTeam.name }}                                            
+                            {% if lastMatch.awayTeam %}
+                                {{ lastMatch.awayTeam.name }}
+                            {% else %}
+                                Deleted
+                            {% endif %}                                            
                         </td>                                        
                     </tr>
                 </tbody>

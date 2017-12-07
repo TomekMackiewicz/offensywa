@@ -26,14 +26,14 @@ class Game
      * @var \DateTime
      * @Assert\NotBlank(message = "field.not_blank")
      * @Assert\DateTime(message = "field.invalid_date")
-     * @ORM\Column(name="date", type="datetime", nullable=true)
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var string
      * @Assert\NotBlank(message = "field.not_blank")
-     * @ORM\Column(name="location", type="string", length=255, nullable=true)
+     * @ORM\Column(name="location", type="string", length=255)
      */
     private $location;
 
@@ -55,7 +55,7 @@ class Game
      * @var Team
      * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="homeGames")
-     * @ORM\JoinColumn(name="home_team", referencedColumnName="id")
+     * @ORM\JoinColumn(name="home_team", referencedColumnName="id", nullable=true)
      */
     private $homeTeam;    
 
@@ -63,7 +63,7 @@ class Game
      * @var Team
      * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="awayGames")
-     * @ORM\JoinColumn(name="away_team", referencedColumnName="id")
+     * @ORM\JoinColumn(name="away_team", referencedColumnName="id", nullable=true)
      */
     private $awayTeam;    
 
@@ -242,11 +242,11 @@ class Game
     /**
      * Set homeTeam
      *
-     * @param Team $homeTeam
+     * @param $homeTeam
      *
      * @return Game
      */     
-    public function setHomeTeam(Team $homeTeam)
+    public function setHomeTeam($homeTeam)
     {
         $this->homeTeam = $homeTeam;
         
@@ -266,11 +266,11 @@ class Game
     /**
      * Set awayTeam
      *
-     * @param Team $awayTeam
+     * @param $awayTeam
      *
      * @return Game
      */     
-    public function setAwayTeam(Team $awayTeam)
+    public function setAwayTeam($awayTeam)
     {
         $this->awayTeam = $awayTeam;
         

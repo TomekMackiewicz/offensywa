@@ -73,9 +73,7 @@ class Player
      * @var Media
      *
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"})
-     * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="image", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="image", referencedColumnName="id", onDelete="CASCADE")
      */
    private $image;    
 
@@ -83,9 +81,7 @@ class Player
      * @var Gallery
      *
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"persist", "remove"})
-     * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="gallery", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="gallery", referencedColumnName="id", onDelete="CASCADE")
      */
     private $gallery;   
    

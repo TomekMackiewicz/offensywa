@@ -13,24 +13,36 @@
                             <tbody>
                                 <tr>
                                     <td class="col-md-6">
-                                        {% if nextMatch.homeTeam.logo %}
-                                            <img src="{% path nextMatch.homeTeam.logo, 'small' %}">
-                                        {% endif %}                                            
+                                        {% if nextMatch.homeTeam %}
+                                            {% if nextMatch.homeTeam.logo %}
+                                                <img src="{% path nextMatch.homeTeam.logo, 'small' %}">
+                                            {% endif %}
+                                        {% endif %}
                                     </td>
                                     <td></td>
                                     <td class="col-md-6">
-                                        {% if nextMatch.awayTeam.logo %}
-                                            <img src="{% path nextMatch.awayTeam.logo, 'small' %}">
-                                        {% endif %}                                                                                         
+                                        {% if nextMatch.awayTeam %}
+                                            {% if nextMatch.awayTeam.logo %}
+                                                <img src="{% path nextMatch.awayTeam.logo, 'small' %}">
+                                            {% endif %}
+                                        {% endif %}                                        
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-md-6">
-                                        {{ nextMatch.homeTeam.name }}                                           
+                                        {% if nextMatch.homeTeam %}
+                                            {{ nextMatch.homeTeam.name }}
+                                        {% else %}
+                                            Deleted team
+                                        {% endif %}
                                     </td>
                                     <td>:</td>
                                     <td class="col-md-6">
-                                        {{ nextMatch.awayTeam.name }}                                            
+                                        {% if nextMatch.awayTeam %}
+                                            {{ nextMatch.awayTeam.name }}
+                                        {% else %}
+                                            Deleted team
+                                        {% endif %}                                        
                                     </td>                                        
                                 </tr>
                             </tbody>
@@ -50,10 +62,14 @@
                             <tr>
                                 <td class="col-md-4">
                                     <div class="logo-with-name fixture-text">
-                                        {% if fixture.homeTeam.logo %}
-                                            <img src="{% path fixture.homeTeam.logo, 'small' %}">
-                                        {% endif %}                                        
-                                        {{ fixture.homeTeam.name }}
+                                        {% if fixture.homeTeam %}
+                                            {% if fixture.homeTeam.logo %}
+                                                <img src="{% path fixture.homeTeam.logo, 'small' %}">
+                                            {% endif %}                                        
+                                            {{ fixture.homeTeam.name }}
+                                        {% else %}
+                                            Deleted
+                                        {% endif %}    
                                     </div>
                                 </td>
                                 <td class="col-md-4 fixture-date">
@@ -61,10 +77,14 @@
                                 </td>
                                 <td class="col-md-4">
                                     <div class="logo-with-name fixture-text">
-                                        {% if fixture.awayTeam.logo %}
-                                            <img src="{% path fixture.awayTeam.logo, 'small' %}">
-                                        {% endif %}                                        
-                                        {{ fixture.awayTeam.name }}
+                                        {% if fixture.awayTeam %}
+                                            {% if fixture.awayTeam.logo %}
+                                                <img src="{% path fixture.awayTeam.logo, 'small' %}">
+                                            {% endif %}                                        
+                                            {{ fixture.awayTeam.name }}
+                                        {% else %}
+                                            Deleted
+                                        {% endif %} 
                                     </div>                                    
                                 </td>
                             </tr> 
