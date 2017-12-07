@@ -59,6 +59,8 @@ class RequestController extends Controller
             $this->addFlash("success", "Zamówienie dodane");
             
             return $this->redirectToRoute('fos_user_profile_show');
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania zamówienia");
         }
 
         return $this->render('request/new.html.twig', array(

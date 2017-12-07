@@ -2,9 +2,10 @@
 
 {% block admin_body %}
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
-            <div class="admin-box">     
-                <h1>Edytuj trening</h1>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <h1>Edytuj trening</h1>
+            {% include 'partials/gritter.html.twig' %}
+            <div class="admin-box">                     
                 {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
                     {{ form_widget(edit_form) }}
                     <input type="submit" class="btn btn-primary" value="Edytuj" />

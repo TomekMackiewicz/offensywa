@@ -68,8 +68,13 @@ class TrainingController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($training);
             $em->flush();
+            
+            $this->addFlash("success", "Trening został dodany");
 
-            return $this->redirectToRoute('admin_training_index', array('id' => $training->getId()));
+            return $this->redirectToRoute('admin_training_index');
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania treningu");
         }
 
         return $this->render('training/new.html.twig', array(
@@ -78,21 +83,21 @@ class TrainingController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a training entity.
-     *
-     * @Route("/{id}", name="training_show")
-     * @Method("GET")
-     */
-    public function showAction(Training $training)
-    {
-        $deleteForm = $this->createDeleteForm($training);
-
-        return $this->render('training/show.html.twig', array(
-            'training' => $training,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+//    /**
+//     * Finds and displays a training entity.
+//     *
+//     * @Route("/{id}", name="training_show")
+//     * @Method("GET")
+//     */
+//    public function showAction(Training $training)
+//    {
+//        $deleteForm = $this->createDeleteForm($training);
+//
+//        return $this->render('training/show.html.twig', array(
+//            'training' => $training,
+//            'delete_form' => $deleteForm->createView(),
+//        ));
+//    }
 
     /**
      * Displays a form to edit an existing training entity.
@@ -108,8 +113,13 @@ class TrainingController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Trening został uaktualniony");
 
             return $this->redirectToRoute('training_edit', array('id' => $training->getId()));
+            
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas uaktualniania trenera");
         }
 
         return $this->render('training/edit.html.twig', array(
@@ -134,6 +144,11 @@ class TrainingController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($training);
             $em->flush();
+            
+            $this->addFlash("success", "Trening został usunięty");
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania treningu");
         }
 
         return $this->redirectToRoute('admin_training_index');

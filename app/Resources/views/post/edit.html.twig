@@ -1,9 +1,9 @@
 {% extends 'admin.html.twig' %}
 
 {% block admin_body %}
+    <h1>Edytuj post</h1>
     <div class="admin-box">
-        <h1>Edytuj post</h1>
-
+        {% include 'partials/gritter.html.twig' %}
         {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
             {{ form_widget(edit_form) }}
             <input type="submit" class="btn btn-primary" value="Edytuj" />

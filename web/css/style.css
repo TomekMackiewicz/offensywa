@@ -634,8 +634,8 @@ pre,
 /* the norm */
 #gritter-notice-wrapper {
     position:fixed;
-    top:60px;
-    right:20px;
+    top:65px;
+    right:15px;
     width:301px;
     z-index:9999;
     -webkit-animation: fadein 2s;  
@@ -711,7 +711,7 @@ pre,
     display:block;
     color:#eee;
     padding:2px 11px 8px 11px;
-    font-size: 13px;
+    font-size: 14px;
 }
 .hover .gritter-item {
     background-position:right -40px;

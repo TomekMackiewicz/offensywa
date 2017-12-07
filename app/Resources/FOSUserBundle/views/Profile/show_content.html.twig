@@ -1,5 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% include 'partials/gritter.html.twig' %}
 <div class="admin-box"> 
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>

@@ -53,8 +53,13 @@ class PaymentController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($payment);
             $em->flush();
+            
+            $this->addFlash("success", "Płatność została dodana");
 
             return $this->redirectToRoute('payment_index');
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania płatności");
         }
 
         return $this->render('payment/new.html.twig', array(
@@ -93,8 +98,13 @@ class PaymentController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Płatność została uaktualniona");
 
             return $this->redirectToRoute('payment_edit', array('id' => $payment->getId()));
+            
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas uaktualniania płatności");
         }
 
         return $this->render('payment/edit.html.twig', array(
@@ -119,6 +129,10 @@ class PaymentController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($payment);
             $em->flush();
+            
+            $this->addFlash("success", "Płatność została usunięta");
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania płatności");
         }
 
         return $this->redirectToRoute('payment_index');

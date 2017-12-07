@@ -68,8 +68,12 @@ class TeamController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($team);
             $em->flush();
+            
+            $this->addFlash("success", "Drużyna została dodana");
 
-            return $this->redirectToRoute('team_show', array('id' => $team->getId()));
+            return $this->redirectToRoute('admin_team_index');
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania drużyny");
         }
 
         return $this->render('team/new.html.twig', array(
@@ -108,8 +112,13 @@ class TeamController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Drużyna została uaktualniona");
 
             return $this->redirectToRoute('team_edit', array('id' => $team->getId()));
+            
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania drużyny");
         }
 
         return $this->render('team/edit.html.twig', array(
@@ -148,6 +157,11 @@ class TeamController extends Controller
             }
             $em->remove($team);
             $em->flush();
+            
+            $this->addFlash("success", "Drużyna usunięta");
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania drużyny");
         }
 
         return $this->redirectToRoute('admin_team_index');

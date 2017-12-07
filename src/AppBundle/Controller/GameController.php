@@ -70,8 +70,13 @@ class GameController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($game);
             $em->flush();
+            
+            $this->addFlash("success", "Mecz został dodany");
 
-            return $this->redirectToRoute('game_show', array('id' => $game->getId()));
+            return $this->redirectToRoute('admin_game_index');
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania meczu");
         }
 
         return $this->render('game/new.html.twig', array(
@@ -113,8 +118,13 @@ class GameController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Mecz został uaktualniony");
 
             return $this->redirectToRoute('game_edit', array('id' => $game->getId()));
+            
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas uaktualniania meczu");
         }
 
         return $this->render('game/edit.html.twig', array(
@@ -139,9 +149,13 @@ class GameController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($game);
             $em->flush();
+            
+            $this->addFlash("success", "Mecz został usunięty");
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania meczu");
         }
 
-        return $this->redirectToRoute('game_index');
+        return $this->redirectToRoute('admin_game_index');
     }
 
     /**

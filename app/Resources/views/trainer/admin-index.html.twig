@@ -2,6 +2,7 @@
 
 {% block admin_body %}
     <h1>Trenerzy</h1>
+    {% include 'partials/gritter.html.twig' %}
     {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('trainer_new') }}" class="btn btn-success">
         <i class="fa fa-plus" aria-hidden="true"></i> 

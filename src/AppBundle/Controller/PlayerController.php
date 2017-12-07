@@ -66,8 +66,13 @@ class PlayerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($player);
             $em->flush();
+            
+            $this->addFlash("success", "Zawodnik został dodany");
 
-            return $this->redirectToRoute('player_show', array('id' => $player->getId()));
+            return $this->redirectToRoute('admin_player_index');
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania zawodnika");
         }
 
         return $this->render('player/new.html.twig', array(
@@ -122,8 +127,13 @@ class PlayerController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Zawodnik został uaktualniony");
 
             return $this->redirectToRoute('player_edit', array('id' => $player->getId()));
+            
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas aktualizacji zawodnika");
         }
 
         return $this->render('player/edit.html.twig', array(
@@ -148,9 +158,14 @@ class PlayerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($player);
             $em->flush();
+            
+            $this->addFlash("success", "Zawodnik usunięty");
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania zawodnika");
         }
 
-        return $this->redirectToRoute('player_index');
+        return $this->redirectToRoute('admin_player_index');
     }
 
     /**

@@ -1,4 +1,6 @@
 
+powiadomienia dla admina
+
 add flash messages, wzór: albo gritter !
 /home/tomek/Workspace/offensywa/src/AppBundle/Controller/RequestController.php
 /home/tomek/Workspace/offensywa/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig
@@ -64,3 +66,5 @@ rekrutacja?
 messages
 
 możliwość usuwania rodzajów płatności (składka, wpisowe)
+
+usunąć niewykorzystywane metody i widoki

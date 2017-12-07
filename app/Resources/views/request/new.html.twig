@@ -5,6 +5,7 @@
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
             <div class="admin-box">      
                 <h1>Złóż zamówienie</h1>
+                {% include 'partials/gritter.html.twig' %}               
                 {{ form_start(form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
                     {{ form_widget(form) }}
                     <input type="submit" class="btn btn-success" value="Zatwierdź" />

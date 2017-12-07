@@ -68,8 +68,13 @@ class TrainerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($trainer);
             $em->flush();
+            
+            $this->addFlash("success", "Trener został dodany");
 
-            return $this->redirectToRoute('admin_trainer_index', array('id' => $trainer->getId()));
+            return $this->redirectToRoute('admin_trainer_index');
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania trenera");
         }
 
         return $this->render('trainer/new.html.twig', array(
@@ -108,8 +113,13 @@ class TrainerController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Trener został uaktualniony");
 
             return $this->redirectToRoute('trainer_edit', array('id' => $trainer->getId()));
+            
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas uaktualniania trenera");
         }
 
         return $this->render('trainer/edit.html.twig', array(
@@ -134,6 +144,11 @@ class TrainerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($trainer);
             $em->flush();
+            
+            $this->addFlash("success", "Trener został usunięty");
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania trenera");
         }
 
         return $this->redirectToRoute('admin_trainer_index');

@@ -68,8 +68,12 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
+            
+            $this->addFlash("success", "Post dodany");
 
-            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+            return $this->redirectToRoute('admin_post_index');
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania posta");
         }
 
         return $this->render('post/new.html.twig', array(
@@ -109,8 +113,12 @@ class PostController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $post->setModifyDate(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
-
+            
+            $this->addFlash("success", "Post został uaktualniony");
+            
             return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas edycji posta");
         }
 
         return $this->render('post/edit.html.twig', array(
@@ -135,9 +143,13 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($post);
             $em->flush();
+            
+            $this->addFlash("success", "Post usunięty");
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania posta");
         }
 
-        return $this->redirectToRoute('post_index');
+        return $this->redirectToRoute('admin_post_index');
     }
 
     /**

@@ -1,0 +1,20 @@
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div id="gritter-notice-wrapper">
+        <div id="gritter-item-1" class="gritter-item-wrapper btn-{{label}}" role="alert">
+            <div class="gritter-top"></div>
+            <div class="gritter-item">
+{#                        <a class="gritter-close" href="#" tabindex="1">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>#}
+                <div class="gritter-without-image">
+                    {#<span class="gritter-title">This is a sticky notice!</span>#}
+                    <p>{{ message }}</p>
+                </div>
+                <div style="clear:both"></div>                
+            </div>
+            <div class="gritter-bottom"></div>            
+        </div>    
+    </div>                      
+    {% endfor %}
+{% endfor %}

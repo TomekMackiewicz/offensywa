@@ -52,8 +52,13 @@ class PaymentCategoryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($paymentCategory);
             $em->flush();
+            
+            $this->addFlash("success", "Nowy typ płatności dodany");
 
-            return $this->redirectToRoute('paymentcategory_index', array('id' => $paymentCategory->getId()));
+            return $this->redirectToRoute('paymentcategory_index');
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania kategorii płatności");
         }
 
         return $this->render('paymentcategory/new.html.twig', array(
@@ -92,8 +97,13 @@ class PaymentCategoryController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Kategoria płatności została uaktualniona");
 
             return $this->redirectToRoute('paymentcategory_edit', array('id' => $paymentCategory->getId()));
+                        
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas uaktualniania kategorii");
         }
 
         return $this->render('paymentcategory/edit.html.twig', array(
@@ -118,6 +128,11 @@ class PaymentCategoryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($paymentCategory);
             $em->flush();
+            
+            $this->addFlash("success", "Kategoria usunięta");
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania kategorii płatności");
         }
 
         return $this->redirectToRoute('paymentcategory_index');

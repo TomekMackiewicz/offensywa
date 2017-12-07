@@ -51,8 +51,13 @@ class CategoryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
+            
+            $this->addFlash("success", "Kategoria została dodana");
 
-            return $this->redirectToRoute('category_show', array('id' => $category->getId()));
+            return $this->redirectToRoute('category_index');
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas dodawania kategorii");
         }
 
         return $this->render('category/new.html.twig', array(
@@ -91,8 +96,13 @@ class CategoryController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Kategoria została uaktualniona");
 
             return $this->redirectToRoute('category_edit', array('id' => $category->getId()));
+            
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas uaktualniania kategorii");
         }
 
         return $this->render('category/edit.html.twig', array(
@@ -117,6 +127,10 @@ class CategoryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($category);
             $em->flush();
+            
+            $this->addFlash("success", "Kategoria została usunięta");
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania kategorii");
         }
 
         return $this->redirectToRoute('category_index');
