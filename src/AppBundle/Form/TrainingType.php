@@ -66,7 +66,9 @@ class TrainingType extends AbstractType
             ))
             ->add('trainer', EntityType::class, array(
                 'class' => 'AppBundle:Trainer',
-                'choice_label' => 'lastName',
+                'choice_label' => function ($value) {
+                    return $value->getFirstName() . ' ' . $value->getLastName();
+                },
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'choose',
