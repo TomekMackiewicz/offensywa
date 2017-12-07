@@ -131,6 +131,7 @@ class TeamController extends Controller
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         $games = $em->getRepository('AppBundle:Game')->findTeamGames($team);
+        $players = $team->getPlayers();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -141,6 +142,9 @@ class TeamController extends Controller
                 if($team->getId() === $game->getAwayTeam()->getId()) {
                     $game->setAwayTeam(null);
                 }                
+            }
+            foreach($players as $player) {
+                $player->setTeam(null);
             }
             $em->remove($team);
             $em->flush();

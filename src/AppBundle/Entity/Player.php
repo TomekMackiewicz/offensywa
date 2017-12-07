@@ -291,11 +291,11 @@ class Player
     /**
      * Set Team
      *
-     * @param Team $team
+     * @param $team
      *
      * @return Player
      */    
-    public function setTeam(Team $team)
+    public function setTeam($team)
     {
         $this->team = $team;
         
