@@ -2,8 +2,26 @@
 
 {% block admin_body %}
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">           
             <h1>Zamówienia</h1>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                <div id="gritter-notice-wrapper">
+                    <div id="gritter-item-1" class="gritter-item-wrapper btn-{{label}}" role="alert">
+                        <div class="gritter-top"></div>
+                        <div class="gritter-item">
+                            <a class="gritter-close" href="#" tabindex="1">Close Notification</a>
+                            <div class="gritter-without-image">
+                                {#<span class="gritter-title">This is a sticky notice!</span>#}
+                                <p>{{ message }}</p>
+                            </div>
+                            <div style="clear:both"></div>                
+                        </div>
+                        <div class="gritter-bottom"></div>            
+                    </div>    
+                </div>                      
+                {% endfor %}
+            {% endfor %}             
             <div class="admin-box"> 
                 <table class="table data-table">
                     <thead>

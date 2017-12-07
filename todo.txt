@@ -11,8 +11,6 @@ zamiast zawodów: liga, sparingi, turnieje
 
 search
 
-spr bazę pod kątem null / required i twig
-
 trainer first last name in form
 
 Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
@@ -25,19 +23,16 @@ html 5
 
 meta, seo
 
-delete training -> redirect to payments
+remove task
+
+security - roles (twig) - spr
+
+null, isset itd (twig) - spr
 
 ---------------------------
 Asserts! / crud / view
 
 tournament
-messages
-
----------------------------
-security - roles (twig)
-
----------------------------
-null, isset itd (twig)
 
 ---------------------------
 
@@ -59,8 +54,13 @@ Offensywa
 2006
 
 ------------
-?
+
+POTEM
+
 wydarzenia?
+
 rekrutacja?
+
+messages
 
 możliwość usuwania rodzajów płatności (składka, wpisowe)

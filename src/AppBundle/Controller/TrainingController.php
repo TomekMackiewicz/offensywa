@@ -69,7 +69,7 @@ class TrainingController extends Controller
             $em->persist($training);
             $em->flush();
 
-            return $this->redirectToRoute('training_show', array('id' => $training->getId()));
+            return $this->redirectToRoute('admin_training_index', array('id' => $training->getId()));
         }
 
         return $this->render('training/new.html.twig', array(

@@ -45,7 +45,7 @@ class Post
     /**
      * @var string
      * @Assert\NotBlank(message = "field.not_blank")
-     * @ORM\Column(name="body", type="text", nullable=false)
+     * @ORM\Column(name="body", type="text")
      */
     private $body;
 

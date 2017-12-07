@@ -123,6 +123,8 @@ class RequestController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($userRequest);
             $em->flush();
+            
+            $this->addFlash("success", "Zamówienie usunięte");
         }
 
         return $this->redirectToRoute('request_index');
