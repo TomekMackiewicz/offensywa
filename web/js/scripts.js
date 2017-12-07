@@ -236,8 +236,15 @@ $(document).ready(function() {
         if(checked && isValidYear) {
             checkUniqueYear(value);
         }        
-    });    
-   
+    });       
+    
+    $('.gritter-close').on('click', function() {
+        $('#gritter-notice-wrapper').fadeOut();
+    });
+    
+    setTimeout(function() { 
+        $('#gritter-notice-wrapper').fadeOut(); 
+    }, 5000);
 });   
     
                      
