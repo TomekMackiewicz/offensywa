@@ -13,7 +13,7 @@ search
 
 spr bazę pod kątem null / required i twig
 
-wykres płatności
+jeden gracz, jeden miesiąc, jeden typ opłaty! (unique entity)
 
 on delete cascade
 

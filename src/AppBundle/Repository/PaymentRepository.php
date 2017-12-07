@@ -28,5 +28,35 @@ class PaymentRepository extends \Doctrine\ORM\EntityRepository
         $payments = $query->getSingleScalarResult();
         
         return $payments;        
-    }   
+    }
+    
+    public function getPaymentsForLastMonths() {
+        $em = $this->getEntityManager();
+        $currentDate = date('Y-m-d');
+        $firstDay = date("Y-m-01", strtotime($currentDate . '-3 months'));
+        $lastDay = date("Y-m-t", strtotime($currentDate)); 
+
+        $query = $em->createQuery('
+            SELECT COUNT(p.id) as total, p.period
+            FROM AppBundle:Payment p
+            WHERE p.period >= :fromTime
+            AND p.period <= :toTime
+            GROUP BY p.period            
+        ') 
+//        $query = $em->createQuery('
+//            SELECT COUNT(CASE WHEN p.id = 0 THEN 0 ELSE p.id END), p.period
+//            FROM AppBundle:Payment p
+//            WHERE p.period >= :fromTime
+//            AND p.period <= :toTime
+//            GROUP BY p.period            
+//        ')                
+        ->setParameter('fromTime', $firstDay)
+        ->setParameter('toTime', $lastDay);                
+                
+        $payments = $query->getResult();
+        
+        return $payments;        
+    }     
+    
 }
+

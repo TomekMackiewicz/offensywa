@@ -364,7 +364,6 @@ pre,
   height: 29px;
   border-bottom: 1px solid #444;
   position: relative;
-  bottom: 30px;
 }
 
 #chart #numbers li:last-child { height: 30px; }
@@ -419,6 +418,11 @@ pre,
   bottom: -2em;
   left: 0;
   text-align: center;
+}
+
+.bar > span {
+    top: -25px;
+    font-weight: bold
 }
 
 .admin-main {

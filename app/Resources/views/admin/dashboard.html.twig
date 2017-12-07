@@ -89,13 +89,17 @@
                            aria-hidden="true" 
                            data-toggle="tooltip" 
                            data-placement="right" 
-                           title="Ostatnie 6 miesięcy">                 
+                           title="Ostatnie 4 miesiące">                 
                         </i>
                     </sup>
                 </h3>                            
                 <div id="chart">
                   <ul id="numbers">
-                    <li><span>100%</span></li>
+                        {% set height = 100 / playersCount %}
+                        {% for i in playersCount..0 %}
+                            <li style="height: {{height}}%"><span>{{i}}</span></li>
+                        {% endfor %}
+{#                    <li><span>100%</span></li>
                     <li><span>90%</span></li>
                     <li><span>80%</span></li>
                     <li><span>70%</span></li>
@@ -105,15 +109,17 @@
                     <li><span>30%</span></li>
                     <li><span>20%</span></li>
                     <li><span>10%</span></li>
-                    <li><span>0%</span></li>
+                    <li><span>0%</span></li>#}
                   </ul>
                   <ul id="bars">
-                    <li><div data-percentage="56" class="bar"></div><span>Option 1</span></li>
-                    <li><div data-percentage="33" class="bar"></div><span>Option 2</span></li>
-                    <li><div data-percentage="54" class="bar"></div><span>Option 3</span></li>
-                    <li><div data-percentage="94" class="bar"></div><span>Option 4</span></li>
-                    <li><div data-percentage="44" class="bar"></div><span>Option 5</span></li>
-                    <li><div data-percentage="23" class="bar"></div><span>Option 6</span></li>
+                        {% for monthlyPayments in paymentsForLastMonths %}                          
+                            <li>
+                                <div data-percentage="{{ height * monthlyPayments.total }}" class="bar">
+                                    <span>{{ monthlyPayments.total }}</span>
+                                </div>
+                                <span>{{ monthlyPayments.period|date('F')|trans }}</span>
+                            </li>
+                        {% endfor %}
                   </ul>
                 </div>                 
             </div>            

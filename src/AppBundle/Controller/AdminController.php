@@ -83,6 +83,7 @@ class AdminController extends Controller
         $playersCount = $em->getRepository('AppBundle:Player')->countPlayers();
         $teamsCount = $em->getRepository('AppBundle:Team')->countMyTeams();
         $thisMonthPayments = $em->getRepository('AppBundle:Payment')->getThisMonthPayments();
+        $paymentsForLastMonths = $em->getRepository('AppBundle:Payment')->getPaymentsForLastMonths();
         $tasks = $em->getRepository('AppBundle:Task')->findAll(); // current month? year?
         $trainings = $em->getRepository('AppBundle:Training')->findAll(); // current month? year? 
         $games = $em->getRepository('AppBundle:Game')->findAll(); // current month? year?  
@@ -94,7 +95,8 @@ class AdminController extends Controller
             'trainings' => $trainings,
             'playersCount' => $playersCount,
             'teamsCount' => $teamsCount,
-            'thisMonthPayments' => $thisMonthPayments
+            'thisMonthPayments' => $thisMonthPayments,
+            'paymentsForLastMonths' => $paymentsForLastMonths
         ));
     }
     

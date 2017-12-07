@@ -50,6 +50,18 @@ return array(
     'playsLeague' => 'Gra w lidze?',
     'requestFor' => 'Zamówienie na...',
     'outfit' => 'strój',
-    'shoes' => 'buty'
+    'shoes' => 'buty',
+    'January' => 'styczeń',
+    'February' => 'luty',
+    'March' => 'marzec',
+    'April' => 'kwiecień',
+    'May' => 'maj',
+    'June' => 'czerwiec',
+    'July' => 'lipiec',
+    'August' => 'sierpień',
+    'September' => 'wrzesień',
+    'October' => 'październik',
+    'November' => 'listopad',
+    'December' => 'grudzień',
 
 );
