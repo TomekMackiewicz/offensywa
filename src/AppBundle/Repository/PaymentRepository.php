@@ -41,15 +41,9 @@ class PaymentRepository extends \Doctrine\ORM\EntityRepository
             FROM AppBundle:Payment p
             WHERE p.period >= :fromTime
             AND p.period <= :toTime
+            AND p.paymentCategory = 1
             GROUP BY p.period            
-        ') 
-//        $query = $em->createQuery('
-//            SELECT COUNT(CASE WHEN p.id = 0 THEN 0 ELSE p.id END), p.period
-//            FROM AppBundle:Payment p
-//            WHERE p.period >= :fromTime
-//            AND p.period <= :toTime
-//            GROUP BY p.period            
-//        ')                
+        ')                
         ->setParameter('fromTime', $firstDay)
         ->setParameter('toTime', $lastDay);                
                 

@@ -4,12 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Payment
  *
  * @ORM\Table(name="payment")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PaymentRepository")
+ * @UniqueEntity(
+ *     fields={"player", "period", "paymentCategory"},
+ *     message="player.already.paid"
+ * )
  */
 class Payment
 {
@@ -40,7 +45,7 @@ class Payment
      * @var PaymentCategory
      * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\ManyToOne(targetEntity="PaymentCategory", inversedBy="payments")
-     * @ORM\JoinColumn(name="paymentCategory", referencedColumnName="id")
+     * @ORM\JoinColumn(name="payment_category", referencedColumnName="id")
      */
     private $paymentCategory;
 

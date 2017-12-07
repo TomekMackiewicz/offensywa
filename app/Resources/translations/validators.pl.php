@@ -6,5 +6,6 @@ return array(
     'field.invalid_date' => 'Błędny format daty.',
     'field.invalid_email' => 'Niepoprawny format e-maila.',
     'field.year' => 'Niepoprawny format daty rocznej.',
-    'field.invalid.phone' => 'Niepoprawny format numeru telefonu'
+    'field.invalid.phone' => 'Niepoprawny format numeru telefonu',
+    'player.already.paid' => 'Zawodnik już opłacił składkę za ten miesiąc'
 );

@@ -83,33 +83,22 @@
         </div> 
         <div class="col-xs-12 col-sm-12 col-md-4">
             <div class="admin-box">
-                <h3>Wpłaty 
+                <h2>Wpłaty 
                     <sup>
                         <i class="fa fa-question-circle-o" 
                            aria-hidden="true" 
                            data-toggle="tooltip" 
                            data-placement="right" 
-                           title="Ostatnie 4 miesiące">                 
+                           title="Składki za ostatnie 4 miesiące">                 
                         </i>
                     </sup>
-                </h3>                            
+                </h2>                            
                 <div id="chart">
                   <ul id="numbers">
                         {% set height = 100 / playersCount %}
                         {% for i in playersCount..0 %}
                             <li style="height: {{height}}%"><span>{{i}}</span></li>
                         {% endfor %}
-{#                    <li><span>100%</span></li>
-                    <li><span>90%</span></li>
-                    <li><span>80%</span></li>
-                    <li><span>70%</span></li>
-                    <li><span>60%</span></li>
-                    <li><span>50%</span></li>
-                    <li><span>40%</span></li>
-                    <li><span>30%</span></li>
-                    <li><span>20%</span></li>
-                    <li><span>10%</span></li>
-                    <li><span>0%</span></li>#}
                   </ul>
                   <ul id="bars">
                         {% for monthlyPayments in paymentsForLastMonths %}                          
