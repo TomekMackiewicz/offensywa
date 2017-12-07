@@ -1,5 +1,5 @@
 
-add flash messages, wzór:
+add flash messages, wzór: albo gritter !
 /home/tomek/Workspace/offensywa/src/AppBundle/Controller/RequestController.php
 /home/tomek/Workspace/offensywa/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig
 
@@ -13,8 +13,6 @@ search
 
 spr bazę pod kątem null / required i twig
 
-on delete cascade
-
 trainer first last name in form
 
 Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
@@ -26,6 +24,8 @@ test crud!
 html 5
 
 meta, seo
+
+delete training -> redirect to payments
 
 ---------------------------
 Asserts! / crud / view

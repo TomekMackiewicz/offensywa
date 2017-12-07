@@ -10,13 +10,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Category controller.
+ * @Route("admin/categories")
  */
 class CategoryController extends Controller
 {
     /**
      * Lists all category entities.
      *
-     * @Route("/admin/categories", name="category_index")
+     * @Route("/", name="category_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -37,7 +38,7 @@ class CategoryController extends Controller
     /**
      * Creates a new category entity.
      *
-     * @Route("/admin/categories/new", name="category_new")
+     * @Route("/new", name="category_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -63,7 +64,7 @@ class CategoryController extends Controller
     /**
      * Finds and displays a category entity.
      *
-     * @Route("/admin/categories/{id}", name="category_show")
+     * @Route("/{id}", name="category_show")
      * @Method("GET")
      */
     public function showAction(Category $category)
@@ -79,7 +80,7 @@ class CategoryController extends Controller
     /**
      * Displays a form to edit an existing category entity.
      *
-     * @Route("/admin/categories/{id}/edit", name="category_edit")
+     * @Route("/{id}/edit", name="category_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Category $category)
@@ -104,7 +105,7 @@ class CategoryController extends Controller
     /**
      * Deletes a category entity.
      *
-     * @Route("/admin/categories/{id}", name="category_delete")
+     * @Route("/{id}", name="category_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Category $category)

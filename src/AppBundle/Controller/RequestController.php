@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Request controller.
+ * Request controller
  */
 class RequestController extends Controller
 {
@@ -111,7 +111,7 @@ class RequestController extends Controller
     /**
      * Deletes a request entity.
      *
-     * @Route("/{id}", name="request_delete")
+     * @Route("/admin/requests/{id}", name="request_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, UserRequest $userRequest)

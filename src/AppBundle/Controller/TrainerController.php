@@ -10,30 +10,31 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Trainer controller.
+ * @Route("admin/trainers")
  */
 class TrainerController extends Controller
 {
+//    /**
+//     * Lists all trainer entities.
+//     *
+//     * @Route("/trainers", name="trainer_index")
+//     * @Method("GET")
+//     */
+//    public function indexAction()
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $trainers = $em->getRepository('AppBundle:Trainer')->findAll();
+//
+//        return $this->render('trainer/index.html.twig', array(
+//            'trainers' => $trainers,
+//        ));
+//    }
+
     /**
      * Lists all trainer entities.
      *
-     * @Route("/trainers", name="trainer_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $trainers = $em->getRepository('AppBundle:Trainer')->findAll();
-
-        return $this->render('trainer/index.html.twig', array(
-            'trainers' => $trainers,
-        ));
-    }
-
-    /**
-     * Lists all trainer entities.
-     *
-     * @Route("/admin/trainers", name="admin_trainer_index")
+     * @Route("/", name="admin_trainer_index")
      * @Method("GET")
      */
     public function adminIndexAction()
@@ -54,7 +55,7 @@ class TrainerController extends Controller
     /**
      * Creates a new trainer entity.
      *
-     * @Route("/admin/trainers/new", name="trainer_new")
+     * @Route("/new", name="trainer_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -68,7 +69,7 @@ class TrainerController extends Controller
             $em->persist($trainer);
             $em->flush();
 
-            return $this->redirectToRoute('trainer_show', array('id' => $trainer->getId()));
+            return $this->redirectToRoute('admin_trainer_index', array('id' => $trainer->getId()));
         }
 
         return $this->render('trainer/new.html.twig', array(
@@ -77,26 +78,26 @@ class TrainerController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a trainer entity.
-     *
-     * @Route("/trainers/{id}", name="trainer_show")
-     * @Method("GET")
-     */
-    public function showAction(Trainer $trainer)
-    {
-        $deleteForm = $this->createDeleteForm($trainer);
-
-        return $this->render('trainer/show.html.twig', array(
-            'trainer' => $trainer,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+//    /**
+//     * Finds and displays a trainer entity.
+//     *
+//     * @Route("/trainers/{id}", name="trainer_show")
+//     * @Method("GET")
+//     */
+//    public function showAction(Trainer $trainer)
+//    {
+//        $deleteForm = $this->createDeleteForm($trainer);
+//
+//        return $this->render('trainer/show.html.twig', array(
+//            'trainer' => $trainer,
+//            'delete_form' => $deleteForm->createView(),
+//        ));
+//    }
 
     /**
      * Displays a form to edit an existing trainer entity.
      *
-     * @Route("/admin/trainers/{id}/edit", name="trainer_edit")
+     * @Route("/{id}/edit", name="trainer_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Trainer $trainer)
@@ -135,7 +136,7 @@ class TrainerController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('trainer_index');
+        return $this->redirectToRoute('admin_trainer_index');
     }
 
     /**

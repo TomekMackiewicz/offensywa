@@ -10,30 +10,31 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Training controller.
+ * @Route("admin/trainings")
  */
 class TrainingController extends Controller
 {
+//    /**
+//     * Lists all training entities.
+//     *
+//     * @Route("/trainings", name="training_index")
+//     * @Method("GET")
+//     */
+//    public function indexAction()
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $trainings = $em->getRepository('AppBundle:Training')->findAll();
+//
+//        return $this->render('training/index.html.twig', array(
+//            'trainings' => $trainings,
+//        ));
+//    }
+
     /**
      * Lists all training entities.
      *
-     * @Route("/trainings", name="training_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $trainings = $em->getRepository('AppBundle:Training')->findAll();
-
-        return $this->render('training/index.html.twig', array(
-            'trainings' => $trainings,
-        ));
-    }
-
-    /**
-     * Lists all training entities.
-     *
-     * @Route("/admin/trainings", name="admin_training_index")
+     * @Route("/", name="admin_training_index")
      * @Method("GET")
      */
     public function adminIndexAction()
@@ -54,7 +55,7 @@ class TrainingController extends Controller
     /**
      * Creates a new training entity.
      *
-     * @Route("/admin/trainings/new", name="training_new")
+     * @Route("/new", name="training_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -80,7 +81,7 @@ class TrainingController extends Controller
     /**
      * Finds and displays a training entity.
      *
-     * @Route("/trainings/{id}", name="training_show")
+     * @Route("/{id}", name="training_show")
      * @Method("GET")
      */
     public function showAction(Training $training)
@@ -96,7 +97,7 @@ class TrainingController extends Controller
     /**
      * Displays a form to edit an existing training entity.
      *
-     * @Route("/admin/{id}/edit", name="training_edit")
+     * @Route("/{id}/edit", name="training_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Training $training)
@@ -121,7 +122,7 @@ class TrainingController extends Controller
     /**
      * Deletes a training entity.
      *
-     * @Route("/{id}", name="training_delete")
+     * @Route("{id}", name="training_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Training $training)
@@ -135,7 +136,7 @@ class TrainingController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('training_index');
+        return $this->redirectToRoute('admin_training_index');
     }
 
     /**
