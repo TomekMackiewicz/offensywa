@@ -7,10 +7,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use AppBundle\Entity\Team;
+use AppBundle\Entity\Game AS game;
 
 class GameType extends AbstractType
 {
@@ -34,6 +36,15 @@ class GameType extends AbstractType
             ->add('location', null, array(
                 'label' => 'location'
             ))
+            ->add('category', ChoiceType::class, array(
+                'choices'  => array(
+                    'mecz ligowy' => game::LEAGUE_GAME,
+                    'sparing' => game::SPARRING,
+                    'mecz turniejowy' => game::TOURNAMENT_GAME
+                ),
+                'placeholder' => 'choose',
+                'label' => 'categories'
+            ))                
             ->add('homeTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => 'name',

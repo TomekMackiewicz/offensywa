@@ -18,6 +18,10 @@
                 <td>{{ game.location }}</td>
             </tr>
             <tr>
+                <th>Category</th>
+                <td>{% if game.category %}{{ game.category }}{% endif %}</td>
+            </tr>            
+            <tr>
                 <th>Hometeamid</th>
                 <td>{{ game.homeTeam.name }}</td>
             </tr>

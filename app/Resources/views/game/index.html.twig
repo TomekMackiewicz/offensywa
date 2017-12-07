@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Date</th>
                 <th>Location</th>
+                <th>Category</th>
                 <th>Home team</th>
                 <th>Away team</th>
                 <th>Home team score</th>
@@ -22,6 +23,7 @@
                 <td><a href="{{ path('game_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
                 <td>{{ game.date|date('Y-m-d H:i') }}</td>
                 <td>{{ game.location }}</td>
+                <td>{% if game.category %}{{ game.category }}{% else %}---{% endif %}</td>
                 <td>{% if game.homeTeam %}{{ game.homeTeam.name }}{% else %}Deleted team{% endif %}</td>
                 <td>{% if game.awayTeam %}{{ game.awayTeam.name }}{% else %}Deleted team{% endif %}</td>
                 <td>{{ game.homeTeamScore }}</td>

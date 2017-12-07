@@ -26,7 +26,7 @@ class AdminController extends Controller
         
         foreach ($games as $game) {            
             $calendarGames[] = [
-                'title' => 'Mecz',
+                'title' => $game->getCategory(),
                 'start' => $game->getDate()->format("Y-m-d H:i"),
                 //'end' => $game->getDate()->format("Y-m-d H:i"),
                 'allDay' => false,

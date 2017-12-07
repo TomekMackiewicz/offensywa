@@ -1,14 +1,10 @@
 
+gritter: mecz został dodany nie znika - dlaczego?
+
 powiadomienia dla admina
 - zamówienia
 - zbliżający się trening
 - zbliżający się mecz
-
-mecze:
-- kategorie (liga itd.)
-zamiast zawodów: liga, sparing, turniejowy
-uwzględnić nazwy w kalendarzu
-uwzględnić w league table
 
 Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
 
@@ -18,9 +14,8 @@ html 5
 
 meta, seo
 
-security - roles (twig) - spr
-
-null, isset itd (twig) - spr
+security - roles (twig, controller) - test
+null, isset itd (twig) - test
 
 user profile 
 

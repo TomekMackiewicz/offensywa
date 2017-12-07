@@ -76,6 +76,7 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
               home_team_score-away_team_score GD,
               CASE WHEN home_team_score > away_team_score THEN 3 WHEN home_team_score = away_team_score THEN 1 ELSE 0 END PTS
             FROM game
+            WHERE game.category = "mecz ligowy"
             UNION ALL
             SELECT
               away_team,
@@ -88,6 +89,7 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
               away_team_score-home_team_score GD,
               CASE WHEN home_team_score < away_team_score THEN 3 WHEN home_team_score = away_team_score THEN 1 ELSE 0 END
             FROM game
+            WHERE game.category = "mecz ligowy"
           ) as tot
           JOIN team t ON tot.Team=t.id
           WHERE year = :year

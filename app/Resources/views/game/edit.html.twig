@@ -8,7 +8,8 @@
             <div class="admin-box">                    
                 {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
                     {{ form_row(edit_form.date) }}    
-                    {{ form_row(edit_form.location) }} 
+                    {{ form_row(edit_form.location) }}
+                    {{ form_row(edit_form.category) }}
                     {{ form_row(edit_form.homeTeam) }}
                     {{ form_row(edit_form.awayTeam) }}
                     {{ form_row(edit_form.homeTeamScore) }}

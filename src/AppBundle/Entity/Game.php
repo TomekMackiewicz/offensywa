@@ -13,6 +13,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Game
 {
+    
+    const LEAGUE_GAME = "mecz ligowy";
+    const SPARRING = "sparing";
+    const TOURNAMENT_GAME = "mecz turniejowy";
+    
     /**
      * @var int
      *
@@ -67,6 +72,13 @@ class Game
      */
     private $awayTeam;    
 
+    /**
+     * @var string
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @ORM\Column(name="category", type="string", length=255)
+     */
+    private $category;    
+    
     /**
      * @var Team
      * 
@@ -276,6 +288,30 @@ class Game
         
         return $this;
     } 
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return Game
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
     
 }
 
