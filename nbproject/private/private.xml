@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/tomek/Workspace/offensywa/src/AppBundle/Form/GameType.php</file>
+            <file>file:/home/tomek/Workspace/offensywa/todo.txt</file>
+            <file>file:/home/tomek/Workspace/offensywa/src/AppBundle/Form/TeamType.php</file>
+            <file>file:/home/tomek/Workspace/offensywa/web/js/scripts.js</file>
+            <file>file:/home/tomek/Workspace/offensywa/src/AppBundle/Controller/AdminController.php</file>
+            <file>file:/home/tomek/Workspace/offensywa/app/Resources/translations/messages.pl.php</file>
+            <file>file:/home/tomek/Workspace/offensywa/src/AppBundle/Repository/PaymentRepository.php</file>
+            <file>file:/home/tomek/Workspace/offensywa/web/css/style.css</file>
+            <file>file:/home/tomek/Workspace/offensywa/app/Resources/views/admin/dashboard.html.twig</file>
+        </group>
     </open-files>
 </project-private>
