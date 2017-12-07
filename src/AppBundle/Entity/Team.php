@@ -93,11 +93,6 @@ class Team
     private $trainings; 
 
     /**
-     * @ORM\OneToOne(targetEntity="Task", mappedBy="team", cascade={"persist", "remove"})
-     */
-    private $task;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Trainer", mappedBy="teams")
      */
     private $trainers;
@@ -380,30 +375,6 @@ class Team
         
         return $this;
     }    
-    
-//    /**
-//     * Set task
-//     *
-//     * @param Task $task
-//     *
-//     * @return Team
-//     */
-//    public function setTask($task)
-//    {
-//        $this->task = $task;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get task
-//     *
-//     * @return Task
-//     */
-//    public function getTask()
-//    {
-//        return $this->task;
-//    } 
     
 }
 

@@ -1,15 +1,14 @@
 
 powiadomienia dla admina
-
-fb
+- zamówienia
+- zbliżający się trening
+- zbliżający się mecz
 
 mecze:
 - kategorie (liga itd.)
-zamiast zawodów: liga, sparingi, turnieje
-
-search
-
-trainer first last name in form
+zamiast zawodów: liga, sparing, turniejowy
+uwzględnić nazwy w kalendarzu
+uwzględnić w league table
 
 Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
 
@@ -19,16 +18,16 @@ html 5
 
 meta, seo
 
-remove task
-
 security - roles (twig) - spr
 
 null, isset itd (twig) - spr
 
+user profile 
+
 ---------------------------
 Asserts! / crud / view
 
-tournament
+tournament (turniej)
 
 ---------------------------
 
@@ -53,12 +52,14 @@ Offensywa
 
 POTEM
 
-wydarzenia?
-
 rekrutacja?
 
 messages
 
-możliwość usuwania rodzajów płatności (składka, wpisowe)
+możliwość usuwania rodzajów płatności (składka, wpisowe)?
 
 usunąć niewykorzystywane metody i widoki
+
+fb
+
+search?
