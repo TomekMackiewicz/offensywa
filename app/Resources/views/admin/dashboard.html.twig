@@ -7,7 +7,9 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-7">
-                            <h1 class="top-panel-text">{{ playersCount }} / {{ thisMonthPayments }}</h1>
+                            <h1 class="top-panel-text">
+                                {{ playersCount }} / {% if thisMonthPayments is not null %}{{ thisMonthPayments }}{% else %}0{% endif %}
+                            </h1>
                             <p><small>Zawodników /<br> w tym płacących</small></p>                            
                         </div>
                         <div class="col-md-5">
@@ -25,7 +27,9 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-5">
-                            <h1 class="top-panel-text">{{ teamsCount }}</h1>
+                            <h1 class="top-panel-text">
+                                {% if teamsCount is not null %}{{ teamsCount }}{% else %}0{% endif %}
+                            </h1>
                             <p><small>Grupy</small></p>                            
                         </div>
                         <div class="col-md-7">
@@ -43,7 +47,9 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-md-7">
-                            <h1 class="top-panel-text">{{ thisMonthPayments }}</h1>
+                            <h1 class="top-panel-text">
+                                {% if thisMonthPayments is not null %}{{ thisMonthPayments }}{% else %}0{% endif %}
+                            </h1>
                             <p><small>Składek w tym miesiącu</small></p>                            
                         </div>
                         <div class="col-md-5">
@@ -94,6 +100,7 @@
                     </sup>
                 </h2>                            
                 <div id="chart">
+                  {% if playersCount is not null and paymentsForLastMonths is not null %}
                   <ul id="numbers">
                         {% set height = 100 / playersCount %}
                         {% for i in playersCount..0 %}
@@ -110,6 +117,9 @@
                             </li>
                         {% endfor %}
                   </ul>
+                  {% else %}
+                      Brak graczy i/lub płatności
+                  {% endif %}
                 </div>                 
             </div>            
         </div>         

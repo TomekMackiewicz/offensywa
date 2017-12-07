@@ -83,14 +83,13 @@ class AdminController extends Controller
         $playersCount = $em->getRepository('AppBundle:Player')->countPlayers();
         $teamsCount = $em->getRepository('AppBundle:Team')->countMyTeams();
         $thisMonthPayments = $em->getRepository('AppBundle:Payment')->getThisMonthPayments();
-        $paymentsForLastMonths = $em->getRepository('AppBundle:Payment')->getPaymentsForLastMonths();
+        $paymentsForLastMonths = $em->getRepository('AppBundle:Payment')->getPaymentsForLastMonths(); 
         $trainings = $em->getRepository('AppBundle:Training')->findAll(); // current month? year? 
         $games = $em->getRepository('AppBundle:Game')->findAll(); // current month? year?  
         $calendarData = $this->getCalendarData($games, $trainings);        
 
         return $this->render('admin/dashboard.html.twig', array(
             'calendarData' => $calendarData,
-            'trainings' => $trainings,
             'playersCount' => $playersCount,
             'teamsCount' => $teamsCount,
             'thisMonthPayments' => $thisMonthPayments,

@@ -14,8 +14,8 @@ html 5
 
 meta, seo
 
-security - roles (twig, controller) - test
-null, isset itd (twig) - test
+security - null + roles (twig, controller) - test
+- dashboard +
 
 user profile 
 
