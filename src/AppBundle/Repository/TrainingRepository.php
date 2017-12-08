@@ -10,4 +10,4 @@ namespace AppBundle\Repository;
  */
 class TrainingRepository extends \Doctrine\ORM\EntityRepository
 {   
-}
+}    

@@ -1,9 +1,5 @@
 
-get leagut table: front controller (origin) - DRY/WET 
-
 co jeśli daty w kalendarzu nachodzą na siebie?
-
-calendar data - zasięg: miesiąc? dwa? rok?
 
 gritter: mecz został dodany nie znika - dlaczego?
 
@@ -23,10 +19,7 @@ meta, seo
 user profile 
 admin confirm user !
 
----------------------------
-Asserts! / crud / view
-
-tournament (turniej)
+Asserts! / crud / view >>> tournament (turniej)
 
 ---------------------------
 

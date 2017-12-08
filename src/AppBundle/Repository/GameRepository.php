@@ -111,4 +111,24 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
         
         return $games;        
     }
+    
+    public function getCurrentMonthGames() {
+        $em = $this->getEntityManager();
+        $currentDate = date('Y-m-d');
+        $firstDayOfMonth = date("Y-m-01", strtotime($currentDate));
+        $lastDayOfMonth = date("Y-m-t", strtotime($currentDate)); 
+        
+        $query = $em->createQuery('
+            SELECT g 
+            FROM AppBundle:Game g
+            WHERE g.date >= :fromTime
+            AND g.date <= :toTime            
+        ')
+        ->setParameter('fromTime', $firstDayOfMonth)
+        ->setParameter('toTime', $lastDayOfMonth);                
+                
+        $games = $query->getResult();
+        
+        return $games;        
+    }     
 }
