@@ -33,18 +33,28 @@
                             <td>
                                 {% if player.birthDate %}
                                     {{ player.birthDate|date('Y-m-d') }}
+                                {% else %}
+                                    ---
                                 {% endif %}
                             </td>
                         </tr>
                         <tr>
                             <th>Pozycja</th>
-                            <td>{{ player.position }}</td>
+                            <td>
+                                {% if player.position %}
+                                    {{ player.position }}
+                                {% else %}
+                                    ---
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
-                            <th>Grupa</th>
+                            <th>Drużyna</th>
                             <td>
                                 {% if player.team %}
                                     {{ player.team.name }}
+                                {% else %}
+                                    ---
                                 {% endif %}
                             </td>
                         </tr>            

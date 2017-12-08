@@ -8,6 +8,7 @@
         Dodaj
     </a>
     {% endif %} 
+    {% include 'partials/gritter.html.twig' %}
     <div class="admin-box"> 
         <table class="table data-table">
             <thead>
@@ -48,7 +49,13 @@
                             {{ player.birthDate|date('Y-m-d') }}
                         {% endif %}
                     </td>
-                    <td>{{ player.position }}</td>
+                    <td>
+                        {% if player.position %}
+                            {{ player.position }}
+                        {% else %}
+                            ---
+                        {% endif %}                         
+                    </td>
                     <td>
                         {% if player.team %}
                             {{ player.team.name }} {{ player.team.year }}

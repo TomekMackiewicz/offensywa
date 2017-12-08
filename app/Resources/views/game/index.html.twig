@@ -1,12 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Games list</h1>
-
+    {% if games %}
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Date</th>
                 <th>Location</th>
                 <th>Category</th>
@@ -14,41 +13,24 @@
                 <th>Away team</th>
                 <th>Home team score</th>
                 <th>Away team score</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for game in games %}
             <tr>
-                <td><a href="{{ path('game_show', { 'id': game.id }) }}">{{ game.id }}</a></td>
                 <td>{{ game.date|date('Y-m-d H:i') }}</td>
                 <td>{{ game.location }}</td>
                 <td>{% if game.category %}{{ game.category }}{% else %}---{% endif %}</td>
                 <td>{% if game.homeTeam %}{{ game.homeTeam.name }}{% else %}Deleted team{% endif %}</td>
                 <td>{% if game.awayTeam %}{{ game.awayTeam.name }}{% else %}Deleted team{% endif %}</td>
-                <td>{{ game.homeTeamScore }}</td>
-                <td>{{ game.awayTeamScore }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('game_show', { 'id': game.id }) }}">show</a>
-                        </li>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li>
-                                <a href="{{ path('game_edit', { 'id': game.id }) }}">edit</a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </td>
+                <td>{% if game.homeTeamScore %}{{ game.homeTeamScore }}{% else %}---{% endif %}</td>
+                <td>{% if game.awayTeamScore %}{{ game.awayTeamScore }}{% else %}---{% endif %}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    {% if is_granted('ROLE_ADMIN') %}
-        <ul>
-            <li>
-                <a href="{{ path('game_new') }}">Create a new game</a>
-            </li>
-        </ul>
+    {% else %}
+        Brak meczów
     {% endif %}
+
 {% endblock %}

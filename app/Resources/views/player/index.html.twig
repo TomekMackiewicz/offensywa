@@ -1,7 +1,8 @@
-{% extends 'admin.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block admin_body %}
+{% block content %}
     <h2>Zawodnicy</h2>
+    {% if players %}
     <table class="table">
         <thead>
             <tr>
@@ -37,26 +38,11 @@
                         {{ player.team.name }} {{ player.team.year }}
                     {% endif %}
                 </td>
-                <td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <ul>
-                        <li>
-                            <a href="{{ path('player_show', { 'id': player.id }) }}">Pokaż</a>
-                        </li>                       
-                        <li>
-                            <a href="{{ path('player_edit', { 'id': player.id }) }}">Edytuj</a>
-                        </li>
-                        <li>
-                            <form action="{{ path('player_delete', { 'id': player.id }) }}" method="post">
-                                {{ form_widget(deleteForms[player.id]) }}
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                            </form>                            
-                        </li>
-                    </ul>
-                    {% endif %}
-                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        Brak graczy
+    {% endif %}
 {% endblock %}

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Controller\FrontController;
 
 /**
  * Player controller.
@@ -23,9 +24,13 @@ class PlayerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $players = $em->getRepository('AppBundle:Player')->findAll();
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->getLeagueTables();
         
         return $this->render('player/index.html.twig', array(
             'players' => $players,
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables,             
         ));
     }
 
@@ -89,11 +94,14 @@ class PlayerController extends Controller
      */
     public function showAction(Player $player)
     {
-        $deleteForm = $this->createDeleteForm($player);
-
+        $em = $this->getDoctrine()->getManager();
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->getLeagueTables();
+        
         return $this->render('player/show.html.twig', array(
             'player' => $player,
-            'delete_form' => $deleteForm->createView(),
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables
         ));
     }    
     
@@ -182,5 +190,27 @@ class PlayerController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
-    }    
+    }  
+
+    /**
+     * Get league tables.
+     */
+    public function getleagueTables()
+    {
+        $tables = [];
+        $em = $this->getDoctrine()->getManager();
+        $years = $em->getRepository('AppBundle:Team')->getYears();
+        foreach($years as $year) {
+            $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
+            $statement = $em->getConnection()->prepare($query);
+            $statement->bindValue('year', $year);
+            $statement->execute();
+            $table['table'] = $statement->fetchAll(); 
+            $table['year'] = $year;
+            $tables[] = $table;
+        }
+
+        return $tables;
+    }     
+    
 }

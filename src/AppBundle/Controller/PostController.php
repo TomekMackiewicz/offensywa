@@ -95,7 +95,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $leagueTables = $this->getLeagueTables();        
+        $leagueTables = $this->forward('AppBundle:Front:getLeagueTables');      
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('post/show.html.twig', array(
@@ -174,8 +174,8 @@ class PostController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
-    }
-    
+    }    
+
     /**
      * Get league tables.
      */
@@ -193,8 +193,8 @@ class PostController extends Controller
             $table['year'] = $year;
             $tables[] = $table;
         }
-        
+
         return $tables;
-    }     
+    }  
     
 }

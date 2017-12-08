@@ -10,6 +10,15 @@ namespace AppBundle\Repository;
  */
 class TeamRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function getMyTeams() {
+        $query = $this->getEntityManager()->createQuery(
+            "SELECT t FROM AppBundle:Team t WHERE t.isMy = 1"
+        )->getResult();
+        
+        return $query;        
+    }    
+    
     public function getYears() {
         $query = $this->getEntityManager()->createQuery(
             "SELECT DISTINCT t.year FROM AppBundle:Team t WHERE t.isMy = 1 AND t.playsLeague = 1"

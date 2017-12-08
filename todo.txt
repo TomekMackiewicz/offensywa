@@ -1,5 +1,5 @@
 
-get leagut table: front controller (origin) - DRY/WET post controller
+get leagut table: front controller (origin) - DRY/WET 
 
 co jeśli daty w kalendarzu nachodzą na siebie?
 
@@ -20,10 +20,8 @@ html 5
 
 meta, seo
 
-security - null + roles (twig, controller) - test
-- dashboard +
-
 user profile 
+admin confirm user !
 
 ---------------------------
 Asserts! / crud / view

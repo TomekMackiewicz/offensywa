@@ -47,7 +47,7 @@ class Trainer
     /**
      * @var string
      * @Assert\Email(message = "field.invalid_email")
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=true)
      */
     private $email;
 

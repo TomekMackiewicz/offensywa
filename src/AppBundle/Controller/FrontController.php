@@ -103,7 +103,7 @@ class FrontController extends Controller
             $table['year'] = $year;
             $tables[] = $table;
         }
-        
+
         return $tables;
     }    
 }

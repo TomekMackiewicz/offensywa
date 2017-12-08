@@ -1,7 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
     <div class="row">
         <div class="col-sm-4 col-xs-5">
             <div class="match-details">
@@ -58,37 +57,41 @@
             <div class="table-responsive upcoming-fixtures">
                 <table class="table table-bordered table-striped"> 
                     <tbody>
-                        {% for fixture in upcomingFixtures %}
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="logo-with-name fixture-text">
-                                        {% if fixture.homeTeam %}
-                                            {% if fixture.homeTeam.logo %}
-                                                <img src="{% path fixture.homeTeam.logo, 'small' %}">
-                                            {% endif %}                                        
-                                            {{ fixture.homeTeam.name }}
-                                        {% else %}
-                                            Deleted
-                                        {% endif %}    
-                                    </div>
-                                </td>
-                                <td class="col-md-4 fixture-date">
-                                    <span class="fixture-text">{{ fixture.date | date('d-m-Y H:i') }}</span>
-                                </td>
-                                <td class="col-md-4">
-                                    <div class="logo-with-name fixture-text">
-                                        {% if fixture.awayTeam %}
-                                            {% if fixture.awayTeam.logo %}
-                                                <img src="{% path fixture.awayTeam.logo, 'small' %}">
-                                            {% endif %}                                        
-                                            {{ fixture.awayTeam.name }}
-                                        {% else %}
-                                            Deleted
-                                        {% endif %} 
-                                    </div>                                    
-                                </td>
-                            </tr> 
-                        {% endfor %}
+                        {% if upcomingFixtures %}
+                            {% for fixture in upcomingFixtures %}
+                                <tr>
+                                    <td class="col-md-4">
+                                        <div class="logo-with-name fixture-text">
+                                            {% if fixture.homeTeam %}
+                                                {% if fixture.homeTeam.logo %}
+                                                    <img src="{% path fixture.homeTeam.logo, 'small' %}">
+                                                {% endif %}                                        
+                                                {{ fixture.homeTeam.name }}
+                                            {% else %}
+                                                Deleted
+                                            {% endif %}    
+                                        </div>
+                                    </td>
+                                    <td class="col-md-4 fixture-date">
+                                        <span class="fixture-text">{{ fixture.date | date('d-m-Y H:i') }}</span>
+                                    </td>
+                                    <td class="col-md-4">
+                                        <div class="logo-with-name fixture-text">
+                                            {% if fixture.awayTeam %}
+                                                {% if fixture.awayTeam.logo %}
+                                                    <img src="{% path fixture.awayTeam.logo, 'small' %}">
+                                                {% endif %}                                        
+                                                {{ fixture.awayTeam.name }}
+                                            {% else %}
+                                                Deleted
+                                            {% endif %} 
+                                        </div>                                    
+                                    </td>
+                                </tr> 
+                            {% endfor %}
+                        {% else %}
+                            Brak meczy do rozegrania
+                        {% endif %}                         
                     </tbody>
                 </table>
             </div>
@@ -99,36 +102,40 @@
             <h2>AKTUALNOŚCI</h2>
             <div id="newsCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    {% for post in recentPosts %}
-                        {% if loop.index0 == 0 %}
-                            <div class="item active">
-                        {% else %}
-                            <div class="item">
-                        {% endif %}
-                        {% if post.image %}
-                            <img src="{% path post.image, 'big' %}">
-                        {% else %}
-                            <img src="http://placehold.it/760x400/cccccc/ffffff">
-                        {% endif %}                                                                     
-                            <div class="carousel-caption">
-                                <h3>
-                                    <a href="{{ path('post_show', { 'id': post.id }) }}">
-                                        {{ post.title }}
-                                    </a>
-                                </h3>
-                                <p>
-                                    {% if post.body | length > 160 %}
-                                        {{ (post.body | slice(0, 161) | split(' ') | slice(0, -1) | join(' ') ~ '…') | purify }}
-                                    {% else %}
-                                        {{ post.body | purify }}
-                                    {% endif %}
-                                    <a class="label" href="{{ path('post_show', { 'id': post.id }) }}" target="_blank">
-                                        Czytaj >>>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>                               
-                    {% endfor %}
+                    {% if recentPosts %}
+                        {% for post in recentPosts %}
+                            {% if loop.index0 == 0 %}
+                                <div class="item active">
+                            {% else %}
+                                <div class="item">
+                            {% endif %}
+                            {% if post.image %}
+                                <img src="{% path post.image, 'big' %}">
+                            {% else %}
+                                <img src="http://placehold.it/760x400/cccccc/ffffff">
+                            {% endif %}                                                                     
+                                <div class="carousel-caption">
+                                    <h3>
+                                        <a href="{{ path('post_show', { 'id': post.id }) }}">
+                                            {{ post.title }}
+                                        </a>
+                                    </h3>
+                                    <p>
+                                        {% if post.body | length > 160 %}
+                                            {{ (post.body | slice(0, 161) | split(' ') | slice(0, -1) | join(' ') ~ '…') | purify }}
+                                        {% else %}
+                                            {{ post.body | purify }}
+                                        {% endif %}
+                                        <a class="label" href="{{ path('post_show', { 'id': post.id }) }}" target="_blank">
+                                            Czytaj >>>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>                               
+                        {% endfor %}
+                    {% else %}
+                        Brak aktualności
+                    {% endif %}                    
                 </div>
                 <ul class="list-group col-sm-4">
                     {% for post in recentPosts %}
@@ -157,17 +164,20 @@
     <div class="row">
         <div class="col-xs-12">
             <h2>NASI ZAWODNICY</h2>
+            {% if players %}
             <a href="{{ path('player_index') }}">
                 Zobacz wszystkich 
                 <i class="fa fa-forward" aria-hidden="true"></i>
             </a>
-            <div class="row">
+            <div class="row">               
                 {% for player in players %}
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="thumbnail">
                             <a href="{{ path('player_show', { 'id': player.id }) }}">
                                 {% if player.image %}
-                                    <img src="{% path player.image, 'small' %}" class="img-responsive" alt="{{ player.firstName }} {{ player.lastName }}">
+                                    <img src="{% path player.image, 'small' %}" 
+                                         class="img-responsive" 
+                                         alt="{{ player.firstName }} {{ player.lastName }}">
                                 {% else %}
                                     <img src="http://placehold.it/150x200/cccccc/ffffff">
                                 {% endif %}
@@ -178,10 +188,12 @@
                             </a>
                         </div>                        
                     </div>
-                {% endfor %}                
+                {% endfor %}                 
             </div>
+            {% else %}
+                Brak zawodników
+            {% endif %}             
         </div>                   
     </div>
-
 {% endblock %}
 

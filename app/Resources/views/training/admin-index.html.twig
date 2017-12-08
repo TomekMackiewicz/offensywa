@@ -44,7 +44,7 @@
                         <br>
                         {{ training.startHour|date('H:i') }} - {{ training.endHour|date('H:i') }}
                     </td>
-                    <td>{{ training.location }}</td>
+                    <td>{% if training.location %}{{ training.location }}{% else %}---{% endif %}</td>
                     <td>{{ training.team.name }}</td>
                     <td>{{ training.trainer.firstName }} {{ training.trainer.lastName }}</td>
                     <td class="col-md-2">

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\Controller\Front;
 
 /**
  * Team controller.
@@ -24,10 +25,15 @@ class TeamController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $teams = $em->getRepository('AppBundle:Team')->findAll();
+        $teams = $em->getRepository('AppBundle:Team')->getMyTeams();
+        $leagueTables = $this->getLeagueTables();
+        //$leagueTables = $this->forward('AppBundle:Front:getLeagueTables');
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
 
         return $this->render('team/index.html.twig', array(
             'teams' => $teams,
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables            
         ));
     }
 
@@ -82,21 +88,21 @@ class TeamController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a team entity.
-     *
-     * @Route("/teams/{id}", name="team_show")
-     * @Method("GET")
-     */
-    public function showAction(Team $team)
-    {
-        $deleteForm = $this->createDeleteForm($team);
-
-        return $this->render('team/show.html.twig', array(
-            'team' => $team,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+//    /**
+//     * Finds and displays a team entity.
+//     *
+//     * @Route("/teams/{id}", name="team_show")
+//     * @Method("GET")
+//     */
+//    public function showAction(Team $team)
+//    {
+//        $deleteForm = $this->createDeleteForm($team);
+//
+//        return $this->render('team/show.html.twig', array(
+//            'team' => $team,
+//            'delete_form' => $deleteForm->createView(),
+//        ));
+//    }
 
     /**
      * Displays a form to edit an existing team entity.
@@ -184,12 +190,12 @@ class TeamController extends Controller
     }
     
     /**
-     * Lists all team entities.
+     * Add teams to navbar
      *
-     * @Route("/teams/navbar", name="team_index")
+     * @Route("/teams/navbar", name="team_navbar")
      * @Method("GET")
      */
-    public function navbarAction() // dlaczego nie /admin i dlaczego team_index?
+    public function navbarAction() 
     {
         $em = $this->getDoctrine()->getManager();
         $years = $em->getRepository('AppBundle:Team')->getNavbarTeamsByYear();
@@ -200,7 +206,7 @@ class TeamController extends Controller
     }    
 
     /**
-     * Check unique year.
+     * Check unique year
      *
      * @Route("/admin/teams/unique-year/{year}", name="unique_year")
      * @Method("GET")
@@ -215,5 +221,26 @@ class TeamController extends Controller
             return $response;
         } 
     }
+
+    /**
+     * Get league tables
+     */
+    public function getleagueTables()
+    {
+        $tables = [];
+        $em = $this->getDoctrine()->getManager();
+        $years = $em->getRepository('AppBundle:Team')->getYears();
+        foreach($years as $year) {
+            $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
+            $statement = $em->getConnection()->prepare($query);
+            $statement->bindValue('year', $year);
+            $statement->execute();
+            $table['table'] = $statement->fetchAll(); 
+            $table['year'] = $year;
+            $tables[] = $table;
+        }
+
+        return $tables;
+    } 
     
 }

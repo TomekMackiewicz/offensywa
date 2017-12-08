@@ -1,60 +1,52 @@
-{% extends 'admin.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block admin_body %}
-    <h1>{{ player.firstName }} {{ player.lastName }}</h1>
-    {% if player.image %}
-        <img src="{% path player.image, 'big' %}">
-    {% endif %}
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ player.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ player.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ player.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Birthdate</th>
-                <td>
-                    {% if player.birthDate %}
-                        {{ player.birthDate|date('Y-m-d') }}
-                    {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <th>Position</th>
-                <td>{{ player.position }}</td>
-            </tr>
-            <tr>
-                <th>Team</th>
-                <td>
-                    {% if player.team %}
-                        {{ player.team.name }}
-                    {% endif %}
-                </td>
-            </tr>            
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('player_index') }}">Back to the list</a>
-        </li>
-        {% if is_granted('ROLE_ADMIN') %}
-        <li>
-            <a href="{{ path('player_edit', { 'id': player.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+{% block content %}
+    {% if player %}
+        <h1>{{ player.firstName }} {{ player.lastName }}</h1>
+        {% if player.image %}
+            <img src="{% path player.image, 'big' %}">
         {% endif %}
-    </ul>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ player.id }}</td>
+                </tr>
+                <tr>
+                    <th>Firstname</th>
+                    <td>{{ player.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Lastname</th>
+                    <td>{{ player.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Birthdate</th>
+                    <td>
+                        {% if player.birthDate %}
+                            {{ player.birthDate|date('Y-m-d') }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Position</th>
+                    <td>
+                        {% if player.position %}
+                            {{ player.position }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Team</th>
+                    <td>
+                        {% if player.team %}
+                            {{ player.team.name }}
+                        {% endif %}
+                    </td>
+                </tr>            
+            </tbody>
+        </table>
+    {% else %}
+        Nie ma takiego zawodnika
+    {% endif %}
 {% endblock %}

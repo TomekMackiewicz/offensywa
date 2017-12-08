@@ -9,12 +9,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Game controller.
+ * Game controller
  */
 class GameController extends Controller
 {
     /**
-     * Lists all game entities.
+     * Lists all game entities
      *
      * @Route("/games", name="game_index")
      * @Method("GET")
@@ -24,14 +24,18 @@ class GameController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $games = $em->getRepository('AppBundle:Game')->findAll();
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->getLeagueTables();
 
         return $this->render('game/index.html.twig', array(
             'games' => $games,
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables
         ));
     }
 
     /**
-     * Lists all game entities.
+     * Lists all game entities
      *
      * @Route("/admin/games", name="admin_game_index")
      * @Method("GET")
@@ -199,5 +203,26 @@ class GameController extends Controller
             'tables' => $tables
         ));
     }    
+
+    /**
+     * Get league tables.
+     */
+    public function getleagueTables()
+    {
+        $tables = [];
+        $em = $this->getDoctrine()->getManager();
+        $years = $em->getRepository('AppBundle:Team')->getYears();
+        foreach($years as $year) {
+            $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
+            $statement = $em->getConnection()->prepare($query);
+            $statement->bindValue('year', $year);
+            $statement->execute();
+            $table['table'] = $statement->fetchAll(); 
+            $table['year'] = $year;
+            $tables[] = $table;
+        }
+
+        return $tables;
+    }
     
 }
