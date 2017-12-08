@@ -4,12 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Training
  *
  * @ORM\Table(name="training")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TrainingRepository")
+ * @UniqueEntity(
+ *  fields={"startHour", "day"},
+ *  message="duplicate.training.date"
+ * )
  */
 class Training
 {

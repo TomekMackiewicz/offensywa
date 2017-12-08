@@ -1,7 +1,7 @@
 
-co jeśli daty w kalendarzu nachodzą na siebie?
+edycja meczu - skok minut
 
-gritter: mecz został dodany nie znika - dlaczego?
+gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
 powiadomienia dla admina
 - zamówienia

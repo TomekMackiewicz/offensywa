@@ -119,7 +119,7 @@ class TrainingController extends Controller
             return $this->redirectToRoute('training_edit', array('id' => $training->getId()));
             
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas uaktualniania trenera");
+            $this->addFlash("danger", "Błąd podczas uaktualniania treningu");
         }
 
         return $this->render('training/edit.html.twig', array(
