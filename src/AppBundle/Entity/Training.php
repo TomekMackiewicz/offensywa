@@ -70,6 +70,13 @@ class Training
      * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
      */
     private $trainer;    
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
     
     /**
      * Get id
@@ -223,6 +230,30 @@ class Training
         $this->trainer = $trainer;
         
         return $this;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Training
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
     
 }

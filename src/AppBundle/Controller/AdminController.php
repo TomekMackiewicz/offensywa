@@ -13,6 +13,64 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AdminController extends Controller
 {
 
+//    private function getNotificationData()
+//    {
+//        $notificationData = array_merge(
+//            $this->getNotificationRequests($requests), 
+//            $this->getNotificationGames($games) 
+//            //$this->getNotificationTrainings($trainings)
+//        );
+//        
+//        return $notificationData;
+//    }     
+    
+//    private function getNotificationData($requests, $games, $trainings)
+//    {
+//        $notificationData = array_merge(
+//            $this->getNotificationRequests($requests), 
+//            $this->getNotificationGames($games) 
+//            //$this->getNotificationTrainings($trainings)
+//        );
+//        
+//        return $notificationData;
+//    }    
+
+//    private function getNotificationRequests($requests)
+//    {
+//        $notificationRequests = [];
+//        
+//        foreach ($requests as $request) {            
+//            $notificationRequests[] = [
+//                'title' => 'Nowe zamówienie',
+//                'date' => $request->getDate()->format("Y-m-d H:i"),
+//                'who' => $request->getUser(),
+//                'context' => $request->getItem(),
+//                'type' => 'request',
+//                'color' => 'success'
+//            ];                         
+//        }
+//        
+//        return $notificationRequests;
+//    }
+//
+//    private function getNotificationGames($games)
+//    {
+//        $notificationGames = [];
+//        
+//        foreach ($games as $game) {            
+//            $notificationGames[] = [
+//                'title' => 'Zbliża się mecz',
+//                'date' => $game->getDate()->format("Y-m-d H:i"),
+//                'who' => $game->getHomeTeam()->getName() . ' vs ' . $game->getAwayTeam()->getName(),
+//                'context' => $game->getLocation(),
+//                'type' => 'game',
+//                'color' => 'warning'
+//            ];                         
+//        }
+//        
+//        return $notificationGames;
+//    }
+    
     private function getCalendarData($games, $trainings)
     {
         $calendarData = array_merge($this->getCalendarGames($games), $this->getCalendarTrainings($trainings));
@@ -85,11 +143,15 @@ class AdminController extends Controller
         $thisMonthPayments = $em->getRepository('AppBundle:Payment')->getThisMonthPayments();
         $paymentsForLastMonths = $em->getRepository('AppBundle:Payment')->getPaymentsForLastMonths(); 
         $trainings = $em->getRepository('AppBundle:Training')->findAll(); 
-        $games = $em->getRepository('AppBundle:Game')->getCurrentMonthGames();  
-        $calendarData = $this->getCalendarData($games, $trainings);        
+        $games = $em->getRepository('AppBundle:Game')->getCurrentMonthGames(); 
+        //$requests = $em->getRepository('AppBundle:Request')->getRecentRequests(); 
+        $calendarData = $this->getCalendarData($games, $trainings);
+        //$notificationData = $this->getNotificationData($requests, $games, $trainings);
+        $notificationData = $em->getRepository('AppBundle:Notification')->findAll(); 
 
         return $this->render('admin/dashboard.html.twig', array(
             'calendarData' => $calendarData,
+            'notificationData' => $notificationData,
             'playersCount' => $playersCount,
             'teamsCount' => $teamsCount,
             'thisMonthPayments' => $thisMonthPayments,

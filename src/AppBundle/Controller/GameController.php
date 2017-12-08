@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Game;
+use AppBundle\Entity\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,6 +14,21 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class GameController extends Controller
 {
+    
+    private function addNotification($game) 
+    {
+        $em = $this->getDoctrine()->getManager();
+        $notification = new Notification();
+        $notification->setTitle('Zbliża się mecz');
+        $notification->setDate($game->getDate());
+        $notification->setWho($game->getHomeTeam()->getName() . ' vs ' . $game->getAwayTeam()->getName());
+        $notification->setContext($game->getLocation());
+        $notification->setType('game');
+        $notification->setColor('warning');
+        $em->persist($notification);
+        $em->flush();                 
+    }
+    
     /**
      * Lists all game entities
      *
@@ -76,6 +92,7 @@ class GameController extends Controller
             $em->flush();
             
             $this->addFlash("success", "Mecz został dodany");
+            $this->addNotification($game);
 
             return $this->redirectToRoute('admin_game_index');
             
@@ -203,5 +220,7 @@ class GameController extends Controller
             'tables' => $tables
         ));
     }    
+
+    
     
 }

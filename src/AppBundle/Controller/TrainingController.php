@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Training;
+use AppBundle\Entity\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,6 +15,21 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class TrainingController extends Controller
 {
+    
+    private function addNotification($training) 
+    {
+        $em = $this->getDoctrine()->getManager();
+        $notification = new Notification();
+        $notification->setTitle('Zbliża się trening');
+        $notification->setDate($training->getDate());
+        $notification->setWho($training->getTeam()->getName());
+        $notification->setContext($training->getLocation() . ' ' . $training->getStartHour()->format('H:i') . ' - ' . $training->getEndHour()->format('H:i'));
+        $notification->setType('training');
+        $notification->setColor('info');
+        $em->persist($notification);
+        $em->flush();                 
+    }    
+    
 //    /**
 //     * Lists all training entities.
 //     *
@@ -65,11 +81,13 @@ class TrainingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $training->setDate(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($training);
             $em->flush();
             
             $this->addFlash("success", "Trening został dodany");
+            $this->addNotification($training);
 
             return $this->redirectToRoute('admin_training_index');
             
@@ -112,6 +130,7 @@ class TrainingController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $training->setDate(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
             
             $this->addFlash("success", "Trening został uaktualniony");

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Request AS UserRequest;
+use AppBundle\Entity\Notification;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,6 +14,21 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RequestController extends Controller
 {
+    
+    private function addNotification($request) 
+    {
+        $em = $this->getDoctrine()->getManager();
+        $notification = new Notification();
+        $notification->setTitle('Nowe zamówienie');
+        $notification->setDate($request->getDate());
+        $notification->setWho($request->getUser());
+        $notification->setContext($request->getItem());
+        $notification->setType('request');
+        $notification->setColor('success');
+        $em->persist($notification);
+        $em->flush();                 
+    }    
+    
     /**
      * Lists all request entities.
      *
@@ -57,6 +73,7 @@ class RequestController extends Controller
             $em->flush();
 
             $this->addFlash("success", "Zamówienie dodane");
+            $this->addNotification($order);
             
             return $this->redirectToRoute('fos_user_profile_show');
         } else if($form->isSubmitted() && !$form->isValid()) {

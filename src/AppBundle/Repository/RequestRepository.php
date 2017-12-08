@@ -19,5 +19,17 @@ class RequestRepository extends \Doctrine\ORM\EntityRepository
 //        $fixtures = $query->getResult();
 //        
 //        return $fixtures;
-//    }    
+//    }  
+    
+    public function getRecentRequests()
+    {               
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery(
+            'SELECT r FROM AppBundle:Request r ORDER BY r.date DESC'
+        )->setMaxResults(10);
+        $fixtures = $query->getResult();
+        
+        return $fixtures;
+    }    
+    
 }

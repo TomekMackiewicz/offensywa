@@ -1,5 +1,7 @@
 
-edycja meczu - skok minut
+getCurrentMonthGames - admin - tylko MY!!!
+
+wpłaty - null
 
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
