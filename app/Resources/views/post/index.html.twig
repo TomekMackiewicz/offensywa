@@ -1,8 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Posts list</h1>
-
+    {% if posts %}
     <table class="table">
         <thead>
             <tr>
@@ -50,6 +50,9 @@
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        Brak postów
+    {% endif %}
     {% if is_granted('ROLE_ADMIN') %}    
         <ul>
             <li>

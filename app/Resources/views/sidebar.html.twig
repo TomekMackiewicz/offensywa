@@ -58,39 +58,43 @@
     {% endif %}
 </div>                    
 <h2>TABELE</h2>
-<a href="{{ path('leaguetables') }}">
-    Zobacz wszystkie 
-    <i class="fa fa-forward" aria-hidden="true"></i>
-</a>                    
-{% for table in leagueTables %}
-<h4>Rocznik {{ table.year }}</h4> 
-<div class="table-responsive">
-    <table class="table table-bordered table-striped simple-league-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Drużyna</th>
-                <th>RM</th>
-                <th>W</th>
-                <th>R</th>
-                <th>P</th>
-                <th>Pkt</th>
-            </tr>
-        </thead>    
-        <tbody>    
-            {% for team in table.table %}
+{% if leagueTables %}
+    <a href="{{ path('leaguetables') }}">
+        Zobacz wszystkie 
+        <i class="fa fa-forward" aria-hidden="true"></i>
+    </a>                    
+    {% for table in leagueTables %}
+    <h4>Rocznik {{ table.year }}</h4> 
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped simple-league-table">
+            <thead>
                 <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ team.Team }}</td>
-                    <td>{{ team.P }}</td>
-                    <td>{{ team.W }}</td>
-                    <td>{{ team.D }}</td>
-                    <td>{{ team.L }}</td>
-                    <td>{{ team.Pts }}</td>
+                    <th>#</th>
+                    <th>Drużyna</th>
+                    <th>RM</th>
+                    <th>W</th>
+                    <th>R</th>
+                    <th>P</th>
+                    <th>Pkt</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-{% endfor %}                    
+            </thead>    
+            <tbody>    
+                {% for team in table.table %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ team.Team }}</td>
+                        <td>{{ team.P }}</td>
+                        <td>{{ team.W }}</td>
+                        <td>{{ team.D }}</td>
+                        <td>{{ team.L }}</td>
+                        <td>{{ team.Pts }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}                
+{% else %}
+    Brak tabel
+{% endif %}                        
 
