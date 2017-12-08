@@ -24,7 +24,7 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('AppBundle:Post')->findAll();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $leagueTables = $this->getLeagueTables();
+        $leagueTables = $this->get('league_table')->getleagueTables();
 
         return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -95,7 +95,7 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $leagueTables = $this->forward('AppBundle:Front:getLeagueTables');      
+        $leagueTables = $this->get('league_table')->getleagueTables();     
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('post/show.html.twig', array(
@@ -175,26 +175,5 @@ class PostController extends Controller
             ->getForm()
         ;
     }    
-
-    /**
-     * Get league tables.
-     */
-    public function getleagueTables()
-    {
-        $tables = [];
-        $em = $this->getDoctrine()->getManager();
-        $years = $em->getRepository('AppBundle:Team')->getYears();
-        foreach($years as $year) {
-            $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
-            $statement = $em->getConnection()->prepare($query);
-            $statement->bindValue('year', $year);
-            $statement->execute();
-            $table['table'] = $statement->fetchAll(); 
-            $table['year'] = $year;
-            $tables[] = $table;
-        }
-
-        return $tables;
-    }  
     
 }

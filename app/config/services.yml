@@ -41,4 +41,9 @@ services:
 
     redirect.after.login:
         class: Application\Redirection\AfterLoginRedirection
-        arguments: ['@router','@security.authorization_checker']            
+        arguments: ['@router','@security.authorization_checker']
+        
+    league_table:
+        class: AppBundle\Service\LeagueTable
+        arguments: ['@doctrine']
+        public: true

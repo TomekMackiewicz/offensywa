@@ -25,7 +25,7 @@ class GameController extends Controller
 
         $games = $em->getRepository('AppBundle:Game')->findAll();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $leagueTables = $this->getLeagueTables();
+        $leagueTables = $this->get('league_table')->getleagueTables();
 
         return $this->render('game/index.html.twig', array(
             'games' => $games,
@@ -139,7 +139,7 @@ class GameController extends Controller
     }
 
     /**
-     * Deletes a game entity.
+     * Deletes a game entity
      *
      * @Route("/admin/games/{id}", name="game_delete")
      * @Method("DELETE")
@@ -203,26 +203,5 @@ class GameController extends Controller
             'tables' => $tables
         ));
     }    
-
-    /**
-     * Get league tables.
-     */
-    public function getleagueTables()
-    {
-        $tables = [];
-        $em = $this->getDoctrine()->getManager();
-        $years = $em->getRepository('AppBundle:Team')->getYears();
-        foreach($years as $year) {
-            $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
-            $statement = $em->getConnection()->prepare($query);
-            $statement->bindValue('year', $year);
-            $statement->execute();
-            $table['table'] = $statement->fetchAll(); 
-            $table['year'] = $year;
-            $tables[] = $table;
-        }
-
-        return $tables;
-    }
     
 }

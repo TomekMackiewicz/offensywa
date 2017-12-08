@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use AppBundle\Controller\Front;
 
 /**
  * Team controller.
@@ -26,8 +25,7 @@ class TeamController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $teams = $em->getRepository('AppBundle:Team')->getMyTeams();
-        $leagueTables = $this->getLeagueTables();
-        //$leagueTables = $this->forward('AppBundle:Front:getLeagueTables');
+        $leagueTables = $this->get('league_table')->getleagueTables();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
 
         return $this->render('team/index.html.twig', array(
@@ -221,26 +219,5 @@ class TeamController extends Controller
             return $response;
         } 
     }
-
-    /**
-     * Get league tables
-     */
-    public function getleagueTables()
-    {
-        $tables = [];
-        $em = $this->getDoctrine()->getManager();
-        $years = $em->getRepository('AppBundle:Team')->getYears();
-        foreach($years as $year) {
-            $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
-            $statement = $em->getConnection()->prepare($query);
-            $statement->bindValue('year', $year);
-            $statement->execute();
-            $table['table'] = $statement->fetchAll(); 
-            $table['year'] = $year;
-            $tables[] = $table;
-        }
-
-        return $tables;
-    } 
     
 }
