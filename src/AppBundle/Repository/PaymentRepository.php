@@ -19,11 +19,11 @@ class PaymentRepository extends \Doctrine\ORM\EntityRepository
         $query = $em->createQuery('
             SELECT COUNT(p.id) 
             FROM AppBundle:Payment p
-            WHERE p.period >= :fromTime
-            AND p.period < :toTime            
+            WHERE p.period >= :from
+            AND p.period <= :to            
         ')
-        ->setParameter('fromTime', $firstDayOfMonth)
-        ->setParameter('toTime', $lastDayOfMonth);                
+        ->setParameter('from', $firstDayOfMonth)
+        ->setParameter('to', $lastDayOfMonth);                
                 
         $payments = $query->getSingleScalarResult();
         
@@ -36,20 +36,35 @@ class PaymentRepository extends \Doctrine\ORM\EntityRepository
         $firstDay = date("Y-m-01", strtotime($currentDate . '-3 months'));
         $lastDay = date("Y-m-t", strtotime($currentDate)); 
 
+//        $query = '
+//            SELECT IFNULL(COUNT(p1.id), 0) AS total, p2.period 
+//            FROM payment AS p1
+//            LEFT JOIN payment AS p2 ON p1.id = p2.id
+//            WHERE p2.period >= :from
+//            AND p2.period <= :to
+//            AND p2.payment_category = 1            
+//            GROUP BY p2.period;          
+//        ';          
+        
+                      
+        
         $query = $em->createQuery('
             SELECT COUNT(p.id) as total, p.period
             FROM AppBundle:Payment p
-            WHERE p.period >= :fromTime
-            AND p.period <= :toTime
+            WHERE p.period >= :from
+            AND p.period <= :to
             AND p.paymentCategory = 1
             GROUP BY p.period            
         ')                
-        ->setParameter('fromTime', $firstDay)
-        ->setParameter('toTime', $lastDay);                
+        ->setParameter('from', $firstDay)
+        ->setParameter('to', $lastDay);                
                 
         $payments = $query->getResult();
         
-        return $payments;        
+        return $payments;
+
+        //return $query;
+        
     }     
     
 }

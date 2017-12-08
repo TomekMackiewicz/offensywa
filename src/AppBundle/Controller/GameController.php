@@ -91,9 +91,11 @@ class GameController extends Controller
             $em->persist($game);
             $em->flush();
             
+            //if ($game->getDate() > date('Y-m-d')) {
+                $this->addNotification($game);
+            //}
             $this->addFlash("success", "Mecz został dodany");
-            $this->addNotification($game);
-
+            
             return $this->redirectToRoute('admin_game_index');
             
         } else if($form->isSubmitted() && !$form->isValid()) {

@@ -3,17 +3,6 @@ getCurrentMonthGames - admin - tylko MY!!!
 
 wpłaty - null
 
-gritter: mecz został dodany nie znika - dlaczego? (trening też)
-
-powiadomienia dla admina
-- zamówienia
-- zbliżający się trening
-- zbliżający się mecz
-
-Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
-
-sonata image validation - not working with @assert (player, post, team)
-
 html 5
 
 meta, seo
@@ -23,7 +12,7 @@ admin confirm user !
 
 Asserts! / crud / view >>> tournament (turniej)
 
----------------------------
+sonata remove file
 
 admi/sonata/media/media/list
 admi/sonata/media/media/create?
@@ -57,3 +46,11 @@ usunąć niewykorzystywane metody i widoki
 fb
 
 search?
+
+powiadomienia
+
+gritter: mecz został dodany nie znika - dlaczego? (trening też)
+
+Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
+
+sonata image validation - not working with @assert (player, post, team)

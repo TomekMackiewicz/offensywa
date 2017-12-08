@@ -21,7 +21,8 @@ class TrainingController extends Controller
         $em = $this->getDoctrine()->getManager();
         $notification = new Notification();
         $notification->setTitle('Zbliża się trening');
-        $notification->setDate($training->getDate());
+        //$notification->setDate($training->getDate()); //strtotime('next tuesday');
+        $notification->setDate($training->getDate()); 
         $notification->setWho($training->getTeam()->getName());
         $notification->setContext($training->getLocation() . ' ' . $training->getStartHour()->format('H:i') . ' - ' . $training->getEndHour()->format('H:i'));
         $notification->setType('training');
