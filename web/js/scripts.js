@@ -40,10 +40,8 @@ $(document).ready(function() {
         timeFormat: 'HH:mm',
         dateFormat : 'dd-mm-yy',
         changeMonth: true,
-        changeYear: true                        
-        //controlType: 'select'
-        //addSliderAccess: true,
-        //sliderAccessArgs: { touchonly: true }
+        changeYear: true,                        
+        stepMinute: 15
     });                    
 
     $(".datepicker").datepicker({
