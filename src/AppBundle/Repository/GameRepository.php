@@ -121,8 +121,13 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
         $query = $em->createQuery('
             SELECT g 
             FROM AppBundle:Game g
+            JOIN AppBundle:Team ht
+            WITH ht.id = g.homeTeam
+            JOIN AppBundle:Team at
+            WITH at.id = g.awayTeam            
             WHERE g.date >= :fromTime
-            AND g.date <= :toTime            
+            AND g.date <= :toTime
+            AND (ht.isMy = 1 OR at.isMy = 1)
         ')
         ->setParameter('fromTime', $firstDayOfMonth)
         ->setParameter('toTime', $lastDayOfMonth);                

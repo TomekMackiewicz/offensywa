@@ -1,5 +1,5 @@
 
-getCurrentMonthGames - admin - tylko MY!!!
+user to edit his player profile
 
 wpłaty - null
 

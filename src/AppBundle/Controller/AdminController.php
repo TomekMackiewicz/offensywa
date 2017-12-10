@@ -26,9 +26,9 @@ class AdminController extends Controller
         
         foreach ($games as $game) {            
             $calendarGames[] = [
-                'title' => $game->getCategory(),
+                'title' => $game->getCategory() . ': ' . $game->getHomeTeam()->getName() . ' vs ' . $game->getAwayTeam()->getName(),
                 'start' => $game->getDate()->format("Y-m-d H:i"),
-                //'end' => $game->getDate()->format("Y-m-d H:i"),
+                //'end' => $game->getDate()->format("Y-m-d H:i"), // default = 1h
                 'allDay' => false,
                 'color' => '#00719D'
             ];                         
@@ -46,19 +46,19 @@ class AdminController extends Controller
         
         foreach ($trainings as $training) {
             $counter = new \DateTime($firstDayOfMonth);            
-            $end = new \DateTime($lastDayOfMonth); 
+            $endDate = new \DateTime($lastDayOfMonth); 
             
-            while ($counter <= $end) {
+            while ($counter <= $endDate) {
                 if($counter->format("N") == $training->getDay()) {
-                    $startx = new \DateTime($counter->format("Y-m-d H:i"));
-                    $startx->setTime($training->getStartHour()->format('H'), 0);
-                    $endx = new \DateTime($counter->format("Y-m-d H:i"));
-                    $endx->setTime($training->getEndHour()->format('H'), 0);
+                    $start = new \DateTime($counter->format("Y-m-d H:i"));
+                    $start->setTime($training->getStartHour()->format('H'), $training->getStartHour()->format('i'));
+                    $end = new \DateTime($counter->format("Y-m-d H:i"));
+                    $end->setTime($training->getEndHour()->format('H'), $training->getStartHour()->format('i'));
                     
                     $calendarTrainings[] = [
-                        'title' => 'Trening',
-                        'start' => $startx->format("Y-m-d H:i"),
-                        'end' => $endx->format("Y-m-d H:i"),
+                        'title' => 'Trening: ' . $training->getTeam()->getName() . ' (' . $training->getLocation() . ')',
+                        'start' => $start->format("Y-m-d H:i"),
+                        'end' => $end->format("Y-m-d H:i"),
                         'allDay' => false,
                         'color' => '#9C5005'
                     ];                   

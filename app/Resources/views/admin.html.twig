@@ -54,6 +54,7 @@
             <script>
                 $(document).ready(function() {
                     $('#calendar').fullCalendar({
+                        timeFormat: 'HH:mm',
                         minTime: '08:00:00',
                         maxTime: '21:00:00',
                         defaultTimedEventDuration: '01:00:00',
@@ -61,7 +62,7 @@
                             left: 'prev,next',
                             center: 'title',
                             right: 'month, agendaWeek, agendaDay'
-                        },                        
+                        }, 
                         events: {% if calendarData is defined %}
                                     {{ calendarData|json_encode|raw }}
                                 {% else %}
