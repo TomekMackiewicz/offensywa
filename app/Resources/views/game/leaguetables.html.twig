@@ -1,12 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     {% for table in tables %}
-    <h2>League table ({{ table.year }})</h2>        
-    <table class="table">
-        <tbody>
+    <h2>Tabela rocznika ({{ table.year }})</h2>        
+    <table class="table table-bordered table-striped simple-league-table">
+        <thead>
             <tr>
-                <th>Team</th>
+                <th>#</th>
+                <th>Drużyna</th>
                 <th>P</th>
                 <th>W</th>
                 <th>D</th>
@@ -15,9 +16,12 @@
                 <th>A</th>
                 <th>GD</th>
                 <th>Pts</th>
-            </tr>            
+            </tr> 
+        </thead>
+        <tbody>
             {% for team in table.table %}
                 <tr>
+                    <td>{{ loop.index }}</td>
                     <td>{{ team.Team }}</td>
                     <td>{{ team.P }}</td>
                     <td>{{ team.W }}</td>

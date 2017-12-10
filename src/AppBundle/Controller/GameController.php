@@ -208,6 +208,9 @@ class GameController extends Controller
         $tables = [];
         $em = $this->getDoctrine()->getManager();
         $years = $em->getRepository('AppBundle:Team')->getYears();
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->get('league_table')->getleagueTables();        
+        
         foreach($years as $year) {
             $query = $em->getRepository('AppBundle:Game')->getLeagueTables($year);
             $statement = $em->getConnection()->prepare($query);
@@ -219,7 +222,9 @@ class GameController extends Controller
         }
         
         return $this->render('game/leaguetables.html.twig', array(
-            'tables' => $tables
+            'tables' => $tables,
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables
         ));
     }    
 

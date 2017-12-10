@@ -1,18 +1,17 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Games list</h1>
+    <h1>Mecze</h1>
     {% if games %}
-    <table class="table">
+    <table class="table table-bordered table-striped simple-league-table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Location</th>
-                <th>Category</th>
-                <th>Home team</th>
-                <th>Away team</th>
-                <th>Home team score</th>
-                <th>Away team score</th>
+                <th>Data</th>
+                <th>Miejsce</th>
+                <th>Rodzaj</th>
+                <th>Gospodarze</th>
+                <th>Goście</th>
+                <th>Wynik</th>
             </tr>
         </thead>
         <tbody>
@@ -23,8 +22,7 @@
                 <td>{% if game.category %}{{ game.category }}{% else %}---{% endif %}</td>
                 <td>{% if game.homeTeam %}{{ game.homeTeam.name }}{% else %}Deleted team{% endif %}</td>
                 <td>{% if game.awayTeam %}{{ game.awayTeam.name }}{% else %}Deleted team{% endif %}</td>
-                <td>{% if game.homeTeamScore %}{{ game.homeTeamScore }}{% else %}---{% endif %}</td>
-                <td>{% if game.awayTeamScore %}{{ game.awayTeamScore }}{% else %}---{% endif %}</td>
+                <td>{% if game.homeTeamScore %}{{ game.homeTeamScore }}{% else %}---{% endif %} : {% if game.awayTeamScore %}{{ game.awayTeamScore }}{% else %}---{% endif %}</td>
             </tr>
         {% endfor %}
         </tbody>

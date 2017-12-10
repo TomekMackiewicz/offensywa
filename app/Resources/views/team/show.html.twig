@@ -1,12 +1,16 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
-    <h1>{{ team.name }} ({{ team.year }})</h1>
-    {% if team.players %}
+{% block content %}   
+    {% if team.players is empty %}
+        <h4>Brak graczy</h4>
+    {% else %}
+        <h1>{{ team.name }} ({{ team.year }})</h1>
         <table class="table table-bordered table-striped simple-league-table">
             <thead>
-                <th>Imię i nazwisko</th>
-                <th>Pozycja</th>
+                <tr>
+                    <th>Imię i nazwisko</th>
+                    <th>Pozycja</th>
+                </tr>
             </thead>
             <tbody>
             {% for player in team.players %}
@@ -16,9 +20,7 @@
                 </tr>
             {% endfor %}            
             </tbody>
-        </table>
-    {% else %}
-        <h4>Brak graczy
+        </table>        
     {% endif %}
 
 {% endblock %}

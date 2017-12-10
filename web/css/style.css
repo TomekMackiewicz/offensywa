@@ -760,6 +760,10 @@ pre,
     text-shadow: none;
 }
 
+.supmenu:hover {
+    cursor: auto !important;
+}
+
 .submenu {
     list-style: none;
 }

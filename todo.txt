@@ -1,4 +1,6 @@
 
+sidebar gallery - changing images
+
 remove training date
 
 user to edit his player profile
