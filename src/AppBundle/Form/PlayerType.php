@@ -40,10 +40,12 @@ class PlayerType extends AbstractType
             ))                
             ->add('position', ChoiceType::class, array(
                 'choices'  => array(
-                    'bramkarz' => 'goalkeeper',
-                    'obrońca' => 'defender',
-                    'pomocnik' => 'midfielder',
-                    'napastnik' => 'attacker',
+                    'bramkarz' => 'bramkarz',
+                    'obrońca' => 'obrońca',
+                    'obrońca/pomocnik' => 'obrońca/pomocnik',
+                    'pomocnik' => 'pomocnik',
+                    'pomocnik/napastnik' => 'pomocnik/napastnik',
+                    'napastnik' => 'napastnik',
                 ),
                 'label' => 'position'
             ))

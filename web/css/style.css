@@ -759,3 +759,29 @@ pre,
 .gritter-light .gritter-title {
     text-shadow: none;
 }
+
+.submenu {
+    list-style: none;
+}
+
+.submenu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.submenu > li > a:hover {
+    color: #ffffff !important;
+    background-color: red !important;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}

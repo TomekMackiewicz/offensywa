@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class TrainingRepository extends \Doctrine\ORM\EntityRepository
 {   
+    public function getTeamTrainings($id) {
+        $query = $this->getEntityManager()->createQuery(
+            "SELECT t FROM AppBundle:Training t WHERE t.team = :id ORDER BY t.day ASC"
+        )->setParameter('id', $id);
+        $trainings = $query->getResult();
+        
+        return $trainings;         
+    }
 }    

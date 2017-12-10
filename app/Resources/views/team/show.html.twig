@@ -1,52 +1,24 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block body %}
-    <h1>Team</h1>
+{% block content %}
+    <h1>{{ team.name }} ({{ team.year }})</h1>
+    {% if team.players %}
+        <table class="table table-bordered table-striped simple-league-table">
+            <thead>
+                <th>Imię i nazwisko</th>
+                <th>Pozycja</th>
+            </thead>
+            <tbody>
+            {% for player in team.players %}
+                <tr>
+                    <td>{{ player.firstName }} {{ player.lastName }}</td>
+                    <td>{{ player.position }}</td>
+                </tr>
+            {% endfor %}            
+            </tbody>
+        </table>
+    {% else %}
+        <h4>Brak graczy
+    {% endif %}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ team.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ team.name }}</td>
-            </tr>
-            <tr>
-                <th>Year</th>
-                <td>{{ team.year }}</td>
-            </tr>
-            <tr>
-                <th>Players</th>
-                <td>
-                    <ul>
-                    {% for player in team.players %}
-                        <li>
-                            <a href="{{ path('player_show', { 'id': player.id }) }}">
-                                {{ player.firstname }} {{ player.lastname }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                </td>
-            </tr>            
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('team_index') }}">Back to the list</a>
-        </li>
-        {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                <a href="{{ path('team_edit', { 'id': team.id }) }}">Edit</a>
-            </li>
-            <li>
-                {{ form_start(delete_form) }}
-                    <input type="submit" value="Delete">
-                {{ form_end(delete_form) }}
-            </li>
-        {% endif %}
-    </ul>
 {% endblock %}

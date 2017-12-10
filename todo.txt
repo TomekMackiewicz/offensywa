@@ -1,4 +1,6 @@
 
+remove training date
+
 user to edit his player profile
 
 html 5

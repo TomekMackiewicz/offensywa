@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Team controller.
+ * Team controller
  */
 class TeamController extends Controller
 {
@@ -86,21 +86,24 @@ class TeamController extends Controller
         ));
     }
 
-//    /**
-//     * Finds and displays a team entity.
-//     *
-//     * @Route("/teams/{id}", name="team_show")
-//     * @Method("GET")
-//     */
-//    public function showAction(Team $team)
-//    {
-//        $deleteForm = $this->createDeleteForm($team);
-//
-//        return $this->render('team/show.html.twig', array(
-//            'team' => $team,
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
+    /**
+     * Finds and displays a team entity.
+     *
+     * @Route("/teams/{id}", name="team_show")
+     * @Method("GET")
+     */
+    public function showAction(Team $team)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->get('league_table')->getleagueTables();
+        
+        return $this->render('team/show.html.twig', array(
+            'team' => $team,
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables
+        ));
+    }
 
     /**
      * Displays a form to edit an existing team entity.
@@ -196,10 +199,10 @@ class TeamController extends Controller
     public function navbarAction() 
     {
         $em = $this->getDoctrine()->getManager();
-        $years = $em->getRepository('AppBundle:Team')->getNavbarTeamsByYear();
+        $teams = $em->getRepository('AppBundle:Team')->getNavbarTeamsByYear();
 
         return $this->render('partials/navbar-teams.html.twig', array(
-            'years' => $years,
+            'teams' => $teams,
         ));
     }    
 

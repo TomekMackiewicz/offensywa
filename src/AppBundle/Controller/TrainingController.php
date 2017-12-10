@@ -10,8 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Training controller.
- * @Route("admin/trainings")
+ * Training controller
  */
 class TrainingController extends Controller
 {
@@ -30,28 +29,11 @@ class TrainingController extends Controller
         $em->persist($notification);
         $em->flush();                 
     }    
-    
-//    /**
-//     * Lists all training entities.
-//     *
-//     * @Route("/trainings", name="training_index")
-//     * @Method("GET")
-//     */
-//    public function indexAction()
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $trainings = $em->getRepository('AppBundle:Training')->findAll();
-//
-//        return $this->render('training/index.html.twig', array(
-//            'trainings' => $trainings,
-//        ));
-//    }
 
     /**
      * Lists all training entities.
      *
-     * @Route("/", name="admin_training_index")
+     * @Route("admin/trainings", name="admin_training_index")
      * @Method("GET")
      */
     public function adminIndexAction()
@@ -72,7 +54,7 @@ class TrainingController extends Controller
     /**
      * Creates a new training entity.
      *
-     * @Route("/new", name="training_new")
+     * @Route("admin/trainings/new", name="training_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -102,26 +84,30 @@ class TrainingController extends Controller
         ));
     }
 
-//    /**
-//     * Finds and displays a training entity.
-//     *
-//     * @Route("/{id}", name="training_show")
-//     * @Method("GET")
-//     */
-//    public function showAction(Training $training)
-//    {
-//        $deleteForm = $this->createDeleteForm($training);
-//
-//        return $this->render('training/show.html.twig', array(
-//            'training' => $training,
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
+    /**
+     * Finds and displays a training entity.
+     *
+     * @Route("/{year}", name="show_team_trainings")
+     * @Method("GET")
+     */
+    public function showTeamTrainingsAction($year)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $trainings = $em->getRepository('AppBundle:Training')->getTeamTrainings($year);
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $leagueTables = $this->get('league_table')->getleagueTables();
+        
+        return $this->render('training/show-team-trainings.html.twig', array(
+            'trainings' => $trainings,
+            'lastMatch' => $lastMatch,
+            'leagueTables' => $leagueTables
+        ));
+    }
 
     /**
      * Displays a form to edit an existing training entity.
      *
-     * @Route("/{id}/edit", name="training_edit")
+     * @Route("admin/trainings/{id}/edit", name="training_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Training $training)
@@ -152,7 +138,7 @@ class TrainingController extends Controller
     /**
      * Deletes a training entity.
      *
-     * @Route("{id}", name="training_delete")
+     * @Route("admin/trainings/{id}", name="training_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Training $training)
