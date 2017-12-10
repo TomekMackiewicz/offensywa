@@ -74,27 +74,39 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $currentDate = date('Y-m-d');
-        $firstDay = date("Y-m-01", strtotime($currentDate . '-3 months'));
+        $firstDay = date("Y-m-01", strtotime($currentDate . '-4 months'));
         $lastDay = date("Y-m-t", strtotime($currentDate));         
         
-        $payments = $em->getRepository('AppBundle:Payment')->getPaymentsForLastMonths($firstDay, $lastDay);
-//        $months = [];
-//        $i = date("Y-m", strtotime($firstDay));
-//        while($i <= date("Y-m", strtotime($lastDay))){
-//            $months[] = $i;
-//            if(substr($i, 4, 2) == "12") {
-//                $i = (date("Y", strtotime($i."01")) + 1)."01";                
-//            } else {
-//                $i++;
-//            }                
-//        }     
-//        $res = [];
-//        foreach($months as $month) {
-//            $res['period'] = $month;
-//            $res['total'] = 0;
-//        }
+        $payments = $em->getRepository('AppBundle:Payment')->getPaymentsForLastMonths($firstDay, $lastDay);        
+        $months = [];
+        $res = [];
+        $i = date("Y-m", strtotime($firstDay));
         
-        return $payments;
+        while($i <= date("Y-m", strtotime($lastDay))){
+            $months[] = $i;
+            if(substr($i, 4, 2) == "12") {
+                $i = (date("Y", strtotime($i."01")) + 1)."01";                
+            } else {
+                $i++;
+            }                
+        }     
+        
+        foreach($months as $month) {
+            $res[] = ["total" => 0, "period" => new \DateTime($month)];
+        }
+        
+        foreach($res as &$r) {
+            if($r['total'] > 0) {
+                continue;
+            }            
+            foreach($payments as $payment) {
+                if($r['period']->format('Y-m') == $payment['period']->format('Y-m')) {
+                    $r['total'] = $payment['total'];
+                }
+            }
+        }
+        
+        return $res;
     }
     
     /**

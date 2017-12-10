@@ -30,24 +30,9 @@ class PaymentRepository extends \Doctrine\ORM\EntityRepository
         return $payments;        
     }
     
-    public function getPaymentsForLastMonths() {
-        $em = $this->getEntityManager();
-        $currentDate = date('Y-m-d');
-        $firstDay = date("Y-m-01", strtotime($currentDate . '-3 months'));
-        $lastDay = date("Y-m-t", strtotime($currentDate)); 
-
-//        $query = '
-//            SELECT IFNULL(COUNT(p1.id), 0) AS total, p2.period 
-//            FROM payment AS p1
-//            LEFT JOIN payment AS p2 ON p1.id = p2.id
-//            WHERE p2.period >= :from
-//            AND p2.period <= :to
-//            AND p2.payment_category = 1            
-//            GROUP BY p2.period;          
-//        ';          
-        
-                      
-        
+    public function getPaymentsForLastMonths($firstDay, $lastDay) {
+        $em = $this->getEntityManager();         
+                
         $query = $em->createQuery('
             SELECT COUNT(p.id) as total, p.period
             FROM AppBundle:Payment p
@@ -62,8 +47,6 @@ class PaymentRepository extends \Doctrine\ORM\EntityRepository
         $payments = $query->getResult();
         
         return $payments;
-
-        //return $query;
         
     }     
     

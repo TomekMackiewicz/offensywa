@@ -1,8 +1,6 @@
 
 user to edit his player profile
 
-wpłaty - null
-
 html 5
 
 meta, seo
