@@ -1,9 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-sm-4 col-xs-5">
-            <div class="match-details">
+{#    <div class="row">
+        <div class="col-sm-4 col-xs-5">#}
+{#            <div class="match-details">
                 <h4>NAJBLIŻSZY MECZ</h4>
                 {% if nextMatch %}
                     <p>{{ nextMatch.date | date('d-m-Y H:i') }}</p>
@@ -50,9 +50,9 @@
                 {% else %}
                     Brak zaplanowanych meczy.
                 {% endif %}
-            </div>                    
-        </div>
-        <div class="col-sm-8 col-xs-7">
+            </div> #}                   
+        {#</div>#}
+{#        <div class="col-sm-8 col-xs-7">
             <h2>KOLEJNE MECZE</h2>
             <div class="table-responsive upcoming-fixtures">
                 <table class="table table-bordered table-striped"> 
@@ -95,8 +95,8 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
+        </div>#}
+    {#</div>#}
     <div class="row">                
         <div class="col-xs-12">
             <h2>AKTUALNOŚCI</h2>

@@ -95,11 +95,13 @@ class TrainingController extends Controller
         $em = $this->getDoctrine()->getManager();
         $trainings = $em->getRepository('AppBundle:Training')->getTeamTrainings($year);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
         
         return $this->render('training/show-team-trainings.html.twig', array(
             'trainings' => $trainings,
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables
         ));
     }

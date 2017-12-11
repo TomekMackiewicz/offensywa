@@ -71,11 +71,13 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();        
         
         return $this->render('page/show.html.twig', array(
             'page' => $page,
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,
         ));
     }

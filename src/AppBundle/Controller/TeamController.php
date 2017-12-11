@@ -27,10 +27,12 @@ class TeamController extends Controller
         $teams = $em->getRepository('AppBundle:Team')->getMyTeams();
         $leagueTables = $this->get('league_table')->getleagueTables();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
 
         return $this->render('team/index.html.twig', array(
             'teams' => $teams,
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables            
         ));
     }
@@ -96,11 +98,13 @@ class TeamController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
         
         return $this->render('team/show.html.twig', array(
             'team' => $team,
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables
         ));
     }

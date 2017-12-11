@@ -1,4 +1,52 @@
 <div class="match-details">
+    <h4>NAJBLIŻSZY MECZ</h4>
+    {% if nextMatch %}
+        <p>{{ nextMatch.date | date('d-m-Y H:i') }}</p>
+        <div>
+            <table class="table borderless table-responsive">
+                <tbody>
+                    <tr>
+                        <td class="col-md-6">
+                            {% if nextMatch.homeTeam %}
+                                {% if nextMatch.homeTeam.logo %}
+                                    <img src="{% path nextMatch.homeTeam.logo, 'small' %}">
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                        <td></td>
+                        <td class="col-md-6">
+                            {% if nextMatch.awayTeam %}
+                                {% if nextMatch.awayTeam.logo %}
+                                    <img src="{% path nextMatch.awayTeam.logo, 'small' %}">
+                                {% endif %}
+                            {% endif %}                                        
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-6">
+                            {% if nextMatch.homeTeam %}
+                                {{ nextMatch.homeTeam.name }}
+                            {% else %}
+                                Deleted team
+                            {% endif %}
+                        </td>
+                        <td>:</td>
+                        <td class="col-md-6">
+                            {% if nextMatch.awayTeam %}
+                                {{ nextMatch.awayTeam.name }}
+                            {% else %}
+                                Deleted team
+                            {% endif %}                                        
+                        </td>                                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>                
+    {% else %}
+        Brak zaplanowanych meczy.
+    {% endif %}
+</div> 
+<div class="match-details">
     <h4>OSTATNI MECZ</h4>
     {% if lastMatch %}
         <p>{{ lastMatch.date | date('d-m-Y H:i') }}</p>

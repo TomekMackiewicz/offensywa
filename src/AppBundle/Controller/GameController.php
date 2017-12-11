@@ -39,13 +39,15 @@ class GameController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $games = $em->getRepository('AppBundle:Game')->findAll();
+        $games = $em->getRepository('AppBundle:Game')->getMyTeamsGames();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
 
         return $this->render('game/index.html.twig', array(
             'games' => $games,
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables
         ));
     }
@@ -209,6 +211,7 @@ class GameController extends Controller
         $em = $this->getDoctrine()->getManager();
         $years = $em->getRepository('AppBundle:Team')->getYears();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();        
         
         foreach($years as $year) {
@@ -224,6 +227,7 @@ class GameController extends Controller
         return $this->render('game/leaguetables.html.twig', array(
             'tables' => $tables,
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables
         ));
     }    

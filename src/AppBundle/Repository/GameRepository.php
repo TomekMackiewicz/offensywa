@@ -47,16 +47,16 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
         return $nextMatch;
     }
     
-    public function getUpcomingFixtures()
-    {               
-        $em = $this->getEntityManager();        
-        $query = $em->createQuery(
-            'SELECT g FROM AppBundle:Game g WHERE g.date > :now ORDER BY g.date'
-            )->setParameter('now', new \DateTime());
-        $fixtures = $query->getResult();
-        
-        return $fixtures;
-    }
+//    public function getUpcomingFixtures()
+//    {               
+//        $em = $this->getEntityManager();        
+//        $query = $em->createQuery(
+//            'SELECT g FROM AppBundle:Game g WHERE g.date > :now ORDER BY g.date'
+//            )->setParameter('now', new \DateTime());
+//        $fixtures = $query->getResult();
+//        
+//        return $fixtures;
+//    }
     
     public function getLeagueTables($year)
     {        
@@ -135,5 +135,23 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
         $games = $query->getResult();
         
         return $games;        
-    }     
+    } 
+
+    public function getMyTeamsGames()
+    {               
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery('
+            SELECT g 
+            FROM AppBundle:Game g
+            JOIN AppBundle:Team ht
+            WITH ht.id = g.homeTeam
+            JOIN AppBundle:Team at
+            WITH at.id = g.awayTeam            
+            WHERE ht.isMy = 1 OR at.isMy = 1
+        ');
+        $fixtures = $query->getResult();
+        
+        return $fixtures;
+    }
+    
 }

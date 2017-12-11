@@ -17,7 +17,7 @@ class FrontController extends Controller
         
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $upcomingFixtures = $em->getRepository('AppBundle:Game')->getUpcomingFixtures();
+        //$upcomingFixtures = $em->getRepository('AppBundle:Game')->getUpcomingFixtures();
         $leagueTables = $this->get('league_table')->getleagueTables();
         $recentPosts = $em->getRepository('AppBundle:Post')->getRecentPosts();
         $players = $em->getRepository('AppBundle:Player')->getRandomPlayers();
@@ -25,7 +25,7 @@ class FrontController extends Controller
         return $this->render('front/index.html.twig', [
             'nextMatch' => $nextMatch,
             'lastMatch' => $lastMatch,
-            'upcomingFixtures' => $upcomingFixtures,
+            //'upcomingFixtures' => $upcomingFixtures,
             'leagueTables' => $leagueTables,
             'recentPosts' => $recentPosts,
             'players' => $players,
@@ -42,11 +42,13 @@ class FrontController extends Controller
         
         $category = $em->getRepository('AppBundle:Category')->findOneById(1);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
                
         return $this->render('front/news.html.twig', [
             'category' => $category,
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,
         ]);
               
@@ -60,10 +62,12 @@ class FrontController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
                
         return $this->render('front/about.html.twig', [
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,
         ]);
               
@@ -77,10 +81,12 @@ class FrontController extends Controller
         $em = $this->getDoctrine()->getManager();
                
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
                
         return $this->render('front/contact.html.twig', [
             'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,
         ]);
               
