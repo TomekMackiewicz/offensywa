@@ -1,7 +1,7 @@
 
 ck editor you tube
 
-galleries
+galleries, news - nie na sztywno !
 
 user to edit his player profile
 
@@ -12,7 +12,7 @@ admin confirm user !
 
 Asserts! / crud / view >>> tournament (turniej)
 
-sonata remove file
+sonata remove thumb!
 
 --------------------------------------------------------------------------------
 mzpn 4 drużyny: 2006-2009

@@ -170,7 +170,7 @@ sonata_media:
                 logo: { width: 30, quality: 70 }
                 #big:   { width: 900, quality: 70 }
 
-        gallery:
+        event:
             providers:
                 - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube

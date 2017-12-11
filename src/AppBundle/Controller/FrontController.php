@@ -90,28 +90,25 @@ class FrontController extends Controller
             'leagueTables' => $leagueTables,
         ]);
               
-    }  
-
+    }   
+    
     /**
      * @Route("/galerie-zdjec", name="galleries")
      */
     public function galleriesAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $teams = $em->getRepository('AppBundle:Team')->getMyTeams();
-        $post = $em->getRepository('AppBundle:Post')->findOneById(1);       
+        $category = $em->getRepository('AppBundle:Category')->findOneById(4);       
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
                
         return $this->render('front/galleries.html.twig', [
-            'teams' => $teams,
-            'post' => $post,
+            'category' => $category,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,
-        ]);
-              
-    }  
+        ]);              
+    }
     
 }
