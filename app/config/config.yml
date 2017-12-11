@@ -170,6 +170,17 @@ sonata_media:
                 logo: { width: 30, quality: 70 }
                 #big:   { width: 900, quality: 70 }
 
+        gallery:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+            formats:
+                small: { width: 200 , quality: 70 }
+                big:   { width: 500 , quality: 70 }
+
     cdn:
         server:
             path: /uploads/media

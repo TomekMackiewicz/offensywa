@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Galerie</h1>
+
+            <img src={% path post.image, 'reference'%}>
+
+        </div>
+    </div>
+{% endblock %}

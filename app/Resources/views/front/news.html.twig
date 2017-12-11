@@ -3,21 +3,22 @@
 {% block content %}
     <div class="row">
         <div class="col-xs-12">
-        {% if category %}
-            {% for article in category.posts %}
-                <h1>{{ article.title }}</h1>
-                <small>{% if article.publishDate %}
-                    <i class="fa fa-clock-o" aria-hidden="true"></i> 
-                    {{ article.publishDate|date('Y-m-d H:i') }}{% endif %}
-                </small>               
-                {% if article.image %}
-                    <img src="{% path article.image, 'small' %}">
-                {% endif %} 
-                {{ article.body | purify }}
-            {% endfor %}
-        {% else %}
-            Brak postów
-        {% endif %}
+            <h1>Aktualności</h1>
+            {% if category %}
+                {% for article in category.posts %}
+                    <h2>{{ article.title }}</h2>
+                    <small>{% if article.publishDate %}
+                        <i class="fa fa-clock-o" aria-hidden="true"></i> 
+                        {{ article.publishDate|date('Y-m-d H:i') }}{% endif %}
+                    </small>               
+                    {% if article.image %}
+                        <img src="{% path article.image, 'small' %}">
+                    {% endif %} 
+                    {{ article.body | purify }}
+                {% endfor %}
+            {% else %}
+                Brak postów
+            {% endif %}
         </div>
     </div>
 {% endblock %}    
