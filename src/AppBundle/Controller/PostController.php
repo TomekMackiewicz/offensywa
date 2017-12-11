@@ -95,12 +95,10 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $leagueTables = $this->get('league_table')->getleagueTables();     
-        $deleteForm = $this->createDeleteForm($post);
+        $leagueTables = $this->get('league_table')->getleagueTables();
 
         return $this->render('post/show.html.twig', array(
             'post' => $post,
-            'delete_form' => $deleteForm->createView(),
             'lastMatch' => $lastMatch,
             'leagueTables' => $leagueTables,
         ));

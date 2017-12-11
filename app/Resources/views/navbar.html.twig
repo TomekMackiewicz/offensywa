@@ -74,18 +74,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informacje</a>
                   <ul class="dropdown-menu">
-                    <li><a href="{{ path('info', { 'topic': 'regulamin' }) }}">Regulamin</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'dekalog' }) }}">Dekalog</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'fair-play' }) }}">Fair play</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'dla-rodzicow' }) }}">Dla rodziców</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'trener' }) }}">Trener</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'szkolenie' }) }}">Szkolenie</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'trening-mentalny' }) }}">Trening mentalny</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'dylematy-mlodego-pilkarza' }) }}">Dylematy młodego piłkarza</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'nauka-i-sport' }) }}">Nauka i sport</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'dyscyplina' }) }}">Dyscyplina</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'czy-wygrywasz-czy-nie' }) }}">Czy wygrywasz, czy nie...</a></li>
-                    <li><a href="{{ path('info', { 'topic': 'dieta-mlodego-pilkarza' }) }}">Dieta młodego piłkarza</a></li>
+                    {{ render(controller('AppBundle:Page:navbar')) }}
                   </ul>
                 </li>                
                 <li {{ (app.request.attributes.get('_route') == 'contact') ? ' class="active"' }}>

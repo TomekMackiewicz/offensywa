@@ -83,6 +83,9 @@ fos_user:
 exercise_html_purifier:
     default:
         Cache.SerializerPath: '%kernel.cache_dir%/htmlpurifier'
+        HTML.SafeIframe: true
+        #URI.SafeIframeRegexp: '%^(https?:)?(\/\/www\.youtube(?:-nocookie)?\.com\/embed\/|\/\/player\.vimeo\.com\/)%'
+        Filter.YouTube: true
 
 sonata_admin:
     title: Sonata Admin Area           
@@ -198,4 +201,10 @@ ivory_ck_editor:
             filebrowserImageUploadRoute: admin_sonata_media_media_upload
             filebrowserImageUploadRouteParameters:
                 provider: sonata.media.provider.image
-                context: post            
+                context: post
+            extraPlugins: "youtube"
+            youtube_responsive: true
+    plugins:
+        youtube:
+            path:     "/bundles/ivoryckeditor/plugins/youtube/"
+            filename: "plugin.js"            

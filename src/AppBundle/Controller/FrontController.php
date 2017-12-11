@@ -84,23 +84,6 @@ class FrontController extends Controller
             'leagueTables' => $leagueTables,
         ]);
               
-    }
-
-    /**
-     * @Route("/informacje/{topic}", name="info")
-     */
-    public function infoAction($topic)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $leagueTables = $this->get('league_table')->getleagueTables();     
-        
-        return $this->render('front/info.html.twig', [
-            'topic' => $topic,
-            'lastMatch' => $lastMatch,
-            'leagueTables' => $leagueTables
-        ]);
-              
-    }    
+    }  
     
 }
