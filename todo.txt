@@ -3,11 +3,7 @@ ck editor you tube
 
 sidebar gallery - changing images
 
-remove training date
-
 user to edit his player profile
-
-html 5
 
 meta, seo
 
@@ -17,9 +13,6 @@ admin confirm user !
 Asserts! / crud / view >>> tournament (turniej)
 
 sonata remove file
-
-admi/sonata/media/media/list
-admi/sonata/media/media/create?
 
 --------------------------------------------------------------------------------
 mzpn 4 drużyny: 2006-2009

@@ -64,7 +64,6 @@ class TrainingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $training->setDate(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($training);
             $em->flush();
@@ -119,7 +118,6 @@ class TrainingController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $training->setDate(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
             
             $this->addFlash("success", "Trening został uaktualniony");
