@@ -13,21 +13,27 @@ class PlayerRepository extends \Doctrine\ORM\EntityRepository
     public function getRandomPlayers()
     {               
         $em = $this->getEntityManager();
-        $count = $em->createQuery('SELECT COUNT(p) FROM AppBundle:Player p')->getSingleScalarResult();
-        $randomIds = $this->randomIds(1, $count, 4);        
+        $result = $em->createQuery("SELECT p.id FROM AppBundle:Player p")->getScalarResult();
+        $ids = array_column($result, "id");        
+        $randomIds = $this->randomIds($ids); 
+        
         $query = $em->createQuery('
                 SELECT p FROM AppBundle:Player p              
-                WHERE p.id IN (:randomIds)
+           WHERE p.id IN (:randomIds)
                 ')->setParameter('randomIds', $randomIds);              
         $randomPlayers = $query->getResult();
         
         return $randomPlayers;
     }
     
-    private function randomIds($min, $max, $quantity) {
-        $ids = range($min, $max);
+    private function randomIds($ids) {
         shuffle($ids);
-        return array_slice($ids, 0, $quantity);        
+        if (sizeof($ids) < 4) {
+            return array_slice($ids, 0, $ids.length);
+        } else {
+            return array_slice($ids, 0, 4);
+        }
+                
     }
 
     public function countPlayers()

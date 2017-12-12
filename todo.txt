@@ -7,8 +7,6 @@ galleries, news - nie na sztywno !
 
 user to edit his player profile
 
-meta, seo
-
 user profile 
 admin confirm user !
 
@@ -33,7 +31,7 @@ Offensywa
 
 POTEM
 
-rekrutacja?
+rekrutacja? OGŁOSZENIE!
 
 messages
 
@@ -45,10 +43,10 @@ fb
 
 search?
 
-powiadomienia
+powiadomienia - dopracować
 
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
-Validacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
+Walidacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
 
 sonata image validation - not working with @assert (player, post, team)
