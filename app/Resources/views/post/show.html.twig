@@ -1,8 +1,8 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <i class="fa fa-backward" aria-hidden="true"></i>
-    <a href="{{ path('post_index') }}"> Back to the list</a>
+{#    <i class="fa fa-backward" aria-hidden="true"></i>
+    <a href="{{ path('post_index') }}"> Back to the list</a>#}
     {% if post %}
         <h1>{{ post.title }}</h1>
         {% if post.image %}
@@ -23,6 +23,6 @@
         </p>
         {{ post.body | purify }}
     {% else %}
-        Brak postów
+        <h2>Brak treści</h2>
     {% endif %}
 {% endblock %}

@@ -1,5 +1,7 @@
 
-ck editor you tube
+ck editor you tube - rozmiar
+
+galerie - uprościć + lightbox
 
 galleries, news - nie na sztywno !
 
@@ -12,7 +14,6 @@ admin confirm user !
 
 Asserts! / crud / view >>> tournament (turniej)
 
-sonata remove thumb!
 
 --------------------------------------------------------------------------------
 mzpn 4 drużyny: 2006-2009

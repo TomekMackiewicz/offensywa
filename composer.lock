@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a4e23d33328a520bd5a3faa50fb16c0f",
-    "content-hash": "0bbdf0cbd5300898ba8fd38ec79ae1c8",
+    "hash": "40b694219f5e825901affce0efebc977",
+    "content-hash": "350ff10c9569cfa9f88cfcbb80a73b33",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2506,6 +2506,60 @@
             "time": "2017-10-12 17:37:20"
         },
         {
+            "name": "sensio/generator-bundle",
+            "version": "v3.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
+                "reference": "128bc5dabc91ca40b7445f094968dd70ccd58305"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/128bc5dabc91ca40b7445f094968dd70ccd58305",
+                "reference": "128bc5dabc91ca40b7445f094968dd70ccd58305",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "~2.7|~3.0",
+                "symfony/framework-bundle": "~2.7|~3.0",
+                "symfony/process": "~2.7|~3.0",
+                "symfony/yaml": "~2.7|~3.0",
+                "twig/twig": "^1.28.2|^2.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4",
+                "symfony/doctrine-bridge": "~2.7|~3.0",
+                "symfony/filesystem": "~2.7|~3.0",
+                "symfony/phpunit-bridge": "^3.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sensio\\Bundle\\GeneratorBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "This bundle generates code for you",
+            "time": "2017-07-18 07:57:44"
+        },
+        {
             "name": "sensiolabs/security-checker",
             "version": "v4.1.6",
             "source": {
@@ -3199,16 +3253,16 @@
         },
         {
             "name": "sonata-project/media-bundle",
-            "version": "3.8.0",
+            "version": "3.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle.git",
-                "reference": "b34364fdb90d151434adc8a4b561b8299c56bc84"
+                "reference": "a24310243b760915b0a4437c87e802b285305d2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/b34364fdb90d151434adc8a4b561b8299c56bc84",
-                "reference": "b34364fdb90d151434adc8a4b561b8299c56bc84",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/a24310243b760915b0a4437c87e802b285305d2d",
+                "reference": "a24310243b760915b0a4437c87e802b285305d2d",
                 "shasum": ""
             },
             "require": {
@@ -3216,27 +3270,28 @@
                 "jms/serializer-bundle": "^0.13 || ^1.0 || ^2.0",
                 "knplabs/gaufrette": "^0.1.6 || ^0.2 || ^0.3",
                 "kriswallsmith/buzz": "^0.15",
-                "php": "^7.1",
+                "php": "^5.6 || ^7.0",
                 "psr/log": "^1.0",
+                "sensio/generator-bundle": "^3.1",
                 "sonata-project/core-bundle": "^3.2",
                 "sonata-project/doctrine-extensions": "^1.0",
                 "sonata-project/easy-extends-bundle": "^2.2",
                 "sonata-project/notification-bundle": "^3.0",
-                "symfony/config": "^2.8 || ^3.2",
-                "symfony/console": "^2.8 || ^3.2",
-                "symfony/dependency-injection": "^2.8 || ^3.2",
-                "symfony/event-dispatcher": "^2.8 || ^3.2",
-                "symfony/filesystem": "^2.8 || ^3.2",
-                "symfony/finder": "^2.8 || ^3.2",
-                "symfony/form": "^2.8 || ^3.2",
-                "symfony/http-foundation": "^2.8 || ^3.2",
-                "symfony/http-kernel": "^2.8 || ^3.2",
-                "symfony/options-resolver": "^2.8 || ^3.2",
-                "symfony/routing": "^2.8 || ^3.2",
-                "symfony/security": "^2.8 || ^3.2",
-                "symfony/templating": "^2.8 || ^3.2",
-                "symfony/translation": "^2.8 || ^3.2",
-                "symfony/validator": "^2.8 || ^3.2",
+                "symfony/config": "^2.8 || ^3.2 || ^4.0",
+                "symfony/console": "^2.8 || ^3.2 || ^4.0",
+                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
+                "symfony/event-dispatcher": "^2.8 || ^3.2 || ^4.0",
+                "symfony/filesystem": "^2.8 || ^3.2 || ^4.0",
+                "symfony/finder": "^2.8 || ^3.2 || ^4.0",
+                "symfony/form": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
+                "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
+                "symfony/options-resolver": "^2.8 || ^3.2 || ^4.0",
+                "symfony/routing": "^2.8 || ^3.2 || ^4.0",
+                "symfony/security": "^2.8 || ^3.2 || ^4.0",
+                "symfony/templating": "^2.8 || ^3.2 || ^4.0",
+                "symfony/translation": "^2.8 || ^3.2 || ^4.0",
+                "symfony/validator": "^2.8 || ^3.2 || ^4.0",
                 "twig/twig": "^1.28 || ^2.0"
             },
             "conflict": {
@@ -3262,7 +3317,7 @@
                 "sonata-project/doctrine-orm-admin-bundle": "^3.0",
                 "sonata-project/formatter-bundle": "^3.2",
                 "sonata-project/seo-bundle": "^2.1",
-                "symfony/phpunit-bridge": "^3.3"
+                "symfony/phpunit-bridge": "^3.3 || ^4.0"
             },
             "suggest": {
                 "liip/imagine-bundle": "^0.9",
@@ -3281,11 +3336,8 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Sonata\\MediaBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "Tests/"
-                ]
+                    "Sonata\\MediaBundle\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3314,7 +3366,7 @@
                 "vimeo",
                 "youtube"
             ],
-            "time": "2017-10-22 21:37:18"
+            "time": "2017-11-30 10:45:01"
         },
         {
             "name": "sonata-project/notification-bundle",
@@ -4384,60 +4436,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "sensio/generator-bundle",
-            "version": "v3.1.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "128bc5dabc91ca40b7445f094968dd70ccd58305"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/128bc5dabc91ca40b7445f094968dd70ccd58305",
-                "reference": "128bc5dabc91ca40b7445f094968dd70ccd58305",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/console": "~2.7|~3.0",
-                "symfony/framework-bundle": "~2.7|~3.0",
-                "symfony/process": "~2.7|~3.0",
-                "symfony/yaml": "~2.7|~3.0",
-                "twig/twig": "^1.28.2|^2.0"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.4",
-                "symfony/doctrine-bridge": "~2.7|~3.0",
-                "symfony/filesystem": "~2.7|~3.0",
-                "symfony/phpunit-bridge": "^3.3"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sensio\\Bundle\\GeneratorBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "This bundle generates code for you",
-            "time": "2017-07-18 07:57:44"
-        },
         {
             "name": "symfony/phpunit-bridge",
             "version": "v3.3.10",

@@ -84,7 +84,7 @@ exercise_html_purifier:
     default:
         Cache.SerializerPath: '%kernel.cache_dir%/htmlpurifier'
         HTML.SafeIframe: true
-        #URI.SafeIframeRegexp: '%^(https?:)?(\/\/www\.youtube(?:-nocookie)?\.com\/embed\/|\/\/player\.vimeo\.com\/)%'
+        #URI.SafeIframeRegexp: '%(www.youtube.com/embed)%'
         Filter.YouTube: true
 
 sonata_admin:
@@ -132,33 +132,24 @@ sonata_media:
     contexts:
         default:
             providers:
-                - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
-                - sonata.media.provider.file
-                - sonata.media.provider.vimeo
             formats:
                 small: { width: 100, quality: 70}
                 big:   { width: 500, quality: 70}
                 
         post:
             providers:
-                - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
-                - sonata.media.provider.file
-                - sonata.media.provider.vimeo
             formats:
                 small: { width: 200, quality: 70 }
                 big:   { width: 760, quality: 70 }
 
         user:
             providers:
-                - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
-                - sonata.media.provider.file
-                - sonata.media.provider.vimeo
             formats:
                 small: { width: 150 , quality: 70 }
                 big:   { width: 300 , quality: 70 }
@@ -172,11 +163,8 @@ sonata_media:
 
         event:
             providers:
-                - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
-                - sonata.media.provider.file
-                - sonata.media.provider.vimeo
             formats:
                 small: { width: 200 , quality: 70 }
                 big:   { width: 500 , quality: 70 }
@@ -213,9 +201,12 @@ ivory_ck_editor:
             filebrowserImageUploadRouteParameters:
                 provider: sonata.media.provider.image
                 context: post
-            extraPlugins: "youtube"
+            extraPlugins: "youtube,htmlbuttons"
             youtube_responsive: true
     plugins:
         youtube:
             path:     "/bundles/ivoryckeditor/plugins/youtube/"
+            filename: "plugin.js"
+        htmlbuttons:
+            path:     "/bundles/ivoryckeditor/plugins/htmlbuttons/"
             filename: "plugin.js"            
