@@ -1,5 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+{% block meta %}
+    <title>Offensywa &bull; Post</title>
+    <meta name="description" content="Offensywa Książenice - {{ post.title }}">
+{% endblock %}
+
 {% block content %}
 {#    <i class="fa fa-backward" aria-hidden="true"></i>
     <a href="{{ path('post_index') }}"> Back to the list</a>#}

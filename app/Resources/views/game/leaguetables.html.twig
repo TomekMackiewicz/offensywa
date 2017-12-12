@@ -1,39 +1,48 @@
 {% extends 'layout.html.twig' %}
 
+{% block meta %}
+    <title>Offensywa &bull; Tabele ligowe</title>
+    <meta name="description" content="Tabele ligowe drużyn klubu Offensywa Książenice">
+{% endblock %}
+
 {% block content %}
-    {% for table in tables %}
-    <h2>Tabela rocznika {{ table.year }}</h2>        
-    <table class="table table-bordered table-striped simple-league-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Drużyna</th>
-                <th>P</th>
-                <th>W</th>
-                <th>D</th>
-                <th>L</th>
-                <th>F</th>
-                <th>A</th>
-                <th>GD</th>
-                <th>Pts</th>
-            </tr> 
-        </thead>
-        <tbody>
-            {% for team in table.table %}
+    {% if tables is not empty %}
+        {% for table in tables %}
+        <h2>Tabela ligowa rocznika {{ table.year }}</h2>        
+        <table class="table table-bordered table-striped simple-league-table">
+            <thead>
                 <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ team.Team }}</td>
-                    <td>{{ team.P }}</td>
-                    <td>{{ team.W }}</td>
-                    <td>{{ team.D }}</td>
-                    <td>{{ team.L }}</td>
-                    <td>{{ team.F }}</td>
-                    <td>{{ team.A }}</td>
-                    <td>{{ team.GD }}</td>
-                    <td>{{ team.Pts }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% endfor %}
+                    <th>#</th>
+                    <th>Drużyna</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>F</th>
+                    <th>A</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr> 
+            </thead>
+            <tbody>
+                {% for team in table.table %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ team.Team }}</td>
+                        <td>{{ team.P }}</td>
+                        <td>{{ team.W }}</td>
+                        <td>{{ team.D }}</td>
+                        <td>{{ team.L }}</td>
+                        <td>{{ team.F }}</td>
+                        <td>{{ team.A }}</td>
+                        <td>{{ team.GD }}</td>
+                        <td>{{ team.Pts }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    {% else %}
+        <h2>Brak tabel ligowych</h2>
+    {% endif %}
 {% endblock %}

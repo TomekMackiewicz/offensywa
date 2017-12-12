@@ -1,5 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+{% block meta %}
+    <title>Offensywa &bull; Treningi</title>
+    <meta name="description" content="Terminy treningów klubu Offensywa Książenice">
+{% endblock %}
+
 {% block content %}
     {% if trainings %}
         <h1>Terminy treningów</h1>
@@ -18,7 +23,7 @@
                         {% elseif training.day == 5 %}
                             piątek
                         {% elseif training.day == 6 %}
-                            sobota!    
+                            sobota    
                         {% else %}
                             niedziela
                         {% endif %}                    

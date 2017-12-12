@@ -1,5 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+{% block meta %}
+    <title>Offensywa &bull; Kadra {{ team.year }}</title>
+    <meta name="description" content="Lista zawodnicy rocznika {{ team.year }} klubu Offensywa Książenice">
+{% endblock %}
+
 {% block content %}   
     {% if team.players is empty %}
         <h2>Brak graczy</h2>
