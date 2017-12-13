@@ -8,7 +8,6 @@
 {% block content %}
     <div class="row">
         <div class="col-xs-12">
-            {{ dump(posts) }}
             <h1>Aktualności</h1>
             {% if posts is not empty %}
                 {% for article in posts %}
@@ -22,44 +21,33 @@
                     {% endif %} 
                     {{ article.body | purify }}
                 {% endfor %}
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% if app.request.attributes.get('_route_params')['page'] != 1 %}
+                        <li>
+                            <a href="{{ path('news', { 'page': app.request.attributes.get('_route_params')['page']-1 }) }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% for i in 1..pages %}
+                            <li {{ (app.request.attributes.get('_route_params')['page'] == i) ? ' class="active"' }}>
+                                <a href="{{ path('news', { 'page': i }) }}">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+                        {% if app.request.attributes.get('_route_params')['page'] != pages %}
+                        <li>
+                            <a href="{{ path('news', { 'page': app.request.attributes.get('_route_params')['page']+1 }) }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>                     
             {% else %}
                 Brak postów
-            {% endif %}
-<nav aria-label="Page navigation">
-    <ul class="pagination">
-        <li>
-            <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-            </li>
-            <li><a href="{{ path('news', { 'page': 1 }) }}">1</a></li>
-            <li><a href="{{ path('news', { 'page': 2 }) }}">2</a></li>
-            <li><a href="{{ path('news', { 'page': 3 }) }}">3</a></li>
-            <li><a href="{{ path('news', { 'page': 4 }) }}">4</a></li>
-            <li><a href="{{ path('news', { 'page': 5 }) }}">5</a></li>
-            <li>
-            <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>                
+            {% endif %}               
         </div>
     </div>
 {% endblock %} 
-    
-{#$pagecount = 50; // Total number of rows
-$num = $pagecount / $page_result ;
-
-if($_GET['pageno'] > 1)
-{
- echo "<a href = 'samepage.php?pageno = ".($_GET['pageno'] - 1)." '> Prev </a>";
-}
-for($i = 1 ; $i <= $num ; $i++)
-{
- echo "<a href = "samepage.php?pageno = ". $i ." >". $i ."</a>";
-}
-if($num! = 1)
-{
- echo "<a href = 'samepage.php?pageno = ".($_GET['pageno'] + 1)." '> Next </a>";
-} #}   
+      

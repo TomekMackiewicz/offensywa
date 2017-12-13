@@ -39,17 +39,18 @@ class FrontController extends Controller
     public function newsAction($page)
     {
         $em = $this->getDoctrine()->getManager();
-        
-        //$category = $em->getRepository('AppBundle:Category')->findOneById(1);
-        $posts = $em->getRepository('AppBundle:Category')->findNews(1, $page);
+        $perPage = 2;
+        $posts = $em->getRepository('AppBundle:Category')->findCategoryPosts(1, $page, $perPage);
         $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(1);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
+        
+        $pages = ceil($postsCount / $perPage);
                
         return $this->render('front/news.html.twig', [
             'posts' => $posts,
-            'postsCount' => $postsCount,
+            'pages' => $pages,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,
@@ -96,18 +97,23 @@ class FrontController extends Controller
     }   
     
     /**
-     * @Route("/galerie-zdjec", name="galleries")
+     * @Route("/galerie-zdjec/{page}", name="galleries")
      */
-    public function galleriesAction(Request $request)
+    public function galleriesAction($page)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('AppBundle:Category')->findOneById(4);       
+        $perPage = 2;
+        $posts = $em->getRepository('AppBundle:Category')->findCategoryPosts(4, $page, $perPage);
+        $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(4);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
-               
+        
+        $pages = ceil($postsCount / $perPage);
+        
         return $this->render('front/galleries.html.twig', [
-            'category' => $category,
+            'posts' => $posts,
+            'pages' => $pages,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,

@@ -11,10 +11,9 @@ namespace AppBundle\Repository;
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
     
-    public function findNews($id, $page)
+    public function findCategoryPosts($id, $page, $perPage)
     {        
-        $offset = 0;
-        $perPage = 2; 
+        $offset = 0; 
 
         if($page) {
             $page_value = $page;
@@ -25,13 +24,11 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
 
         $em = $this->getEntityManager();        
         $query = $em->createQuery('
-            SELECT p 
+            SELECT p           
             FROM AppBundle:Post p
-
             WHERE :id MEMBER OF p.categories
-            ')->setParameter('id', $id)->setMaxResults($perPage)->setFirstResult($offset);
-        //$query->addSelect('
-        //');
+        ')->setParameter('id', $id)->setMaxResults($perPage)->setFirstResult($offset);
+
         $news = $query->getResult();
         
         return $news;        
