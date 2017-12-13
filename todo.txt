@@ -1,6 +1,4 @@
 
-aktualności - paginacja
-
 ck editor you tube - rozmiar
 
 galerie - uprościć + lightbox

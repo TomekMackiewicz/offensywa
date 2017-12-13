@@ -47,6 +47,8 @@ pre,
 .icon-bar,
 .breadcrumb,
 .pagination,
+.pagination > li:first-child > a, .pagination > li:first-child > span,
+.pagination > li:last-child > a, .pagination > li:last-child > span,
 .pager *,
 .label,
 .badge,
@@ -128,6 +130,11 @@ pre,
 .navbar-default .navbar-nav > .active > a {
     color: #ffffff !important;
     background-color: red !important;    
+}
+
+.pagination > .active > a {
+    background-color: red !important;
+    border-color: red !important;
 }
 
 .dropdown-menu {

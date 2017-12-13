@@ -21,6 +21,7 @@
                     {% endif %} 
                     {{ article.body | purify }}
                 {% endfor %}
+                {% if pages > 1 %}
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         {% if app.request.attributes.get('_route_params')['page'] != 1 %}
@@ -43,7 +44,8 @@
                         </li>
                         {% endif %}
                     </ul>
-                </nav>                     
+                </nav> 
+                {% endif %}
             {% else %}
                 Brak postów
             {% endif %}               
