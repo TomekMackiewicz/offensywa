@@ -1,6 +1,4 @@
 
-Ad, User - flash (delete, user = all)
-
 ck editor you tube - rozmiar
 
 galerie - uprościć + lightbox
@@ -9,7 +7,6 @@ galleries, news - nie na sztywno !
 
 user to edit his player profile
 user profile 
-admin confirm user !
 forgot password
 
 Asserts! / crud / view >>> tournament (turniej)
@@ -41,7 +38,7 @@ usunąć niewykorzystywane metody i widoki
 
 fb
 
-powiadomienia - dopracować
+powiadomienia - dopracować + new user
 
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
