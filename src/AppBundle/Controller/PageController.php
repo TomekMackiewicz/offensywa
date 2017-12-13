@@ -64,7 +64,7 @@ class PageController extends Controller
     /**
      * Finds and displays a page entity.
      *
-     * @Route("informacje/{id}", name="page_show")
+     * @Route("informacje/{slug}", name="page_show")
      * @Method("GET")
      */
     public function showAction(Page $page)

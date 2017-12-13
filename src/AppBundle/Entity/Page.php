@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Page
@@ -23,14 +24,26 @@ class Page
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="title", type="string", length=255, unique=true)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @Assert\Regex(
+     *   pattern = "/^[a-z0-9]+(?:-[a-z0-9]+)*$/",
+     *   match = true,
+     *   message = "field.regex"
+     * )
+     * @ORM\Column(name="slug", type="string")
+     */
+    private $slug;     
+    
+    /**
+     * @var string
+     * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="body", type="text")
      */
     private $body;
@@ -70,6 +83,30 @@ class Page
         return $this->title;
     }
 
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Page
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }    
+    
     /**
      * Set body
      *
