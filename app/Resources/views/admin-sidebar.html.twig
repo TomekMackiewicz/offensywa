@@ -101,11 +101,21 @@
             </div>             
         </li>
         <li>
-            <a href="#">
+            <a href="#!"
+               data-toggle="collapse" 
+               data-target="#ad" 
+               aria-expanded="false" 
+               aria-controls="ad">
                 <i class="fa fa-check-square-o admin-list-icon" aria-hidden="true"></i>
-                Rekrutacja
+                Ogłoszenia
             </a>
-        </li>
+            <div class="collapse" id="ad">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('ad_admin_index') }}">Lista</a></li>
+                    <li><a href="{{ path('ad_new') }}">Dodaj</a></li>
+                </ul>
+            </div>             
+        </li>        
         <li>
             <a href="#!"
                data-toggle="collapse" 

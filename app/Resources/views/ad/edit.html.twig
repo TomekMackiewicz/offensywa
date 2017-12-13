@@ -1,0 +1,18 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <h1>Edytuj ogłoszenie</h1>
+    {% include 'partials/gritter.html.twig' %}
+    <div class="admin-box">
+        {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
+            {{ form_widget(edit_form) }}
+            <input type="submit" class="btn btn-primary" value="Edytuj" />
+        {{ form_end(edit_form) }}
+        <a href="{{ path('ad_admin_index') }}" class="btn btn-default pull-left admin-form-btn-margin">
+            Wróć do listy
+        </a>
+        {{ form_start(delete_form) }}
+            <input type="submit" class="btn btn-danger" value="Usuń">
+        {{ form_end(delete_form) }}
+    </div>
+{% endblock %}
