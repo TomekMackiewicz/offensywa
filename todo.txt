@@ -8,6 +8,7 @@ galleries, news - nie na sztywno !
 user to edit his player profile
 user profile 
 admin confirm user !
+forgot password
 
 Asserts! / crud / view >>> tournament (turniej)
 
@@ -37,8 +38,6 @@ możliwość usuwania rodzajów płatności (składka, wpisowe)?
 usunąć niewykorzystywane metody i widoki
 
 fb
-
-search?
 
 powiadomienia - dopracować
 
