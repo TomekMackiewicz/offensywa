@@ -91,7 +91,7 @@ class TeamController extends Controller
     /**
      * Finds and displays a team entity.
      *
-     * @Route("/druzyny/{id}", name="team_show")
+     * @Route("/druzyny/rocznik-{year}", name="team_show")
      * @Method("GET")
      */
     public function showAction(Team $team)

@@ -4,8 +4,8 @@
             Rocznik {{ team.year }}
         </a>
         <ul class="submenu">
-            <li><a href="{{ path('team_show', { 'id': team.id }) }}">Kadra</a></li> 
-            <li><a href="{{ path('show_team_trainings', { 'year': team.id }) }}">Treningi</a></li>                       
+            <li><a href="{{ path('team_show', { 'year': team.year }) }}">Kadra</a></li> 
+            <li><a href="{{ path('show_team_trainings', { 'year': team.year }) }}">Treningi</a></li>                       
         </ul>
     </li> 
 {% endfor %}

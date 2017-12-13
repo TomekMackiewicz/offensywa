@@ -86,7 +86,7 @@ class TrainingController extends Controller
     /**
      * Finds and displays a training entity.
      *
-     * @Route("treningi/{year}", name="show_team_trainings")
+     * @Route("treningi/rocznik-{year}", name="show_team_trainings")
      * @Method("GET")
      */
     public function showTeamTrainingsAction($year)
