@@ -90,7 +90,7 @@ class PostController extends Controller
     /**
      * Finds and displays a post entity.
      *
-     * @Route("/posty/{id}", name="post_show")
+     * @Route("/posty/{slug}", name="post_show")
      * @Method("GET")
      */
     public function showAction(Post $post)

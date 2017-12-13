@@ -11,7 +11,7 @@
             {% if category.posts is not empty %}
                 <h1>Galerie zdjęć</h1>
                 {% for post in category.posts %}
-                    <h2><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.title }}</a></h2>
+                    <h2><a href="{{ path('post_show', { 'slug': post.slug }) }}">{{ post.title }}</a></h2>
                     <small>{% if post.publishDate %}
                         <i class="fa fa-clock-o" aria-hidden="true"></i> 
                         {{ post.publishDate|date('Y-m-d H:i') }}{% endif %}

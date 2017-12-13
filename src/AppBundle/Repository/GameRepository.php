@@ -148,6 +148,7 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
             JOIN AppBundle:Team at
             WITH at.id = g.awayTeam            
             WHERE ht.isMy = 1 OR at.isMy = 1
+            ORDER BY g.date DESC
         ');
         $fixtures = $query->getResult();
         

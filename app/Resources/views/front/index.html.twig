@@ -25,7 +25,7 @@
                             {% endif %}                                                                     
                                 <div class="carousel-caption">
                                     <h3>
-                                        <a href="{{ path('post_show', { 'id': post.id }) }}">
+                                        <a href="{{ path('post_show', { 'slug': post.slug }) }}">
                                             {{ post.title }}
                                         </a>
                                     </h3>
@@ -35,7 +35,7 @@
                                         {% else %}
                                             {{ post.body | purify }}
                                         {% endif %}
-                                        <a class="label" href="{{ path('post_show', { 'id': post.id }) }}" target="_blank">
+                                        <a class="label" href="{{ path('post_show', { 'slug': post.slug }) }}">
                                             Czytaj >>>
                                         </a>
                                     </p>
