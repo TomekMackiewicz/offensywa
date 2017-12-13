@@ -32,7 +32,7 @@ class GameController extends Controller
     /**
      * Lists all game entities
      *
-     * @Route("/games", name="game_index")
+     * @Route("/mecze", name="game_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -202,7 +202,7 @@ class GameController extends Controller
     /**
      * Show league table.
      *
-     * @Route("/tables", name="leaguetables")
+     * @Route("/tabele", name="leaguetables")
      * @Method("GET")
      */
     public function leagueTablesAction()

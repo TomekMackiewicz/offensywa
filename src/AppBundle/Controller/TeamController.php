@@ -17,7 +17,7 @@ class TeamController extends Controller
     /**
      * Lists all team entities.
      *
-     * @Route("/teams", name="team_index")
+     * @Route("/druzyny", name="team_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -91,7 +91,7 @@ class TeamController extends Controller
     /**
      * Finds and displays a team entity.
      *
-     * @Route("/teams/{id}", name="team_show")
+     * @Route("/druzyny/{id}", name="team_show")
      * @Method("GET")
      */
     public function showAction(Team $team)

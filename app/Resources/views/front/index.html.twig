@@ -82,7 +82,7 @@
                 {% for player in players %}
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="thumbnail">
-                            <a href="{{ path('player_show', { 'id': player.id }) }}">
+                            {#<a href="{{ path('player_show', { 'id': player.id }) }}">#}
                                 {% if player.image %}
                                     <img src="{% path player.image, 'small' %}" 
                                          class="img-responsive" 
@@ -94,7 +94,7 @@
                                     <h4>{{ player.firstName }} {{ player.lastName }}</h4>
                                     <p>{{ player.position }}</p>
                                 </div>
-                            </a>
+                            {#</a>#}
                         </div>                        
                     </div>
                 {% endfor %}                 
