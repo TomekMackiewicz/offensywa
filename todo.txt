@@ -8,7 +8,6 @@ galerie - uprościć + lightbox
 galleries, news - nie na sztywno !
 
 user to edit his player profile
-
 user profile 
 admin confirm user !
 
@@ -32,8 +31,6 @@ Offensywa
 ------------
 
 POTEM
-
-rekrutacja? OGŁOSZENIE!
 
 messages
 

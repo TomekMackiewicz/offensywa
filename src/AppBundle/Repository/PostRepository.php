@@ -20,4 +20,18 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         
         return $recentPosts;
     } 
+    
+    public function countCategoryPosts($id)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+             SELECT COUNT(p.id) 
+             FROM AppBundle:Post p
+             WHERE :id MEMBER OF p.categories                
+        ')->setParameter('id', $id);
+        $count = $query->getSingleScalarResult(); 
+        
+        return $count;
+    }    
+
 }

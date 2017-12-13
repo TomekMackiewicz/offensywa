@@ -10,4 +10,31 @@ namespace AppBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function findNews($id, $page)
+    {        
+        $offset = 0;
+        $perPage = 2; 
+
+        if($page) {
+            $page_value = $page;
+            if($page_value > 1) {	
+                $offset = ($page_value - 1) * $perPage;
+            }
+        }
+
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery('
+            SELECT p 
+            FROM AppBundle:Post p
+
+            WHERE :id MEMBER OF p.categories
+            ')->setParameter('id', $id)->setMaxResults($perPage)->setFirstResult($offset);
+        //$query->addSelect('
+        //');
+        $news = $query->getResult();
+        
+        return $news;        
+    }    
+    
 }

@@ -34,19 +34,22 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/aktualnosci", name="news")
+     * @Route("/aktualnosci/{page}", name="news")
      */
-    public function newsAction(Request $request)
+    public function newsAction($page)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $category = $em->getRepository('AppBundle:Category')->findOneById(1);
+        //$category = $em->getRepository('AppBundle:Category')->findOneById(1);
+        $posts = $em->getRepository('AppBundle:Category')->findNews(1, $page);
+        $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(1);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
                
         return $this->render('front/news.html.twig', [
-            'category' => $category,
+            'posts' => $posts,
+            'postsCount' => $postsCount,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,

@@ -57,7 +57,7 @@
                   <a href="{{ path('about') }}">O klubie</a>
                 </li>                 
                 <li {{ (app.request.attributes.get('_route') == 'news') ? ' class="active"' }}>
-                  <a href="{{ path('news') }}">Aktualności</a>
+                  <a href="{{ path('news', { 'page': 1 }) }}">Aktualności</a>
                 </li>
                 <li class="dropdown {{ (app.request.attributes.get('_route') == '...') ? ' active' }}">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kadra</a>
