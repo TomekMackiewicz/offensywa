@@ -137,5 +137,5 @@ class AdminController extends Controller
             'paymentsForLastMonths' => $paymentsForLastMonths
         ));
     }
-    
+   
 }

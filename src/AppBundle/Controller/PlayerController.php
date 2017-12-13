@@ -95,10 +95,18 @@ class PlayerController extends Controller
      * @Method("GET")
      */
     public function userShowAction(Player $player)
-    {        
-        return $this->render('player/user-show.html.twig', array(
-            'player' => $player
-        ));
+    {         
+        $userId = $this->getUser()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userPlayerId = $em->getRepository('AppBundle:User')->getUserPlayer($userId);
+        if ($player->getId() === intval($userPlayerId)) {
+            return $this->render('player/user-show.html.twig', array(
+                'player' => $player
+            ));  
+        } else {
+            return $this->redirectToRoute('forbidden');             
+        }
+
     }    
     
     /**
@@ -157,6 +165,10 @@ class PlayerController extends Controller
     {
         $editForm = $this->createForm('AppBundle\Form\UserPlayerType', $player);
         $editForm->handleRequest($request);
+        
+        $userId = $this->getUser()->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userPlayerId = $em->getRepository('AppBundle:User')->getUserPlayer($userId);        
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -169,10 +181,15 @@ class PlayerController extends Controller
             $this->addFlash("danger", "Błąd podczas aktualizacji zawodnika");
         }
 
-        return $this->render('player/user-edit.html.twig', array(
-            'player' => $player,
-            'edit_form' => $editForm->createView()
-        ));
+        if ($player->getId() === intval($userPlayerId)) {
+            return $this->render('player/user-edit.html.twig', array(
+                'player' => $player,
+                'edit_form' => $editForm->createView()
+            ));
+        } else {
+            return $this->redirectToRoute('forbidden');             
+        }        
+        
     }    
     
     /**

@@ -10,5 +10,16 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {   
+
+    public function getUserPlayer($id)
+    {
+        $em = $this->getEntityManager();        
+        $query = $em->createQuery(
+            'SELECT IDENTITY(u.player) FROM AppBundle:User u WHERE u.id = :id'
+        )->setParameter('id', $id);
+        $games = $query->getSingleScalarResult();
+        
+        return $games;         
+    }
     
 }
