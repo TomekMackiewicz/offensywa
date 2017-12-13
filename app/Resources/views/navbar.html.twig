@@ -11,6 +11,14 @@
                               <li><a href="{{ path('admin_dashboard') }}">Panel</a></li>  
                               <li><a href="{{ path('fos_user_security_logout') }}">Wyloguj</a></li>                              
                             </ul>
+                          </li> 
+                      {% elseif app.user %}
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="{{ path('fos_user_profile_show') }}">Profil</a></li>  
+                              <li><a href="{{ path('fos_user_security_logout') }}">Wyloguj</a></li>                              
+                            </ul>
                           </li>                           
                       {% else %}
                           <li><a href="{{ path('fos_user_security_login') }}">Zaloguj</a></li>

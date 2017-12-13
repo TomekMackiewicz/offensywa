@@ -91,21 +91,13 @@ class PlayerController extends Controller
     /**
      * Finds and displays a player entity.
      *
-     * @Route("/players/{id}", name="player_show")
+     * @Route("/user/player/{id}", name="user_player_show")
      * @Method("GET")
      */
-    public function showAction(Player $player)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
-        $leagueTables = $this->get('league_table')->getleagueTables();
-        
-        return $this->render('player/show.html.twig', array(
-            'player' => $player,
-            'lastMatch' => $lastMatch,
-            'nextMatch' => $nextMatch,
-            'leagueTables' => $leagueTables
+    public function userShowAction(Player $player)
+    {        
+        return $this->render('player/user-show.html.twig', array(
+            'player' => $player
         ));
     }    
     
@@ -155,6 +147,34 @@ class PlayerController extends Controller
         ));
     }
 
+    /**
+     * Displays a form to edit an existing player entity.
+     *
+     * @Route("/user/players/{id}/edit", name="user_player_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function userEditAction(Request $request, Player $player)
+    {
+        $editForm = $this->createForm('AppBundle\Form\UserPlayerType', $player);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Zawodnik został uaktualniony");
+
+            return $this->redirectToRoute('user_player_show', array('id' => $player->getId()));
+            
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", "Błąd podczas aktualizacji zawodnika");
+        }
+
+        return $this->render('player/user-edit.html.twig', array(
+            'player' => $player,
+            'edit_form' => $editForm->createView()
+        ));
+    }    
+    
     /**
      * Deletes a player entity.
      *

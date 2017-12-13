@@ -79,6 +79,10 @@ pre,
     padding: 0px;
 }
 
+.sidebar-nav > .navbar {
+    height:100vh;
+}
+
 .col-fluid {
     padding: 0px;
 }

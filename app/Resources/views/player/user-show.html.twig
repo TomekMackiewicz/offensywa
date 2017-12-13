@@ -1,0 +1,36 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">    
+            <div class="admin-box">
+                {% if player %}
+                    <h1>{{ player.firstName }} {{ player.lastName }}</h1>
+                    {% if player.image %}
+                        <img src="{% path player.image, 'big' %}">
+                    {% endif %}
+                    <p>Data urodzenia:
+                        {% if player.birthDate %}
+                            {{ player.birthDate|date('Y-m-d') }}
+                        {% endif %}            
+                    </p>
+                    <p>Pozycja:
+                        {% if player.position %}
+                            {{ player.position }}
+                        {% endif %}           
+                    </p>  
+                    <p>Drużyna:
+                        {% if player.team %}
+                            {{ player.team.name }}
+                        {% endif %}      
+                    </p>
+                    <a href="{{ path('fos_user_profile_show') }}" class="btn btn-default pull-left admin-form-btn-margin">
+                        Wróć
+                    </a>                    
+                {% else %}
+                    Nie ma takiego zawodnika
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

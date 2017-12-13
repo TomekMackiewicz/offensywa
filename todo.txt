@@ -6,6 +6,10 @@ galerie - uprościć + lightbox
 galleries, news - nie na sztywno !
 
 user to edit his player profile
+bind unique
+unbind
+
+user ma widzieć tylko swojego zawodnika!
 
 Asserts! / crud / view >>> tournament (turniej)
 
