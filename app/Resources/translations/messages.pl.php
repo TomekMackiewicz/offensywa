@@ -63,5 +63,7 @@ return array(
     'October' => 'październik',
     'November' => 'listopad',
     'December' => 'grudzień',
+    'ROLE_USER' => 'Użytkownik',
+    'ROLE_SUPER_ADMIN' => 'Admin'
 
 );

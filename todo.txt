@@ -1,4 +1,6 @@
 
+Ad, User - flash (delete, user = all)
+
 ck editor you tube - rozmiar
 
 galerie - uprościć + lightbox

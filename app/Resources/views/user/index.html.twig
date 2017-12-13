@@ -1,0 +1,56 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <h1>Użytkownicy</h1>
+    {% include 'partials/gritter.html.twig' %}   
+    <div class="admin-box">
+        <table class="table data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Nazwa użytkownika</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Email</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Ostatnie logowanie</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Rola</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Status</th>
+                    <th>Edycja</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.lastLogin | date('Y-m-d H:i') }}</td>
+                    <td>{{ user.roles[0] | trans }}</td>
+                    <td>
+                        {% if user.enabled %}
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        {% else %}
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        {% endif %}
+                    </td>  
+                    <td class="col-md-2">
+                    {% if is_granted('ROLE_ADMIN') and user.roles[0] != 'ROLE_SUPER_ADMIN' %} 
+                        {% if user.enabled %}
+                        <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                            Dezktywuj
+                        </a>
+                        {% else %}
+                        <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                            Aktywuj
+                        </a>                            
+                        {% endif %}
+                        <form action="{{ path('user_delete', { 'id': user.id }) }}" method="post">
+                            {{ form_widget(deleteForms[user.id]) }}
+                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
+                        </form>
+                    {% endif %}
+                    </td>                    
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>   
+{% endblock %}

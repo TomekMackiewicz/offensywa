@@ -141,6 +141,11 @@ class AdController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($ad);
             $em->flush();
+            
+            $this->addFlash("success", "Ogłoszenie usunięte");
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas usuwania ogłoszenia");
         }
 
         return $this->redirectToRoute('ad_index');

@@ -21,6 +21,21 @@
         <li>
             <a href="#!" 
                data-toggle="collapse" 
+               data-target="#users" 
+               aria-expanded="false" 
+               aria-controls="users">
+                <i class="fa fa-user admin-list-icon" aria-hidden="true"></i>
+                Użytkownicy
+            </a>
+            <div class="collapse" id="users">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('user_index') }}">Lista</a></li>
+                </ul>
+            </div>            
+        </li>         
+        <li>
+            <a href="#!" 
+               data-toggle="collapse" 
                data-target="#pages" 
                aria-expanded="false" 
                aria-controls="pages">
@@ -31,7 +46,6 @@
                 <ul class="list-unstyled admin-list">
                     <li><a href="{{ path('admin_page_index') }}">Lista</a></li>
                     <li><a href="{{ path('page_new') }}">Dodaj</a></li>
-                    {#<li><a href="{{ path('category_index') }}">Kategorie</a></li>#}
                 </ul>
             </div>            
         </li>        

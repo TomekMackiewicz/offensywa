@@ -23,7 +23,7 @@ $(document).ready(function() {
     });
 
     function confirmDelete(form) {
-        var result = confirm('Are you sure you want to delete this question?');
+        var result = confirm('Jesteś pewien?');
         if (result === true) {
             $(form).submit();
         }
