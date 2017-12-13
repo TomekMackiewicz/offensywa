@@ -39,10 +39,10 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("/{id}/activate", name="user_activate")
      * @Method({"GET", "POST"})
      */
-    public function editAction(User $user)
+    public function activateAction(User $user)
     {
         if ($user->isEnabled() === true) {
             $user->setEnabled(false);
@@ -60,6 +60,34 @@ class UserController extends Controller
             
         return $this->redirectToRoute('user_index');
     }    
+
+    /**
+     * Displays a form to bind user entity with player.
+     *
+     * @Route("/{id}/bind", name="user_bind")
+     * @Method({"GET", "POST"})
+     */
+    public function bindAction(Request $request, User $user)
+    {
+        $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash("success", "Profile zostały połączone");
+
+            return $this->redirectToRoute('user_index');
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas łączenia profili");
+        }
+
+        return $this->render('user/bind.html.twig', array(
+            'user' => $user,
+            'edit_form' => $form->createView()
+        ));
+    }
     
     /**
      * Deletes user entity.

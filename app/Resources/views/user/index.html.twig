@@ -11,6 +11,7 @@
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Nazwa użytkownika</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Email</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Ostatnie logowanie</th>
+                    <th>Zbindowany</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Rola</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Status</th>
                     <th>Edycja</th>
@@ -23,6 +24,13 @@
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.lastLogin | date('Y-m-d H:i') }}</td>
+                    <td>
+                        {% if user.player %}
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        {% else %}
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        {% endif %}
+                    </td>
                     <td>{{ user.roles[0] | trans }}</td>
                     <td>
                         {% if user.enabled %}
@@ -34,14 +42,17 @@
                     <td class="col-md-2">
                     {% if is_granted('ROLE_ADMIN') and user.roles[0] != 'ROLE_SUPER_ADMIN' %} 
                         {% if user.enabled %}
-                        <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                            Dezktywuj
+                        <a href="{{ path('user_activate', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
                         </a>
                         {% else %}
-                        <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                            Aktywuj
+                        <a href="{{ path('user_activate', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                            <i class="fa fa-unlock" aria-hidden="true"></i>
                         </a>                            
                         {% endif %}
+                        <a href="{{ path('user_bind', { 'id': user.id }) }}" class="btn btn-success btn-sm pull-left admin-form-btn-margin">
+                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                        </a>                          
                         <form action="{{ path('user_delete', { 'id': user.id }) }}" method="post">
                             {{ form_widget(deleteForms[user.id]) }}
                             <input type="submit" class="btn btn-danger btn-sm" value="Usuń">

@@ -1,0 +1,15 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <h1>Połącz profile</h1>
+    {% include 'partials/gritter.html.twig' %}
+    <div class="admin-box">
+        {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
+            {{ form_widget(edit_form) }}
+            <input type="submit" class="btn btn-primary" value="Połącz" />
+        {{ form_end(edit_form) }}
+        <a href="{{ path('user_index') }}" class="btn btn-default pull-left admin-form-btn-margin">
+            Wróć do listy
+        </a>
+    </div>
+{% endblock %}

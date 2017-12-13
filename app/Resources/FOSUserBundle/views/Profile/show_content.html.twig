@@ -7,6 +7,8 @@
     <p>{{ user.email }}</p>
     <p><a href="{{ path('fos_user_change_password') }}">Zmień hasło</a></p>
     <p><a href="{{ path('fos_user_profile_edit') }}">Edytuj profil</a></p>
+    <p><a href="{{ path('fos_user_profile_edit') }}">Zobacz swój profil zawodnika</a></p>
+    <p><a href="{{ path('fos_user_profile_edit') }}">Edytuj swój profil zawodnika</a></p>
     {% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="flash-notice">
