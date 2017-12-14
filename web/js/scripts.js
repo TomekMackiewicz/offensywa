@@ -244,7 +244,7 @@ $(document).ready(function() {
         $('#gritter-notice-wrapper').fadeOut(); 
     }, 5000);
     
-    $('.notification-delete').on('click', function() {
+    $("body").on('click', '.notification-delete', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             url: '/admin/notifications/'+id,

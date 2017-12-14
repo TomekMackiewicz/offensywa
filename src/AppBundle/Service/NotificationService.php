@@ -74,9 +74,11 @@ class NotificationService extends Controller
         $em = $this->doctrine->getManager();
 
         $notificationData = $em->getRepository('AppBundle:Notification')->findAllByDate();
-
+        $notificationsCount = $em->getRepository('AppBundle:Notification')->countNotifications();
+        
         return $this->render('partials/notifications.html.twig', array(
-            'notificationData' => $notificationData
+            'notificationData' => $notificationData,
+            'notificationsCount' => $notificationsCount
         ));        
     }    
     

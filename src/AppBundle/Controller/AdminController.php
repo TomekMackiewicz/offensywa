@@ -126,7 +126,8 @@ class AdminController extends Controller
         $trainings = $em->getRepository('AppBundle:Training')->findAll(); 
         $games = $em->getRepository('AppBundle:Game')->getCurrentMonthGames();  
         $calendarData = $this->getCalendarData($games, $trainings);
-        $notificationData = $em->getRepository('AppBundle:Notification')->findAllByDate(); 
+        $notificationData = $em->getRepository('AppBundle:Notification')->findAllByDate();
+        $notificationsCount = $em->getRepository('AppBundle:Notification')->countNotifications(); 
 
         return $this->render('admin/dashboard.html.twig', array(
             'calendarData' => $calendarData,
@@ -134,7 +135,8 @@ class AdminController extends Controller
             'playersCount' => $playersCount,
             'teamsCount' => $teamsCount,
             'thisMonthPayments' => $thisMonthPayments,
-            'paymentsForLastMonths' => $paymentsForLastMonths
+            'paymentsForLastMonths' => $paymentsForLastMonths,
+            'notificationsCount' => $notificationsCount
         ));
     }
    

@@ -1,4 +1,4 @@
-<h2>Powiadomienia</h2>
+<h2>Powiadomienia <span class="badge">{{ notificationsCount }}</span></h2>
 {% if notificationData is not null %}
     {% for notification in notificationData %}
         {% if notification.type == "request" %}

@@ -17,5 +17,15 @@ class NotificationRepository extends \Doctrine\ORM\EntityRepository
         $result = $query->getResult(); 
         
         return $result;       
-    }    
+    }
+
+    public function countNotifications()
+    { 
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('SELECT COUNT(n.id) FROM AppBundle:Notification n');
+        $result = $query->getSingleScalarResult(); 
+        
+        return $result;       
+    }
+    
 }

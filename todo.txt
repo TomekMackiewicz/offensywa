@@ -32,10 +32,6 @@ usunąć niewykorzystywane metody i widoki
 
 you tube - kanał
 
-powiadomienia
-- ilość
-- tag outdated
-
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
 Walidacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
