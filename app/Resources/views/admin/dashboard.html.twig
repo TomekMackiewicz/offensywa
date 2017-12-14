@@ -83,13 +83,13 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6">
-            <div class="admin-box">
+            <div class="admin-box" id="notifications">
                 <h2>Powiadomienia</h2>
                 {% if notificationData is not null %}
                     {% for notification in notificationData %}
                         {% if notification.type == "request" %}
                             <div class="alert alert-{{ notification.color }} alert-dismissible fade in" role="alert"> 
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="close notification-delete" data-dismiss="alert" aria-label="Close" data-id="{{ notification.id }}">
                                     <span aria-hidden="true">×</span>
                                 </button>
                                 <p><span class="badge">{{ notification.date|date('Y-m-d H:i') }}</span> <strong>{{ notification.title }}</strong></p>
@@ -98,7 +98,7 @@
                         {% endif %}
                         {% if notification.type == "game" %}
                             <div class="alert alert-{{ notification.color }} alert-dismissible fade in" role="alert"> 
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="close notification-delete" data-dismiss="alert" aria-label="Close" data-id="{{ notification.id }}">
                                     <span aria-hidden="true">×</span>
                                 </button>
                                 <p><span class="badge">{{ notification.date|date('Y-m-d H:i') }}</span> <strong>{{ notification.title }}</strong></p>
@@ -107,7 +107,7 @@
                         {% endif %}
                         {% if notification.type == "user" %}
                             <div class="alert alert-{{ notification.color }} alert-dismissible fade in" role="alert"> 
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="close notification-delete" data-dismiss="alert" aria-label="Close" data-id="{{ notification.id }}">
                                     <span aria-hidden="true">×</span>
                                 </button>
                                 <p><span class="badge">{{ notification.date|date('Y-m-d H:i') }}</span> <strong>{{ notification.title }}</strong></p>

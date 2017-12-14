@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class NotificationRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllByDate()
+    { 
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('SELECT n FROM AppBundle:Notification n ORDER BY n.date ASC')->setMaxResults(5);
+        $result = $query->getResult(); 
+        
+        return $result;       
+    }    
 }

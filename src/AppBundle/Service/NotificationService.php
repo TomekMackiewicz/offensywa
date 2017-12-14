@@ -4,15 +4,16 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Notification;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-//use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-//use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Notification service
  */
-class NotificationService
+class NotificationService extends Controller
 {
 
     public function __construct(Registry $doctrine)
@@ -61,5 +62,43 @@ class NotificationService
         $em->persist($notification);
         $em->flush();                 
     }
+
+    /**
+     * Refresh notification list
+     *
+     * @Route("/admin/notifications", name="notification_refresh")
+     * @Method("GET")
+     */
+    public function refreshAction()
+    {
+        $em = $this->doctrine->getManager();
+
+        $notifications = $em->getRepository('AppBundle:Notification')->findAllByDate();
+
+        $serializedEntity = $this->container->get('serializer')->serialize($notifications, 'json');
+
+        return new Response($serializedEntity);        
+        //return new JsonResponse(json_encode($notifications));
+    }    
     
+    /**
+     * Deletes a notification entity.
+     *
+     * @Route("/admin/notifications/{id}", name="notification_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->doctrine->getManager();
+        $notification = $em->getRepository('AppBundle:Notification')->findOneById($id);
+        
+        try {
+            $em->remove($notification);
+            $em->flush();            
+        } catch (Exception $ex) {
+            throw new Exception($ex);
+        }
+        return $this->redirectToRoute('admin_dashboard');
+        //return new JsonResponse();
+    }   
 }

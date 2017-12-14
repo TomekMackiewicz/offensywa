@@ -126,7 +126,7 @@ class AdminController extends Controller
         $trainings = $em->getRepository('AppBundle:Training')->findAll(); 
         $games = $em->getRepository('AppBundle:Game')->getCurrentMonthGames();  
         $calendarData = $this->getCalendarData($games, $trainings);
-        $notificationData = $em->getRepository('AppBundle:Notification')->findAll(); 
+        $notificationData = $em->getRepository('AppBundle:Notification')->findAllByDate(); 
 
         return $this->render('admin/dashboard.html.twig', array(
             'calendarData' => $calendarData,

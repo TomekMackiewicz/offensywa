@@ -189,7 +189,7 @@ $(document).ready(function() {
 
     function checkUniqueYear(value) {
         $.ajax({
-            url: 'http://localhost:8000/admin/teams/unique-year/'+value,
+            url: 'http://localhost:8000/admin/teams/unique-year/'+value, // relative should work
             type: 'GET',
             data: value,
             success: function(response) {
@@ -243,6 +243,36 @@ $(document).ready(function() {
     setTimeout(function() { 
         $('#gritter-notice-wrapper').fadeOut(); 
     }, 5000);
+    
+    $('.notification-delete').on('click', function() {
+        var id = $(this).attr('data-id');
+        $.ajax({
+            url: '/admin/notifications/'+id,
+            type: 'DELETE',
+            data: id,
+            success: function(response) {
+                loadNotifications();
+            },
+            error: function(response) {
+                alert(response);
+            }
+        }); 
+    });
+    
+    function loadNotifications() {
+        $.ajax({
+            url: '/admin/notifications',
+            type: 'GET',
+            success: function(response) {
+                console.log(response);
+                $('#notifications').html(response);
+            },
+            error: function(response) {
+                alert(response);
+            }
+        });        
+    }
+    
 });   
     
                      
