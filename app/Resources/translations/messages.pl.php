@@ -65,5 +65,4 @@ return array(
     'December' => 'grudzień',
     'ROLE_USER' => 'Użytkownik',
     'ROLE_SUPER_ADMIN' => 'Admin'
-
 );

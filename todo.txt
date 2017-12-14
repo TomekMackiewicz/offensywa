@@ -5,9 +5,6 @@ galerie - uprościć + lightbox
 
 galleries, news - nie na sztywno !
 
-bind unique
-unbind
-
 Asserts! / crud / view >>> tournament (turniej)
 
 

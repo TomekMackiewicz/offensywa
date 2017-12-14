@@ -22,7 +22,8 @@ class UserType extends AbstractType
                 },
                 'multiple' => false,
                 'expanded' => false,
-                'label' => 'player'
+                'label' => 'player',
+                'placeholder' => ''
             ));                
     }
     
