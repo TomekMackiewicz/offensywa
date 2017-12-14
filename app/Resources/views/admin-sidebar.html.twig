@@ -12,19 +12,25 @@
     <div class="navbar-collapse collapse sidebar-navbar-collapse">
       <ul class="nav navbar-nav vertical-nav">
         {% if is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
-        <li>
+        <li {{ (app.request.attributes.get('_route') == 'fos_user_profile_show') ? ' class="active"' }}>
+            <a href="{{ path('fos_user_profile_show') }}">
+                <i class="fa fa-user admin-list-icon" aria-hidden="true"></i>
+                Profil
+            </a>
+        </li>            
+        <li {{ (app.request.attributes.get('_route') == 'fos_user_change_password') ? ' class="active"' }}>
             <a href="{{ path('fos_user_change_password') }}">
                 <i class="fa fa-key admin-list-icon" aria-hidden="true"></i>
                 Zmień hasło
             </a>
         </li>
-        <li>
+        <li {{ (app.request.attributes.get('_route') == 'fos_user_profile_edit') ? ' class="active"' }}>
             <a href="{{ path('fos_user_profile_edit') }}">
                 <i class="fa fa-pencil-square-o admin-list-icon" aria-hidden="true"></i>
                 Edytuj profil
             </a>
         </li>        
-        <li>
+        <li {{ (app.request.attributes.get('_route') == 'request_new') ? ' class="active"' }}>
             <a href="{{ path('request_new') }}">
                 <i class="fa fa-opencart admin-list-icon" aria-hidden="true"></i>
                 Złóż zamówienie
@@ -32,13 +38,13 @@
         </li>
         {% endif %}  
         {% if is_granted('ROLE_ADMIN') %}  
-        <li class="active">
+        <li {{ (app.request.attributes.get('_route') == 'admin_dashboard') ? ' class="active"' }}>
             <a href="{{ path('admin_dashboard') }}">
                 <i class="fa fa-tachometer admin-list-icon" aria-hidden="true"></i>
                 Kokpit
             </a>
         </li>
-        <li>
+        <li {{ (app.request.attributes.get('_route') == 'user_index') ? ' class="active"' }}>
             <a href="#!" 
                data-toggle="collapse" 
                data-target="#users" 
@@ -52,8 +58,12 @@
                     <li><a href="{{ path('user_index') }}">Lista</a></li>
                 </ul>
             </div>            
-        </li>         
+        </li>
+        {% if app.request.attributes.get('_route') == 'admin_page_index' or app.request.attributes.get('_route') == 'page_new' %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!" 
                data-toggle="collapse" 
                data-target="#pages" 
@@ -69,7 +79,14 @@
                 </ul>
             </div>            
         </li>        
+        {% if app.request.attributes.get('_route') == 'admin_post_index' 
+           or app.request.attributes.get('_route') == 'post_new'
+           or app.request.attributes.get('_route') == 'category_index'
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!" 
                data-toggle="collapse" 
                data-target="#posts" 
@@ -86,7 +103,13 @@
                 </ul>
             </div>            
         </li>          
+        {% if app.request.attributes.get('_route') == 'admin_sonata_media_media_list' 
+           or app.request.attributes.get('_route') == 'admin_sonata_media_gallery_list' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!" 
                data-toggle="collapse" 
                data-target="#media" 
@@ -102,7 +125,13 @@
                 </ul>
             </div>            
         </li>         
+        {% if app.request.attributes.get('_route') == 'admin_player_index' 
+           or app.request.attributes.get('_route') == 'player_new' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!" 
                data-toggle="collapse" 
                data-target="#players" 
@@ -118,7 +147,13 @@
                 </ul>
             </div>            
         </li>
+        {% if app.request.attributes.get('_route') == 'admin_team_index' 
+           or app.request.attributes.get('_route') == 'team_new' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!"
                data-toggle="collapse" 
                data-target="#teams" 
@@ -134,7 +169,13 @@
                 </ul>
             </div>             
         </li>
+        {% if app.request.attributes.get('_route') == 'ad_admin_index' 
+           or app.request.attributes.get('_route') == 'ad_new' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!"
                data-toggle="collapse" 
                data-target="#ad" 
@@ -150,7 +191,13 @@
                 </ul>
             </div>             
         </li>        
+        {% if app.request.attributes.get('_route') == 'admin_trainer_index' 
+           or app.request.attributes.get('_route') == 'trainer_new' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!"
                data-toggle="collapse" 
                data-target="#trainers" 
@@ -166,7 +213,13 @@
                 </ul>
             </div>             
         </li>
+        {% if app.request.attributes.get('_route') == 'admin_training_index' 
+           or app.request.attributes.get('_route') == 'training_new' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!"
                data-toggle="collapse" 
                data-target="#trainings" 
@@ -182,7 +235,14 @@
                 </ul>
             </div>             
         </li>        
+        {% if app.request.attributes.get('_route') == 'payment_index' 
+           or app.request.attributes.get('_route') == 'payment_new'
+           or app.request.attributes.get('_route') == 'paymentcategory_index' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!"
                data-toggle="collapse" 
                data-target="#payments" 
@@ -205,7 +265,13 @@
                 Wiadomości
             </a>
         </li>
+        {% if app.request.attributes.get('_route') == 'request_index' 
+           or app.request.attributes.get('_route') == 'request_new' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!" 
                data-toggle="collapse" 
                data-target="#requests" 
@@ -227,7 +293,13 @@
                 Wydarzenia
             </a>
         </li>
+        {% if app.request.attributes.get('_route') == 'admin_game_index' 
+           or app.request.attributes.get('_route') == 'game_new' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
+        {% endif %}
             <a href="#!" 
                data-toggle="collapse" 
                data-target="#games" 
