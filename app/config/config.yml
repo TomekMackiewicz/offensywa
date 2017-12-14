@@ -88,7 +88,8 @@ exercise_html_purifier:
     default:
         Cache.SerializerPath: '%kernel.cache_dir%/htmlpurifier'
         HTML.SafeIframe: true
-        #URI.SafeIframeRegexp: '%(www.youtube.com/embed)%'
+        #URI.SafeIframeRegexp: '%^http://www.youtube.com/embed/%'
+        #'/<iframe.*src=\"(.*)\".*><\/iframe>/isU'
         Filter.YouTube: true
 
 sonata_admin:

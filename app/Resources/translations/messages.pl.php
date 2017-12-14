@@ -64,5 +64,10 @@ return array(
     'November' => 'listopad',
     'December' => 'grudzień',
     'ROLE_USER' => 'Użytkownik',
-    'ROLE_SUPER_ADMIN' => 'Admin'
+    'ROLE_SUPER_ADMIN' => 'Admin',
+    'default' => 'domyślny',
+    'user' => 'użytkownik',
+    'event' => 'wydarzenie',
+    'sonata.media.provider.youtube' => 'Youtube',
+    'sonata.media.provider.image' => 'zdjęcie',
 );

@@ -554,7 +554,23 @@
             <trans-unit id="team">
                 <source>team</source>
                 <target>Drużyna</target>
-            </trans-unit>                                                  
+            </trans-unit> 
+            <trans-unit id="user">
+                <source>user</source>
+                <target>użytkownik</target>
+            </trans-unit> 
+            <trans-unit id="event">
+                <source>event</source>
+                <target>wydarzenie</target>
+            </trans-unit>
+            <trans-unit id="sonata.media.provider.youtube.description">
+                <source>sonata.media.provider.youtube.description</source>
+                <target>You Tube</target>
+            </trans-unit> 
+            <trans-unit id="sonata.media.provider.image.description">
+                <source>sonata.media.provider.image.description</source>
+                <target>Zdjęcie</target>
+            </trans-unit>                                                                                                   
         </body>
     </file>
 </xliff>

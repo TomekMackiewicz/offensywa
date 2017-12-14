@@ -1,6 +1,4 @@
 
-ck editor you tube - rozmiar
-
 galerie - uprościć + lightbox
 
 galleries, news - nie na sztywno !
@@ -33,8 +31,5 @@ usunąć niewykorzystywane metody i widoki
 you tube - kanał
 
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
-
-
-missing messages
 
 max file size?
