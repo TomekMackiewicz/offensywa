@@ -13,22 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Request controller
  */
 class RequestController extends Controller
-{
-    
-    private function addNotification($request) 
-    {
-        $em = $this->getDoctrine()->getManager();
-        $notification = new Notification();
-        $notification->setTitle('Nowe zamówienie');
-        $notification->setDate($request->getDate());
-        $notification->setWho($request->getUser());
-        $notification->setContext($request->getItem());
-        $notification->setType('request');
-        $notification->setColor('success');
-        $em->persist($notification);
-        $em->flush();                 
-    }    
-    
+{    
     /**
      * Lists all request entities.
      *
@@ -72,8 +57,10 @@ class RequestController extends Controller
             $em->persist($order);
             $em->flush();
 
+            $notification = $this->get('notification');
+            $notification->addRequestNotification($order);
+            
             $this->addFlash("success", "Zamówienie dodane");
-            $this->addNotification($order);
             
             return $this->redirectToRoute('fos_user_profile_show');
         } else if($form->isSubmitted() && !$form->isValid()) {

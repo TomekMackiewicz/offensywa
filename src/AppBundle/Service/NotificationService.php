@@ -1,0 +1,65 @@
+<?php
+
+namespace AppBundle\Service;
+
+use AppBundle\Entity\Notification;
+use Doctrine\Bundle\DoctrineBundle\Registry;
+//use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+//use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Notification service
+ */
+class NotificationService
+{
+
+    public function __construct(Registry $doctrine)
+    {
+        $this->doctrine = $doctrine;
+    }     
+    
+    public function addGameNotification($game) 
+    {
+        $em = $this->doctrine->getManager();
+        $notification = new Notification();
+        $notification->setTitle('Zbliża się mecz');
+        $notification->setDate($game->getDate());
+        $notification->setWho($game->getHomeTeam()->getName() . ' vs ' . $game->getAwayTeam()->getName());
+        $notification->setContext($game->getLocation());
+        $notification->setType('game');
+        $notification->setColor('warning');
+        $em->persist($notification);
+        $em->flush();                 
+    }
+
+    public function addRequestNotification($request) 
+    {
+        $em = $this->doctrine->getManager();
+        $notification = new Notification();
+        $notification->setTitle('Nowe zamówienie');
+        $notification->setDate($request->getDate());
+        $notification->setWho($request->getUser());
+        $notification->setContext($request->getItem());
+        $notification->setType('request');
+        $notification->setColor('success');
+        $em->persist($notification);
+        $em->flush();                 
+    }
+
+    public function addUserNotification($user) 
+    {
+        $em = $this->doctrine->getManager();
+        $notification = new Notification();
+        $notification->setTitle('Nowy użytkownik');
+        $notification->setDate(new \DateTime()); 
+        $notification->setWho($user->getUsername());
+        $notification->setContext($user->getEmail());
+        $notification->setType('user');
+        $notification->setColor('info');
+        $em->persist($notification);
+        $em->flush();                 
+    }
+    
+}

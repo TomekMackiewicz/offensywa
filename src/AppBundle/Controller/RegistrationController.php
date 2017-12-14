@@ -57,7 +57,9 @@ class RegistrationController extends BaseController
                 }
 
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
+                
+                $this->newUserNotification($user);
+                
                 return $response;
             }
 
@@ -73,4 +75,11 @@ class RegistrationController extends BaseController
             'form' => $form->createView(),
         ));
     }
+    
+    private function newUserNotification($user) 
+    {
+        $notification = $this->get('notification');
+        $notification->addUserNotification($user);        
+    }
+    
 }

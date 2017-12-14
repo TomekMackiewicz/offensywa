@@ -47,3 +47,7 @@ services:
         class: AppBundle\Service\LeagueTable
         arguments: ['@doctrine']
         public: true
+        
+    notification:
+        class: AppBundle\Service\NotificationService 
+        public: true

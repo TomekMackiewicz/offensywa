@@ -13,23 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Training controller
  */
 class TrainingController extends Controller
-{
-    
-    private function addNotification($training) 
-    {
-        $em = $this->getDoctrine()->getManager();
-        $notification = new Notification();
-        $notification->setTitle('Zbliża się trening');
-        //$notification->setDate($training->getDate()); //strtotime('next tuesday');
-        $notification->setDate($training->getDate()); 
-        $notification->setWho($training->getTeam()->getName());
-        $notification->setContext($training->getLocation() . ' ' . $training->getStartHour()->format('H:i') . ' - ' . $training->getEndHour()->format('H:i'));
-        $notification->setType('training');
-        $notification->setColor('info');
-        $em->persist($notification);
-        $em->flush();                 
-    }    
-
+{       
     /**
      * Lists all training entities.
      *
@@ -69,7 +53,6 @@ class TrainingController extends Controller
             $em->flush();
             
             $this->addFlash("success", "Trening został dodany");
-            $this->addNotification($training);
 
             return $this->redirectToRoute('admin_training_index');
             
