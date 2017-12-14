@@ -119,15 +119,5 @@ class FrontController extends Controller
             'leagueTables' => $leagueTables,
         ]);              
     }
-
-    /**
-     * Forbidden.
-     *
-     * @Route("/forbidden", name="forbidden")
-     */    
-    public function forbiddenAction()
-    {
-        return $this->render('forbidden.html.twig');        
-    }
     
 }

@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Controller\FrontController;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Player controller.
@@ -104,7 +104,7 @@ class PlayerController extends Controller
                 'player' => $player
             ));  
         } else {
-            return $this->redirectToRoute('forbidden');             
+            throw new AccessDeniedHttpException('Access denied.');
         }
 
     }    
@@ -187,7 +187,7 @@ class PlayerController extends Controller
                 'edit_form' => $editForm->createView()
             ));
         } else {
-            return $this->redirectToRoute('forbidden');             
+            throw new AccessDeniedHttpException('Access denied.');            
         }        
         
     }    
