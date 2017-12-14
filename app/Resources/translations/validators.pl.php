@@ -9,5 +9,7 @@ return array(
     'field.invalid.phone' => 'Niepoprawny format numeru telefonu',
     'player.already.paid' => 'Zawodnik już opłacił składkę za ten miesiąc',
     'duplicate.training.date' => 'W tym terminie dodano już inny trening',
-    'player.already.in.use' => 'Zawodnik jest już przypisany do innego gracza'
+    'player.already.in.use' => 'Zawodnik jest już przypisany do innego gracza',
+    'Invalid extensions' => 'Niedozwolony format pliku',
+    'Invalid mime type : %type%' => 'Niedozwolony typ pliku : %type%'
 );

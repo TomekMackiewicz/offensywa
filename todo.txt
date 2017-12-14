@@ -34,4 +34,7 @@ you tube - kanał
 
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
-sonata image validation - not working with @assert (player, post, team)
+
+missing messages
+
+max file size?

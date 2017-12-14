@@ -1,0 +1,14 @@
+AppBundle\Entity\Player:
+    properties:
+        image:
+           - Valid: ~
+
+AppBundle\Entity\Post:
+    properties:
+        image:
+           - Valid: ~
+           
+AppBundle\Entity\Team:
+    properties:
+        logo:
+           - Valid: ~

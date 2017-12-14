@@ -63,7 +63,7 @@ class PlayerType extends AbstractType
                 'label' => 'parentPhone'
             ));                
     }
-    
+
     /**
      * {@inheritdoc}
      */

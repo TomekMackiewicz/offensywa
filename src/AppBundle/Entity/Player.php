@@ -75,7 +75,7 @@ class Player
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="image", referencedColumnName="id", onDelete="CASCADE")
      */
-   private $image;    
+    private $image;    
 
     /**
      * @var Gallery
