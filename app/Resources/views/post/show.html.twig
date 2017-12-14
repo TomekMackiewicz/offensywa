@@ -3,6 +3,11 @@
 {% block meta %}
     <title>Offensywa &bull; Post</title>
     <meta name="description" content="Offensywa Książenice - {{ post.title }}">
+    <meta property="og:title" content="Offensywa Książenice – szkółka piłkarska" />
+    <meta property="og:description" content="{{ post.title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ app.request.uri }}" />
+    <meta property="og:image" content="http://placehold.it/760x400/cccccc/ffffff" />     
 {% endblock %}
 
 {% block content %}

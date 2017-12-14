@@ -26,13 +26,11 @@ Offensywa
 
 POTEM
 
-messages
-
-możliwość usuwania rodzajów płatności (składka, wpisowe)?
+mailing
 
 usunąć niewykorzystywane metody i widoki
 
-fb
+you tube - kanał
 
 powiadomienia - dopracować + new user
 
