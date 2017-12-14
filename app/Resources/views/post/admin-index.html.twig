@@ -15,10 +15,9 @@
                 <tr>
                     <th>#</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Tytuł</th>
-                    <th>Zdjęcie</th>
-                    <th>Treść</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Data publikacji</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Data modyfikacji</th>
+                    <th>Kategorie</th>
                     <th>Edycja</th>
                 </tr>
             </thead>
@@ -27,21 +26,17 @@
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ post.title }}</td>
-                    <td>
-                        {% if post.image %}
-                            {#<img src="{% path post.image, 'small' %}">#}
-                        {% endif %} 
-                    </td>    
-                    <td>
-                    {% if post.body | length > 160 %}
-                        {{ (post.body | slice(0, 161) | split(' ') | slice(0, -1) | join(' ') ~ '…') | purify }}
-                    {% else %}
-                        {{ post.body | purify }}
-                    {% endif %}                
-                    </td>
                     <td>{% if post.publishDate %}{{ post.publishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if post.modifyDate %}{{ post.modifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-
+                    <td>
+                        {% if post.categories is not empty %}
+                            {% for category in post.categories %}
+                                {{ category.name }}
+                            {% endfor %}
+                        {% else %}
+                            ---
+                        {% endif %}
+                    </td>
                     <td class="col-md-2">
                     {% if is_granted('ROLE_ADMIN') %}    
                         <a href="{{ path('post_edit', { 'id': post.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">

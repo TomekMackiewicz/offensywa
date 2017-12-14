@@ -194,7 +194,7 @@ class Training
      *
      * @return Training
      */    
-    public function setTeam(Team $team)
+    public function setTeam($team)
     {
         $this->team = $team;
         
@@ -218,7 +218,7 @@ class Training
      *
      * @return Training
      */    
-    public function setTrainer(Trainer $trainer)
+    public function setTrainer($trainer)
     {
         $this->trainer = $trainer;
         

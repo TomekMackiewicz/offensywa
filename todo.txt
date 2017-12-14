@@ -34,6 +34,4 @@ you tube - kanał
 
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
-Walidacja w edycji nie działa, kiedy w setterze jest nazwa encji - sprawdzić wszędzie
-
 sonata image validation - not working with @assert (player, post, team)
