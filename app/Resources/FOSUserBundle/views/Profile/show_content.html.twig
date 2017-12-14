@@ -1,32 +1,33 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% include 'partials/gritter.html.twig' %}
-
-<div class="admin-box"> 
-    <h2>{{ user.username }}</h2>
-    <p>{{ user.email }}</p>
-    <p><a href="{{ path('fos_user_change_password') }}">Zmień hasło</a></p>
-    <p><a href="{{ path('fos_user_profile_edit') }}">Edytuj profil</a></p>
-    {% if user.player %}
-        <p>
-            <a href="{{ path('user_player_show', { 'id': user.player.id }) }}">
-                Zobacz swój profil zawodnika
-            </a>
-        </p>
-        <p>
-            <a href="{{ path('user_player_edit', { 'id': user.player.id }) }}">
-                Edytuj swój profil zawodnika
-            </a>
-        </p>
-    {% endif %}
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="flash-notice">
-                <div class="alert alert-{{ label }} fade in">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    {{ message }}
-                </div>               
-            </div>
-        {% endfor %}
-    {% endfor %}    
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <div class="admin-box"> 
+            <h2>{{ user.username }}</h2>
+            <p>Email: <strong>{{ user.email }}</strong></p>
+            {% if user.player %}
+                <p>
+                    <a class="btn btn-default" href="{{ path('user_player_show', { 'id': user.player.id }) }}">
+                        Zobacz zawodnika
+                    </a>
+                </p>
+                <p>
+                    <a class="btn btn-default" href="{{ path('user_player_edit', { 'id': user.player.id }) }}">
+                        Edytuj zawodnika
+                    </a>
+                </p>
+            {% endif %}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash-notice">
+                        <div class="alert alert-{{ label }} fade in">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            {{ message }}
+                        </div>               
+                    </div>
+                {% endfor %}
+            {% endfor %}    
+        </div>
+    </div>
 </div>

@@ -11,6 +11,26 @@
     </div>
     <div class="navbar-collapse collapse sidebar-navbar-collapse">
       <ul class="nav navbar-nav vertical-nav">
+        {% if is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
+        <li>
+            <a href="{{ path('fos_user_change_password') }}">
+                <i class="fa fa-key admin-list-icon" aria-hidden="true"></i>
+                Zmień hasło
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('fos_user_profile_edit') }}">
+                <i class="fa fa-pencil-square-o admin-list-icon" aria-hidden="true"></i>
+                Edytuj profil
+            </a>
+        </li>        
+        <li>
+            <a href="{{ path('request_new') }}">
+                <i class="fa fa-opencart admin-list-icon" aria-hidden="true"></i>
+                Złóż zamówienie
+            </a>            
+        </li>
+        {% endif %}  
         {% if is_granted('ROLE_ADMIN') %}  
         <li class="active">
             <a href="{{ path('admin_dashboard') }}">
@@ -185,7 +205,6 @@
                 Wiadomości
             </a>
         </li>
-        {% endif %}
         <li>
             <a href="#!" 
                data-toggle="collapse" 
@@ -197,14 +216,11 @@
             </a>
             <div class="collapse" id="requests">
                 <ul class="list-unstyled admin-list">
-                    {% if is_granted('ROLE_ADMIN') %}
                     <li><a href="{{ path('request_index') }}">Lista</a></li>
-                    {% endif %}
                     <li><a href="{{ path('request_new') }}">Złóż zamówienie</a></li>
                 </ul>
             </div>            
         </li>
-        {% if is_granted('ROLE_ADMIN') %}
         <li>
             <a href="#">
                 <i class="fa fa-calendar admin-list-icon" aria-hidden="true"></i>

@@ -7,7 +7,6 @@ galleries, news - nie na sztywno !
 
 bind unique
 unbind
-user ma widzieć tylko swojego zawodnika!
 
 Asserts! / crud / view >>> tournament (turniej)
 
