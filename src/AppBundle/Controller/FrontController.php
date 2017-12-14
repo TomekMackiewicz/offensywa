@@ -34,31 +34,6 @@ class FrontController extends Controller
     }
 
     /**
-     * @Route("/aktualnosci/{page}", name="news")
-     */
-    public function newsAction($page)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $perPage = 2;
-        $posts = $em->getRepository('AppBundle:Category')->findCategoryPosts(1, $page, $perPage);
-        $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(1);
-        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
-        $leagueTables = $this->get('league_table')->getleagueTables();
-        
-        $pages = ceil($postsCount / $perPage);
-               
-        return $this->render('front/news.html.twig', [
-            'posts' => $posts,
-            'pages' => $pages,
-            'lastMatch' => $lastMatch,
-            'nextMatch' => $nextMatch,
-            'leagueTables' => $leagueTables,
-        ]);
-              
-    }
-
-    /**
      * @Route("/o-klubie", name="about")
      */
     public function aboutAction(Request $request)
@@ -95,6 +70,31 @@ class FrontController extends Controller
         ]);
               
     }   
+
+    /**
+     * @Route("/aktualnosci/{page}", name="news")
+     */
+    public function newsAction($page)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $perPage = 10;
+        $posts = $em->getRepository('AppBundle:Post')->findCategoryPosts(1, $page, $perPage);
+        $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(1);
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
+        $leagueTables = $this->get('league_table')->getleagueTables();
+        
+        $pages = ceil($postsCount / $perPage);
+               
+        return $this->render('front/news.html.twig', [
+            'posts' => $posts,
+            'pages' => $pages,
+            'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
+            'leagueTables' => $leagueTables,
+        ]);
+              
+    }
     
     /**
      * @Route("/galerie-zdjec/{page}", name="galleries")
@@ -102,8 +102,8 @@ class FrontController extends Controller
     public function galleriesAction($page)
     {
         $em = $this->getDoctrine()->getManager();
-        $perPage = 2;
-        $posts = $em->getRepository('AppBundle:Category')->findCategoryPosts(4, $page, $perPage);
+        $perPage = 10;
+        $posts = $em->getRepository('AppBundle:Post')->findCategoryPosts(4, $page, $perPage);
         $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(4);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();

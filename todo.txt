@@ -1,8 +1,6 @@
 
 galerie - uprościć + lightbox
 
-galleries, news - nie na sztywno !
-
 Asserts! / crud / view >>> tournament (turniej)
 
 
@@ -28,8 +26,12 @@ mailing
 
 usunąć niewykorzystywane metody i widoki
 
-you tube - kanał
-
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
 max file size?
+
+-----------
+Ustalić:
+
+- you tube - kanał
+- galerie, aktualności - na sztywno?
