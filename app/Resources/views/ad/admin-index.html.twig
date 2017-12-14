@@ -16,6 +16,7 @@
                     <th>#</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Tytuł</th>
                     <th>Treść</th>
+                    <th>Aktywne?</th>
                     <th>Edycja</th>
                 </tr>
             </thead>
@@ -31,6 +32,7 @@
                         {{ ad.body | purify }}
                     {% endif %}                
                     </td>
+                    <td>{% if ad.active %}Tak{% else %}Nie{% endif %}</td> 
                     <td class="col-md-2">
                     {% if is_granted('ROLE_ADMIN') %}    
                         <a href="{{ path('ad_edit', { 'id': ad.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">

@@ -181,7 +181,7 @@
                data-target="#ad" 
                aria-expanded="false" 
                aria-controls="ad">
-                <i class="fa fa-check-square-o admin-list-icon" aria-hidden="true"></i>
+                <i class="fa fa-calendar admin-list-icon" aria-hidden="true"></i>
                 Ogłoszenia
             </a>
             <div class="collapse" id="ad">
@@ -286,12 +286,6 @@
                     <li><a href="{{ path('request_new') }}">Złóż zamówienie</a></li>
                 </ul>
             </div>            
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa fa-calendar admin-list-icon" aria-hidden="true"></i>
-                Wydarzenia
-            </a>
         </li>
         {% if app.request.attributes.get('_route') == 'admin_game_index' 
            or app.request.attributes.get('_route') == 'game_new' 
