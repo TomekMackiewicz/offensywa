@@ -8,5 +8,6 @@ return array(
     'field.year' => 'Niepoprawny format daty rocznej.',
     'field.invalid.phone' => 'Niepoprawny format numeru telefonu',
     'player.already.paid' => 'Zawodnik już opłacił składkę za ten miesiąc',
-    'duplicate.training.date' => 'W tym terminie dodano już inny trening'
+    'duplicate.training.date' => 'W tym terminie dodano już inny trening',
+    'player.already.in.use' => 'Zawodnik jest już przypisany do innego gracza'
 );
