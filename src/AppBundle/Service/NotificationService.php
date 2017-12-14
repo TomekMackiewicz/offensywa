@@ -73,12 +73,11 @@ class NotificationService extends Controller
     {
         $em = $this->doctrine->getManager();
 
-        $notifications = $em->getRepository('AppBundle:Notification')->findAllByDate();
+        $notificationData = $em->getRepository('AppBundle:Notification')->findAllByDate();
 
-        $serializedEntity = $this->container->get('serializer')->serialize($notifications, 'json');
-
-        return new Response($serializedEntity);        
-        //return new JsonResponse(json_encode($notifications));
+        return $this->render('partials/notifications.html.twig', array(
+            'notificationData' => $notificationData
+        ));        
     }    
     
     /**
@@ -98,7 +97,7 @@ class NotificationService extends Controller
         } catch (Exception $ex) {
             throw new Exception($ex);
         }
+        
         return $this->redirectToRoute('admin_dashboard');
-        //return new JsonResponse();
     }   
 }

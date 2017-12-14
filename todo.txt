@@ -33,6 +33,7 @@ usunąć niewykorzystywane metody i widoki
 you tube - kanał
 
 powiadomienia
+- ilość
 - tag outdated
 
 gritter: mecz został dodany nie znika - dlaczego? (trening też)

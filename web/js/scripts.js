@@ -264,7 +264,6 @@ $(document).ready(function() {
             url: '/admin/notifications',
             type: 'GET',
             success: function(response) {
-                console.log(response);
                 $('#notifications').html(response);
             },
             error: function(response) {
