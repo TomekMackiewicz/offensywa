@@ -3,6 +3,7 @@ galerie - uprościć + lightbox
 
 Asserts! / crud / view >>> tournament (turniej)
 
+user registration - change message, mail when admin confirm
 
 --------------------------------------------------------------------------------
 mzpn 4 drużyny: 2006-2009
@@ -34,4 +35,3 @@ max file size?
 Ustalić:
 
 - you tube - kanał
-- galerie, aktualności - na sztywno?

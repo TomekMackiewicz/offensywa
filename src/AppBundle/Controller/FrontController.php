@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Category AS category;
 
 class FrontController extends Controller
 {
@@ -78,8 +79,8 @@ class FrontController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $perPage = 10;
-        $posts = $em->getRepository('AppBundle:Post')->findCategoryPosts(1, $page, $perPage);
-        $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(1);
+        $posts = $em->getRepository('AppBundle:Post')->findCategoryPosts(category::NEWS, $page, $perPage);
+        $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(category::NEWS);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
@@ -103,8 +104,8 @@ class FrontController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $perPage = 10;
-        $posts = $em->getRepository('AppBundle:Post')->findCategoryPosts(4, $page, $perPage);
-        $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(4);
+        $posts = $em->getRepository('AppBundle:Post')->findCategoryPosts(category::GALLERY, $page, $perPage);
+        $postsCount = $em->getRepository('AppBundle:Post')->countCategoryPosts(category::GALLERY);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();

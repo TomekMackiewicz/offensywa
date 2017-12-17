@@ -70,4 +70,5 @@ return array(
     'event' => 'wydarzenie',
     'sonata.media.provider.youtube' => 'Youtube',
     'sonata.media.provider.image' => 'zdjęcie',
+    'page' => 'Strona'
 );

@@ -5,6 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use AppBundle\Entity\Category AS category;
 
 class CategoryType extends AbstractType
 {
@@ -13,8 +15,17 @@ class CategoryType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', null, array(
+        $builder
+            ->add('name', null, array(
                 'label' => 'name'
+            ))
+            ->add('page', ChoiceType::class, array(
+                'choices'  => array(
+                    'aktualności' => category::NEWS,
+                    'galeria zdjęć' => category::GALLERY
+                ),
+                'placeholder' => 'choose',
+                'label' => 'page'
             ));
     }
     

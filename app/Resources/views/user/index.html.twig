@@ -40,7 +40,10 @@
                         {% endif %}
                     </td>  
                     <td class="col-md-2">
-                    {% if is_granted('ROLE_ADMIN') and user.roles[0] != 'ROLE_SUPER_ADMIN' %} 
+                    {% if is_granted('ROLE_ADMIN') and user.roles[0] != 'ROLE_SUPER_ADMIN' %}
+                        <a href="{{ path('user_bind', { 'id': user.id }) }}" class="btn btn-success btn-sm pull-left admin-form-btn-margin">
+                            <i class="fa fa-cogs" aria-hidden="true"></i>
+                        </a>                          
                         {% if user.enabled %}
                         <a href="{{ path('user_activate', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
                             <i class="fa fa-lock" aria-hidden="true"></i>
@@ -49,10 +52,7 @@
                         <a href="{{ path('user_activate', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
                             <i class="fa fa-unlock" aria-hidden="true"></i>
                         </a>                            
-                        {% endif %}
-                        <a href="{{ path('user_bind', { 'id': user.id }) }}" class="btn btn-success btn-sm pull-left admin-form-btn-margin">
-                            <i class="fa fa-cogs" aria-hidden="true"></i>
-                        </a>                          
+                        {% endif %}                        
                         <form action="{{ path('user_delete', { 'id': user.id }) }}" method="post">
                             {{ form_widget(deleteForms[user.id]) }}
                             <input type="submit" class="btn btn-danger btn-sm" value="Usuń">

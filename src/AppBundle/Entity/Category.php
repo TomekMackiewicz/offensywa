@@ -5,15 +5,24 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Category
  *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @UniqueEntity(
+ *     fields={"page"},
+ *     message="category.already.assigned"
+ * )
  */
 class Category
 {
+    
+    const NEWS = 1;
+    const GALLERY = 2;
+    
     /**
      * @var int
      *
@@ -30,6 +39,12 @@ class Category
      */
     private $name;
 
+    /**
+     * @var int
+     * @ORM\Column(name="page", type="integer", nullable=true, unique=true)
+     */
+    private $page;    
+    
     /**
      * @ORM\ManyToMany(targetEntity="Post", mappedBy="categories")
      */
@@ -71,6 +86,30 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set page
+     *
+     * @param int $page
+     *
+     * @return Category
+     */
+    public function setPage($page)
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    /**
+     * Get page
+     *
+     * @return int
+     */
+    public function getPage()
+    {
+        return $this->page;
     }
     
     /**

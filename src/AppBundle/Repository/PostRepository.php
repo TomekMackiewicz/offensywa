@@ -25,9 +25,10 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery('
-             SELECT COUNT(p.id) 
-             FROM AppBundle:Post p
-             WHERE :id MEMBER OF p.categories                
+            SELECT COUNT(p.id)           
+            FROM AppBundle:Post p
+            JOIN p.categories c
+            WHERE c.page = :id                
         ')->setParameter('id', $id);
         $count = $query->getSingleScalarResult(); 
         
@@ -49,7 +50,8 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         $query = $em->createQuery('
             SELECT p           
             FROM AppBundle:Post p
-            WHERE :id MEMBER OF p.categories
+            JOIN p.categories c
+            WHERE c.page = :id
         ')->setParameter('id', $id)->setMaxResults($perPage)->setFirstResult($offset);
 
         $news = $query->getResult();

@@ -17,6 +17,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nazwa</th>
+                            <th>Strona</th>
                             <th>Edycja</th>
                         </tr>
                     </thead>
@@ -25,6 +26,14 @@
                         <tr>
                             <td>{{ loop.index }}</td>
                             <td>{{ category.name }}</td>
+                            <td>
+                                {% if category.page %}
+                                   {% if category.page == 1 %}Aktualności{% endif %}
+                                   {% if category.page == 2 %}Galeria{% endif %}
+                                {% else %}
+                                    ---
+                                {% endif %}
+                            </td>
                             <td>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('category_edit', { 'id': category.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">

@@ -11,5 +11,6 @@ return array(
     'duplicate.training.date' => 'W tym terminie dodano już inny trening',
     'player.already.in.use' => 'Zawodnik jest już przypisany do innego gracza',
     'Invalid extensions' => 'Niedozwolony format pliku',
-    'Invalid mime type : %type%' => 'Niedozwolony typ pliku : %type%'
+    'Invalid mime type : %type%' => 'Niedozwolony typ pliku : %type%',
+    'category.already.assigned' => 'Inna kategoria została już przypisana do tej strony'
 );
