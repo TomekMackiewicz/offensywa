@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Emails list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Sender</th>
+                <th>Recipients</th>
+                <th>Subject</th>
+                <th>Body</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for email in emails %}
+            <tr>
+                <td><a href="{{ path('email_show', { 'id': email.id }) }}">{{ email.id }}</a></td>
+                <td>{{ email.sender }}</td>
+                <td>{{ email.recipients }}</td>
+                <td>{{ email.subject }}</td>
+                <td>{{ email.body }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('email_show', { 'id': email.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('email_edit', { 'id': email.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('email_new') }}">Create a new email</a>
+        </li>
+    </ul>
+{% endblock %}

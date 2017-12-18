@@ -1,0 +1,11 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <h1>Nowa wiadmość</h1>
+    <div class="admin-box">
+        {{ form_start(form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
+            {{ form_widget(form) }}
+            <input type="submit" class="btn btn-success" value="Wyślij" />
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

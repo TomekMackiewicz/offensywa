@@ -259,12 +259,31 @@
                 </ul>
             </div>             
         </li>
+        {% if app.request.attributes.get('_route') == 'mail_index' 
+           or app.request.attributes.get('_route') == 'mail_send'
+           or app.request.attributes.get('_route') == 'mail_new' 
+        %}
+        <li class="active">
+        {% else %}
         <li>
-            <a href="#">
+        {% endif %}
+            <a href="#!"
+               data-toggle="collapse" 
+               data-target="#mails" 
+               aria-expanded="false" 
+               aria-controls="mails">
                 <i class="fa fa-envelope-o admin-list-icon" aria-hidden="true"></i>
                 Wiadomości
             </a>
-        </li>
+            <div class="collapse" id="mails">
+                <ul class="list-unstyled admin-list">
+                    <li><a href="{{ path('email_index') }}">Lista e-maili</a></li>                   
+                    <li><a href="{{ path('email_new') }}">Wyślij e-mail</a></li>
+                    <li><a>Szablony</a></li>
+                    <li><a>Stwórz szablon</a></li>
+                </ul>
+            </div>             
+        </li>        
         {% if app.request.attributes.get('_route') == 'request_index' 
            or app.request.attributes.get('_route') == 'request_new' 
         %}
