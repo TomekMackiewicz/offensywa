@@ -78,9 +78,98 @@ $(document).ready(function() {
 
     $('#appbundle_payment_paymentCategory').change(function() {
         var amount = $('option:selected', this).attr('data-amount');
-        console.log(amount);
         $('#appbundle_payment_amount').val(amount);
     });
+
+    /***************************************************************************
+    
+    Fill recipients field depending on email type choice
+     
+    ***************************************************************************/
+    
+    $('#appbundle_email_type').change(function() {
+        var type = $('option:selected', this).val();
+        
+        if (type == 1) {
+            chooseAll(type);           
+        } else if (type == 2) {
+            chooseGroup(type);
+        } else if (type == 3) {
+            chooseCustom(type);
+        } else {
+            $('#appbundle_email_recipients').val('');
+        }
+
+    });
+
+    function chooseAll(type) {
+        $.ajax({
+            url : '/admin/email/get-type/' + type,
+            type: 'GET',
+            success: function(response) {
+                $('#appbundle_email_recipients').val(response);
+            }
+        }); 
+    }
+
+    function chooseGroup(type) {
+        $.ajax({
+            url : '/admin/email/get-type/' + type,
+            type: 'GET',
+            success: function(response) {
+                var options = '';
+                options += "<option value='' disabled selected>Wybierz</option>";
+                for(var i=0; i<response.length; i++) {
+                    options += "<option value="+response[i]+">"+response[i]+"</option>";
+                }                
+                var groupModal = $(
+                    '<div class="modal fade" id="group-modal" tabindex="-1" role="dialog">'
+                    +'    <div class="modal-dialog" role="document">'
+                    +'        <div class="modal-content">'
+                    +'            <div class="modal-body">'
+                    +'                <select id="group-select" class="form-control">'+options+'</select>'
+                    +'            </div>'
+                    +'        </div>'
+                    +'    </div>'
+                    +'</div>'   
+                ); 
+                $('body').append(groupModal);
+                $('#group-modal').modal("show");        
+            }
+        }); 
+        
+        $("body").on('change', '#group-select', function() {
+            var year = $(this).val();
+            $('#group-modal').modal("hide");
+            $.ajax({
+                url : '/admin/email/get-by-year/' + year,
+                type: 'GET',
+                success: function(response) {
+                    $('#appbundle_email_recipients').val(response);               
+                }
+            });
+        });
+        
+    }
+
+    function chooseCustom(type) {
+        $.ajax({
+            url : '/admin/email/get-type/' + type,
+            type: 'GET',
+            success: function(response) {
+                var options = '';
+                for(var i=0; i<response.length; i++) {
+                    options += "<option value="+response[i]+">"+response[i]+"</option>";
+                }
+                
+                $('#appbundle_email_recipients').replaceWith(
+                    '<select multiple id="appbundle_email_recipients" class="form-control">'+options+'</select>' 
+                );                
+            }
+        });
+    }
+
+    /**************************************************************************/
 
     var $homeTeam = $('#appbundle_game_homeTeam');
     $homeTeam.change(function() {

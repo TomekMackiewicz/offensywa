@@ -6,6 +6,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+//use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+//use Doctrine\ORM\EntityRepository;
+use AppBundle\Entity\Email AS email;
 
 class EmailType extends AbstractType
 {
@@ -20,10 +24,19 @@ class EmailType extends AbstractType
             ->add('sender', null, array(
                 'label' => 'sender',
                 'data' => $sender
+            )) 
+            ->add('type', ChoiceType::class, array(
+                'choices'  => array(
+                    'to.all' => email::TO_ALL,
+                    'to.group' => email::TO_GROUP,
+                    'to.custom' => email::TO_CUSTOM
+                ),
+                'placeholder' => 'choose',
+                'label' => 'write.to'
             ))
             ->add('recipients', null, array(
                 'label' => 'recipients'
-            ))                
+            ))                                
             ->add('subject', null, array(
                 'label' => 'subject'
             ))

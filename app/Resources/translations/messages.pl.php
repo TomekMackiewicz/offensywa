@@ -73,5 +73,9 @@ return array(
     'page' => 'Strona',
     'sender' => 'Nadawca',
     'recipients' => 'Odbiorcy',
-    'subject' => 'Temat'
+    'subject' => 'Temat',
+    'write.to' => 'Napisz do...',
+    'to.all' => 'Do wszystkich',
+    'to.group' => 'Do grupy',
+    'to.custom' => 'Wybierz adresatów'
 );

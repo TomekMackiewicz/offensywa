@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Email AS email;
+
 /**
  * EmailRepository
  *
@@ -10,4 +12,55 @@ namespace AppBundle\Repository;
  */
 class EmailRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function findByType($type)
+    {               
+        $em = $this->getEntityManager();
+        
+        if ($type == email::TO_ALL) {
+            $query = $em->createQuery('
+                SELECT p.parentEmail FROM AppBundle:Player p WHERE p.parentEmail is not null 
+            ');
+            $emails = $query->getScalarResult();        
+            $array = array_column($emails, "parentEmail");        
+            $output = implode(", ", $array);
+        
+        } elseif ($type == email::TO_GROUP) {
+            $query = $em->createQuery('
+                SELECT t.year FROM AppBundle:Team t WHERE t.isMy = 1
+            ');            
+            $years = $query->getScalarResult();        
+            $output = array_column($years, "year");
+            
+        } elseif ($type == email::TO_CUSTOM) {
+            $query = $em->createQuery('
+                SELECT p.parentEmail FROM AppBundle:Player p WHERE p.parentEmail is not null 
+            ');
+            $emails = $query->getScalarResult();        
+            $output = array_column($emails, "parentEmail");
+            
+        } else {
+            return null;
+        }
+        
+        return $output;
+    }    
+
+    public function getEmailsByYear($year)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+            SELECT p.parentEmail 
+            FROM AppBundle:Player p
+            JOIN AppBundle:Team t
+            WITH p.team = t.id
+            WHERE t.year = :year
+        ')->setParameter('year', $year);
+        $emails = $query->getScalarResult();        
+        $array = array_column($emails, "parentEmail");
+        $output = implode(", ", $array);
+        
+        return $output;
+    }
+    
 }

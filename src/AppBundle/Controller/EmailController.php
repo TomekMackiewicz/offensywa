@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Email;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Email controller.
@@ -14,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class EmailController extends Controller
 {  
-    
+  
     /**
      * Lists all email entities.
      *
@@ -50,7 +52,9 @@ class EmailController extends Controller
             $em->persist($email);
             $em->flush();
 
-            return $this->redirectToRoute('email_show', array('id' => $email->getId()));
+//            return $this->render('email/index.html.twig', array(
+//                'email' => $email,
+//            ));
         }
 
         return $this->render('email/new.html.twig', array(
@@ -110,4 +114,35 @@ class EmailController extends Controller
             ->getForm()
         ;
     }
+    
+    /**
+     * Choose recipients list.
+     *
+     * @Route("/get-type/{type}", name="email_get_type")
+     * @Method("GET")
+     */
+    public function getType($type)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $emails = $em->getRepository('AppBundle:Email')->findByType($type);
+        $response = new JsonResponse($emails);
+
+        return $response;
+    }    
+
+    /**
+     * Get emails by team year.
+     *
+     * @Route("/get-by-year/{year}", name="email_get_by_year")
+     * @Method("GET")
+     */
+    public function getEmailsByYear($year)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $emails = $em->getRepository('AppBundle:Email')->getEmailsByYear($year);
+        $response = new JsonResponse($emails);
+
+        return $response;
+    }
+    
 }
