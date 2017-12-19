@@ -52,9 +52,12 @@ class EmailController extends Controller
             $em->persist($email);
             $em->flush();
 
-//            return $this->render('email/index.html.twig', array(
-//                'email' => $email,
-//            ));
+            $this->sendEmail($email);
+            
+            $this->addFlash("success", "Wiadomość została wysłana");
+            
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", "Błąd podczas wysyłania wiadomości");
         }
 
         return $this->render('email/new.html.twig', array(
@@ -143,6 +146,24 @@ class EmailController extends Controller
         $response = new JsonResponse($emails);
 
         return $response;
+    }
+
+    private function sendEmail($email)
+    {        
+        $string = preg_replace('/[\x00-\x1F\x7F]/u', '', $email->getRecipients());
+        $trimmed = str_replace(' ', '', $string);
+        $recipients = explode(',', $trimmed);
+        $message = \Swift_Message::newInstance()
+            ->setSubject($email->getSubject())    
+            ->setFrom($email->getSender())
+            ->setTo($recipients)
+            ->setBody(
+                $this->renderView(
+                    'Emails/default.html.twig', array('body' => $email->getBody())), 
+                    'text/html'
+            );
+                
+        $this->get('mailer')->send($message);           
     }
     
 }

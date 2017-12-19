@@ -26,7 +26,6 @@ Offensywa
 POTEM
 
 mailing
-- napisz do wszystkich / do grupy / wybierz
 - szablony wiadomości
 - utwórz wiadomość / skorzystaj z szablonu
 (wiadomości: - wyślij, - stwórz szablon)
