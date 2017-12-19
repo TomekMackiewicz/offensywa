@@ -107,6 +107,9 @@ $(document).ready(function() {
             url : '/admin/email/get-type/' + type,
             type: 'GET',
             success: function(response) {
+                var correctType = 'textarea';
+                var inputType = $('#appbundle_email_recipients').prop("type");
+                toogleInputType(correctType, inputType);                 
                 $('#appbundle_email_recipients').val(response);
             }
         }); 
@@ -145,6 +148,9 @@ $(document).ready(function() {
                 url : '/admin/email/get-by-year/' + year,
                 type: 'GET',
                 success: function(response) {
+                    var correctType = 'textarea';
+                    var inputType = $('#appbundle_email_recipients').prop("type");
+                    toogleInputType(correctType, inputType);                    
                     $('#appbundle_email_recipients').val(response);               
                 }
             });
@@ -162,11 +168,26 @@ $(document).ready(function() {
                     options += "<option value="+response[i]+">"+response[i]+"</option>";
                 }
                 
-                $('#appbundle_email_recipients').replaceWith(
-                    '<select multiple id="appbundle_email_recipients" class="form-control">'+options+'</select>' 
-                );                
+                var correctType = 'select-multiple';
+                var inputType = $('#appbundle_email_recipients').prop("type");
+                toogleInputType(correctType, inputType, options);               
             }
         });
+    }
+
+    function toogleInputType(correctType, inputType, options = null) {
+        console.log(inputType);
+        
+        if(inputType === 'textarea' && inputType !== correctType) {
+            $('#appbundle_email_recipients').replaceWith(
+                '<select multiple id="appbundle_email_recipients" class="form-control">'+options+'</select>' 
+            );             
+        } else if (inputType === 'select-multiple' && inputType !== correctType) {
+            $('#appbundle_email_recipients').replaceWith(
+                '<textarea id="appbundle_email_recipients" name="appbundle_email[recipients]" required="required" class="form-control"></textarea>' 
+            );             
+        }
+        
     }
 
     /**************************************************************************/
