@@ -67,22 +67,6 @@ class PaymentCategoryController extends Controller
         ));
     }
 
-//    /**
-//     * Finds and displays a paymentCategory entity.
-//     *
-//     * @Route("/{id}", name="paymentcategory_show")
-//     * @Method("GET")
-//     */
-//    public function showAction(PaymentCategory $paymentCategory)
-//    {
-//        $deleteForm = $this->createDeleteForm($paymentCategory);
-//
-//        return $this->render('paymentcategory/show.html.twig', array(
-//            'paymentCategory' => $paymentCategory,
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
-
     /**
      * Displays a form to edit an existing paymentCategory entity.
      *

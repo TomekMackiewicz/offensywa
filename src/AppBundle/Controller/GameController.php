@@ -95,22 +95,6 @@ class GameController extends Controller
     }
 
     /**
-     * Finds and displays a game entity.
-     *
-     * @Route("/games/{id}", name="game_show")
-     * @Method("GET")
-     */
-    public function showAction(Game $game)
-    {
-        $deleteForm = $this->createDeleteForm($game);
-
-        return $this->render('game/show.html.twig', array(
-            'game' => $game,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing game entity.
      *
      * @Route("/admin/games/{id}/edit", name="game_edit")

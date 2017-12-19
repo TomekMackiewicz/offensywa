@@ -66,22 +66,6 @@ class CategoryController extends Controller
         ));
     }
 
-//    /**
-//     * Finds and displays a category entity.
-//     *
-//     * @Route("/{id}", name="category_show")
-//     * @Method("GET")
-//     */
-//    public function showAction(Category $category)
-//    {
-//        $deleteForm = $this->createDeleteForm($category);
-//
-//        return $this->render('category/show.html.twig', array(
-//            'category' => $category,
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
-
     /**
      * Displays a form to edit an existing category entity.
      *

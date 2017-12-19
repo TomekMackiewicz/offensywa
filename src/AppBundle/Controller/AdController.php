@@ -80,22 +80,6 @@ class AdController extends Controller
         ));
     }
 
-//    /**
-//     * Finds and displays an ad entity.
-//     *
-//     * @Route("ad", name="ad_show")
-//     * @Method("GET")
-//     */
-//    public function showAction()
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//        $ads = $em->getRepository('AppBundle:Ad')->findAll();
-//        
-//        return $this->render('ad/show.html.twig', array(
-//            'ads' => $ads
-//        ));
-//    }
-
     /**
      * Displays a form to edit an existing ad entity.
      *

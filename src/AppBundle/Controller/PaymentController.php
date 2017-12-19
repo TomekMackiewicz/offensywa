@@ -68,22 +68,6 @@ class PaymentController extends Controller
         ));
     }
 
-//    /**
-//     * Finds and displays a payment entity.
-//     *
-//     * @Route("/{id}", name="payment_show")
-//     * @Method("GET")
-//     */
-//    public function showAction(Payment $payment)
-//    {
-//        $deleteForm = $this->createDeleteForm($payment);
-//
-//        return $this->render('payment/show.html.twig', array(
-//            'payment' => $payment,
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
-
     /**
      * Displays a form to edit an existing payment entity.
      *

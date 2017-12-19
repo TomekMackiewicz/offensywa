@@ -1,21 +1,13 @@
 
 galerie - uprościć + lightbox
 
-Asserts! / crud / view >>> tournament (turniej)?
-
 user registration: 
 - change message
 - mail when admin confirm
 
-
 POTEM
 
-mailing
-- select
-
 captcha https://www.google.com/recaptcha/admin#list
-
-usunąć niewykorzystywane metody i widoki
 
 gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
@@ -23,10 +15,9 @@ max file size?
 
 google analitics
 
-zdjęcia og image
-
 -----------
 Ustalić:
 
-- you tube - kanał
+- you tube (kanał)
+- zdjęcia og image (ustalić)
 

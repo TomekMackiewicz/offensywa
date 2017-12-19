@@ -14,23 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class TrainerController extends Controller
 {
-//    /**
-//     * Lists all trainer entities.
-//     *
-//     * @Route("/trainers", name="trainer_index")
-//     * @Method("GET")
-//     */
-//    public function indexAction()
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $trainers = $em->getRepository('AppBundle:Trainer')->findAll();
-//
-//        return $this->render('trainer/index.html.twig', array(
-//            'trainers' => $trainers,
-//        ));
-//    }
-
     /**
      * Lists all trainer entities.
      *
@@ -82,22 +65,6 @@ class TrainerController extends Controller
             'form' => $form->createView(),
         ));
     }
-
-//    /**
-//     * Finds and displays a trainer entity.
-//     *
-//     * @Route("/trainers/{id}", name="trainer_show")
-//     * @Method("GET")
-//     */
-//    public function showAction(Trainer $trainer)
-//    {
-//        $deleteForm = $this->createDeleteForm($trainer);
-//
-//        return $this->render('trainer/show.html.twig', array(
-//            'trainer' => $trainer,
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
 
     /**
      * Displays a form to edit an existing trainer entity.

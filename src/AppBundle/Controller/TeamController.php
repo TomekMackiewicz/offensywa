@@ -17,29 +17,6 @@ class TeamController extends Controller
     /**
      * Lists all team entities.
      *
-     * @Route("/druzyny", name="team_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $teams = $em->getRepository('AppBundle:Team')->getMyTeams();
-        $leagueTables = $this->get('league_table')->getleagueTables();
-        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
-
-        return $this->render('team/index.html.twig', array(
-            'teams' => $teams,
-            'lastMatch' => $lastMatch,
-            'nextMatch' => $nextMatch,
-            'leagueTables' => $leagueTables            
-        ));
-    }
-
-    /**
-     * Lists all team entities.
-     *
      * @Route("/admin/teams", name="admin_team_index")
      * @Method("GET")
      */
