@@ -106,10 +106,7 @@ $(document).ready(function() {
         $.ajax({
             url : '/admin/email/get-type/' + type,
             type: 'GET',
-            success: function(response) {
-                var correctType = 'textarea';
-                var inputType = $('#appbundle_email_recipients').prop("type");
-                toogleInputType(correctType, inputType);                 
+            success: function(response) {               
                 $('#appbundle_email_recipients').val(response);
             }
         }); 
@@ -124,38 +121,10 @@ $(document).ready(function() {
                 options += "<option value='' disabled selected>Wybierz</option>";
                 for(var i=0; i<response.length; i++) {
                     options += "<option value="+response[i]+">"+response[i]+"</option>";
-                }                
-                var groupModal = $(
-                    '<div class="modal fade" id="group-modal" tabindex="-1" role="dialog">'
-                    +'    <div class="modal-dialog" role="document">'
-                    +'        <div class="modal-content">'
-                    +'            <div class="modal-body">'
-                    +'                <select id="group-select" class="form-control">'+options+'</select>'
-                    +'            </div>'
-                    +'        </div>'
-                    +'    </div>'
-                    +'</div>'   
-                ); 
-                $('body').append(groupModal);
-                $('#group-modal').modal("show");        
-            }
-        }); 
-        
-        $("body").on('change', '#group-select', function() {
-            var year = $(this).val();
-            $('#group-modal').modal("hide");
-            $.ajax({
-                url : '/admin/email/get-by-year/' + year,
-                type: 'GET',
-                success: function(response) {
-                    var correctType = 'textarea';
-                    var inputType = $('#appbundle_email_recipients').prop("type");
-                    toogleInputType(correctType, inputType);                    
-                    $('#appbundle_email_recipients').val(response);               
                 }
-            });
-        });
-        
+                showEmailsModal(options, 'group');       
+            }
+        });         
     }
 
     function chooseCustom(type) {
@@ -167,27 +136,68 @@ $(document).ready(function() {
                 for(var i=0; i<response.length; i++) {
                     options += "<option value="+response[i]+">"+response[i]+"</option>";
                 }
-                
-                var correctType = 'select-multiple';
-                var inputType = $('#appbundle_email_recipients').prop("type");
-                toogleInputType(correctType, inputType, options);               
+                showEmailsModal(options, 'custom');               
             }
         });
     }
 
-    function toogleInputType(correctType, inputType, options = null) {
-        console.log(inputType);
-        
-        if(inputType === 'textarea' && inputType !== correctType) {
-            $('#appbundle_email_recipients').replaceWith(
-                '<select multiple id="appbundle_email_recipients" class="form-control">'+options+'</select>' 
-            );             
-        } else if (inputType === 'select-multiple' && inputType !== correctType) {
-            $('#appbundle_email_recipients').replaceWith(
-                '<textarea id="appbundle_email_recipients" name="appbundle_email[recipients]" required="required" class="form-control"></textarea>' 
-            );             
+    function showEmailsModal(options, type) {        
+        if (type === 'group') {
+            
+            var groupModal = $(
+                '<div class="modal fade" id="group-modal" tabindex="-1" role="dialog">'
+                +'    <div class="modal-dialog" role="document">'
+                +'        <div class="modal-content">'
+                +'            <div class="modal-body">'
+                +'                <select id="group-select" class="form-control">'+options+'</select>'
+                +'            </div>'
+                +'        </div>'
+                +'    </div>'
+                +'</div>'   
+            ); 
+            $('body').append(groupModal);
+            $('#group-modal').modal("show");            
+            
+            $("body").on('change', '#group-select', function() {
+                var year = $(this).val();
+                $('#group-modal').modal("hide");
+                
+                $.ajax({
+                    url : '/admin/email/get-by-year/' + year,
+                    type: 'GET',
+                    success: function(response) {                   
+                        $('#appbundle_email_recipients').val(response);               
+                    }
+                    
+                });
+            });            
         }
         
+        if (type === 'custom') {
+            var customModal = $(
+                '<div class="modal fade" id="custom-modal" tabindex="-1" role="dialog">'
+                +'    <div class="modal-dialog" role="document">'
+                +'        <div class="modal-content">'
+                +'            <div class="modal-body">'
+                +'                <select id="custom-select" class="form-control" multiple>'+options+'</select>'
+                +'            </div>'
+                +'            <div class="modal-footer">'
+                +'                <button type="button" class="btn btn-default" id="choose-custom" data-dismiss="modal">Wybierz</button>'
+                +'            </div>'        
+                +'        </div>'
+                +'    </div>'
+                +'</div>'   
+            ); 
+            $('body').append(customModal);
+            $('#custom-modal').modal("show"); 
+            
+            $("body").on('click', '#choose-custom', function() {
+                var emails = $('#custom-select').val();
+                $('#custom-modal').modal("hide");
+                $('#appbundle_email_recipients').val(emails);
+
+            });                        
+        }       
     }
 
     /**************************************************************************/
