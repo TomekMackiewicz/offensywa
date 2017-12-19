@@ -26,11 +26,15 @@ class EmailController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $emails = $em->getRepository('AppBundle:Email')->findAll();
-
+        $deleteForms = array();
+        foreach($emails as $email) {
+            $deleteForms[$email->getId()] = $this->createDeleteForm($email)->createView();
+        }
+        
         return $this->render('email/index.html.twig', array(
             'emails' => $emails,
+            'deleteForms' => $deleteForms,
         ));
     }
 
@@ -48,6 +52,7 @@ class EmailController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $email->setDate(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($email);
             $em->flush();
@@ -56,6 +61,8 @@ class EmailController extends Controller
             
             $this->addFlash("success", "Wiadomość została wysłana");
             
+            return $this->redirectToRoute('email_index');
+            
         } else if($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash("danger", "Błąd podczas wysyłania wiadomości");
         }
@@ -63,22 +70,6 @@ class EmailController extends Controller
         return $this->render('email/new.html.twig', array(
             'email' => $email,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a email entity.
-     *
-     * @Route("/{id}", name="email_show")
-     * @Method("GET")
-     */
-    public function showAction(Email $email)
-    {
-        $deleteForm = $this->createDeleteForm($email);
-
-        return $this->render('email/show.html.twig', array(
-            'email' => $email,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

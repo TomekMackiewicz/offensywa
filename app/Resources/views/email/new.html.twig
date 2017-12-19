@@ -2,7 +2,6 @@
 
 {% block admin_body %}
     <h1>Nowa wiadmość</h1>
-    {% include 'partials/gritter.html.twig' %}
     <div class="admin-box">
         {{ form_start(form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
             {{ form_widget(form) }}

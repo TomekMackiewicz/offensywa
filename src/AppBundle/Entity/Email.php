@@ -37,8 +37,7 @@ class Email
 
     /**
      * @var string
-     * @Assert\NotBlank(message = "field.not_blank")
-     * @ORM\Column(name="type", type="string", length=255)
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;    
     
@@ -63,7 +62,14 @@ class Email
      */
     private $body;
 
-
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+    
+    
     /**
      * Get id
      *
@@ -193,5 +199,30 @@ class Email
     {
         return $this->body;
     }
+    
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Email
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }    
+    
 }
 

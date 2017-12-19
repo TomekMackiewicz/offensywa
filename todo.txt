@@ -7,28 +7,11 @@ user registration:
 - change message
 - mail when admin confirm
 
---------------------------------------------------------------------------------
-mzpn 4 drużyny: 2006-2009
-
-ligi: mzpn.pl
-ligi mazowieckie
-
-Offensywa
-2011 i młodsi
-2010
-2009
-2008
-2007
-2006
-
-------------
 
 POTEM
 
 mailing
-- szablony wiadomości
-- utwórz wiadomość / skorzystaj z szablonu
-(wiadomości: - wyślij, - stwórz szablon)
+- select
 
 captcha https://www.google.com/recaptcha/admin#list
 
@@ -47,20 +30,3 @@ Ustalić:
 
 - you tube - kanał
 
-
----
-
-FOSUserEvents::REGISTRATION_SUCCESS
-
-FOSUserEvents::REGISTRATION_COMPLETED
-
-mailing
-- napisz do wszystkich / do grupy / wybierz
-- szablony wiadomości
-- utwórz wiadomość / skorzystaj z szablonu
-(wiadomości: - wyślij, - stwórz szablon)
-
-from
-to
-body
-subject

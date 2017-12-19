@@ -259,8 +259,7 @@
                 </ul>
             </div>             
         </li>
-        {% if app.request.attributes.get('_route') == 'mail_index' 
-           or app.request.attributes.get('_route') == 'mail_send'
+        {% if app.request.attributes.get('_route') == 'mail_index'
            or app.request.attributes.get('_route') == 'mail_new' 
         %}
         <li class="active">
@@ -279,8 +278,6 @@
                 <ul class="list-unstyled admin-list">
                     <li><a href="{{ path('email_index') }}">Lista e-maili</a></li>                   
                     <li><a href="{{ path('email_new') }}">Wyślij e-mail</a></li>
-                    <li><a>Szablony</a></li>
-                    <li><a>Stwórz szablon</a></li>
                 </ul>
             </div>             
         </li>        
