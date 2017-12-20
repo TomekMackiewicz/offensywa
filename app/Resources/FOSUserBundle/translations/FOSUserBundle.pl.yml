@@ -28,7 +28,7 @@ change_password:
     flash:
         success: 'Hasło zostało zmienione.'
 registration:
-    check_email: 'Na adres %email% wysłano wiadomość e-mail. Zawiera ona link, na który należy kliknąć, aby aktywować konto.'
+    check_email: 'Dziękujemy za rejestrację! Kiedy administrator aktywuje Twoje konto, dostaniesz potwierdzenie e-mailem.'
     confirmed: 'Gratulacje %username%, potwierdziłeś konto.'
     back: 'Powrót do poprzedniej strony.'
     submit: Zarejestruj
@@ -38,11 +38,11 @@ registration:
         subject: 'Witaj %username%!'
         message: |
             Cześć %username%!
-
-            Aby potwierdzić swoje konto - proszę przejść do %confirmationUrl%
+            Dziękujemy za rejestrację!
+            Kiedy administrator aktywuje Twoje konto, dostaniesz potwierdzenie e-mailem i będziesz mógł korzystać z portalu.
 
             Pozdrawiamy,
-            Zespół.
+            Offensywa.
 
 resetting:
     check_email: |
@@ -78,7 +78,7 @@ form:
     username: 'Nazwa użytkownika'
     email: E-mail
     current_password: 'Obecne hasło'
-    password: Hasło
+    password: Hasło (minimum 8 znaków, co najmniej jedna wielka litera i jedna cyfra)
     password_confirmation: 'Powtórz hasło'
     new_password: 'Nowe hasło'
     new_password_confirmation: 'Powtórz hasło'

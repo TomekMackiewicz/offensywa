@@ -3,9 +3,9 @@ TODO:
 
 1) galerie - uprościć + lightbox
 
-2) user registration: 
-- change message (wait for admin confirmation)
-- mail when admin confirm
+2) user registration:
+- sender name
+- margin top
 
 3) max file size?
 

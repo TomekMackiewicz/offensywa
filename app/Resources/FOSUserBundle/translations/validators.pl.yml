@@ -4,6 +4,7 @@ fos_user:
         blank: 'Proszę podać nazwę użytkownika.'
         short: 'Nazwa użytkownika jest za krótka.'
         long: 'Nazwa użytkownika jest za długa.'
+        difficulty: 'Hasło musi zawierać co najmniej jedną cyfrę'
     email:
         already_used: 'Podany email jest zajęty.'
         blank: 'Proszę podać adres email.'

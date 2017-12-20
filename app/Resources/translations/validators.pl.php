@@ -12,5 +12,7 @@ return array(
     'player.already.in.use' => 'Zawodnik jest już przypisany do innego gracza',
     'Invalid extensions' => 'Niedozwolony format pliku',
     'Invalid mime type : %type%' => 'Niedozwolony typ pliku : %type%',
-    'category.already.assigned' => 'Inna kategoria została już przypisana do tej strony'
+    'category.already.assigned' => 'Inna kategoria została już przypisana do tej strony',
+    'user.password.short' => 'Hasło jest zbyt krótkie',
+    'user.password.difficulty' => 'Hasło powinno zawierać co najmniej jedną wielką literę i co najmniej jedną cyfrę'
 );
