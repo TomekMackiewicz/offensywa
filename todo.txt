@@ -3,13 +3,9 @@ TODO:
 
 1) galerie - uprościć + lightbox
 
-2) user registration:
-- sender name
-- margin top
+2) max file size?
 
-3) max file size?
-
-4) gritter: mecz został dodany nie znika - dlaczego? (trening też)
+3) gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
 
 

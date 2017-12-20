@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'fos-user.layout.html.twig' %}
 
-{% block head %}
+{% block meta %}
     <title>Offensywa &bull; Rejestracja</title>
     <meta name="description" content="Zarejestruj się na stronie klubu Offensywa Książenice">
 {% endblock %}
 
-{% block body %}
+{% block fos_user_content %}
 {% include "@FOSUser/Registration/register_content.html.twig" %}
 {% endblock %}

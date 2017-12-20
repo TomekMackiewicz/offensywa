@@ -1,5 +1,10 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "fos-user.layout.html.twig" %}
+
+{% block meta %}
+    <title>Offensywa &bull; Zresetuj hasło</title>
+    <meta name="description" content="Zresetuj hasło">
+{% endblock %}
 
 {% block fos_user_content %}
-{% include "@FOSUser/Resetting/reset_content.html.twig" %}
-{% endblock fos_user_content %}
+    {% include "@FOSUser/Resetting/reset_content.html.twig" %}
+{% endblock %}

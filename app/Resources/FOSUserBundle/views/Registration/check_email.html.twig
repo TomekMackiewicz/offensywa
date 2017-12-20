@@ -1,19 +1,19 @@
-{% extends "base.html.twig" %}
+{% extends "fos-user.layout.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block head %}
+{% block meta %}
     <title>Offensywa &bull; Potwierdzenie</title>
     <meta name="description" content="Potwierdzenie utworzenia nowego użytkownika">
 {% endblock %}
 
-{% block body %}
-<div class="row">
+{% block fos_user_content %}
+
     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"> 
         <div class="alert alert-success" role="alert">
             {{ 'registration.check_email'|trans({'%email%': user.email}) }}
         </div> 
         <p><a href="{{ path('fos_user_security_login') }}">Wróć do strony logowania</a></p>
     </div>
-</div>        
+       
 {% endblock %}
