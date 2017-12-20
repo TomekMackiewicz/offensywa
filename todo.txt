@@ -1,23 +1,25 @@
 
-galerie - uprościć + lightbox
+TODO:
 
-user registration: 
-- change message
+1) galerie - uprościć + lightbox
+
+2) user registration: 
+- change message (wait for admin confirmation)
 - mail when admin confirm
 
-POTEM
+3) max file size?
 
-captcha https://www.google.com/recaptcha/admin#list
+4) gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
-gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
-max file size?
 
-google analitics
+ONLINE:
 
------------
-Ustalić:
+1) captcha https://www.google.com/recaptcha/admin#list
 
-- you tube (kanał)
-- zdjęcia og image (ustalić)
+2) google analytics
+
+3) Ustalić: you tube (kanał)
+
+4) zdjęcia og image (ustalić)
 

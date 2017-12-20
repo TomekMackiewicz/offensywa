@@ -56,6 +56,10 @@ class UserController extends Controller
         $em->persist($user);
         $em->flush();
         
+        if ($user->isEnabled()) {
+            $this->sendEmail($user);
+        }        
+        
         $this->addFlash("success", "Użytkownik ".$message);
             
         return $this->redirectToRoute('user_index');
@@ -129,5 +133,22 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+    
+    private function sendEmail($user)
+    {
+        $sender = $this->getParameter('mailer_user');
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Potwierdzenie rejestracji')    
+            ->setFrom($sender)
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'Emails/default.html.twig', array('body' => 'Administrator aktywował Twoje konto. Możesz teraz przejść do swojego profilu.')), 
+                    'text/html'
+            );
+                
+        $this->get('mailer')->send($message);           
+    }    
+    
 }
 
