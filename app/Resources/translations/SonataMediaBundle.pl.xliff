@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="default">
                 <source>default</source>
-                <target>default</target>
+                <target>Domyślny</target>
             </trans-unit>
             <trans-unit id="media">
                 <source>media</source>
@@ -14,6 +14,10 @@
                 <source>gallery</source>
                 <target>Galeria</target>
             </trans-unit>
+            <trans-unit id="Gallery">
+                <source>Gallery</source>
+                <target>Galeria</target>
+            </trans-unit>            
             <trans-unit id="sonata_media">
                 <source>sonata_media</source>
                 <target>Biblioteka Mediów</target>
@@ -132,11 +136,11 @@
             </trans-unit>
             <trans-unit id="form.label_media">
                 <source>form.label_media</source>
-                <target>form.label_media</target>
+                <target>Media</target>
             </trans-unit>
             <trans-unit id="form.label_position">
                 <source>form.label_position</source>
-                <target>form.label_position</target>
+                <target>Pozycja</target>
             </trans-unit>
             <trans-unit id="form.label_context">
                 <source>form.label_context</source>
@@ -305,7 +309,7 @@
             </trans-unit>
             <trans-unit id="list.label_name">
                 <source>list.label_name</source>
-                <target>list.label_name</target>
+                <target>Nazwa</target>
             </trans-unit>
             <trans-unit id="list.label_author_name">
                 <source>list.label_author_name</source>
@@ -313,15 +317,15 @@
             </trans-unit>
             <trans-unit id="list.label_context">
                 <source>list.label_context</source>
-                <target>list.label_context</target>
+                <target>Kontekst</target>
             </trans-unit>
             <trans-unit id="list.label_default_format">
                 <source>list.label_default_format</source>
-                <target>list.label_default_format</target>
+                <target>Format</target>
             </trans-unit>
             <trans-unit id="list.label__action">
                 <source>list.label__action</source>
-                <target>Akcja</target>
+                <target>Edycja</target>
             </trans-unit>
             <trans-unit id="list.label_custom">
                 <source>list.label_custom</source>
@@ -329,7 +333,7 @@
             </trans-unit>
             <trans-unit id="list.label_author">
                 <source>list.label_author</source>
-                <target>list.label_author</target>
+                <target>Autor</target>
             </trans-unit>
             <trans-unit id="sidemenu.link_edit_media">
                 <source>sidemenu.link_edit_media</source>
@@ -413,11 +417,11 @@
             </trans-unit>
             <trans-unit id="list.label_description">
                 <source>list.label_description</source>
-                <target>list.label_description</target>
+                <target>Opis</target>
             </trans-unit>
             <trans-unit id="list.label_size">
                 <source>list.label_size</source>
-                <target>list.label_size</target>
+                <target>Rozmiar</target>
             </trans-unit>
             <trans-unit id="sonata.media.block.media">
                 <source>sonata.media.block.media</source>
@@ -570,7 +574,11 @@
             <trans-unit id="sonata.media.provider.image.description">
                 <source>sonata.media.provider.image.description</source>
                 <target>Zdjęcie</target>
-            </trans-unit>                                                                                                   
+            </trans-unit>   
+            <trans-unit id="options">
+                <source>Options</source>
+                <target>Opcje</target>
+            </trans-unit>                                                                                                                      
         </body>
     </file>
 </xliff>
