@@ -1,11 +1,9 @@
 
 TODO:
 
-1) galerie - uprościć + lightbox
+1) max file size?
 
-2) max file size?
-
-3) gritter: mecz został dodany nie znika - dlaczego? (trening też)
+2) gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
 
 

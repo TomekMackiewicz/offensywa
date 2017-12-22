@@ -38,7 +38,7 @@ class Post
      *   match = true,
      *   message = "field.regex"
      * )
-     * @ORM\Column(name="slug", type="string")
+     * @ORM\Column(name="slug", type="string", unique=true)
      */
     private $slug;    
     

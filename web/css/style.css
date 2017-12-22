@@ -10,6 +10,11 @@ body {
     margin-bottom: 50px;
 }
 
+main {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -211,11 +216,8 @@ pre,
 }
 
 .match-details {
-    background: linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(../images/tribunes1.jpg);
-    background-size: cover;                      
-    background-repeat: no-repeat;
-    background-position: center center;
-    color: #ffffff;
+    background-color: #eee;
+    color: #333;
     margin-top: 20px;
     text-align: center;
 }
@@ -237,14 +239,14 @@ pre,
     margin: 0;
     text-align: center;
     padding: 15px 0;
-    color: #fff;    
+/*    color: #333;    */
 }
 
 .match-details > p {
     margin: 0;
     text-align: center;
     padding: 15px 0;
-    color: #fff;
+/*    color: #333;*/
 }
 
 .borderless td, .borderless th {
@@ -581,7 +583,9 @@ pre,
     background-image: none;
 }
 .carousel .item {
-    min-height: 350px; 
+    min-height: 400px; 
+    max-height: 400px;
+    overflow: hidden;
     height: 100%;
     width:100%;   
 }

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Category as Category;
+
 /**
  * PostRepository
  *
@@ -13,9 +15,13 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
     public function getRecentPosts()
     {               
         $em = $this->getEntityManager();        
-        $query = $em->createQuery(
-            'SELECT p FROM AppBundle:Post p ORDER BY p.publishDate'
-            )->setMaxResults(5);
+        $query = $em->createQuery('
+            SELECT p 
+            FROM AppBundle:Post p
+            JOIN p.categories c
+            WHERE c.page = :page
+            ORDER BY p.publishDate DESC
+        ')->setParameter('page', Category::NEWS)->setMaxResults(5);
         $recentPosts = $query->getResult();
         
         return $recentPosts;
