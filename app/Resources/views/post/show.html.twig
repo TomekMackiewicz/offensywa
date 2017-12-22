@@ -14,7 +14,7 @@
     {% if post %}       
         <h1>{{ post.title }}</h1>
         {% if post.image %}
-            <img src="{% path post.image, 'big' %}">
+            {% thumbnail post.image, 'big' %}
         {% endif %}    
         <p>
             <small class="text-muted"> 
@@ -36,7 +36,7 @@
                 <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
                     <div class="box">
                         <a href="#" data-toggle="modal" data-target="#{{ loop.index }}">
-                            <img src="{% path img.media, 'small'%}">
+                            {% thumbnail img.media, 'small' %}                            
                         </a>
                         <div class="modal fade" id="{{ loop.index }}" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
@@ -45,7 +45,7 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                     <div class="modal-body">
-                                        <img src="{% path img.media, 'big'%}">
+                                        {% thumbnail img.media, 'big' %}
                                     </div>
                                     {% if img.media.description %}
                                     <div class="col-md-12 description">

@@ -217,9 +217,12 @@ pre,
 
 .match-details {
     background-color: #eee;
-    color: #333;
-    margin-top: 20px;
+    color: #333;    
     text-align: center;
+}
+
+.next-match {
+    margin-bottom: 20px;
 }
 
 .match-details > h4 {
@@ -321,6 +324,13 @@ pre,
 @media (max-width: 991px) { 
     .carousel-caption p,
     #newsCarousel .list-group { display: none; } 
+}
+
+/* News thumbnail */
+
+.img-pull-left {
+    float: left;
+    margin-right: 10px;
 }
 
 /* TIMEPICKER */

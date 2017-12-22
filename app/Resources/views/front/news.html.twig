@@ -22,7 +22,7 @@
                         {{ article.publishDate|date('Y-m-d H:i') }}{% endif %}
                     </small>               
                     {% if article.image %}
-                        <img src="{% path article.image, 'small' %}">
+                        {% thumbnail article.image, 'small' with {'class': 'img-pull-left'} %}
                     {% endif %} 
                     {{ article.body | purify }}
                 {% endfor %}

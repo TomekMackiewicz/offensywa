@@ -20,11 +20,7 @@
                     <small>{% if post.publishDate %}
                         <i class="fa fa-clock-o" aria-hidden="true"></i> 
                         {{ post.publishDate|date('Y-m-d H:i') }}{% endif %}
-                    </small>               
-{#                    {% if post.image %}
-                        <img src="{% path post.image, 'small' %}">
-                    {% endif %} 
-                    {{ post.body | purify }}#}
+                    </small>
                 {% endfor %}
                 {% if pages > 1 %}
                 <nav aria-label="Page navigation">
