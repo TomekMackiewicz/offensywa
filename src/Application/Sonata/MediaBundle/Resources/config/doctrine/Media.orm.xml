@@ -16,8 +16,8 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-<!--         <many-to-one field="gallery" target-entity="\AppBundle\Entity\Gallery" inversed-by="images">
-            <join-column name="gallery" referenced-column-name="id" />
+<!--        <many-to-one field="galle" target-entity="\AppBundle\Entity\Galle" inversed-by="images">
+            <join-column name="galle" referenced-column-name="id" />
         </many-to-one>-->
     </entity>
 </doctrine-mapping>

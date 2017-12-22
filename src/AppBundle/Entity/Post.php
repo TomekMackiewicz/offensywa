@@ -57,8 +57,18 @@ class Post
      *     @ORM\JoinColumn(name="image", referencedColumnName="id")
      * })
      */
-   private $image;    
-    
+    private $image;    
+
+    /**
+     * @var Gallery
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="gallery", referencedColumnName="id")
+     * })
+     */
+    private $gallery;   
+   
     /**
      * @var \DateTime
      *
@@ -188,6 +198,30 @@ class Post
     {
         return $this->image;
     }    
+
+    /**
+     * Set gallery
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $gallery
+     *
+     * @return Player
+     */
+    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    } 
     
     /**
      * Set publishDate

@@ -11,9 +11,7 @@
 {% endblock %}
 
 {% block content %}
-{#    <i class="fa fa-backward" aria-hidden="true"></i>
-    <a href="{{ path('post_index') }}"> Back to the list</a>#}
-    {% if post %}
+    {% if post %}       
         <h1>{{ post.title }}</h1>
         {% if post.image %}
             <img src="{% path post.image, 'big' %}">
@@ -32,6 +30,9 @@
             </small>
         </p>
         {{ post.body | purify }}
+        {% for img in post.gallery.galleryHasMedias %}
+            <img src={% path img.media, 'reference'%}>
+        {% endfor %}         
     {% else %}
         <h2>Brak treści</h2>
     {% endif %}

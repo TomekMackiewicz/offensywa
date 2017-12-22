@@ -10,8 +10,7 @@
                   crossorigin="anonymous"
             >
             <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-            {#<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> #} 
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
             <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:400,600" rel="stylesheet">            
             <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
             <link rel="stylesheet" href="{{ asset('/css/fullcalendar.min.css') }}">
@@ -44,13 +43,28 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
                     crossorigin="anonymous">
-            </script>
+            </script>           
+            <script src="{{ asset('bundles/sonataadmin/Admin.js') }}"></script>           
             <script src="{{ asset('/js/timepicker.js') }}"></script>
             <script src="{{ asset('/js/moment.min.js') }}"></script>
             <script src="{{ asset('/js/fullcalendar.min.js') }}"></script>
             <script src="{{ asset('/js/fullcalendar-pl.js') }}"></script>
             <script src="{{ asset('/js/data-tables.js') }}"></script>
             <script src="{{ asset('/js/scripts.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonatacore/vendor/moment/min/moment.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/vendor/jquery-form/jquery.form.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/jquery/jquery.confirmExit.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonatacore/vendor/select2/select2.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/vendor/admin-lte/dist/js/app.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/vendor/iCheck/icheck.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/vendor/slimScroll/jquery.slimscroll.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/vendor/waypoints/lib/jquery.waypoints.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.min.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/Admin.js') }}"></script>
+            <script src="{{ asset('bundles/sonataadmin/treeview.js') }}"></script>
+            {#<script src="{{ asset('bundles/sonataadmin/sidebar.js') }}"></script>#}
             <script>
                 $(document).ready(function() {
                     $('#calendar').fullCalendar({
@@ -70,7 +84,7 @@
                                 {% endif %}
                     });
                 });
-            </script>            
+            </script> 
         {% endblock %}              
     </body>
 </html>

@@ -77,5 +77,6 @@ return array(
     'write.to' => 'Napisz do...',
     'to.all' => 'Do wszystkich',
     'to.group' => 'Do grupy',
-    'to.custom' => 'Wybierz adresatów'
+    'to.custom' => 'Wybierz adresatów',
+    'gallery' => 'Galeria zdjęć'
 );

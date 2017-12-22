@@ -39,6 +39,10 @@ class PostType extends AbstractType
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'post',
                 'label' => 'image'
+            ))
+            ->add('gallery', null, array(
+                'label' => 'gallery',
+                'placeholder' => 'choose'
             ));
     }
     

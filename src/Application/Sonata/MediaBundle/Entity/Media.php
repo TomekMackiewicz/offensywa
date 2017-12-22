@@ -9,18 +9,8 @@ class Media extends BaseMedia
     /**
      * @var int $id
      */
-    protected $id;
+    protected $id;    
 
-//    /**
-//      * @var Gallery
-//      *
-//      * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="images")
-//      * @ORM\JoinColumns({
-//      *     @ORM\JoinColumn(name="gallery", referencedColumnName="id")
-//      * })
-//      */
-//    private $gallery;    
-    
     /**
      * Get id
      *
