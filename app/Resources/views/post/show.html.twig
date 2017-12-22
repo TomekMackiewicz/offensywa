@@ -30,9 +30,36 @@
             </small>
         </p>
         {{ post.body | purify }}
-        {% for img in post.gallery.galleryHasMedias %}
-            <img src={% path img.media, 'reference'%}>
-        {% endfor %}         
+        {% if post.gallery %}
+            <div class="gal-container">
+            {% for img in post.gallery.galleryHasMedias %}
+                <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                    <div class="box">
+                        <a href="#" data-toggle="modal" data-target="#{{ loop.index }}">
+                            <img src="{% path img.media, 'small'%}">
+                        </a>
+                        <div class="modal fade" id="{{ loop.index }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    <div class="modal-body">
+                                        <img src="{% path img.media, 'big'%}">
+                                    </div>
+                                    {% if img.media.description %}
+                                    <div class="col-md-12 description">
+                                        <h4>{{ img.media.description }}</h4>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            {% endfor %}
+            </div>
+        {% endif %}
     {% else %}
         <h2>Brak treści</h2>
     {% endif %}
