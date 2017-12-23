@@ -309,7 +309,7 @@ $(document).ready(function() {
 
     function checkUniqueYear(value) {
         $.ajax({
-            url: 'http://localhost:8000/admin/teams/unique-year/'+value, // relative should work
+            url: '/admin/teams/unique-year/'+value,
             type: 'GET',
             data: value,
             success: function(response) {
