@@ -5,7 +5,7 @@ TODO:
 
 2) gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
-
+3) Admin - send email when new user
 
 ONLINE:
 

@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class RegistrationController extends BaseController
 {
+    
+    const RYCEK_EMAIL = 'maurycy.d@gmail.com';
+    
     public function registerAction(Request $request)
     {
         /** @var $formFactory FactoryInterface */
@@ -79,7 +82,22 @@ class RegistrationController extends BaseController
     private function newUserNotification($user) 
     {
         $notification = $this->get('notification');
-        $notification->addUserNotification($user);        
+        $notification->addUserNotification($user);
+        
+        $sender = $this->getParameter('mailer_user');
+        $body = 'Nowy użytkownik ' . $user->getUsername() . ' prosi o zatwierdzenie konta';
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Nowy użytkownik')    
+            ->setFrom($sender)
+            ->setTo(self::RYCEK_EMAIL)
+            ->setBody(
+                $this->renderView(
+                    'Emails/default.html.twig', array('body' => $body)), 
+                    'text/html'
+            );
+                
+        $this->get('mailer')->send($message);
+        
     }
     
 }
