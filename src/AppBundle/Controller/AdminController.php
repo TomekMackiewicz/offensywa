@@ -75,17 +75,17 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $currentDate = date('Y-m-d');
         $firstDay = date("Y-m-01", strtotime($currentDate . '-4 months'));
-        $lastDay = date("Y-m-t", strtotime($currentDate));         
+        $lastDay = date("Y-m-t", strtotime($currentDate));        
         
         $payments = $em->getRepository('AppBundle:Payment')->getPaymentsForLastMonths($firstDay, $lastDay);        
         $months = [];
         $res = [];
         $i = date("Y-m", strtotime($firstDay));
-        
-        while($i <= date("Y-m", strtotime($lastDay))){
-            $months[] = $i;
-            if(substr($i, 4, 2) == "12") {
-                $i = (date("Y", strtotime($i."01")) + 1)."01";                
+   
+        while($i <= date("Y-m", strtotime($lastDay))) {
+            $months[] = $i;             
+            if(substr($i, 5, 2) == "12") {
+                $i = date("Y-m", strtotime($i . "+1 month"));                
             } else {
                 $i++;
             }                

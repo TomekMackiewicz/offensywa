@@ -5,6 +5,8 @@ TODO:
 
 2) gritter: mecz został dodany nie znika - dlaczego? (trening też)
 
+3) kodowanie znaków
+
 ONLINE:
 
 1) captcha https://www.google.com/recaptcha/admin#list
