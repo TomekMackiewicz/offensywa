@@ -31,8 +31,8 @@
                     <td>{% if game.date %}{{ game.date|date('Y-m-d H:i') }}{% endif %}</td>
                     <td>{{ game.location }}</td>
                     <td>{% if game.category %}{{ game.category }}{% else %}---{% endif %}</td>
-                    <td>{% if game.homeTeam %}{{ game.homeTeam.name }}{% else %}Deleted{% endif %}</td>
-                    <td>{% if game.awayTeam %}{{ game.awayTeam.name }}{% else %}Deleted{% endif %}</td>
+                    <td>{% if game.homeTeam %}{{ game.homeTeam.name }} {{ game.homeTeam.year }}{% else %}Deleted{% endif %}</td>
+                    <td>{% if game.awayTeam %}{{ game.awayTeam.name }} {{ game.awayTeam.year }}{% else %}Deleted{% endif %}</td>
                     <td>{{ game.homeTeamScore }}</td>
                     <td>{{ game.awayTeamScore }}</td>
                     <td class="col-md-2">

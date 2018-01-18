@@ -36,7 +36,16 @@
             <div class="container-fluid">
                 {% include 'footer.html.twig' %}
             </div>
-        </footer>            
+        </footer>
+        {% if calendarData is defined %}
+            {% set foo = calendarData|json_encode|raw %}
+            {{ calendarData|json_encode }}
+            foo
+        {% else %}
+            {% set foo = null %}
+            null
+        {% endif %}            
+        <div id="events" data-events="{{ foo }}"></div>
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -67,6 +76,7 @@
             {#<script src="{{ asset('bundles/sonataadmin/sidebar.js') }}"></script>#}
             <script>
                 $(document).ready(function() {
+                    var events = $('#events').data('events');
                     $('#calendar').fullCalendar({
                         timeFormat: 'HH:mm',
                         minTime: '08:00:00',
@@ -77,11 +87,7 @@
                             center: 'title',
                             right: 'month, agendaWeek, agendaDay'
                         }, 
-                        events: {% if calendarData is defined %}
-                                    {{ calendarData|json_encode|raw }}
-                                {% else %}
-                                    null
-                                {% endif %}
+                        events: events
                     });
                 });
             </script> 

@@ -961,3 +961,7 @@ pre,
 .youtube-embed-wrapper {
     margin-bottom: 20px;
 }
+
+#toTop {
+    cursor: pointer;
+}

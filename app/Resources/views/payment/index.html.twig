@@ -27,7 +27,7 @@
                 <tr>
                     <td></td>
                     <td>{{ payment.amount }}</td>
-                    <td>{{ payment.player.firstName }} {{ payment.player.lastName }}</td>
+                    <td>{{ payment.player.firstName }} {{ payment.player.lastName }} ({{ payment.player.team.year }})</td>
                     <td>{{ payment.paymentCategory.name }}</td>
                     <td>{{ payment.period|date('Y-m') }}</td>
                     <td>{{ payment.date|date('Y-m-d') }}</td>

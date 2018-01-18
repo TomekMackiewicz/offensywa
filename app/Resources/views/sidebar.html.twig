@@ -26,7 +26,7 @@
                     <tr>
                         <td class="col-md-6">
                             {% if nextMatch.homeTeam %}
-                                {{ nextMatch.homeTeam.name }}
+                                {{ nextMatch.homeTeam.name }} {{ lastMatch.homeTeam.year }}
                             {% else %}
                                 Deleted team
                             {% endif %}
@@ -34,7 +34,7 @@
                         <td>:</td>
                         <td class="col-md-6">
                             {% if nextMatch.awayTeam %}
-                                {{ nextMatch.awayTeam.name }}
+                                {{ nextMatch.awayTeam.name }} {{ lastMatch.awayTeam.year }}
                             {% else %}
                                 Deleted team
                             {% endif %}                                        
@@ -85,7 +85,7 @@
                     <tr>
                         <td class="col-md-5">
                             {% if lastMatch.homeTeam %}
-                                {{ lastMatch.homeTeam.name }}
+                                {{ lastMatch.homeTeam.name }} {{ lastMatch.homeTeam.year }}
                             {% else %}
                                 Deleted
                             {% endif %}
@@ -93,7 +93,7 @@
                         <td class="col-md-2">vs</td>
                         <td class="col-md-5">
                             {% if lastMatch.awayTeam %}
-                                {{ lastMatch.awayTeam.name }}
+                                {{ lastMatch.awayTeam.name }} {{ lastMatch.awayTeam.year }}
                             {% else %}
                                 Deleted
                             {% endif %}                                            
