@@ -38,6 +38,27 @@ class PaymentController extends Controller
     }
 
     /**
+     * Show payments graphs entities by type.
+     *
+     * @Route("/al", name="payment_all")
+     * @Method("GET")
+     */
+    public function allAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $payments = $em->getRepository('AppBundle:Payment')->findAll();
+        $playersCount = $em->getRepository('AppBundle:Player')->countPlayers();
+        $categories = $em->getRepository('AppBundle:Payment')->getPaymentCategories();
+        $paymentTypes = $this->getPaymentsForLastMonths($categories);
+        
+        return $this->render('payment/all.html.twig', array(
+            'payments' => $payments,
+            'playersCount' => $playersCount,
+            'paymentTypes' => $paymentTypes
+        ));
+    }    
+    
+    /**
      * Creates a new payment entity.
      *
      * @Route("/new", name="payment_new")
@@ -137,4 +158,52 @@ class PaymentController extends Controller
             ->getForm()
         ;
     }
+    
+    private function getPaymentsForLastMonths($categories)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $currentDate = date('Y-m-d');
+        $firstDay = date("Y-m-01", strtotime($currentDate . '-11 months'));
+        $lastDay = date("Y-m-t", strtotime($currentDate));        
+        
+        $test = [];
+        
+        foreach($categories as $category) {
+            $payments = $em->getRepository('AppBundle:Payment')->getAllTypePaymentsForLastMonths($firstDay, $lastDay, $category->getId());        
+            $months = [];
+            $res = [];
+            //$res[] = $category->getName();
+            $i = date("Y-m", strtotime($firstDay));
+
+            while($i <= date("Y-m", strtotime($lastDay))) {
+                $months[] = $i;             
+                if(substr($i, 5, 2) == "12") {
+                    $i = date("Y-m", strtotime($i . "+1 month"));                
+                } else {
+                    $i++;
+                }                
+            }     
+
+            foreach($months as $month) {
+                $res[] = ["total" => 0, "period" => new \DateTime($month)];
+            }
+
+            foreach($res as &$r) {
+                if($r['total'] > 0) {
+                    continue;
+                }            
+                foreach($payments as $payment) {
+                    if($r['period']->format('Y-m') == $payment['period']->format('Y-m')) {
+                        $r['total'] = $payment['total'];
+                    }
+                }
+            }
+            $test[$category->getId()][] = $category->getName();
+            $test[$category->getId()][] = $res;
+        }
+
+        
+        return $test;
+    }    
+    
 }

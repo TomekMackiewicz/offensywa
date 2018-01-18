@@ -1,0 +1,36 @@
+{% extends 'admin.html.twig' %}
+
+{% block admin_body %}
+    <h1>Przegląd płatności</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            {% for paymentType in paymentTypes %}
+                <div class="admin-box">
+                    <h2>{{ paymentType[0] }}</h2>
+                    <div id="chart">
+                      {% if playersCount is not null and paymentType is not null %}
+                      <ul id="numbers">
+                            {% set height = 100 / playersCount %}
+                            {% for i in playersCount..0 %}
+                                <li style="height: {{height}}%"><span>{{i}}</span></li>
+                            {% endfor %}
+                      </ul>
+                      <ul id="bars">
+                            {% for monthlyPayments in paymentType[1] %}                          
+                                <li>
+                                    <div data-percentage="{{ height * monthlyPayments.total }}" class="bar">
+                                        <span>{{ monthlyPayments.total }}</span>
+                                    </div>
+                                    <span>{{ monthlyPayments.period|date('F')|trans }}</span>
+                                </li>
+                            {% endfor %}
+                      </ul>
+                      {% else %}
+                          Brak graczy i/lub płatności
+                      {% endif %}
+                    </div>                 
+                </div> 
+            {% endfor %}
+        </div>        
+    </div>
+{% endblock %}

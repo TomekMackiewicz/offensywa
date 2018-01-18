@@ -235,7 +235,8 @@
                 </ul>
             </div>             
         </li>        
-        {% if app.request.attributes.get('_route') == 'payment_index' 
+        {% if app.request.attributes.get('_route') == 'payment_index'
+           or app.request.attributes.get('_route') == 'payment_all'
            or app.request.attributes.get('_route') == 'payment_new'
            or app.request.attributes.get('_route') == 'paymentcategory_index' 
         %}
@@ -254,6 +255,7 @@
             <div class="collapse" id="payments">
                 <ul class="list-unstyled admin-list">
                     <li><a href="{{ path('payment_index') }}">Lista</a></li>
+                    <li><a href="{{ path('payment_all') }}">Przegląd</a></li>
                     <li><a href="{{ path('payment_new') }}">Dodaj</a></li>
                     <li><a href="{{ path('paymentcategory_index') }}">Rodzaje płatności</a></li>
                 </ul>

@@ -46,9 +46,37 @@ class PaymentRepository extends \Doctrine\ORM\EntityRepository
                 
         $payments = $query->getResult();
         
-        return $payments;
-        
+        return $payments;        
     }     
+
+    public function getAllTypePaymentsForLastMonths($firstDay, $lastDay, $catId) {
+        $em = $this->getEntityManager();                         
+        $query = $em->createQuery('
+            SELECT COUNT(p.id) as total, p.period
+            FROM AppBundle:Payment p
+            WHERE p.period >= :from
+            AND p.period <= :to
+            AND p.paymentCategory = :catId
+            GROUP BY p.period            
+        ')       
+        ->setParameter('from', $firstDay)
+        ->setParameter('to', $lastDay)
+        ->setParameter('catId', $catId);                
+                
+        $payments = $query->getResult();
+        
+        return $payments;        
+    } 
+
+    public function getPaymentCategories() {
+        $em = $this->getEntityManager();                         
+        $query = $em->createQuery('
+            SELECT c FROM AppBundle:paymentCategory c            
+        ');                       
+        $categories = $query->getResult();
+        
+        return $categories;        
+    } 
     
 }
 
