@@ -35,7 +35,9 @@ class TrainerType extends AbstractType
             ))
             ->add('teams', EntityType::class, array(
                 'class' => 'AppBundle:Team',
-                'choice_label' => 'name',
+                'choice_label' => function ($value) {
+                    return $value->getName() . ' ' . $value->getYear();
+                },
                 'multiple' => true,
                 'expanded' => true,
                 'label' => 'teams',
