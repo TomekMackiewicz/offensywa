@@ -40,7 +40,7 @@ class PaymentController extends Controller
     /**
      * Show payments graphs entities by type.
      *
-     * @Route("/al", name="payment_all")
+     * @Route("/all", name="payment_all")
      * @Method("GET")
      */
     public function allAction()
