@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Admin controller.
@@ -12,12 +13,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  */
 class AdminController extends Controller
 {
-    
-    private function getCalendarData($games, $trainings)
+
+    /**
+     * Get calendar data.
+     *
+     * @Route("/calendar-data", name="calendar_data")
+     * @Method("GET")
+     */    
+    public function calendarDataAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $trainings = $em->getRepository('AppBundle:Training')->findAll(); 
+        $games = $em->getRepository('AppBundle:Game')->getCurrentMonthGames();        
         $calendarData = array_merge($this->getCalendarGames($games), $this->getCalendarTrainings($trainings));
         
-        return $calendarData;
+        $response = new JsonResponse($calendarData);
+        
+        return $response;
     }
     
     private function getCalendarGames($games)
@@ -123,14 +135,14 @@ class AdminController extends Controller
         $teamsCount = $em->getRepository('AppBundle:Team')->countMyTeams();
         $thisMonthPayments = $em->getRepository('AppBundle:Payment')->getThisMonthPayments();
         $paymentsForLastMonths = $this->getPaymentsForLastMonths(); 
-        $trainings = $em->getRepository('AppBundle:Training')->findAll(); 
-        $games = $em->getRepository('AppBundle:Game')->getCurrentMonthGames();  
-        $calendarData = $this->getCalendarData($games, $trainings);
+        ///$trainings = $em->getRepository('AppBundle:Training')->findAll(); 
+        ///$games = $em->getRepository('AppBundle:Game')->getCurrentMonthGames();  
+        ///$calendarData = $this->getCalendarData($games, $trainings);
         $notificationData = $em->getRepository('AppBundle:Notification')->findAllByDate();
         $notificationsCount = $em->getRepository('AppBundle:Notification')->countNotifications(); 
 
         return $this->render('admin/dashboard.html.twig', array(
-            'calendarData' => $calendarData,
+            ///'calendarData' => $calendarData,
             'notificationData' => $notificationData,
             'playersCount' => $playersCount,
             'teamsCount' => $teamsCount,

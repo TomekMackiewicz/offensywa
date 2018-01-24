@@ -37,15 +37,6 @@
                 {% include 'footer.html.twig' %}
             </div>
         </footer>
-        {% if calendarData is defined %}
-            {% set foo = calendarData|json_encode|raw %}
-            {{ calendarData|json_encode }}
-            foo
-        {% else %}
-            {% set foo = null %}
-            null
-        {% endif %}            
-        <div id="events" data-events="{{ foo }}"></div>
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -73,11 +64,43 @@
             <script src="{{ asset('bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.min.js') }}"></script>
             <script src="{{ asset('bundles/sonataadmin/Admin.js') }}"></script>
             <script src="{{ asset('bundles/sonataadmin/treeview.js') }}"></script>
-            {#<script src="{{ asset('bundles/sonataadmin/sidebar.js') }}"></script>#}
             <script>
                 $(document).ready(function() {
-                    var events = $('#events').data('events');
-                    $('#calendar').fullCalendar({
+                    
+                    $.ajax({
+                        url: '/admin/calendar-data',
+                        type: 'GET',
+                        success: function(response) {
+                            $('#calendar').fullCalendar({
+                                timeFormat: 'HH:mm',
+                                minTime: '08:00:00',
+                                maxTime: '21:00:00',
+                                defaultTimedEventDuration: '01:00:00',
+                                header: {
+                                    left: 'prev,next',
+                                    center: 'title',
+                                    right: 'month, agendaWeek, agendaDay'
+                                }, 
+                                events: response
+                            });
+                        },
+                        error: function(response) {
+                            $('#calendar').fullCalendar({
+                                timeFormat: 'HH:mm',
+                                minTime: '08:00:00',
+                                maxTime: '21:00:00',
+                                defaultTimedEventDuration: '01:00:00',
+                                header: {
+                                    left: 'prev,next',
+                                    center: 'title',
+                                    right: 'month, agendaWeek, agendaDay'
+                                }, 
+                                events: {}
+                            });
+                        }
+                    });                     
+                    
+{#                    $('#calendar').fullCalendar({
                         timeFormat: 'HH:mm',
                         minTime: '08:00:00',
                         maxTime: '21:00:00',
@@ -87,8 +110,12 @@
                             center: 'title',
                             right: 'month, agendaWeek, agendaDay'
                         }, 
-                        events: events
-                    });
+                        events: {% if calendarData is defined %}
+                                    {{ calendarData|json_encode|raw }}
+                                {% else %}
+                                    null
+                                {% endif %}
+                    });#}
                 });
             </script> 
         {% endblock %}              
