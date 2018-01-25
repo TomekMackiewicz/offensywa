@@ -1,5 +1,4 @@
 <?php
-// src/AppBundle/Controller/RegistrationController.php
 
 namespace AppBundle\Controller;
 
@@ -14,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 class RegistrationController extends BaseController
 {
     
-    const RYCEK_EMAIL = 'maurycy.d@gmail.com';
+    const RYCEK_EMAIL = 'kontakt@offensywa.com.pl';
     
     public function registerAction(Request $request)
     {
@@ -41,7 +40,7 @@ class RegistrationController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            if ($form->isValid()) {
+            if ($form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
@@ -66,6 +65,13 @@ class RegistrationController extends BaseController
                 return $response;
             }
 
+            if($form->isSubmitted() && $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))) {                
+                $this->addFlash(
+                    'error',
+                    'Udowodnij, że nie jesteś robotem ;)'
+                );             
+            }            
+            
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_FAILURE, $event);
 
@@ -77,6 +83,24 @@ class RegistrationController extends BaseController
         return $this->render('@FOSUser/Registration/register.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    # get success response from recaptcha and return it to controller
+    private function captchaverify($recaptcha)
+    {
+        $url = "https://www.google.com/recaptcha/api/siteverify";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+            "secret"=>"6LdYYEIUAAAAADNgd3HSnxt2KpITfRxRcBIas1W5","response"=>$recaptcha));
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($response);     
+        
+        return $data->success;        
     }
     
     private function newUserNotification($user) 
