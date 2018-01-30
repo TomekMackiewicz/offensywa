@@ -971,3 +971,7 @@ pre,
     background-color: #f2dede;
     border-color: #ebccd1;
 }
+
+.jumbotron {
+    margin-top: 30px;
+}

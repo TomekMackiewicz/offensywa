@@ -10,8 +10,7 @@
         {% include 'navbar.html.twig' %}
     </header>
     <main class="container">
-        <div class="row">
-            {{ render(controller('AppBundle:Ad:index')) }}
+        <div class="row">           
             <section class="col-xs-12 col-sm-12 col-md-9">
                 {% block content %}{% endblock %}
             </section>
