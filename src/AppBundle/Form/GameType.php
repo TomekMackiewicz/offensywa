@@ -47,7 +47,9 @@ class GameType extends AbstractType
             ))                
             ->add('homeTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
-                'choice_label' => 'name',
+                'choice_label' => function ($value) {
+                    return $value->getName() . ' ' . $value->getYear();
+                },
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'choose',
@@ -55,7 +57,9 @@ class GameType extends AbstractType
             ))
             ->add('awayTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
-                'choice_label' => 'name',
+                'choice_label' => function ($value) {
+                    return $value->getName() . ' ' . $value->getYear();
+                },
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'choose',
