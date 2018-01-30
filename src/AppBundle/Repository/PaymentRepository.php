@@ -49,6 +49,26 @@ class PaymentRepository extends \Doctrine\ORM\EntityRepository
         return $payments;        
     }     
 
+    public function getPlayerPaymentsForLastMonths($id, $firstDay, $lastDay) {
+        $em = $this->getEntityManager();         
+                
+        $query = $em->createQuery('
+            SELECT p.amount, p.period, p.date
+            FROM AppBundle:Payment p
+            WHERE p.period >= :from
+            AND p.period <= :to
+            AND p.paymentCategory = 1
+            AND p.player = :id            
+        ')
+        ->setParameter('id', $id)                
+        ->setParameter('from', $firstDay)
+        ->setParameter('to', $lastDay);                
+                
+        $payments = $query->getResult();
+        
+        return $payments;        
+    }     
+    
     public function getAllTypePaymentsForLastMonths($firstDay, $lastDay, $catId) {
         $em = $this->getEntityManager();                         
         $query = $em->createQuery('

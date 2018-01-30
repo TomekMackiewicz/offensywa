@@ -975,3 +975,11 @@ pre,
 .jumbotron {
     margin-top: 30px;
 }
+
+.yes {
+    color: green; 
+}
+
+.no {
+    color: red; 
+}
