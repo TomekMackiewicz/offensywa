@@ -9,12 +9,13 @@
                     <h2>{{ paymentType[0] }}</h2>
                     <div id="chart">
                       {% if playersCount is not null and paymentType is not null %}
-                      <ul id="numbers">
+                          {% set height = 100 / playersCount %}
+{#                      <ul id="numbers">
                             {% set height = 100 / playersCount %}
                             {% for i in playersCount..0 %}
                                 <li style="height: {{height}}%"><span>{{i}}</span></li>
                             {% endfor %}
-                      </ul>
+                      </ul>#}
                       <ul id="bars">
                             {% for monthlyPayments in paymentType[1] %}                          
                                 <li>

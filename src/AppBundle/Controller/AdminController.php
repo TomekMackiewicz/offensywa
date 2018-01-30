@@ -86,7 +86,7 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $currentDate = date('Y-m-d');
-        $firstDay = date("Y-m-01", strtotime($currentDate . '-4 months'));
+        $firstDay = date("Y-m-01", strtotime($currentDate . '-5 months'));
         $lastDay = date("Y-m-t", strtotime($currentDate));        
         
         $payments = $em->getRepository('AppBundle:Payment')->getPaymentsForLastMonths($firstDay, $lastDay);        

@@ -375,14 +375,14 @@ pre,
   margin-bottom: 3em;
 }
 
-#chart #numbers {
+/*#chart #numbers {
   height: 100%;
   width: 10%;
   margin: 0;
   padding: 0;
   display: inline-block;
   float: left;
-}
+}*/
 
 #chart #numbers li {
     text-align: right;
@@ -413,7 +413,7 @@ pre,
 
 #chart #bars {
   display: inline-block;
-  width: 90%;
+  width: 100%;
   height: 300px;
   padding: 0;
   margin: 0;

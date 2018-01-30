@@ -128,18 +128,19 @@
                            aria-hidden="true" 
                            data-toggle="tooltip" 
                            data-placement="right" 
-                           title="Składki za ostatnie 5 miesięcy">                 
+                           title="Składki za ostatnie 6 miesięcy">                 
                         </i>
                     </sup>
                 </h2>                            
                 <div id="chart">
                   {% if playersCount is not null and paymentsForLastMonths is not null %}
-                  <ul id="numbers">
+                      {% set height = 100 / playersCount %}
+{#                  <ul id="numbers">
                         {% set height = 100 / playersCount %}
                         {% for i in playersCount..0 %}
                             <li style="height: {{height}}%"><span>{{i}}</span></li>
                         {% endfor %}
-                  </ul>
+                  </ul>#}
                   <ul id="bars">
                         {% for monthlyPayments in paymentsForLastMonths %}                          
                             <li>
