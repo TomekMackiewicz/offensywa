@@ -545,11 +545,11 @@
             </trans-unit>
             <trans-unit id="image">
                 <source>image</source>
-                <target>Zdjęcie</target>
+                <target>zdjęcie</target>
             </trans-unit>
             <trans-unit id="post">
                 <source>post</source>
-                <target>Post</target>
+                <target>post</target>
             </trans-unit>
             <trans-unit id="logo">
                 <source>logo</source>
@@ -557,7 +557,7 @@
             </trans-unit> 
             <trans-unit id="team">
                 <source>team</source>
-                <target>Drużyna</target>
+                <target>drużyna</target>
             </trans-unit> 
             <trans-unit id="user">
                 <source>user</source>
@@ -567,6 +567,10 @@
                 <source>event</source>
                 <target>wydarzenie</target>
             </trans-unit>
+            <trans-unit id="files">
+                <source>event</source>
+                <target>pliki</target>
+            </trans-unit>            
             <trans-unit id="sonata.media.provider.youtube.description">
                 <source>sonata.media.provider.youtube.description</source>
                 <target>You Tube</target>

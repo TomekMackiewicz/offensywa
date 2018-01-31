@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block meta %}
+    <title>Offensywa &bull; Pliki</title>
+    <meta name="description" content="Offensywa Książenice - pliki do pobrania">
+    <meta property="og:title" content="Offensywa Książenice – szkółka piłkarska" />
+    <meta property="og:description" content="Offensywa Książenice - pliki do pobrania" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ app.request.uri }}" />
+    <meta property="og:image" content="http://placehold.it/760x400/cccccc/ffffff" />     
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Pliki do pobrania</h1>
+            {% for file in files %}
+                <p><a href="{{file.path}}">{{ file.name }}</a></p>
+            {% endfor %}            
+        </div>
+    </div>
+{% endblock %}

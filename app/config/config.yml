@@ -168,13 +168,12 @@ sonata_media:
                 logo: { width: 30, quality: 70 }
                 #big:   { width: 900, quality: 70 }
 
-        event:
+        files:
             providers:
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-            formats:
-                small: { width: 200 , quality: 70 }
-                big:   { width: 500 , quality: 70 }
+                - sonata.media.provider.file
+#            formats:
+#                small: { width: 200 , quality: 70 }
+#                big:   { width: 500 , quality: 70 }
 
     cdn:
         server:

@@ -73,6 +73,36 @@ class FrontController extends Controller
     }   
 
     /**
+     * @Route("/pliki", name="files")
+     */
+    public function filesAction(Request $request)
+    {               
+        $em = $this->getDoctrine()->getManager();
+        
+        $files = [];        
+        $mm = $this->container->get('sonata.media.manager.media');
+        $pr = $this->container->get('sonata.media.provider.file');
+        $media = $mm->findBy(array('contentType' => ['application/pdf', 'application/msword']));
+
+        foreach($media as $file) {
+            $format = $pr->getFormatName($file, 'reference');
+            $files[$file->getId()]['name'] = $file->getName();
+            $files[$file->getId()]['path'] = $pr->generatePublicUrl($file, $format);    
+        }        
+        
+        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
+        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
+        $leagueTables = $this->get('league_table')->getleagueTables();
+               
+        return $this->render('front/files.html.twig', [
+            'lastMatch' => $lastMatch,
+            'nextMatch' => $nextMatch,
+            'leagueTables' => $leagueTables,
+            'files' => $files
+        ]);              
+    }     
+    
+    /**
      * @Route("/aktualnosci/{page}", name="news")
      */
     public function newsAction($page)
