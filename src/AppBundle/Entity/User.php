@@ -26,6 +26,29 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message = "field.not_blank")
+     */
+    protected $first_name;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message = "field.not_blank")
+     */
+    protected $last_name;    
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message = "field.not_blank")
+     * @Assert\Regex(
+     *   pattern = "^[12][0-9]{3}$^",
+     *   match = true,
+     *   message = "field.year"
+     * )
+     */
+    protected $year;
+    
+    /**
      * @Assert\Length(
      *     min=8,
      *     max=100,
@@ -51,6 +74,78 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
+
+    /**
+    * Set firstName
+    *
+    * @param string $firstName
+    *
+    * @return User
+    */
+    public function setFirstName($firstName)
+    {
+       $this->first_name = $firstName;
+       
+       return $this;
+    }
+ 
+    /**
+    * Get firstName
+    *
+    * @return string
+    */ 
+    public function getFirstName() 
+    {
+       return $this->first_name;
+    }
+ 
+    /**
+    * Set lastName
+    *
+    * @param string $lastName
+    *
+    * @return User
+    */ 
+    public function setLastName($lastName)
+    {
+       $this->last_name = $lastName;
+       
+       return $this;
+    }
+ 
+    /**
+    * Get lastName
+    *
+    * @return string
+    */ 
+    public function getLastName()
+    {
+       return $this->last_name;
+    }
+
+    /**
+    * Set year
+    *
+    * @param string $year
+    *
+    * @return User
+    */ 
+    public function setYear($year)
+    {
+       $this->year = $year;
+       
+       return $this;
+    }
+ 
+    /**
+    * Get year
+    *
+    * @return string
+    */ 
+    public function getYear()
+    {
+       return $this->year;
+    }    
     
     /**
      * Set player

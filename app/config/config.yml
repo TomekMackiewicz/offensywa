@@ -85,6 +85,8 @@ fos_user:
         confirmation:
             enabled: true
             template: FOSUserBundle:Registration:email.txt.twig
+        form:
+           type: AppBundle\Form\RegistrationType
         
 exercise_html_purifier:
     default:
