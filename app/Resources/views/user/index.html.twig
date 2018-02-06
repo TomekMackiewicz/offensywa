@@ -8,7 +8,10 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Nazwa użytkownika</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Imię</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Nazwisko</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Nick</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Rocznik</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Email</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Ostatnie logowanie</th>
                     <th>Zbindowany</th>
@@ -21,7 +24,10 @@
             {% for user in users %}
                 <tr>
                     <td>{{ loop.index }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
                     <td>{{ user.username }}</td>
+                    <td>{{ user.year }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.lastLogin | date('Y-m-d H:i') }}</td>
                     <td>

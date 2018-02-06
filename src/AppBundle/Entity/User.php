@@ -29,13 +29,13 @@ class User extends BaseUser
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message = "field.not_blank")
      */
-    protected $first_name;
+    protected $firstName;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message = "field.not_blank")
      */
-    protected $last_name;    
+    protected $lastName;    
 
     /**
      * @ORM\Column(type="string")
@@ -84,7 +84,7 @@ class User extends BaseUser
     */
     public function setFirstName($firstName)
     {
-       $this->first_name = $firstName;
+       $this->firstName = $firstName;
        
        return $this;
     }
@@ -96,7 +96,7 @@ class User extends BaseUser
     */ 
     public function getFirstName() 
     {
-       return $this->first_name;
+       return $this->firstName;
     }
  
     /**
@@ -108,7 +108,7 @@ class User extends BaseUser
     */ 
     public function setLastName($lastName)
     {
-       $this->last_name = $lastName;
+       $this->lastName = $lastName;
        
        return $this;
     }
@@ -120,7 +120,7 @@ class User extends BaseUser
     */ 
     public function getLastName()
     {
-       return $this->last_name;
+       return $this->lastName;
     }
 
     /**
