@@ -62,7 +62,6 @@ class RequestController extends Controller
             
             $this->addFlash("success", "Zamówienie dodane");
             
-            return $this->redirectToRoute('fos_user_profile_show');
         } else if($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash("danger", "Błąd podczas dodawania zamówienia");
         }
@@ -72,47 +71,6 @@ class RequestController extends Controller
             'form' => $form->createView(),
         ));
     }
-
-//    /**
-//     * Finds and displays a request entity.
-//     *
-//     * @Route("/{id}", name="request_show")
-//     * @Method("GET")
-//     */
-//    public function showAction(Request $request)
-//    {
-//        $deleteForm = $this->createDeleteForm($request);
-//
-//        return $this->render('request/show.html.twig', array(
-//            'request' => $request,
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
-
-//    /**
-//     * Displays a form to edit an existing request entity.
-//     *
-//     * @Route("/{id}/edit", name="request_edit")
-//     * @Method({"GET", "POST"})
-//     */
-//    public function editAction(Request $request, Request $request)
-//    {
-//        $deleteForm = $this->createDeleteForm($request);
-//        $editForm = $this->createForm('AppBundle\Form\RequestType', $request);
-//        $editForm->handleRequest($request);
-//
-//        if ($editForm->isSubmitted() && $editForm->isValid()) {
-//            $this->getDoctrine()->getManager()->flush();
-//
-//            return $this->redirectToRoute('request_edit', array('id' => $request->getId()));
-//        }
-//
-//        return $this->render('request/edit.html.twig', array(
-//            'request' => $request,
-//            'edit_form' => $editForm->createView(),
-//            'delete_form' => $deleteForm->createView(),
-//        ));
-//    }
 
     /**
      * Deletes a request entity.

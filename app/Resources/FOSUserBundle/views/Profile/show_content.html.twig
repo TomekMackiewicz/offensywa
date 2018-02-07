@@ -6,38 +6,40 @@
         <div class="admin-box"> 
             <h2>{{ user.username }}</h2>
             <p>Email: <strong>{{ user.email }}</strong></p>
-            <h3>Historia opłat
-            <sup>
-                <i class="fa fa-question-circle-o" 
-                   aria-hidden="true" 
-                   data-toggle="tooltip" 
-                   data-placement="right" 
-                   title="Składki za ostatnie 12 miesięcy">                 
-                </i>
-            </sup>            
-            </h3>
-            <table class="table">
-                <tr>
-                    <th>Okres</th>
-                    <th>Data płatności</th>
-                    <th>Kwota</th>
-                </tr>
-                {% for payment in payments %}
-                <tr>
-                    <td>{{ payment.period | date('Y-m') }}</td>
-                    {% if payment.date %}
-                        <td>{{ payment.date | date('Y-m-d') }}</td>
-                    {% else %}
-                        <td>---</td>
-                    {% endif %}
-                    {% if payment.amount != 0 %}
-                        <td><i class="fa fa-check yes" aria-hidden="true"></i> {{ payment.amount }}</td>
-                    {% else %}
-                        <td><i class="fa fa-times no" aria-hidden="true"></i></td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </table>
+            {% if payments %}
+                <h3>Historia opłat
+                <sup>
+                    <i class="fa fa-question-circle-o" 
+                       aria-hidden="true" 
+                       data-toggle="tooltip" 
+                       data-placement="right" 
+                       title="Składki za ostatnie 12 miesięcy">                 
+                    </i>
+                </sup>            
+                </h3>
+                <table class="table">
+                    <tr>
+                        <th>Okres</th>
+                        <th>Data płatności</th>
+                        <th>Kwota</th>
+                    </tr>
+                    {% for payment in payments %}
+                    <tr>
+                        <td>{{ payment.period | date('Y-m') }}</td>
+                        {% if payment.date %}
+                            <td>{{ payment.date | date('Y-m-d') }}</td>
+                        {% else %}
+                            <td>---</td>
+                        {% endif %}
+                        {% if payment.amount != 0 %}
+                            <td><i class="fa fa-check yes" aria-hidden="true"></i> {{ payment.amount }}</td>
+                        {% else %}
+                            <td><i class="fa fa-times no" aria-hidden="true"></i></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
             {% if user.player %}
                 <h3>Profil zawodnika</h3>
                 <p>

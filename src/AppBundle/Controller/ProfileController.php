@@ -39,8 +39,12 @@ class ProfileController extends BaseController
     public function showAction()
     {
         $user = $this->getUser();
-        $id = $user->getPlayer()->getId();
-        $payments = $this->getPlayerPaymentsForLastMonths($id);        
+        if($user->getPlayer() !== null) {
+           $id = $user->getPlayer()->getId();
+           $payments = $this->getPlayerPaymentsForLastMonths($id); 
+        } else {
+            $payments = null;
+        }       
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
