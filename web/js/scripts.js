@@ -364,11 +364,12 @@ $(document).ready(function() {
         $('#gritter-notice-wrapper').fadeOut(); 
     }, 5000);
     
+    // POST because home.pl sucks and does not support DELETE
     $("body").on('click', '.notification-delete', function() {
         var id = $(this).attr('data-id');
         $.ajax({
             url: '/admin/notifications/'+id,
-            type: 'DELETE',
+            type: 'POST',
             data: id,
             success: function(response) {
                 loadNotifications();

@@ -82,11 +82,12 @@ class NotificationService extends Controller
         ));        
     }    
     
+    // POST because home.pl sucks and does not support DELETE
     /**
      * Deletes a notification entity.
      *
      * @Route("/admin/notifications/{id}", name="notification_delete")
-     * @Method("DELETE")
+     * @Method("POST")
      */
     public function deleteAction($id)
     {
