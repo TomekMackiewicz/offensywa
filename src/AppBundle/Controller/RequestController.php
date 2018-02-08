@@ -59,8 +59,9 @@ class RequestController extends Controller
             
             // Notify about new user and send email
             $notification = $this->get('notification');
-            $notification->addRequestNotification($order);
-            $this->newRequestEmail($user, $order->getItem());
+            $item = $this->get('translator')->trans($order->getItem());
+            $notification->addRequestNotification($order->getUser(), $item, $order->getDate());  
+            $this->newRequestEmail($user, $item);
             
             $this->addFlash("success", "Zamówienie dodane");
             

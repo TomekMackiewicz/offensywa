@@ -17,8 +17,8 @@ class RequestType extends AbstractType
         $builder
             ->add('item', ChoiceType::class, array(
                 'choices'  => array(
-                    'buty' => 'shoes',
-                    'strój' => 'outfit'
+                    'shoes' => 'shoes',
+                    'outfit' => 'outfit'
                 ),
                 'placeholder' => 'choose',
                 'label' => 'requestFor'

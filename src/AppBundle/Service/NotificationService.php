@@ -35,14 +35,14 @@ class NotificationService extends Controller
         $em->flush();                 
     }
 
-    public function addRequestNotification($request) 
+    public function addRequestNotification($user, $item, $date) 
     {
         $em = $this->doctrine->getManager();
         $notification = new Notification();
         $notification->setTitle('Nowe zamówienie');
-        $notification->setDate($request->getDate());
-        $notification->setWho($request->getUser());
-        $notification->setContext($request->getItem());
+        $notification->setDate($date);
+        $notification->setWho($user);
+        $notification->setContext($item);
         $notification->setType('request');
         $notification->setColor('success');
         $em->persist($notification);
