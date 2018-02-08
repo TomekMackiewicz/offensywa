@@ -64,6 +64,7 @@
             <script src="{{ asset('bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.min.js') }}"></script>
             <script src="{{ asset('bundles/sonataadmin/Admin.js') }}"></script>
             <script src="{{ asset('bundles/sonataadmin/treeview.js') }}"></script>
+            {% if is_granted('ROLE_ADMIN') %}
             <script>
                 $(document).ready(function() {
                     
@@ -117,7 +118,8 @@
                                 {% endif %}
                     });#}
                 });
-            </script> 
+            </script>
+            {% endif %}
         {% endblock %}              
     </body>
 </html>
