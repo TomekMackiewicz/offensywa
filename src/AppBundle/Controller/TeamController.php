@@ -133,12 +133,16 @@ class TeamController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             foreach($games as $game) {
-                if($team->getId() === $game->getHomeTeam()->getId()) {
-                    $game->setHomeTeam(null);
+                if ($game->getHomeTeam()) {
+                    if ($team->getId() === $game->getHomeTeam()->getId()) {
+                        $game->setHomeTeam(null);
+                    }                    
                 }
-                if($team->getId() === $game->getAwayTeam()->getId()) {
-                    $game->setAwayTeam(null);
-                }                
+                if ($game->getAwayTeam()) {
+                    if ($team->getId() === $game->getAwayTeam()->getId()) {
+                        $game->setAwayTeam(null);
+                    }                      
+                }              
             }
             foreach($players as $player) {
                 $player->setTeam(null);
