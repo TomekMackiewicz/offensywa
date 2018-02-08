@@ -56,9 +56,11 @@ class RequestController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($order);
             $em->flush();
-
+            
+            // Notify about new user and send email
             $notification = $this->get('notification');
             $notification->addRequestNotification($order);
+            $this->newRequestEmail($user, $order->getItem());
             
             $this->addFlash("success", "Zamówienie dodane");
             
@@ -109,4 +111,24 @@ class RequestController extends Controller
             ->getForm()
         ;
     }
+    
+    private function newRequestEmail($user, $item) 
+    {        
+        $sender = $this->getParameter('mailer_user');
+        $senderName = $this->getParameter('mailer_user_name');
+        $receiver = $this->getParameter('admin_mail');
+        $body = 'Użytkownik ' . $user->getUsername() . ' złożył zamówienie na ' . $item;
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Zamówienie')    
+            ->setFrom(array($sender => $senderName))
+            ->setTo($receiver)
+            ->setBody(
+                $this->renderView(
+                    'Emails/default.html.twig', array('body' => $body)), 
+                    'text/html'
+            );
+                
+        $this->get('mailer')->send($message);        
+    }    
+    
 }

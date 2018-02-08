@@ -11,10 +11,7 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\Request;
 
 class RegistrationController extends BaseController
-{
-    
-    const RYCEK_EMAIL = 'kontakt@offensywa.com.pl';
-    
+{    
     public function registerAction(Request $request)
     {
         /** @var $formFactory FactoryInterface */
@@ -60,7 +57,10 @@ class RegistrationController extends BaseController
 
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
                 
-                $this->newUserNotification($user);
+                // Notify about new user and send email
+                $notification = $this->get('notification');
+                $notification->addUserNotification($user);                
+                $this->newUserEmail($user);
                 
                 return $response;
             }
@@ -103,17 +103,16 @@ class RegistrationController extends BaseController
         return $data->success;        
     }
     
-    private function newUserNotification($user) 
-    {
-        $notification = $this->get('notification');
-        $notification->addUserNotification($user);
-        
+    private function newUserEmail($user) 
+    {       
         $sender = $this->getParameter('mailer_user');
+        $senderName = $this->getParameter('mailer_user_name');
+        $receiver = $this->getParameter('admin_mail');
         $body = 'Nowy użytkownik ' . $user->getUsername() . ' prosi o zatwierdzenie konta';
         $message = \Swift_Message::newInstance()
             ->setSubject('Nowy użytkownik')    
-            ->setFrom($sender)
-            ->setTo(self::RYCEK_EMAIL)
+            ->setFrom(array($sender => $senderName))
+            ->setTo($receiver)
             ->setBody(
                 $this->renderView(
                     'Emails/default.html.twig', array('body' => $body)), 
