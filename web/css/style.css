@@ -71,8 +71,13 @@ pre,
     border-radius:0 !important;
 }
 
+.admin-bg {
+    background-color: #222;
+}
+
 .admin-main {
     background-color: #f2f2f2;
+    min-height: 100vh;
 }
 
 .navbar {
