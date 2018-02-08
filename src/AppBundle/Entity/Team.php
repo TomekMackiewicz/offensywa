@@ -12,6 +12,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="team")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TeamRepository")
+ * @UniqueEntity(
+ *     fields={"year", "isMy"},
+ *     message="year.already.in.use"
+ * )
  */
 class Team
 {

@@ -259,8 +259,15 @@ $(document).ready(function() {
             }                    
         });                         
     }                   
+    
+// Enable play ligue checkbox only if my team ----------------------------------
 
     $('input[name="appbundle_team[playsLeague]"]').attr("disabled", true);
+    
+    if ($('input[name="appbundle_team[isMy]"]').is(':checked')) {
+       $('input[name="appbundle_team[playsLeague]"]').removeAttr("disabled");
+    }
+        
     $('input[name="appbundle_team[isMy]"]').on('click', function() {
         if ($(this).is(':checked')) {
             $('input[name="appbundle_team[playsLeague]"]').removeAttr("disabled");
@@ -268,8 +275,10 @@ $(document).ready(function() {
         else {
             $('input[name="appbundle_team[playsLeague]"]').attr("disabled", true);
         }
-    });
+    });        
 
+// -----------------------------------------------------------------------------    
+    
     var t = $('.data-table').DataTable( {
         "columnDefs": [ {
             "searchable": false,
@@ -307,54 +316,56 @@ $(document).ready(function() {
         } );
     }).draw();
 
-    function checkUniqueYear(value) {
-        $.ajax({
-            url: '/admin/teams/unique-year/'+value,
-            type: 'GET',
-            data: value,
-            success: function(response) {
-                if (response.length > 0) {
-                    $("#appbundle_team_year").closest('.form-group').addClass("has-error");
-                    $("#appbundle_team_year")
-                        .closest('.form-group')
-                        .append(
-                            "<span class=\"help-block\">"
-                                +"<span class=\"glyphicon glyphicon-exclamation-sign\">"
-                                +"</span>"
-                                +" Ten rocznik już istnieje."
-                            +"</span>"
-                    );
-                } else {
-                    $("#appbundle_team_year").closest('.form-group').removeClass("has-error");
-                    $("#appbundle_team_year").closest('.form-group').find( "span.help-block" ).remove();
-                }
+// @UniqueEntity instead (Team entity)
 
-            },
-            error: function(response) {
-                console.log(response);
-            }
-        });         
-    }    
+//    function checkUniqueYear(value) {
+//        $.ajax({
+//            url: '/admin/teams/unique-year/'+value,
+//            type: 'GET',
+//            data: value,
+//            success: function(response) {
+//                if (response.length > 0) {
+//                    $("#appbundle_team_year").closest('.form-group').addClass("has-error");
+//                    $("#appbundle_team_year")
+//                        .closest('.form-group')
+//                        .append(
+//                            "<span class=\"help-block\">"
+//                                +"<span class=\"glyphicon glyphicon-exclamation-sign\">"
+//                                +"</span>"
+//                                +" Ten rocznik już istnieje."
+//                            +"</span>"
+//                    );
+//                } else {
+//                    $("#appbundle_team_year").closest('.form-group').removeClass("has-error");
+//                    $("#appbundle_team_year").closest('.form-group').find( "span.help-block" ).remove();
+//                }
+//
+//            },
+//            error: function(response) {
+//                console.log(response);
+//            }
+//        });         
+//    }    
     
-    $("#appbundle_team_year").keyup(function() {
-        var checked = $("#appbundle_team_isMy").prop('checked');
-        var value = $("#appbundle_team_year").val();
-        var isValidYear = /\d{4}/.test(value);
-
-        if(checked && isValidYear) {
-            checkUniqueYear(value);
-        }        
-    });     
-
-    $("#appbundle_team_isMy").change(function() {
-        var checked = $("#appbundle_team_isMy").prop('checked');
-        var value = $("#appbundle_team_year").val();
-        var isValidYear = /\d{4}/.test(value);
-
-        if(checked && isValidYear) {
-            checkUniqueYear(value);
-        }        
-    });       
+//    $("#appbundle_team_year").keyup(function() {
+//        var checked = $("#appbundle_team_isMy").prop('checked');
+//        var value = $("#appbundle_team_year").val();
+//        var isValidYear = /\d{4}/.test(value);
+//
+//        if(checked && isValidYear) {
+//            checkUniqueYear(value);
+//        }        
+//    });     
+//
+//    $("#appbundle_team_isMy").change(function() {
+//        var checked = $("#appbundle_team_isMy").prop('checked');
+//        var value = $("#appbundle_team_year").val();
+//        var isValidYear = /\d{4}/.test(value);
+//
+//        if(checked && isValidYear) {
+//            checkUniqueYear(value);
+//        }        
+//    });       
     
     $('.gritter-close').on('click', function() {
         $('#gritter-notice-wrapper').fadeOut();

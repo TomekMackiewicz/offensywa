@@ -15,5 +15,6 @@ return array(
     'category.already.assigned' => 'Inna kategoria została już przypisana do tej strony',
     'slug.already.assigned' => 'Zduplikowany url, wybierz inny',
     'user.password.short' => 'Hasło jest zbyt krótkie',
-    'user.password.difficulty' => 'Hasło powinno zawierać co najmniej jedną wielką literę i co najmniej jedną cyfrę'
+    'user.password.difficulty' => 'Hasło powinno zawierać co najmniej jedną wielką literę i co najmniej jedną cyfrę',
+    'year.already.in.use' => 'Ten rocznik już istnieje'
 );
