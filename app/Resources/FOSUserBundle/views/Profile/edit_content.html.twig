@@ -6,7 +6,14 @@
         <h1>Edytuj profil</h1>
         <div class="admin-box"> 
             {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-                {{ form_widget(form) }}
+                {#{{ form_widget(form) }}#}
+                {{ form_errors(form) }}
+                {{ form_row(form.username) }}
+                {{ form_row(form.email) }}                
+                {{ form_row(form.firstName) }}
+                {{ form_row(form.lastName) }}
+                {{ form_row(form.year) }}
+                {{ form_row(form.current_password) }}                
                 <div>
                     <input type="submit" class="btn btn-default" value="{{ 'profile.edit.submit'|trans }}" />
                 </div>
