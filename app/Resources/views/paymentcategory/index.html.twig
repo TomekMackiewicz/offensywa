@@ -26,14 +26,17 @@
                         <td>{{ paymentCategory.name }}</td>
                         <td>{{ paymentCategory.amount }}</td>
                         <td class="col-md-3">
-                        {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_ADMIN') and paymentCategory.id != 1 %}
                             <a href="{{ path('paymentcategory_edit', { 'id': paymentCategory.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
                                 Edytuj
                             </a>
                             <form action="{{ path('paymentcategory_delete', { 'id': paymentCategory.id }) }}" method="post">
                                 {{ form_widget(deleteForms[paymentCategory.id]) }}
                                 <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                            </form>                             
+                            </form>
+                        {% else %}
+                            <p>Nie edytować!<br>
+                                Nie usuwac!</p>
                         {% endif %}                    
                         </td>
                     </tr>
