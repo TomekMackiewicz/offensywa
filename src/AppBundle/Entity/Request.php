@@ -37,11 +37,11 @@ class Request
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="requests")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $user;    
-
+    private $user; 
+   
     /**
      * Get id
      *
@@ -99,20 +99,6 @@ class Request
     {
         return $this->date;
     }
-    
-    /**
-     * Set user
-     *
-     * @param User $user
-     *
-     * @return Request
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
 
     /**
      * Get user
@@ -122,7 +108,21 @@ class Request
     public function getUser()
     {
         return $this->user;
-    }    
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Request
+     */    
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+        
+        return $this;
+    }       
     
 }
 

@@ -68,11 +68,16 @@ class User extends BaseUser
      * @ORM\JoinColumn(name="player_id", referencedColumnName="id")
      */
     private $player;    
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="Request", mappedBy="user")
+     */
+    private $requests;     
+  
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->requests = new ArrayCollection();
     }
 
     /**
@@ -170,5 +175,41 @@ class User extends BaseUser
     {
         return $this->player;
     }    
+
+    /**
+     * Get requests
+     *
+     * @return Request
+     */
+    public function getRequests()
+    {
+        return $this->requests;
+    }    
+    
+    /**
+     * Add request
+     *
+     * @param Request $request
+     *
+     * @return User
+     */    
+    public function addRequest(Request $request)
+    {
+        $this->requests->add($request);
+        
+        return $this;
+    }
+
+    /**
+     * Remove request
+     *
+     * @return User
+     */    
+    public function removeRequest(Request $request)
+    {
+        $this->requests->removeElement($request);
+        
+        return $this;
+    } 
     
 }    
