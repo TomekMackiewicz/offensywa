@@ -79,5 +79,6 @@ return array(
     'to.all' => 'Do wszystkich',
     'to.group' => 'Do grupy',
     'to.custom' => 'Wybierz adresatów',
-    'gallery' => 'Galeria zdjęć'
+    'gallery' => 'Galeria zdjęć',
+    'prove.not.robot' => 'Udowodnij, że nie jesteś robotem ;)'
 );

@@ -9,9 +9,16 @@ use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\Translator;
 
 class RegistrationController extends BaseController
-{    
+{ 
+    
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+    }    
+    
     public function registerAction(Request $request)
     {
         /** @var $formFactory FactoryInterface */
@@ -37,7 +44,7 @@ class RegistrationController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            if ($form->isValid() && $this->captchaverify($request->get('g-recaptcha-response'))) {
+            if ($form->isValid() && $this->captchaVerify($request->get('g-recaptcha-response'))) {
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
@@ -65,10 +72,10 @@ class RegistrationController extends BaseController
                 return $response;
             }
 
-            if($form->isSubmitted() && $form->isValid() && !$this->captchaverify($request->get('g-recaptcha-response'))) {                
+            if($form->isValid() && !$this->captchaVerify($request->get('g-recaptcha-response'))) {                
                 $this->addFlash(
                     'error',
-                    'Udowodnij, że nie jesteś robotem ;)'
+                    $this->translator->trans('prove.not.robot')
                 );             
             }            
             
@@ -86,7 +93,7 @@ class RegistrationController extends BaseController
     }
 
     # get success response from recaptcha and return it to controller
-    private function captchaverify($recaptcha)
+    private function captchaVerify($recaptcha)
     {
         $url = "https://www.google.com/recaptcha/api/siteverify";
         $ch = curl_init();
