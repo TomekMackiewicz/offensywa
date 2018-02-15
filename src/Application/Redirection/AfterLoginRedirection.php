@@ -37,7 +37,7 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         $lastUsername = $request->request->get('_username');
         $csrfToken = $request->request->get('_csrf_token');
         
-        if (!$this->captchaVerify($request->get('g-recaptcha-response'))) {
+        if (!$this->captchaVerify($request->get('g-recaptcha-response')) && !$this->security->isGranted('ROLE_SUPER_ADMIN')) {
             $session->getFlashBag()->add(
                 'error',
                 $this->translator->trans('prove.not.robot')    
