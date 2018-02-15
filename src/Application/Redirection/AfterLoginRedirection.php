@@ -15,6 +15,8 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
 {
     protected $router;
     protected $security;
+    protected $twig;
+    protected $translator;
 
     /**
      * AfterLoginRedirection constructor.
