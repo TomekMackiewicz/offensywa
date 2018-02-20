@@ -83,4 +83,8 @@ return array(
     'prove.not.robot' => 'Udowodnij, że nie jesteś robotem ;)',
     'remove.selected' => 'Usuń zaznaczone',
     'select.all' => 'Zaznacz wszystko',
+    'goalkeeper' => 'bramkarz',
+    'defender' => 'obrońca',
+    'midfielder' => 'pomocnik',
+    'attacker' => 'napastnik',
 );
