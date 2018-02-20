@@ -132,7 +132,7 @@ class AdController extends Controller
             $this->addFlash("danger", "Błąd podczas usuwania ogłoszenia");
         }
 
-        return $this->redirectToRoute('ad_index');
+        return $this->redirectToRoute('ad_admin_index');
     }
 
     /**
