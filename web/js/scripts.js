@@ -404,17 +404,22 @@ $(document).ready(function() {
         });        
     }
 
-});   
+    // Select all checkboxes ---------------------------------------------------
     
-                     
-             
+    $('.select_all').on('click',function() {
+        console.log('clicked');
+        if(this.checked) {
+            $('.list-checkbox').each(function() {
+                this.checked = true;
+            });
+        }else {
+             $('.list-checkbox').each(function() {
+                this.checked = false;
+            });
+        }
+    });
 
-                
+    // -------------------------------------------------------------------------
 
-
-
-                
-
-
-              
+});  
 

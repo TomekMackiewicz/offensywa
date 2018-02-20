@@ -6,35 +6,46 @@
             <h1>Zamówienia</h1>
             {% include 'partials/gritter.html.twig' %}             
             <div class="admin-box"> 
-                <table class="table data-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th><i class="fa fa-sort" aria-hidden="true"></i> Zamówienie</th>
-                            <th><i class="fa fa-sort" aria-hidden="true"></i> Zamawiający</th>
-                            <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
-                            <th>Edycja</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for request in requests %}
-                        <tr>
-                            <td></td>
-                            <td>{{ request.item|trans }}</td>
-                            <td>{% if request.user %}{{ request.user.username }}{% endif %}</td>
-                            <td>{% if request.date %}{{ request.date|date('Y-m-d H:i') }}{% endif %}</td>
-                            <td>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <form action="{{ path('request_delete', { 'id': request.id }) }}" method="post">
-                                    {{ form_widget(deleteForms[request.id]) }}
-                                    <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                                </form>                             
-                            {% endif %}                    
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                <form action="{{ path('request_delete') }}" method="post">
+                    <table class="table data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Zamówienie</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Zamawiający</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for request in requests %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ request.item|trans }}</td>
+                                <td>{% if request.user %}{{ request.user.username }}{% endif %}</td>
+                                <td>{% if request.date %}{{ request.date|date('Y-m-d H:i') }}{% endif %}</td>
+                                <td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <input name="_method" value="DELETE" type="hidden">
+                                    <input id="form__token{{request.id}}" 
+                                           class="list-checkbox" 
+                                           name="requests[]" 
+                                           value="{{ request.id }}" 
+                                           type="checkbox"
+                                    >                                                             
+                                {% endif %}                    
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
+                        </label>
+                    </div>                        
+                    <input type="submit" class="btn btn-danger btn-sm" value="{{ 'remove.selected'|trans }}">
+                </form>    
             </div>
         </div>
     </div>

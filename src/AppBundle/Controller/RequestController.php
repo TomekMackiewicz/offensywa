@@ -24,14 +24,9 @@ class RequestController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $requests = $em->getRepository('AppBundle:Request')->findBy(array(), array('date' => 'DESC'));
-        $deleteForms = array();
-        foreach($requests as $request) {
-            $deleteForms[$request->getId()] = $this->createDeleteForm($request)->createView();
-        }
         
         return $this->render('request/index.html.twig', array(
             'requests' => $requests,
-            'deleteForms' => $deleteForms
         ));
     }
 
@@ -76,43 +71,33 @@ class RequestController extends Controller
     }
 
     /**
-     * Deletes a request entity.
+     * Deletes request entity / entities
      *
-     * @Route("/admin/requests/{id}", name="request_delete")
+     * @Route("/admin/requests", name="request_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, UserRequest $userRequest)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($userRequest);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($userRequest);
-            $em->flush();
-            
-            $this->addFlash("success", "Zamówienie usunięte");
+        $em = $this->getDoctrine()->getManager();
+        $requests = $request->request->get('requests');
+        
+        foreach($requests as $request) {
+            $to_delete = $em->getRepository('AppBundle:Request')->findOneById((int) $request);           
+            $em->remove($to_delete);
         }
+        
+        $em->flush();            
+        $this->addFlash("success", "Zamówienie usunięte");
 
         return $this->redirectToRoute('request_index');
     }
-
-    /**
-     * Creates a form to delete a request entity.
-     *
-     * @param Request $request The request entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(UserRequest $userRequest)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('request_delete', array('id' => $userRequest->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
     
+    /**
+     * Send email when user submits request
+     * 
+     * @param User $user
+     * @param string $item
+     */
     private function newRequestEmail($user, $item) 
     {        
         $sender = $this->getParameter('mailer_user');

@@ -26,8 +26,8 @@
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ post.title }}</td>
-                    <td>{% if post.publishDate %}{{ post.publishDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{% if post.modifyDate %}{{ post.modifyDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if post.publishDate %}{{ post.publishDate|date('Y-m-d H:i') }}{% endif %}</td>
+                    <td>{% if post.modifyDate %}{{ post.modifyDate|date('Y-m-d H:i') }}{% endif %}</td>
                     <td>
                         {% if post.categories is not empty %}
                             {% for category in post.categories %}

@@ -80,5 +80,7 @@ return array(
     'to.group' => 'Do grupy',
     'to.custom' => 'Wybierz adresatów',
     'gallery' => 'Galeria zdjęć',
-    'prove.not.robot' => 'Udowodnij, że nie jesteś robotem ;)'
+    'prove.not.robot' => 'Udowodnij, że nie jesteś robotem ;)',
+    'remove.selected' => 'Usuń zaznaczone',
+    'select.all' => 'Zaznacz wszystko',
 );
