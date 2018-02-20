@@ -68,7 +68,7 @@ class AdController extends Controller
             
             $this->addFlash("success", "Ogłoszenie zostało utworzone");
 
-            return $this->redirectToRoute('ad_index', array('id' => $ad->getId()));
+            return $this->redirectToRoute('ad_admin_index', array('id' => $ad->getId()));
             
         } else if($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash("danger", "Błąd podczas dodawania ogłoszenia");
