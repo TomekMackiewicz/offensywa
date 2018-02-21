@@ -24,16 +24,10 @@ class PaymentController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $payments = $em->getRepository('AppBundle:Payment')->findAll();
-        $deleteForms = array();
-        foreach($payments as $payment) {
-            $deleteForms[$payment->getId()] = $this->createDeleteForm($payment)->createView();
-        }
         
         return $this->render('payment/index.html.twig', array(
             'payments' => $payments,
-            'deleteForms' => $deleteForms,
         ));
     }
 
@@ -75,12 +69,12 @@ class PaymentController extends Controller
             $em->persist($payment);
             $em->flush();
             
-            $this->addFlash("success", "Płatność została dodana");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success'))); 
 
             return $this->redirectToRoute('payment_index');
             
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania płatności");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('payment/new.html.twig', array(
@@ -104,12 +98,12 @@ class PaymentController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Płatność została uaktualniona");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('payment_edit', array('id' => $payment->getId()));
             
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas uaktualniania płatności");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         return $this->render('payment/edit.html.twig', array(
@@ -120,25 +114,23 @@ class PaymentController extends Controller
     }
 
     /**
-     * Deletes a payment entity.
+     * Deletes a payment entity / entities.
      *
-     * @Route("/{id}", name="payment_delete")
+     * @Route("/", name="payment_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Payment $payment)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($payment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($payment);
-            $em->flush();
-            
-            $this->addFlash("success", "Płatność została usunięta");
-        } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas usuwania płatności");
+        $em = $this->getDoctrine()->getManager();
+        $payments = $request->request->get('payments');
+        
+        foreach($payments as $payment) {
+            $to_delete = $em->getRepository('AppBundle:Payment')->findOneById((int) $payment);           
+            $em->remove($to_delete);
         }
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success'))); 
 
         return $this->redirectToRoute('payment_index');
     }
@@ -166,13 +158,12 @@ class PaymentController extends Controller
         $firstDay = date("Y-m-01", strtotime($currentDate . '-11 months'));
         $lastDay = date("Y-m-t", strtotime($currentDate));        
         
-        $test = [];
+        $output = [];
         
         foreach($categories as $category) {
             $payments = $em->getRepository('AppBundle:Payment')->getAllTypePaymentsForLastMonths($firstDay, $lastDay, $category->getId());        
             $months = [];
             $res = [];
-            //$res[] = $category->getName();
             $i = date("Y-m", strtotime($firstDay));
 
             while($i <= date("Y-m", strtotime($lastDay))) {
@@ -198,12 +189,11 @@ class PaymentController extends Controller
                     }
                 }
             }
-            $test[$category->getId()][] = $category->getName();
-            $test[$category->getId()][] = $res;
+            $output[$category->getId()][] = $category->getName();
+            $output[$category->getId()][] = $res;
         }
-
         
-        return $test;
+        return $output;
     }    
     
 }

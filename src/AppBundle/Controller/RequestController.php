@@ -58,10 +58,10 @@ class RequestController extends Controller
             $notification->addRequestNotification($order->getUser(), $item, $order->getDate());  
             $this->newRequestEmail($user, $item);
             
-            $this->addFlash("success", "Zamówienie dodane");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
             
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania zamówienia");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('request/new.html.twig', array(
@@ -87,11 +87,11 @@ class RequestController extends Controller
         }
         
         $em->flush();            
-        $this->addFlash("success", "Zamówienie usunięte");
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
 
         return $this->redirectToRoute('request_index');
     }
-    
+
     /**
      * Send email when user submits request
      * 
@@ -103,9 +103,10 @@ class RequestController extends Controller
         $sender = $this->getParameter('mailer_user');
         $senderName = $this->getParameter('mailer_user_name');
         $receiver = $this->getParameter('admin_mail');
-        $body = 'Użytkownik ' . $user->getUsername() . ' złożył zamówienie na ' . $item;
+        $body = ucfirst($this->get('translator')->trans('user')) . " " . 
+                $user->getUsername() . ' ' . $this->get('translator')->trans('requested') . ' ' . $item;
         $message = \Swift_Message::newInstance()
-            ->setSubject('Zamówienie')    
+            ->setSubject(ucfirst($this->get('translator')->trans('request')))    
             ->setFrom(array($sender => $senderName))
             ->setTo($receiver)
             ->setBody(

@@ -9,47 +9,58 @@
     </a>
     {% endif %}
     {% include 'partials/gritter.html.twig' %}
-    <div class="admin-box">  
-        <table class="table data-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Kwota</th>
-                    <th>Zawodnik</th>
-                    <th>Rodzaj</th>
-                    <th>Okres</th>
-                    <th>Data</th>
-                    <th>Edycja</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for payment in payments %}
-                <tr>
-                    <td></td>
-                    <td>{{ payment.amount }}</td>
-                    <td>
-                        {{ payment.player.firstName }} {{ payment.player.lastName }} 
-                        {% if payment.player.team %}
-                            ({{ payment.player.team.year }})
-                        {% endif %}
-                    </td>
-                    <td>{{ payment.paymentCategory.name }}</td>
-                    <td>{{ payment.period|date('Y-m') }}</td>
-                    <td>{{ payment.date|date('Y-m-d') }}</td>
-                    <td class="col-md-2">
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('payment_edit', { 'id': payment.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                            Edytuj
-                        </a>
-                        <form action="{{ path('payment_delete', { 'id': payment.id }) }}" method="post">
-                            {{ form_widget(deleteForms[payment.id]) }}
-                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                        </form>                             
-                    {% endif %}                    
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <div class="admin-box">
+        <form action="{{ path('payment_delete') }}" class="list-form" method="post">
+            <table class="table data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Kwota</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Zawodnik</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Rodzaj</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Okres</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
+                        <th>Edycja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for payment in payments %}
+                    <tr>
+                        <td></td>
+                        <td>{{ payment.amount }}</td>
+                        <td>
+                            {{ payment.player.firstName }} {{ payment.player.lastName }} 
+                            {% if payment.player.team %}
+                                ({{ payment.player.team.year }})
+                            {% endif %}
+                        </td>
+                        <td>{{ payment.paymentCategory.name }}</td>
+                        <td>{{ payment.period|date('Y-m') }}</td>
+                        <td>{{ payment.date|date('Y-m-d') }}</td>
+                        <td class="col-md-2">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('payment_edit', { 'id': payment.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                                Edytuj
+                            </a>
+                            <input name="_method" value="DELETE" type="hidden">
+                            <input id="form__token{{payment.id}}" 
+                                   class="list-checkbox" 
+                                   name="payments[]" 
+                                   value="{{ payment.id }}" 
+                                   type="checkbox"
+                            >                            
+                        {% endif %}                    
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
+                </label>
+            </div>                        
+            <input type="submit" class="btn btn-danger btn-sm delete-selected" value="{{ 'remove.selected'|trans }}">
+        </form>
     </div>
 {% endblock %}

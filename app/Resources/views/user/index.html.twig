@@ -4,70 +4,81 @@
     <h1>Użytkownicy</h1>
     {% include 'partials/gritter.html.twig' %}   
     <div class="admin-box">
-        <table class="table data-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Imię</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Nazwisko</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Nick</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Rocznik</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Email</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Ostatnie logowanie</th>
-                    <th>Zbindowany</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Rola</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Status</th>
-                    <th>Edycja</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ user.firstName }}</td>
-                    <td>{{ user.lastName }}</td>
-                    <td>{{ user.username }}</td>
-                    <td>{{ user.year }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.lastLogin | date('Y-m-d H:i') }}</td>
-                    <td>
-                        {% if user.player %}
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                        {% else %}
-                            <i class="fa fa-times" aria-hidden="true"></i>
+        <form action="{{ path('user_delete') }}" class="list-form" method="post">
+            <table class="table data-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Imię</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Nazwisko</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Nick</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Rocznik</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Email</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Ostatnie logowanie</th>
+                        <th>Zbindowany</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Rola</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Status</th>
+                        <th>Edycja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.year }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.lastLogin | date('Y-m-d H:i') }}</td>
+                        <td>
+                            {% if user.player %}
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            {% else %}
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            {% endif %}
+                        </td>
+                        <td>{{ user.roles[0] | trans }}</td>
+                        <td>
+                            {% if user.enabled %}
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            {% else %}
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            {% endif %}
+                        </td>  
+                        <td class="col-md-2">
+                        {% if is_granted('ROLE_ADMIN') and user.roles[0] != 'ROLE_SUPER_ADMIN' %}
+                            <a href="{{ path('user_bind', { 'id': user.id }) }}" class="btn btn-success btn-sm pull-left admin-form-btn-margin">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                            </a>                          
+                            {% if user.enabled %}
+                            <a href="{{ path('user_activate', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </a>
+                            {% else %}
+                            <a href="{{ path('user_activate', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                                <i class="fa fa-unlock" aria-hidden="true"></i>
+                            </a>                            
+                            {% endif %}                        
+                            <input name="_method" value="DELETE" type="hidden">
+                            <input id="form__token{{user.id}}" 
+                                   class="list-checkbox" 
+                                   name="users[]" 
+                                   value="{{ user.id }}" 
+                                   type="checkbox"
+                            >
                         {% endif %}
-                    </td>
-                    <td>{{ user.roles[0] | trans }}</td>
-                    <td>
-                        {% if user.enabled %}
-                            <i class="fa fa-check" aria-hidden="true"></i>
-                        {% else %}
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        {% endif %}
-                    </td>  
-                    <td class="col-md-2">
-                    {% if is_granted('ROLE_ADMIN') and user.roles[0] != 'ROLE_SUPER_ADMIN' %}
-                        <a href="{{ path('user_bind', { 'id': user.id }) }}" class="btn btn-success btn-sm pull-left admin-form-btn-margin">
-                            <i class="fa fa-cogs" aria-hidden="true"></i>
-                        </a>                          
-                        {% if user.enabled %}
-                        <a href="{{ path('user_activate', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                        </a>
-                        {% else %}
-                        <a href="{{ path('user_activate', { 'id': user.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                            <i class="fa fa-unlock" aria-hidden="true"></i>
-                        </a>                            
-                        {% endif %}                        
-                        <form action="{{ path('user_delete', { 'id': user.id }) }}" method="post">
-                            {{ form_widget(deleteForms[user.id]) }}
-                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                        </form>
-                    {% endif %}
-                    </td>                    
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                        </td>                    
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
+                </label>
+            </div>                        
+            <input type="submit" class="btn btn-danger btn-sm delete-selected" value="{{ 'remove.selected'|trans }}">
+        </form>
     </div>   
 {% endblock %}

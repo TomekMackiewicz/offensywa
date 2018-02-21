@@ -406,18 +406,30 @@ $(document).ready(function() {
 
     // Select all checkboxes ---------------------------------------------------
     
+    $('.delete-selected').attr("disabled", true);
+    
     $('.select_all').on('click',function() {
-        console.log('clicked');
-        if(this.checked) {
+        if (this.checked) {
             $('.list-checkbox').each(function() {
                 this.checked = true;
             });
-        }else {
+        } else {
              $('.list-checkbox').each(function() {
                 this.checked = false;
             });
         }
     });
+    
+    // Activate delete button --------------------------------------------------
+    
+    $('.list-form input[type=checkbox]').on('change', function () {
+        var len = $('.list-form input[type=checkbox]:checked').length;
+        if (len > 0) {
+            $('.delete-selected').removeAttr("disabled");
+        } else if (len === 0) {
+            $('.delete-selected').attr("disabled", true);
+        }
+    }).trigger('change');    
 
     // -------------------------------------------------------------------------
 

@@ -25,14 +25,9 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->findAll();
-        $deleteForms = array();
-        foreach($users as $user) {
-            $deleteForms[$user->getId()] = $this->createDeleteForm($user)->createView();
-        }
         
         return $this->render('user/index.html.twig', array(
             'users' => $users,
-            'deleteForms' => $deleteForms
         ));
     }    
 
@@ -46,10 +41,10 @@ class UserController extends Controller
     {
         if ($user->isEnabled() === true) {
             $user->setEnabled(false);
-            $message = "dezaktywowany";
+            $message = $this->get('translator')->trans('locked');
         } else {
             $user->setEnabled(true);
-            $message = "aktywowany";
+            $message = $this->get('translator')->trans('unlocked');
         }
         
         $em = $this->getDoctrine()->getManager();
@@ -60,7 +55,7 @@ class UserController extends Controller
             $this->sendEmail($user);
         }        
         
-        $this->addFlash("success", "Użytkownik ".$message);
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('user'))." ".$message);
             
         return $this->redirectToRoute('user_index');
     }    
@@ -77,14 +72,13 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            
-            $this->addFlash("success", "Profile zostały połączone");
+            $this->getDoctrine()->getManager()->flush();            
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('user.player.bind.success')));
 
             return $this->redirectToRoute('user_index');
             
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas łączenia profili");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('user.player.bind.error')));
         }
 
         return $this->render('user/bind.html.twig', array(
@@ -94,30 +88,27 @@ class UserController extends Controller
     }
     
     /**
-     * Deletes user entity.
+     * Deletes user entity / entities.
      *
-     * @Route("/{id}", name="user_delete")
+     * @Route("/", name="user_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, User $user)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
-            
-            $this->addFlash("success", "Użytkownik usunięty");
-            
-        } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas usuwania użytkownika");
+        $em = $this->getDoctrine()->getManager();
+        $users = $request->request->get('users');
+        
+        foreach($users as $user) {
+            $to_delete = $em->getRepository('AppBundle:User')->findOneById((int) $user);           
+            $em->remove($to_delete);
         }
-
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));        
+        
         return $this->redirectToRoute('user_index');
     }
-
+    
     /**
      * Creates a form to delete user entity.
      *
@@ -138,12 +129,12 @@ class UserController extends Controller
     {
         $sender = $this->getParameter('mailer_user');
         $message = \Swift_Message::newInstance()
-            ->setSubject('Potwierdzenie rejestracji')    
+            ->setSubject(ucfirst($this->get('translator')->trans('confirm.registration')))   
             ->setFrom($sender)
             ->setTo($user->getEmail())
             ->setBody(
                 $this->renderView(
-                    'Emails/default.html.twig', array('body' => 'Administrator aktywował Twoje konto. Możesz teraz przejść do swojego profilu.')), 
+                    'Emails/default.html.twig', array('body' => ucfirst($this->get('translator')->trans('registration.success')))), 
                     'text/html'
             );
                 

@@ -6,7 +6,7 @@
             <h1>Zamówienia</h1>
             {% include 'partials/gritter.html.twig' %}             
             <div class="admin-box"> 
-                <form action="{{ path('request_delete') }}" method="post">
+                <form action="{{ path('request_delete') }}" class="list-form" method="post">
                     <table class="table data-table">
                         <thead>
                             <tr>
@@ -44,7 +44,7 @@
                             <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
                         </label>
                     </div>                        
-                    <input type="submit" class="btn btn-danger btn-sm" value="{{ 'remove.selected'|trans }}">
+                    <input type="submit" class="btn btn-danger btn-sm delete-selected" value="{{ 'remove.selected'|trans }}">
                 </form>    
             </div>
         </div>
