@@ -422,7 +422,7 @@ $(document).ready(function() {
     
     // Activate delete button --------------------------------------------------
     
-    $('.list-form input[type=checkbox]').on('change', function () {
+    $(document).on('change', '.list-form input[type=checkbox]', function () {
         var len = $('.list-form input[type=checkbox]:checked').length;
         if (len > 0) {
             $('.delete-selected').removeAttr("disabled");
