@@ -12,36 +12,47 @@
             {% endif %}
             {% include 'partials/gritter.html.twig' %}
             <div class="admin-box"> 
-                <table class="table data-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th><i class="fa fa-sort" aria-hidden="true"></i> Tytuł</th>
-                            <th>Url</th>
-                            <th>Edycja</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for page in pages %}
-                        <tr>
-                            <td></td>
-                            <td>{{ page.title }}</td>
-                            <td>{{ page.slug }}</td>
-                            <td class="col-md-3">
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('page_edit', { 'id': page.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                                    Edytuj
-                                </a>
-                                <form action="{{ path('page_delete', { 'id': page.id }) }}" method="post">
-                                    {{ form_widget(deleteForms[page.id]) }}
-                                    <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                                </form>                             
-                            {% endif %}                    
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                <form action="{{ path('page_delete') }}" class="list-form" method="post">
+                    <table class="table data-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Tytuł</th>
+                                <th>Url</th>
+                                <th>Edycja</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for page in pages %}
+                            <tr>
+                                <td></td>
+                                <td>{{ page.title }}</td>
+                                <td>{{ page.slug }}</td>
+                                <td class="col-md-3">
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('page_edit', { 'id': page.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                                        Edytuj
+                                    </a>
+                                    <input name="_method" value="DELETE" type="hidden">
+                                    <input id="form__token{{page.id}}" 
+                                           class="list-checkbox" 
+                                           name="pages[]" 
+                                           value="{{ page.id }}" 
+                                           type="checkbox"
+                                    >                            
+                                {% endif %}                    
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
+                        </label>
+                    </div>                        
+                    <input type="submit" class="btn btn-danger btn-sm delete-selected" value="{{ 'remove.selected'|trans }}">                        
+                </form>
             </div>
         </div>
     </div>

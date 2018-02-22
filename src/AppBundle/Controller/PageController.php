@@ -22,14 +22,9 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $pages = $em->getRepository('AppBundle:Page')->findAll();
-        $deleteForms = array();
-        foreach($pages as $page) {
-            $deleteForms[$page->getId()] = $this->createDeleteForm($page)->createView();
-        }
         
         return $this->render('page/admin-index.html.twig', array(
             'pages' => $pages,
-            'deleteForms' => $deleteForms
         ));
     }
 
@@ -50,9 +45,11 @@ class PageController extends Controller
             $em->persist($page);
             $em->flush();
             
-            $this->addFlash("success", "Strona została dodana");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
             return $this->redirectToRoute('admin_page_index');
+        } else if($form->isSubmitted() && !$form->isValid()) {
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('page/new.html.twig', array(
@@ -97,9 +94,11 @@ class PageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Strona została uaktualniona");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('page_edit', array('id' => $page->getId()));
+        } else if($editForm->isSubmitted() && !$editForm->isValid()) {
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         return $this->render('page/edit.html.twig', array(
@@ -112,21 +111,23 @@ class PageController extends Controller
     /**
      * Deletes a page entity.
      *
-     * @Route("admin/pages/{id}", name="page_delete")
+     * @Route("admin/pages/", name="page_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Page $page)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($page);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($page);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $pages = $request->request->get('pages');
+        
+        foreach($pages as $page) {
+            $to_delete = $em->getRepository('AppBundle:Page')->findOneById((int) $page);           
+            $em->remove($to_delete);
         }
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
 
-        return $this->redirectToRoute('page_index');
+        return $this->redirectToRoute('admin_page_index');
     }
 
     /**
