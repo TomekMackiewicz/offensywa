@@ -17,3 +17,8 @@
 /web/bundles/
 /web/uploads/
 /nbproject/
+.htaccess
+/app/.htaccess
+/web/.htaccess
+/src/.htaccess
+todo.txt
