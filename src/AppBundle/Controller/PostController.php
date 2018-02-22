@@ -45,14 +45,9 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository('AppBundle:Post')->findAll();
-        $deleteForms = array();
-        foreach($posts as $post) {
-            $deleteForms[$post->getId()] = $this->createDeleteForm($post)->createView();
-        }
         
         return $this->render('post/admin-index.html.twig', array(
             'posts' => $posts,
-            'deleteForms' => $deleteForms,
         ));
     }    
     
@@ -74,11 +69,11 @@ class PostController extends Controller
             $em->persist($post);
             $em->flush();
             
-            $this->addFlash("success", "Post dodany");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
             return $this->redirectToRoute('admin_post_index');
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania posta");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('post/new.html.twig', array(
@@ -124,11 +119,11 @@ class PostController extends Controller
             $post->setModifyDate(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Post został uaktualniony");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
             
             return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas edycji posta");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         return $this->render('post/edit.html.twig', array(
@@ -141,23 +136,21 @@ class PostController extends Controller
     /**
      * Deletes a post entity.
      *
-     * @Route("/admin/posts/{id}", name="post_delete")
+     * @Route("/admin/posts/", name="post_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Post $post)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($post);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($post);
-            $em->flush();
-            
-            $this->addFlash("success", "Post usunięty");
-        } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas usuwania posta");
+        $em = $this->getDoctrine()->getManager();
+        $posts = $request->request->get('posts');
+        
+        foreach($posts as $post) {
+            $to_delete = $em->getRepository('AppBundle:Post')->findOneById((int) $post);           
+            $em->remove($to_delete);
         }
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
 
         return $this->redirectToRoute('admin_post_index');
     }

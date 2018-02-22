@@ -18,6 +18,7 @@
 /web/uploads/
 /nbproject/
 .htaccess
+.htpasswd
 /app/.htaccess
 /web/.htaccess
 /src/.htaccess

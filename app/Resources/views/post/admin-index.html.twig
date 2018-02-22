@@ -10,48 +10,59 @@
     {% endif %}
     {% include 'partials/gritter.html.twig' %}   
     <div class="admin-box">
-        <table class="table data-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Tytuł</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Data publikacji</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Data modyfikacji</th>
-                    <th>Kategorie</th>
-                    <th>Edycja</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for post in posts %}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ post.title }}</td>
-                    <td>{% if post.publishDate %}{{ post.publishDate|date('Y-m-d H:i') }}{% endif %}</td>
-                    <td>{% if post.modifyDate %}{{ post.modifyDate|date('Y-m-d H:i') }}{% endif %}</td>
-                    <td>
-                        {% if post.categories is not empty %}
-                            {% for category in post.categories %}
-                                {{ category.name }}
-                            {% endfor %}
-                        {% else %}
-                            ---
+        <form action="{{ path('post_delete') }}" class="list-form" method="post">
+            <table class="table data-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Tytuł</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Data publikacji</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Data modyfikacji</th>
+                        <th>Kategorie</th>
+                        <th>Edycja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{% if post.publishDate %}{{ post.publishDate|date('Y-m-d H:i') }}{% endif %}</td>
+                        <td>{% if post.modifyDate %}{{ post.modifyDate|date('Y-m-d H:i') }}{% endif %}</td>
+                        <td>
+                            {% if post.categories is not empty %}
+                                {% for category in post.categories %}
+                                    {{ category.name }}
+                                {% endfor %}
+                            {% else %}
+                                ---
+                            {% endif %}
+                        </td>
+                        <td class="col-md-2">
+                        {% if is_granted('ROLE_ADMIN') %}    
+                            <a href="{{ path('post_edit', { 'id': post.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                                Edytuj
+                            </a>
+                            <input name="_method" value="DELETE" type="hidden">
+                            <input id="form__token{{post.id}}" 
+                                   class="list-checkbox" 
+                                   name="posts[]" 
+                                   value="{{ post.id }}" 
+                                   type="checkbox"
+                            > 
                         {% endif %}
-                    </td>
-                    <td class="col-md-2">
-                    {% if is_granted('ROLE_ADMIN') %}    
-                        <a href="{{ path('post_edit', { 'id': post.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                            Edytuj
-                        </a>
-                        <form action="{{ path('post_delete', { 'id': post.id }) }}" method="post">
-                            {{ form_widget(deleteForms[post.id]) }}
-                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                        </form>
-                    {% endif %}
-                    </td>                    
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                        </td>                    
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
+                </label>
+            </div>                        
+            <input type="submit" class="btn btn-danger btn-sm delete-selected" value="{{ 'remove.selected'|trans }}">                
+        </form>
     </div>   
 {% endblock %}
 
