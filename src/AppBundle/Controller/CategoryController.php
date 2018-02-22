@@ -52,12 +52,12 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
             
-            $this->addFlash("success", "Kategoria została dodana");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
             return $this->redirectToRoute('category_index');
             
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania kategorii");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('category/new.html.twig', array(
@@ -81,12 +81,12 @@ class CategoryController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Kategoria została uaktualniona");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('category_edit', array('id' => $category->getId()));
             
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas uaktualniania kategorii");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         return $this->render('category/edit.html.twig', array(
@@ -112,9 +112,9 @@ class CategoryController extends Controller
             $em->remove($category);
             $em->flush();
             
-            $this->addFlash("success", "Kategoria została usunięta");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas usuwania kategorii");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.delete.error')));
         }
 
         return $this->redirectToRoute('category_index');
