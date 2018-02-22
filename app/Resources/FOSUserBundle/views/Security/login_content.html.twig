@@ -24,7 +24,12 @@
                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
             </label>
         </div>
-        <input type="submit" class="btn btn-default" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+        <div class="form-group">    
+            <div class="g-recaptcha" data-sitekey="6LdYYEIUAAAAANHZTgxKhLpiAA1ia1xUPTuY_UYu"></div>
+        </div>
+        <div class="form-group">    
+            <input type="submit" class="btn btn-default" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+        </div>  
     </form>
     <p>Nie masz jeszcze konta? <a href="{{ path('fos_user_registration_register') }}">Zarejestruj się</a></p>
     <a href="{{ path('fos_user_resetting_request') }}">Zapomniałeś hasła?</a>
