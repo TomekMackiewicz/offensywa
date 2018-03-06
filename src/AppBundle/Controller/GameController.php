@@ -46,14 +46,9 @@ class GameController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $games = $em->getRepository('AppBundle:Game')->findAll();
-        $deleteForms = array();
-        foreach($games as $game) {
-            $deleteForms[$game->getId()] = $this->createDeleteForm($game)->createView();
-        }
         
         return $this->render('game/admin-index.html.twig', array(
-            'games' => $games,
-            'deleteForms' => $deleteForms,
+            'games' => $games
         ));
     }    
     
@@ -80,12 +75,12 @@ class GameController extends Controller
             $notification = $this->get('notification');
             $notification->addGameNotification($game);
                 
-            $this->addFlash("success", "Mecz został dodany");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
             
             return $this->redirectToRoute('admin_game_index');
             
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania meczu");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('game/new.html.twig', array(
@@ -102,8 +97,7 @@ class GameController extends Controller
      */
     public function editAction(Request $request, Game $game)
     {
-        $em = $this->getDoctrine()->getManager();              
-        $deleteForm = $this->createDeleteForm($game);
+        $em = $this->getDoctrine()->getManager();
         $editForm = $this->createForm('AppBundle\Form\GameType', $game, array(
             'entity_manager' => $em,
         ));
@@ -112,59 +106,40 @@ class GameController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Mecz został uaktualniony");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('game_edit', array('id' => $game->getId()));
             
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas uaktualniania meczu");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         return $this->render('game/edit.html.twig', array(
             'game' => $game,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 
     /**
-     * Deletes a game entity
+     * Deletes a game entity / entities.
      *
-     * @Route("/admin/games/{id}", name="game_delete")
+     * @Route("/admin/games/", name="game_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Game $game)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($game);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($game);
-            $em->flush();
-            
-            $this->addFlash("success", "Mecz został usunięty");
-        } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas usuwania meczu");
+        $em = $this->getDoctrine()->getManager();
+        $games = $request->request->get('games');
+        
+        foreach($games as $game) {
+            $to_delete = $em->getRepository('AppBundle:Game')->findOneById((int) $game);           
+            $em->remove($to_delete);
         }
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
 
         return $this->redirectToRoute('admin_game_index');
-    }
-
-    /**
-     * Creates a form to delete a game entity.
-     *
-     * @param Game $game The game entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Game $game)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('game_delete', array('id' => $game->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
     
     /**

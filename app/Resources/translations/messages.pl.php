@@ -114,7 +114,7 @@ return array(
     'payments' => 'płatności',
     'messages' => 'wiadomości',
     'requests' => 'zamówienia',
-    'games' => 'gry',
+    'games' => 'mecze',
     'tournaments' => 'turnieje',
     'change.password' => 'zmień hasło',
     'edit.profile' => 'edytuj profil',

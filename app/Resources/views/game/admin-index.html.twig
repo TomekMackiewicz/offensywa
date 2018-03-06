@@ -9,47 +9,58 @@
     </a>
     {% endif %}
     {% include 'partials/gritter.html.twig' %}
-    <div class="admin-box">       
-        <table class="table data-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Miejsce</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Rodzaj</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Gospodarze</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Goście</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Bramki gospodarzy</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Bramki gości</th>
-                    <th>Edycja</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for game in games %}
-                <tr>
-                    <td></td>
-                    <td>{% if game.date %}{{ game.date|date('Y-m-d H:i') }}{% endif %}</td>
-                    <td>{{ game.location }}</td>
-                    <td>{% if game.category %}{{ game.category }}{% else %}---{% endif %}</td>
-                    <td>{% if game.homeTeam %}{{ game.homeTeam.name }} {{ game.homeTeam.year }}{% else %}Deleted{% endif %}</td>
-                    <td>{% if game.awayTeam %}{{ game.awayTeam.name }} {{ game.awayTeam.year }}{% else %}Deleted{% endif %}</td>
-                    <td>{{ game.homeTeamScore }}</td>
-                    <td>{{ game.awayTeamScore }}</td>
-                    <td class="col-md-2">
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('game_edit', { 'id': game.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                            Edytuj
-                        </a>
-                        <form action="{{ path('game_delete', { 'id': game.id }) }}" method="post">
-                            {{ form_widget(deleteForms[game.id]) }}
-                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                        </form>                             
-                    {% endif %}                    
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <div class="admin-box"> 
+        <form action="{{ path('game_delete') }}" class="list-form" method="post">
+            <table class="table data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Miejsce</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Rodzaj</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Gospodarze</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Goście</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Bramki gospodarzy</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Bramki gości</th>
+                        <th>Edycja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for game in games %}
+                    <tr>
+                        <td></td>
+                        <td>{% if game.date %}{{ game.date|date('Y-m-d H:i') }}{% endif %}</td>
+                        <td>{{ game.location }}</td>
+                        <td>{% if game.category %}{{ game.category }}{% else %}---{% endif %}</td>
+                        <td>{% if game.homeTeam %}{{ game.homeTeam.name }} {{ game.homeTeam.year }}{% else %}Deleted{% endif %}</td>
+                        <td>{% if game.awayTeam %}{{ game.awayTeam.name }} {{ game.awayTeam.year }}{% else %}Deleted{% endif %}</td>
+                        <td>{{ game.homeTeamScore }}</td>
+                        <td>{{ game.awayTeamScore }}</td>
+                        <td class="col-md-2">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('game_edit', { 'id': game.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                                Edytuj
+                            </a>
+                            <input name="_method" value="DELETE" type="hidden">
+                            <input id="form__token{{game.id}}" 
+                                   class="list-checkbox" 
+                                   name="games[]" 
+                                   value="{{ game.id }}" 
+                                   type="checkbox"
+                            >                             
+                        {% endif %}                    
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
+                </label>
+            </div>                        
+            <input type="submit" class="btn btn-danger btn-sm delete-selected" value="{{ 'remove.selected'|trans }}">                 
+        </form>    
     </div>
 {% endblock %}
 

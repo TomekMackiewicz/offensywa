@@ -91,13 +91,11 @@ class PaymentController extends Controller
      */
     public function editAction(Request $request, Payment $payment)
     {
-        $deleteForm = $this->createDeleteForm($payment);
         $editForm = $this->createForm('AppBundle\Form\PaymentType', $payment);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            
+            $this->getDoctrine()->getManager()->flush();            
             $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('payment_edit', array('id' => $payment->getId()));
@@ -108,8 +106,7 @@ class PaymentController extends Controller
 
         return $this->render('payment/edit.html.twig', array(
             'payment' => $payment,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 
@@ -134,23 +131,7 @@ class PaymentController extends Controller
 
         return $this->redirectToRoute('payment_index');
     }
-
-    /**
-     * Creates a form to delete a payment entity.
-     *
-     * @param Payment $payment The payment entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Payment $payment)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('payment_delete', array('id' => $payment->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
-    
+   
     private function getPaymentsForLastMonths($categories)
     {
         $em = $this->getDoctrine()->getManager();

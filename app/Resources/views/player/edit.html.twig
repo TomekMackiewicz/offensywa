@@ -9,13 +9,10 @@
                 {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
                     {{ form_widget(edit_form) }}
                     <input type="submit" class="btn btn-primary" value="Edytuj" />
+                    <a href="{{ path('admin_player_index') }}" class="btn btn-default admin-form-btn-margin">
+                        Wróć do listy
+                    </a>                    
                 {{ form_end(edit_form) }}
-                <a href="{{ path('admin_player_index') }}" class="btn btn-default pull-left admin-form-btn-margin">
-                    Wróć do listy
-                </a>
-                {{ form_start(delete_form) }}
-                    <input type="submit" class="btn btn-danger" value="Usuń">
-                {{ form_end(delete_form) }}
             </div>
         </div>
     </div>

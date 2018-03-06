@@ -16,5 +16,5 @@ return array(
     'slug.already.assigned' => 'Zduplikowany url, wybierz inny',
     'user.password.short' => 'Hasło jest zbyt krótkie',
     'user.password.difficulty' => 'Hasło powinno zawierać co najmniej jedną wielką literę i co najmniej jedną cyfrę',
-    'year.already.in.use' => 'Ten rocznik już istnieje'
+    'year.name.already.in.use' => 'Ta nazwa i ten rocznik już istnieją'
 );

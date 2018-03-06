@@ -87,7 +87,6 @@ class PageController extends Controller
      */
     public function editAction(Request $request, Page $page)
     {
-        $deleteForm = $this->createDeleteForm($page);
         $editForm = $this->createForm('AppBundle\Form\PageType', $page);
         $editForm->handleRequest($request);
 
@@ -103,8 +102,7 @@ class PageController extends Controller
 
         return $this->render('page/edit.html.twig', array(
             'page' => $page,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 
@@ -128,22 +126,6 @@ class PageController extends Controller
         $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
 
         return $this->redirectToRoute('admin_page_index');
-    }
-
-    /**
-     * Creates a form to delete a page entity.
-     *
-     * @param Page $page The page entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Page $page)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('page_delete', array('id' => $page->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
     
     /**

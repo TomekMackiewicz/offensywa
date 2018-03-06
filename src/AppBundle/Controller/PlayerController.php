@@ -46,14 +46,9 @@ class PlayerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $players = $em->getRepository('AppBundle:Player')->findAll();
-        $deleteForms = array();
-        foreach($players as $player) {
-            $deleteForms[$player->getId()] = $this->createDeleteForm($player)->createView();
-        }
         
         return $this->render('player/admin-index.html.twig', array(
-            'players' => $players,
-            'deleteForms' => $deleteForms,
+            'players' => $players
         ));
     }     
     
@@ -74,12 +69,12 @@ class PlayerController extends Controller
             $em->persist($player);
             $em->flush();
             
-            $this->addFlash("success", "Zawodnik został dodany");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
             return $this->redirectToRoute('admin_player_index');
             
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania zawodnika");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('player/new.html.twig', array(
@@ -133,25 +128,23 @@ class PlayerController extends Controller
      */
     public function editAction(Request $request, Player $player)
     {
-        $deleteForm = $this->createDeleteForm($player);
         $editForm = $this->createForm('AppBundle\Form\PlayerType', $player);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Zawodnik został uaktualniony");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('player_edit', array('id' => $player->getId()));
             
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas aktualizacji zawodnika");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         return $this->render('player/edit.html.twig', array(
             'player' => $player,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 
@@ -173,12 +166,12 @@ class PlayerController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Zawodnik został uaktualniony");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('user_player_show', array('id' => $player->getId()));
             
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas aktualizacji zawodnika");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         if ($player->getId() === intval($userPlayerId)) {
@@ -193,44 +186,25 @@ class PlayerController extends Controller
     }    
     
     /**
-     * Deletes a player entity.
+     * Deletes a player entity / entities.
      *
-     * @Route("/admin/players/{id}", name="player_delete")
+     * @Route("/admin/players/", name="player_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Player $player)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($player);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($player);
-            $em->flush();
-            
-            $this->addFlash("success", "Zawodnik usunięty");
-            
-        } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas usuwania zawodnika");
+        $em = $this->getDoctrine()->getManager();
+        $players = $request->request->get('players');
+        
+        foreach($players as $player) {
+            $to_delete = $em->getRepository('AppBundle:Player')->findOneById((int) $player);           
+            $em->remove($to_delete);
         }
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success'))); 
 
         return $this->redirectToRoute('admin_player_index');
-    }
-
-    /**
-     * Creates a form to delete a player entity.
-     *
-     * @param Player $player The player entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Player $player)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('player_delete', array('id' => $player->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }     
+    }    
     
 }

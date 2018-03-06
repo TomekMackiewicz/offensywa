@@ -24,14 +24,9 @@ class TrainerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $trainers = $em->getRepository('AppBundle:Trainer')->findAll();
-        $deleteForms = array();
-        foreach($trainers as $trainer) {
-            $deleteForms[$trainer->getId()] = $this->createDeleteForm($trainer)->createView();
-        }
         
         return $this->render('trainer/admin-index.html.twig', array(
-            'trainers' => $trainers,
-            'deleteForms' => $deleteForms,
+            'trainers' => $trainers
         ));
     }     
     
@@ -52,12 +47,12 @@ class TrainerController extends Controller
             $em->persist($trainer);
             $em->flush();
             
-            $this->addFlash("success", "Trener został dodany");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
             return $this->redirectToRoute('admin_trainer_index');
             
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania trenera");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('trainer/new.html.twig', array(
@@ -74,66 +69,45 @@ class TrainerController extends Controller
      */
     public function editAction(Request $request, Trainer $trainer)
     {
-        $deleteForm = $this->createDeleteForm($trainer);
         $editForm = $this->createForm('AppBundle\Form\TrainerType', $trainer);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Trener został uaktualniony");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('trainer_edit', array('id' => $trainer->getId()));
             
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas uaktualniania trenera");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         return $this->render('trainer/edit.html.twig', array(
             'trainer' => $trainer,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 
     /**
-     * Deletes a trainer entity.
+     * Deletes a trainer entity / entities.
      *
-     * @Route("/{id}", name="trainer_delete")
+     * @Route("/", name="trainer_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Trainer $trainer)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($trainer);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($trainer);
-            $em->flush();
-            
-            $this->addFlash("success", "Trener został usunięty");
-            
-        } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas usuwania trenera");
+        $em = $this->getDoctrine()->getManager();
+        $trainers = $request->request->get('trainers');
+        
+        foreach($trainers as $trainer) {
+            $to_delete = $em->getRepository('AppBundle:Trainer')->findOneById((int) $trainer);           
+            $em->remove($to_delete);
         }
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success'))); 
 
         return $this->redirectToRoute('admin_trainer_index');
-    }
-
-    /**
-     * Creates a form to delete a trainer entity.
-     *
-     * @param Trainer $trainer The trainer entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Trainer $trainer)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('trainer_delete', array('id' => $trainer->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

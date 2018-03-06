@@ -11,41 +11,52 @@
     {% include 'partials/gritter.html.twig' %}
     <div class="admin-box">
         {% if trainers %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Imię</th>
-                        <th>Nazwisko</th>
-                        <th>Login</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Edycja</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for trainer in trainers %}
-                    <tr>
-                        <td>{{ trainer.firstName }}</td>
-                        <td>{{ trainer.lastName }}</td>
-                        <td>{{ trainer.login }}</td>
-                        <td>{% if trainer.email %}{{ trainer.email }}{% else %}---{% endif %}</td>
-                        <td>{% if trainer.status %}Aktywny{% else %}Nieaktywny{% endif %}</td>
-                        <td class="col-md-2">
-                        {% if is_granted('ROLE_ADMIN') %}                        
-                            <a href="{{ path('trainer_edit', { 'id': trainer.id }) }}" 
-                               class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
-                                Edytuj
-                            </a>
-                            <form action="{{ path('trainer_delete', { 'id': trainer.id }) }}" method="post">
-                                {{ form_widget(deleteForms[trainer.id]) }}
-                                <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                            </form>                             
-                        {% endif %}                    
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            <form action="{{ path('trainer_delete') }}" class="list-form" method="post">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Imię</th>
+                            <th>Nazwisko</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Edycja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for trainer in trainers %}
+                        <tr>
+                            <td>{{ trainer.firstName }}</td>
+                            <td>{{ trainer.lastName }}</td>
+                            <td>{{ trainer.login }}</td>
+                            <td>{% if trainer.email %}{{ trainer.email }}{% else %}---{% endif %}</td>
+                            <td>{% if trainer.status %}Aktywny{% else %}Nieaktywny{% endif %}</td>
+                            <td class="col-md-2">
+                            {% if is_granted('ROLE_ADMIN') %}                        
+                                <a href="{{ path('trainer_edit', { 'id': trainer.id }) }}" 
+                                   class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                                    Edytuj
+                                </a>
+                                <input name="_method" value="DELETE" type="hidden">
+                                <input id="form__token{{trainer.id}}" 
+                                       class="list-checkbox" 
+                                       name="trainers[]" 
+                                       value="{{ trainer.id }}" 
+                                       type="checkbox"
+                                >                             
+                            {% endif %}                    
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
+                    </label>
+                </div>                        
+                <input type="submit" class="btn btn-danger btn-sm delete-selected" value="{{ 'remove.selected'|trans }}">                     
+            </form>
         {% else %}
             Brak trenerów
         {% endif %}
