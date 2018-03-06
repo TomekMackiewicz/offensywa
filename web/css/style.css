@@ -71,6 +71,11 @@ pre,
     border-radius:0 !important;
 }
 
+img {
+    max-width: 100%;
+    height: auto !important;    
+}
+
 .admin-bg {
     background-color: #222;
 }

@@ -29,7 +29,7 @@ class PlayerRepository extends \Doctrine\ORM\EntityRepository
     private function randomIds($ids) {
         shuffle($ids);
         if (sizeof($ids) < 4) {
-            return array_slice($ids, 0, $ids.length);
+            return array_slice($ids, 0, sizeof($ids));
         } else {
             return array_slice($ids, 0, 4);
         }
