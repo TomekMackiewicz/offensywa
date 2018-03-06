@@ -15,33 +15,33 @@
         <li {{ (app.request.attributes.get('_route') == 'fos_user_profile_show') ? ' class="active"' }}>
             <a href="{{ path('fos_user_profile_show') }}">
                 <i class="fa fa-user admin-list-icon" aria-hidden="true"></i>
-                Profil
+                {{ 'profile'|trans|capitalize }}
             </a>
         </li>            
         <li {{ (app.request.attributes.get('_route') == 'fos_user_change_password') ? ' class="active"' }}>
             <a href="{{ path('fos_user_change_password') }}">
                 <i class="fa fa-key admin-list-icon" aria-hidden="true"></i>
-                Zmień hasło
+                {{ 'change.password'|trans|capitalize }}               
             </a>
         </li>
         <li {{ (app.request.attributes.get('_route') == 'fos_user_profile_edit') ? ' class="active"' }}>
             <a href="{{ path('fos_user_profile_edit') }}">
                 <i class="fa fa-pencil-square-o admin-list-icon" aria-hidden="true"></i>
-                Edytuj profil
+                {{ 'edit.profile'|trans|capitalize }}
             </a>
         </li>        
         <li {{ (app.request.attributes.get('_route') == 'request_new') ? ' class="active"' }}>
             <a href="{{ path('request_new') }}">
                 <i class="fa fa-opencart admin-list-icon" aria-hidden="true"></i>
-                Złóż zamówienie
+                {{ 'place.order'|trans|capitalize }}
             </a>            
         </li>
         {% endif %}  
         {% if is_granted('ROLE_ADMIN') %}  
         <li {{ (app.request.attributes.get('_route') == 'admin_dashboard') ? ' class="active"' }}>
             <a href="{{ path('admin_dashboard') }}">
-                <i class="fa fa-tachometer admin-list-icon" aria-hidden="true"></i>
-                Kokpit
+                <i class="fa fa-tachometer admin-list-icon" aria-hidden="true"></i>                
+                {{ 'dashboard'|trans|capitalize }}
             </a>
         </li>
         <li {{ (app.request.attributes.get('_route') == 'user_index') ? ' class="active"' }}>
@@ -51,11 +51,11 @@
                aria-expanded="false" 
                aria-controls="users">
                 <i class="fa fa-user admin-list-icon" aria-hidden="true"></i>
-                Użytkownicy
+                {{ 'users'|trans|capitalize }}
             </a>
             <div class="collapse" id="users">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('user_index') }}">Lista</a></li>
+                    <li><a href="{{ path('user_index') }}">{{ 'list'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
         </li>
@@ -70,12 +70,12 @@
                aria-expanded="false" 
                aria-controls="pages">
                 <i class="fa fa-folder-open admin-list-icon" aria-hidden="true"></i>
-                Strony
+                {{ 'pages'|trans|capitalize }}
             </a>
             <div class="collapse" id="pages">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_page_index') }}">Lista</a></li>
-                    <li><a href="{{ path('page_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('admin_page_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('page_new') }}">{{ 'add'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
         </li>        
@@ -93,13 +93,13 @@
                aria-expanded="false" 
                aria-controls="posts">
                 <i class="fa fa-book admin-list-icon" aria-hidden="true"></i>
-                Posty
+                {{ 'posts'|trans|capitalize }}
             </a>
             <div class="collapse" id="posts">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_post_index') }}">Lista</a></li>
-                    <li><a href="{{ path('post_new') }}">Dodaj</a></li>
-                    <li><a href="{{ path('category_index') }}">Kategorie</a></li>
+                    <li><a href="{{ path('admin_post_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('post_new') }}">{{ 'add'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('category_index') }}">{{ 'categories'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
         </li>          
@@ -116,12 +116,12 @@
                aria-expanded="false" 
                aria-controls="media">
                 <i class="fa fa-file-image-o admin-list-icon" aria-hidden="true"></i>
-                Media
+                {{ 'media'|trans|capitalize }}
             </a>
             <div class="collapse" id="media">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_sonata_media_media_list') }}">Media</a></li>
-                    <li><a href="{{ path('admin_sonata_media_gallery_list') }}">Galeria</a></li>
+                    <li><a href="{{ path('admin_sonata_media_media_list') }}">{{ 'media'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('admin_sonata_media_gallery_list') }}">{{ 'gallery'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
         </li>         
@@ -138,12 +138,12 @@
                aria-expanded="false" 
                aria-controls="players">
                 <i class="fa fa-user-o admin-list-icon" aria-hidden="true"></i>
-                Zawodnicy
+                {{ 'players'|trans|capitalize }}
             </a>
             <div class="collapse" id="players">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_player_index') }}">Lista</a></li>
-                    <li><a href="{{ path('player_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('admin_player_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('player_new') }}">{{ 'add'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
         </li>
@@ -160,12 +160,12 @@
                aria-expanded="false" 
                aria-controls="teams">
                 <i class="fa fa-users admin-list-icon" aria-hidden="true"></i>
-                Drużyny
+                {{ 'teams'|trans|capitalize }}
             </a>
             <div class="collapse" id="teams">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_team_index') }}">Lista</a></li>
-                    <li><a href="{{ path('team_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('admin_team_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('team_new') }}">{{ 'add'|trans|capitalize }}</a></li>
                 </ul>
             </div>             
         </li>
@@ -182,12 +182,12 @@
                aria-expanded="false" 
                aria-controls="ad">
                 <i class="fa fa-calendar admin-list-icon" aria-hidden="true"></i>
-                Ogłoszenia
+                {{ 'ads'|trans|capitalize }}
             </a>
             <div class="collapse" id="ad">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('ad_admin_index') }}">Lista</a></li>
-                    <li><a href="{{ path('ad_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('ad_admin_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('ad_new') }}">{{ 'add'|trans|capitalize }}</a></li>
                 </ul>
             </div>             
         </li>        
@@ -204,12 +204,12 @@
                aria-expanded="false" 
                aria-controls="trainers">
                 <i class="fa fa-bullhorn admin-list-icon" aria-hidden="true"></i>
-                Trenerzy
+                {{ 'trainers'|trans|capitalize }}
             </a>
             <div class="collapse" id="trainers">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_trainer_index') }}">Lista</a></li>
-                    <li><a href="{{ path('trainer_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('admin_trainer_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('trainer_new') }}">{{ 'add'|trans|capitalize }}</a></li>
                 </ul>
             </div>             
         </li>
@@ -226,12 +226,12 @@
                aria-expanded="false" 
                aria-controls="trainings">
                 <i class="fa fa-heartbeat admin-list-icon" aria-hidden="true"></i>
-                Treningi
+                {{ 'trainings'|trans|capitalize }}
             </a>
             <div class="collapse" id="trainings">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_training_index') }}">Lista</a></li>
-                    <li><a href="{{ path('training_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('admin_training_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('training_new') }}">{{ 'add'|trans|capitalize }}</a></li>
                 </ul>
             </div>             
         </li>        
@@ -250,14 +250,14 @@
                aria-expanded="false" 
                aria-controls="payments">
                 <i class="fa fa-money admin-list-icon" aria-hidden="true"></i>
-                Płatności
+                {{ 'payments'|trans|capitalize }}
             </a>
             <div class="collapse" id="payments">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('payment_index') }}">Lista</a></li>
-                    <li><a href="{{ path('payment_all') }}">Przegląd</a></li>
-                    <li><a href="{{ path('payment_new') }}">Dodaj</a></li>
-                    <li><a href="{{ path('paymentcategory_index') }}">Rodzaje płatności</a></li>
+                    <li><a href="{{ path('payment_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('payment_all') }}">{{ 'overview'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('payment_new') }}">{{ 'add'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('paymentcategory_index') }}">{{ 'payment.types'|trans|capitalize }}</a></li>
                 </ul>
             </div>             
         </li>
@@ -274,18 +274,16 @@
                aria-expanded="false" 
                aria-controls="mails">
                 <i class="fa fa-envelope-o admin-list-icon" aria-hidden="true"></i>
-                Wiadomości
+                {{ 'messages'|trans|capitalize }}
             </a>
             <div class="collapse" id="mails">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('email_index') }}">Lista e-maili</a></li>                   
-                    <li><a href="{{ path('email_new') }}">Wyślij e-mail</a></li>
+                    <li><a href="{{ path('email_index') }}">{{ 'list'|trans|capitalize }}</a></li>                   
+                    <li><a href="{{ path('email_new') }}">{{ 'send'|trans|capitalize }}</a></li>
                 </ul>
             </div>             
         </li>        
-        {% if app.request.attributes.get('_route') == 'request_index' 
-           or app.request.attributes.get('_route') == 'request_new' 
-        %}
+        {% if app.request.attributes.get('_route') == 'request_index' %}
         <li class="active">
         {% else %}
         <li>
@@ -296,12 +294,11 @@
                aria-expanded="false" 
                aria-controls="requests">
                 <i class="fa fa-opencart admin-list-icon" aria-hidden="true"></i>
-                Zamówienia
+                {{ 'requests'|trans|capitalize }}
             </a>
             <div class="collapse" id="requests">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('request_index') }}">Lista</a></li>
-                    <li><a href="{{ path('request_new') }}">Złóż zamówienie</a></li>
+                    <li><a href="{{ path('request_index') }}">{{ 'list'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
         </li>
@@ -318,19 +315,19 @@
                aria-expanded="false" 
                aria-controls="games">
                 <i class="fa fa-futbol-o admin-list-icon" aria-hidden="true"></i>
-                Mecze
+                {{ 'games'|trans|capitalize }}
             </a>
             <div class="collapse" id="games">
                 <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_game_index') }}">Lista</a></li>
-                    <li><a href="{{ path('game_new') }}">Dodaj</a></li>
+                    <li><a href="{{ path('admin_game_index') }}">{{ 'list'|trans|capitalize }}</a></li>
+                    <li><a href="{{ path('game_new') }}">{{ 'add'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
         </li>         
         <li>
             <a href="#">
                 <i class="fa fa-trophy admin-list-icon" aria-hidden="true"></i>
-                Turnieje
+                {{ 'tournaments'|trans|capitalize }}
             </a>
         </li>
         {% endif %}       
