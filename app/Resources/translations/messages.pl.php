@@ -123,6 +123,8 @@ return array(
     'add' => 'dodaj',
     'overview' => 'przegląd',
     'payment.types' => 'rodzaje płatności',
-    'send' => 'wyślij'
+    'send' => 'wyślij',
+    'message.send.success' => 'Wiadomość została wysłana',
+    'message.send.error' => 'Błąd podczas wysyłania wiadomości'
     
 );

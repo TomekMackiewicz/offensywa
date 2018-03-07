@@ -27,14 +27,9 @@ class EmailController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $emails = $em->getRepository('AppBundle:Email')->findAll();
-        $deleteForms = array();
-        foreach($emails as $email) {
-            $deleteForms[$email->getId()] = $this->createDeleteForm($email)->createView();
-        }
         
         return $this->render('email/index.html.twig', array(
-            'emails' => $emails,
-            'deleteForms' => $deleteForms,
+            'emails' => $emails
         ));
     }
 
@@ -59,12 +54,12 @@ class EmailController extends Controller
 
             $this->sendEmail($email);
             
-            $this->addFlash("success", "Wiadomość została wysłana");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('message.send.success'))); 
             
             return $this->redirectToRoute('email_index');
             
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas wysyłania wiadomości");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('message.send.error')));
         }
 
         return $this->render('email/new.html.twig', array(
@@ -76,37 +71,23 @@ class EmailController extends Controller
     /**
      * Deletes a email entity.
      *
-     * @Route("/{id}", name="email_delete")
+     * @Route("/", name="email_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Email $email)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($email);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($email);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $emails = $request->request->get('emails');
+        
+        foreach($emails as $email) {
+            $to_delete = $em->getRepository('AppBundle:Email')->findOneById((int) $email);           
+            $em->remove($to_delete);
         }
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
 
         return $this->redirectToRoute('email_index');
-    }
-
-    /**
-     * Creates a form to delete a email entity.
-     *
-     * @param Email $email The email entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Email $email)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('email_delete', array('id' => $email->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
     
     /**
@@ -140,13 +121,15 @@ class EmailController extends Controller
     }
 
     private function sendEmail($email)
-    {        
+    {
+        $sender = $this->getParameter('mailer_user');
+        $senderName = $this->getParameter('mailer_user_name');        
         $string = preg_replace('/[\x00-\x1F\x7F]/u', '', $email->getRecipients());
         $trimmed = str_replace(' ', '', $string);
         $recipients = explode(',', $trimmed);
         $message = \Swift_Message::newInstance()
             ->setSubject($email->getSubject())    
-            ->setFrom($email->getSender())
+            ->setFrom(array($sender => $senderName))
             ->setTo($recipients)
             ->setBody(
                 $this->renderView(

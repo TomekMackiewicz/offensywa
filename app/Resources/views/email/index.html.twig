@@ -4,37 +4,48 @@
     <h1>Wiadomości</h1>
     {% include 'partials/gritter.html.twig' %}   
     <div class="admin-box">
-        <table class="table data-table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Temat</th>
-                    <th>Treść</th>
-                    <th>Odbiorcy</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
-                    <th>Edycja</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for email in emails %}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ email.subject }}</td>
-                    <td>{{ email.body | purify }}</td>
-                    <td>{{ email.recipients }}</td>
-                    <td>{% if email.date %}{{ email.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td class="col-md-2">
-                    {% if is_granted('ROLE_ADMIN') %}    
-                        <form action="{{ path('email_delete', { 'id': email.id }) }}" method="post">
-                            {{ form_widget(deleteForms[email.id]) }}
-                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
-                        </form>
-                    {% endif %}
-                    </td>                    
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <form action="{{ path('email_delete') }}" class="list-form" method="post">
+            <table class="table data-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Temat</th>
+                        <th>Treść</th>
+                        <th>Odbiorcy</th>
+                        <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
+                        <th>Edycja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for email in emails %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ email.subject }}</td>
+                        <td>{{ email.body | purify }}</td>
+                        <td>{{ email.recipients }}</td>
+                        <td>{% if email.date %}{{ email.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td class="col-md-2">
+                        {% if is_granted('ROLE_ADMIN') %}    
+                            <input name="_method" value="DELETE" type="hidden">
+                            <input id="form__token{{email.id}}" 
+                                   class="list-checkbox" 
+                                   name="emails[]" 
+                                   value="{{ email.id }}" 
+                                   type="checkbox"
+                            >  
+                        {% endif %}
+                        </td>                    
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="select_all" /> {{ 'select.all'|trans }}
+                </label>
+            </div>                        
+            <input type="submit" class="btn btn-danger btn-sm delete-selected" value="{{ 'remove.selected'|trans }}">                
+        </form>    
     </div>   
 {% endblock %}
 

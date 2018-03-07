@@ -128,9 +128,10 @@ class UserController extends Controller
     private function sendEmail($user)
     {
         $sender = $this->getParameter('mailer_user');
+        $senderName = $this->getParameter('mailer_user_name');
         $message = \Swift_Message::newInstance()
             ->setSubject(ucfirst($this->get('translator')->trans('confirm.registration')))   
-            ->setFrom($sender)
+            ->setFrom(array($sender => $senderName))
             ->setTo($user->getEmail())
             ->setBody(
                 $this->renderView(
