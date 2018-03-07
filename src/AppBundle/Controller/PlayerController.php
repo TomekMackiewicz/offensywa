@@ -198,10 +198,15 @@ class PlayerController extends Controller
         
         foreach($players as $player) {
             $to_delete = $em->getRepository('AppBundle:Player')->findOneById((int) $player); 
+            
+            // Unset relations
+            $user = $em->getRepository('AppBundle:User')->findOneBy(array('player' => $to_delete->getId()));
+            $user->setPlayer(null);
             $payments = $to_delete->getPayments();
             foreach($payments as $payment) {
                 $em->remove($payment);
             }
+            
             $em->remove($to_delete);
         }
         
