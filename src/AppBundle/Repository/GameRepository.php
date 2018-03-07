@@ -67,7 +67,7 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
           FROM(
             SELECT
               home_team Team,
-              1 P,
+              IF(date > CURRENT_TIME(),1,0) P,
               IF(home_team_score > away_team_score,1,0) W,
               IF(home_team_score = away_team_score,1,0) D,
               IF(home_team_score < away_team_score,1,0) L,
@@ -80,7 +80,7 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
             UNION ALL
             SELECT
               away_team,
-              1,
+              IF(date > CURRENT_TIME(),1,0),
               IF(home_team_score < away_team_score,1,0),
               IF(home_team_score = away_team_score,1,0),
               IF(home_team_score > away_team_score,1,0),
