@@ -53,7 +53,9 @@ doctrine:
         charset: UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
-
+        #options:
+            # PDO::MYSQL_ATTR_INIT_COMMAND
+            #1002: "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))"
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         entity_managers:           

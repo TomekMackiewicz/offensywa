@@ -13,7 +13,8 @@
 {% block content %}
     {% if tables is not empty %}
         {% for table in tables %}
-        <h2>Tabela ligowa rocznika {{ table.year }}</h2>        
+        <h2>Tabela ligowa rocznika {{ table.year }}</h2>
+{{ dump(teams) }}        
         <table class="table table-bordered table-striped simple-league-table">
             <thead>
                 <tr>
@@ -38,9 +39,9 @@
                         <td>{{ team.W }}</td>
                         <td>{{ team.D }}</td>
                         <td>{{ team.L }}</td>
-                        <td>{{ team.F }}</td>
-                        <td>{{ team.A }}</td>
-                        <td>{{ team.GD }}</td>
+                        <td>{% if team.F != 0 %}{{ team.F }}{% else %}{{ 0 }}{% endif %}</td>
+                        <td>{% if team.A != 0 %}{{ team.A }}{% else %}{{ 0 }}{% endif %}</td>
+                        <td>{% if team.GD != 0 %}{{ team.GD }}{% else %}{{ 0 }}{% endif %}</td>
                         <td>{{ team.Pts }}</td>
                     </tr>
                 {% endfor %}

@@ -27,6 +27,19 @@ class LeagueTable
             $statement->execute();
             $table['table'] = $statement->fetchAll(); 
             $table['year'] = $year;
+            $teams = $em->getRepository('AppBundle:Team')->getTeamsWithNoGames($year);
+            foreach($teams as $team) {
+                $table['table'][] = [
+                    "Team" => $team["name"],
+                    "plays_league" => "?",
+                    "P" => "0",
+                    "W" => "0",
+                    "D" => "0",
+                    "L" => "0",
+                    "Pts" => "0"
+                ];
+
+            }            
             $tables[] = $table;
         }
 

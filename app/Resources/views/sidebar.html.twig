@@ -44,7 +44,7 @@
             </table>
         </div>                
     {% else %}
-        Brak zaplanowanych meczy.
+        Brak zaplanowanych meczów.
     {% endif %}
 </div> 
 <div class="match-details">
@@ -112,7 +112,7 @@
     <a href="{{ path('leaguetables') }}">
         Zobacz wszystkie 
         <i class="fa fa-forward" aria-hidden="true"></i>
-    </a>                    
+    </a> 
     {% for table in leagueTables %}
     <h4>Rocznik {{ table.year }}</h4> 
     <div class="table-responsive">

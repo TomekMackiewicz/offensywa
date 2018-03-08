@@ -68,4 +68,20 @@ class TeamRepository extends \Doctrine\ORM\EntityRepository
         return $result;        
     }
     
+    public function getTeamsWithNoGames($year) {
+        $query = $this
+            ->getEntityManager()
+            ->createQuery('
+                SELECT t.name 
+                FROM AppBundle:Team t 
+                WHERE t.year = :year               
+                AND (t.playsLeague=1 OR t.isMy=0)
+                AND t.id NOT IN (SELECT IDENTITY(g1.homeTeam) FROM AppBundle:Game g1)
+                AND t.id NOT IN (SELECT IDENTITY(g2.awayTeam) FROM AppBundle:Game g2)
+            ')
+            ->setParameter("year", $year);
+        $result = $query->getResult(); 
+        
+        return $result;        
+    }
 }

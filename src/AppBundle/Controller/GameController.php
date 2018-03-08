@@ -164,17 +164,34 @@ class GameController extends Controller
             $statement->execute();
             $table['table'] = $statement->fetchAll(); 
             $table['year'] = $year;
-            $tables[] = $table;
+            $teams = $em->getRepository('AppBundle:Team')->getTeamsWithNoGames($year);
+            foreach($teams as $team) {
+                $table['table'][] = [
+                    "Team" => $team["name"],
+                    "plays_league" => "?",
+                    "P" => "0",
+                    "W" => "0",
+                    "D" => "0",
+                    "L" => "0",
+                    "F" => "0",
+                    "A" => "0",
+                    "GD" => "0",
+                    "Pts" => "0"
+                ];
+
+            }
+            $tables[] = $table; 
         }
         
         return $this->render('game/leaguetables.html.twig', array(
             'tables' => $tables,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
-            'leagueTables' => $leagueTables
+            'leagueTables' => $leagueTables,
+            'teams' => $teams
         ));
     }    
 
-    
+   
     
 }
