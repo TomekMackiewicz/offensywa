@@ -13,8 +13,7 @@
 {% block content %}
     {% if tables is not empty %}
         {% for table in tables %}
-        <h2>Tabela ligowa rocznika {{ table.year }}</h2>
-{{ dump(teams) }}        
+        <h2>Tabela ligowa rocznika {{ table.year }}</h2>   
         <table class="table table-bordered table-striped simple-league-table">
             <thead>
                 <tr>

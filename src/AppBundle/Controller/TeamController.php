@@ -24,14 +24,9 @@ class TeamController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $teams = $em->getRepository('AppBundle:Team')->findAll();
-        $deleteForms = array();
-        foreach($teams as $team) {
-            $deleteForms[$team->getId()] = $this->createDeleteForm($team)->createView();
-        }
         
         return $this->render('team/admin-index.html.twig', array(
-            'teams' => $teams,
-            'deleteForms' => $deleteForms,
+            'teams' => $teams
         ));
     }    
     
@@ -52,11 +47,11 @@ class TeamController extends Controller
             $em->persist($team);
             $em->flush();
             
-            $this->addFlash("success", "Drużyna została dodana");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
             return $this->redirectToRoute('admin_team_index');
         } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania drużyny");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
 
         return $this->render('team/new.html.twig', array(
@@ -94,85 +89,64 @@ class TeamController extends Controller
      */
     public function editAction(Request $request, Team $team)
     {
-        $deleteForm = $this->createDeleteForm($team);
         $editForm = $this->createForm('AppBundle\Form\TeamType', $team);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             
-            $this->addFlash("success", "Drużyna została uaktualniona");
+            $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
             return $this->redirectToRoute('team_edit', array('id' => $team->getId()));
             
         } else if($editForm->isSubmitted() && !$editForm->isValid()) {
-            $this->addFlash("danger", "Błąd podczas dodawania drużyny");
+            $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.edit.error')));
         }
 
         return $this->render('team/edit.html.twig', array(
             'team' => $team,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 
     /**
      * Deletes a team entity.
      *
-     * @Route("/admin/teams/{id}", name="team_delete")
+     * @Route("/admin/teams/", name="team_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Team $team)
-    {
-        $form = $this->createDeleteForm($team);
-        $form->handleRequest($request);
+    public function deleteAction(Request $request)
+    {       
         $em = $this->getDoctrine()->getManager();
-        $games = $em->getRepository('AppBundle:Game')->findTeamGames($team);
-        $players = $team->getPlayers();
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $teams = $request->request->get('teams');
+        
+        foreach($teams as $team) {
+            $to_delete = $em->getRepository('AppBundle:Team')->findOneById((int) $team);           
+            $games = $em->getRepository('AppBundle:Game')->findTeamGames($to_delete);
+            $players = $to_delete->getPlayers();
             foreach($games as $game) {
                 if ($game->getHomeTeam()) {
-                    if ($team->getId() === $game->getHomeTeam()->getId()) {
+                    if ($to_delete->getId() === $game->getHomeTeam()->getId()) {
                         $game->setHomeTeam(null);
                     }                    
                 }
                 if ($game->getAwayTeam()) {
-                    if ($team->getId() === $game->getAwayTeam()->getId()) {
+                    if ($to_delete->getId() === $game->getAwayTeam()->getId()) {
                         $game->setAwayTeam(null);
                     }                      
                 }              
             }
             foreach($players as $player) {
                 $player->setTeam(null);
-            }
-            $em->remove($team);
-            $em->flush();
+            }             
             
-            $this->addFlash("success", "Drużyna usunięta");
-            
-        } else if($form->isSubmitted() && !$form->isValid()) {
-            $this->addFlash("danger", "Błąd podczas usuwania drużyny");
+            $em->remove($to_delete);
         }
-
+        
+        $em->flush();            
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));         
+                   
         return $this->redirectToRoute('admin_team_index');
-    }
-
-    /**
-     * Creates a form to delete a team entity.
-     *
-     * @param Team $team The team entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Team $team)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('team_delete', array('id' => $team->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
     
     /**

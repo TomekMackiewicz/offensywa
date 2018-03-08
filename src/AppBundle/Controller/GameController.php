@@ -187,8 +187,7 @@ class GameController extends Controller
             'tables' => $tables,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
-            'leagueTables' => $leagueTables,
-            'teams' => $teams
+            'leagueTables' => $leagueTables
         ));
     }    
 
