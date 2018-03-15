@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+    /***************************************************************************
+    
+    Time / date pickers
+     
+    ***************************************************************************/
+
     $.timepicker.regional['pl'] = {
         timeOnlyTitle: 'Wybierz godzinę',
         timeText: 'Czas',
@@ -16,25 +22,6 @@ $(document).ready(function() {
         ampm: false
     };
     $.timepicker.setDefaults($.timepicker.regional['pl']);    
-    
-    $('.btn-danger').on('click', function(e) {
-        e.preventDefault();
-        confirmDelete(this.closest("form"));
-    });
-
-    function confirmDelete(form) {
-        var result = confirm('Jesteś pewien?');
-        if (result === true) {
-            $(form).submit();
-        }
-    }; 
-
-    $("#bars li .bar").each(function(key, bar){
-        var percentage = $(this).data('percentage');
-        $(this).animate({
-            'height':percentage+'%'
-        }, 1000);
-    });
 
     $(".datetimepicker").datetimepicker({
         timeFormat: 'HH:mm',
@@ -49,6 +36,18 @@ $(document).ready(function() {
         changeMonth: true,
         changeYear: true                        
     });                    
+
+    $(".datemonthpicker").datepicker({
+        dateFormat : 'dd-mm',
+        changeMonth: true,
+        changeYear: false,
+        beforeShow: function (input, inst) {
+            inst.dpDiv.addClass('monthDatePicker');
+        },
+        onClose: function(dateText, inst){
+            inst.dpDiv.removeClass('monthDatePicker');
+        }
+    });
 
     $(".monthpicker").datepicker({
         dateFormat : 'mm-yy',
@@ -74,6 +73,31 @@ $(document).ready(function() {
     $(".timepicker").timepicker({
         timeFormat: 'HH:mm',
         stepMinute: 15
+    }); 
+    
+    /***************************************************************************
+    
+    ...
+     
+    ***************************************************************************/
+   
+    $('.btn-danger').on('click', function(e) {
+        e.preventDefault();
+        confirmDelete(this.closest("form"));
+    });
+
+    function confirmDelete(form) {
+        var result = confirm('Jesteś pewien?');
+        if (result === true) {
+            $(form).submit();
+        }
+    }; 
+
+    $("#bars li .bar").each(function(key, bar){
+        var percentage = $(this).data('percentage');
+        $(this).animate({
+            'height':percentage+'%'
+        }, 1000);
     });     
 
     $('#appbundle_payment_paymentCategory').change(function() {

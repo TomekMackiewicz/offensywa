@@ -330,6 +330,16 @@
                 {{ 'tournaments'|trans|capitalize }}
             </a>
         </li>
+        {% if app.request.attributes.get('_route') == 'settings' %}
+        <li class="active">
+        {% else %}
+        <li>
+        {% endif %}
+            <a href="{{ path('settings') }}">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                {{ 'settings'|trans|capitalize }}
+            </a>           
+        </li>        
         {% endif %}       
       </ul>
     </div>

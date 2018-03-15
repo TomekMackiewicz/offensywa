@@ -125,6 +125,9 @@ return array(
     'payment.types' => 'rodzaje płatności',
     'send' => 'wyślij',
     'message.send.success' => 'Wiadomość została wysłana',
-    'message.send.error' => 'Błąd podczas wysyłania wiadomości'
-    
+    'message.send.error' => 'Błąd podczas wysyłania wiadomości',
+    'league.season' => 'Sezon ligowy',
+    'settings' => 'Ustawienia',
+    'season.start' => 'Początek sezonu',
+    'season.end' => 'Koniec sezonu'
 );
