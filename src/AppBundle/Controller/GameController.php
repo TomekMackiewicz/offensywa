@@ -119,7 +119,7 @@ class GameController extends Controller
         $em = $this->getDoctrine()->getManager();
         $settings = $em->getRepository('AppBundle:Settings')->findFirst();
         
-        if($settings->getUseSeason()) {
+        if($settings && $settings->getUseSeason()) {
             $gameDate = \DateTime::createFromFormat('Y-m-d', $date);
             $seasonStart = $settings->getSeasonStart();
             $seasonEnd = $settings->getSeasonEnd(); 

@@ -14,22 +14,26 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
 
     private function checkSeasonDates() {        
         $settings = $this->getEntityManager()->getRepository('AppBundle:Settings')->findFirst();
-        $useSeason = $settings->getUseSeason();
-        $currentYear = (int) (new \DateTime())->format('Y'); 
-        
-        if ($useSeason) {
-            $start = $settings->getSeasonStart();
-            $end = $settings->getSeasonEnd(); 
-            
-            if ($start > $end) {
-                $seasonStart = (new \DateTime())->setDate($currentYear, (int) date_format($start, "m"), (int) date_format($start, "d"));
-                $seasonEnd = (new \DateTime())->setDate($currentYear+1, (int) date_format($end, "m"), (int) date_format($end, "d"));
+        if($settings) {
+            $useSeason = $settings->getUseSeason();
+            $currentYear = (int) (new \DateTime())->format('Y'); 
+
+            if ($useSeason) {
+                $start = $settings->getSeasonStart();
+                $end = $settings->getSeasonEnd(); 
+
+                if ($start > $end) {
+                    $seasonStart = (new \DateTime())->setDate($currentYear, (int) date_format($start, "m"), (int) date_format($start, "d"));
+                    $seasonEnd = (new \DateTime())->setDate($currentYear+1, (int) date_format($end, "m"), (int) date_format($end, "d"));
+                } else {
+                    $seasonStart = (new \DateTime())->setDate($currentYear, (int) date_format($start, "m"), (int) date_format($start, "d"));
+                    $seasonEnd = (new \DateTime())->setDate($currentYear, (int) date_format($end, "m"), (int) date_format($end, "d"));                
+                }
+
+                return array("start" => $seasonStart, "end" => $seasonEnd);
             } else {
-                $seasonStart = (new \DateTime())->setDate($currentYear, (int) date_format($start, "m"), (int) date_format($start, "d"));
-                $seasonEnd = (new \DateTime())->setDate($currentYear, (int) date_format($end, "m"), (int) date_format($end, "d"));                
-            }
-            
-            return array("start" => $seasonStart, "end" => $seasonEnd);
+                return null;
+            }            
         } else {
             return null;
         }

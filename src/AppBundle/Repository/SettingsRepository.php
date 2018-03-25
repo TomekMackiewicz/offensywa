@@ -16,7 +16,7 @@ class SettingsRepository extends \Doctrine\ORM\EntityRepository
         $query = $em->createQuery(
             'SELECT s FROM AppBundle:Settings s ORDER BY s.id ASC'
         )->setMaxResults(1);
-        $settings = $query->getSingleResult();
+        $settings = $query->getOneOrNullResult(); // getOneOrNullResult
         
         return $settings;        
     }
