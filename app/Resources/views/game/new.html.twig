@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">  
             <h1>Dodaj mecz</h1> 
+            {% include 'partials/gritter.html.twig' %}
             <div class="admin-box">                                   
                 {{ form_start(form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
                     {{ form_row(form.date) }}    
@@ -13,7 +14,7 @@
                     {{ form_row(form.awayTeam) }}
                     {{ form_row(form.homeTeamScore) }}
                     {{ form_row(form.awayTeamScore) }}
-                    <input type="submit" class="btn btn-success" value="Zapisz" />
+                    <input type="submit" id="game-submit-button" class="btn btn-success" value="Zapisz" />
                 {{ form_end(form) }}
                 <a href="{{ path('admin_game_index') }}" class="btn btn-default">Wróć do listy</a>
             </div>

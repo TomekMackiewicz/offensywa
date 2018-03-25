@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Setting controller.
  *
- * @Route("settings")
+ * @Route("admin/settings")
  */
 class SettingsController extends Controller
 {

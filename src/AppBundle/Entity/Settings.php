@@ -22,6 +22,13 @@ class Settings
     private $id;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="useSeason", type="boolean")
+     */
+    private $useSeason;    
+    
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="seasonStart", type="date")
@@ -45,6 +52,30 @@ class Settings
         return $this->id;
     }
 
+    /**
+     * Set useSeason
+     *
+     * @param \DateTime $useSeason
+     *
+     * @return Settings
+     */
+    public function setUseSeason($useSeason)
+    {       
+        $this->useSeason = $useSeason;
+
+        return $this;
+    }
+
+    /**
+     * Get useSeason
+     *
+     * @return bool
+     */
+    public function getUseSeason()
+    {
+        return $this->useSeason;
+    }    
+    
     /**
      * Set seasonStart
      *

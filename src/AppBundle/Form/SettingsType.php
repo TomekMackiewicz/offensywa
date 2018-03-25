@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class SettingsType extends AbstractType
 {
@@ -15,6 +16,10 @@ class SettingsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('useSeason', CheckboxType::class, array(
+                'label'    => 'season.use',
+                'required' => false,
+            ))                
             ->add('seasonStart', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'dd-MM',

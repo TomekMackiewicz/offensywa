@@ -243,7 +243,16 @@ $(document).ready(function() {
         });
     });                                   
 
+    /***************************************************************************
+    
+    1) Enable / disable goals inputs depending on game date 
+    2) Show error if league game date not in season dates range
+     
+    ***************************************************************************/
+    
+    // 1
     var matchDateInput = $('#appbundle_game_date');
+    var categoryInput = $('#appbundle_game_category');
     if(typeof matchDateInput.val() !== 'undefined') {
         var now = new Date();                        
         var homeTeamScore = $('#appbundle_game_homeTeamScore');
@@ -280,8 +289,97 @@ $(document).ready(function() {
             } else {
                 $("#appbundle_game_homeTeamScore").prop('disabled', false);
                 $("#appbundle_game_awayTeamScore").prop('disabled', false);                        
-            }                    
-        });                         
+            }
+            
+            // 2            
+            var category = $('#appbundle_game_category').val();
+            var dateArray = matchDateInput.val().split("-");            
+            // get year
+            var yearAndTime = dateArray[2];
+            var splitYear = yearAndTime.split(" ");
+            var year = splitYear[0];
+            // year-month-day format
+            var formattedDate = year + "-" + dateArray[1] + "-" + dateArray[0];
+            var errorMessage = 
+                "<span class=\"help-block season-range-error\">"
+                    + "<ul class=\"list-unstyled\">"
+                        + "<li>"
+                            + "<span class=\"glyphicon glyphicon-exclamation-sign\"></span>" 
+                            + " Data meczu poza sezonem."
+                        + "</li>"
+                    + "</ul>"
+                + "</span>";
+
+            $.ajax({
+                url : "/admin/games/check-league-game-date/"+formattedDate,
+                type: "GET",
+                data : formattedDate,
+                success: function(resp) {
+                    if (resp === false && category === "league.game") {
+                        allowSubmit = false;                        
+                        matchDateInput.parent().addClass("has-error");
+                        // @FIXME Dirty hack to prevent error message showing 3 times (datepicker change issue)
+                        if ($(".season-range-error").length === 0) {
+                            matchDateInput.parent().append(errorMessage);
+                        }                       
+                    } else {
+                        allowSubmit = true;
+                        matchDateInput.parent().removeClass("has-error");
+                        $(".season-range-error").remove();
+                    }
+                    
+                    if (allowSubmit === false) {
+                        $("#game-submit-button").prop('disabled', true);               
+                    } else {
+                        $("#game-submit-button").prop('disabled', false);
+                    }                    
+                }
+            });
+        });
+
+        categoryInput.change(function() {
+            var dateInput = $('#appbundle_game_date');
+            var category = $('#appbundle_game_category').val();
+            var dateArray = dateInput.val().split("-");
+            // month-day format
+            var formattedDate = dateArray[1] + "-" + dateArray[0];            
+            var errorMessage = 
+                "<span class=\"help-block season-range-error\">"
+                    + "<ul class=\"list-unstyled\">"
+                        + "<li>"
+                            + "<span class=\"glyphicon glyphicon-exclamation-sign\"></span>" 
+                            + " Data meczu poza sezonem."
+                        + "</li>"
+                    + "</ul>"
+                + "</span>";
+
+            $.ajax({
+                url : "/admin/games/check-league-game-date/"+formattedDate,
+                type: "GET",
+                data : formattedDate,
+                success: function(resp) {
+                    if (resp === false && category === "league.game") {
+                        allowSubmit = false;                        
+                        matchDateInput.parent().addClass("has-error");
+                        // @FIXME Dirty hack to prevent error message showing 3 times (datepicker change issue)
+                        if ($(".season-range-error").length === 0) {
+                            matchDateInput.parent().append(errorMessage);
+                        }                       
+                    } else {
+                        allowSubmit = true;
+                        matchDateInput.parent().removeClass("has-error");
+                        $(".season-range-error").remove();
+                    }
+                    
+                    if (allowSubmit === false) {
+                        $("#game-submit-button").prop('disabled', true);               
+                    } else {
+                        $("#game-submit-button").prop('disabled', false);
+                    }                    
+                }
+            });
+        });
+
     }                   
     
 // Enable play ligue checkbox only if my team ----------------------------------
@@ -455,7 +553,7 @@ $(document).ready(function() {
         }
     }).trigger('change');    
 
-    // -------------------------------------------------------------------------
+
 
 });  
 

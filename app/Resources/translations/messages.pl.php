@@ -118,7 +118,7 @@ return array(
     'tournaments' => 'turnieje',
     'change.password' => 'zmień hasło',
     'edit.profile' => 'edytuj profil',
-    'place.order' => 'złóz zamówienie',
+    'place.order' => 'złóż zamówienie',
     'list' => 'lista',
     'add' => 'dodaj',
     'overview' => 'przegląd',
@@ -128,6 +128,13 @@ return array(
     'message.send.error' => 'Błąd podczas wysyłania wiadomości',
     'league.season' => 'Sezon ligowy',
     'settings' => 'Ustawienia',
+    'season' => 'sezon',
     'season.start' => 'Początek sezonu',
-    'season.end' => 'Koniec sezonu'
+    'season.end' => 'Koniec sezonu',
+    'season.use' => 'Uwzględniaj sezon',
+    'game.outside.season.range' => 'Data meczu poza sezonem',
+    'league.game' => 'mecz ligowy',
+    'sparring.game' => 'sparing',
+    'tournament.game' => 'mecz turniejowy',
+    'edit' => 'edytuj'
 );

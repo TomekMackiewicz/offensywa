@@ -7,8 +7,12 @@
             {% include 'partials/gritter.html.twig' %}
             <div class="admin-box">             
                 {{ form_start(edit_form) }}
-                    {{ form_widget(edit_form) }}
-                    <input type="submit" class="btn btn-primary" value="Edytuj" />
+                    {{ form_errors(edit_form) }}
+                    <h3>{{ 'season'|trans|capitalize }}</h3>
+                    {{ form_row(edit_form.useSeason) }}
+                    {{ form_row(edit_form.seasonStart) }}
+                    {{ form_row(edit_form.seasonEnd) }}
+                    <input type="submit" class="btn btn-primary" value="{{ 'edit'|trans|capitalize }}" />
                 {{ form_end(edit_form) }}
             </div>
         </div>

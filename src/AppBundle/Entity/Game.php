@@ -13,10 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Game
 {
-    
-    const LEAGUE_GAME = "mecz ligowy";
-    const SPARRING = "sparing";
-    const TOURNAMENT_GAME = "mecz turniejowy";
+    const LEAGUE_GAME = 'league.game';
+    const SPARRING_GAME = "sparring.game";
+    const TOURNAMENT_GAME = "tournament.game";
     
     /**
      * @var int
