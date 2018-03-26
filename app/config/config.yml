@@ -229,4 +229,10 @@ artgris_file_manager:
         default:
             dir: "../web/rfm"
         tiny:
-            dir: "../web/rfm"            
+            dir: "../web/rfm" 
+            upload:
+               image_versions: {'medium': {crop: true, max_width: 200, max_height: 600}, 'thumbnail': {max_width: 80, max_height: 80}}            
+        public:
+            upload:
+                max_file_size: 1048576
+                image_versions: {'medium': {crop: true, max_width: 200, max_height: 600}, 'thumbnail': {max_width: 80, max_height: 80}}
