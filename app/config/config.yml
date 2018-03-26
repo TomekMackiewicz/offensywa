@@ -72,8 +72,8 @@ swiftmailer:
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
-    port: %mailer_port%
-    encryption: %mailer_encryption%    
+    #port: %mailer_port%
+    #encryption: %mailer_encryption%    
     #spool: { type: memory }
 
 fos_user:
@@ -222,4 +222,11 @@ ivory_ck_editor:
             filename: "plugin.js"
         htmlbuttons:
             path:     "/bundles/ivoryckeditor/plugins/htmlbuttons/"
-            filename: "plugin.js"            
+            filename: "plugin.js"  
+            
+artgris_file_manager:
+    conf:
+        default:
+            dir: "../web/rfm"
+        tiny:
+            dir: "../web/rfm"            

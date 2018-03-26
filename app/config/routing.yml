@@ -28,4 +28,9 @@ gallery:
 
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
-    prefix: /media    
+    prefix: /media 
+    
+artgris_bundle_file_manager:
+    resource: "@ArtgrisFileManagerBundle/Controller"
+    type:     annotation
+    prefix:   /manager    

@@ -103,7 +103,7 @@
                 </ul>
             </div>            
         </li>          
-        {% if app.request.attributes.get('_route') == 'admin_sonata_media_media_list' 
+{#        {% if app.request.attributes.get('_route') == 'admin_sonata_media_media_list' 
            or app.request.attributes.get('_route') == 'admin_sonata_media_gallery_list' 
         %}
         <li class="active">
@@ -124,7 +124,17 @@
                     <li><a href="{{ path('admin_sonata_media_gallery_list') }}">{{ 'gallery'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
-        </li>         
+        </li>#} 
+        {% if app.request.attributes.get('_route') == 'file_manager' %}
+        <li class="active">
+        {% else %}
+        <li>
+        {% endif %}            
+            <a href="{{ path('file_manager', { 'conf': 'default' }) }}">
+                <i class="fa fa-file-image-o admin-list-icon" aria-hidden="true"></i>
+                {{ 'media'|trans|capitalize }}
+            </a>           
+        </li>
         {% if app.request.attributes.get('_route') == 'admin_player_index' 
            or app.request.attributes.get('_route') == 'player_new' 
         %}

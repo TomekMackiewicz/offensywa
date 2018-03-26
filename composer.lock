@@ -4,9 +4,66 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40b694219f5e825901affce0efebc977",
-    "content-hash": "350ff10c9569cfa9f88cfcbb80a73b33",
+    "hash": "2178b0bbad080863e42b12f9e9a50709",
+    "content-hash": "689ccc788272a81fe51c2d6a54259c11",
     "packages": [
+        {
+            "name": "artgris/filemanager-bundle",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artgris/FileManagerBundle.git",
+                "reference": "a3c0a1e9337439df9fe56c75d3c1c740177f5c31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artgris/FileManagerBundle/zipball/a3c0a1e9337439df9fe56c75d3c1c740177f5c31",
+                "reference": "a3c0a1e9337439df9fe56c75d3c1c740177f5c31",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0",
+                "sensio/framework-extra-bundle": "~2.3|~3.0,>=3.0.2|4.0.x|~5.0",
+                "symfony/asset": "~2.3|~3.0|^4.0",
+                "symfony/form": "~2.3|~3.0|^4.0",
+                "symfony/translation": "~2.3|~3.0|^4.0",
+                "symfony/twig-bridge": "^2.3.4|~3.0|^4.0",
+                "symfony/twig-bundle": "^2.3.4|~3.0|^4.0",
+                "symfony/validator": "~2.3|~3.0|^4.0",
+                "twig/extensions": "~1.0",
+                "twig/twig": "^1.28 || ^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.0|^5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Artgris\\Bundle\\FileManagerBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arthur Gribet",
+                    "email": "a.gribet@gmail.com"
+                }
+            ],
+            "description": "FileManager is a simple Multilingual File Manager Bundle for Symfony",
+            "homepage": "https://github.com/artgris/FileManagerBundle",
+            "keywords": [
+                "bundle",
+                "file manager",
+                "symfony"
+            ],
+            "time": "2018-03-12 15:10:51"
+        },
         {
             "name": "cocur/slugify",
             "version": "v3.0",

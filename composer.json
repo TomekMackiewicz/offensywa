@@ -22,6 +22,7 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "artgris/filemanager-bundle": "^1.2",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "egeloen/ckeditor-bundle": "^6.0",

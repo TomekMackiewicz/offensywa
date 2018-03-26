@@ -43,6 +43,43 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
                     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
                     crossorigin="anonymous">
+            </script>  
+            <script src="{{ asset('/js/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+            <script>
+                tinymce.init({
+                    selector: "textarea",theme: "modern",width: 680,height: 300,
+                    file_browser_callback: fileBrowser,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                        "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                        "table contextmenu directionality emoticons paste textcolor code"
+                    ],
+                    toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+                    toolbar2: "| link unlink anchor | image media | forecolor backcolor  | print preview code ",
+                    image_advtab: true 
+                }); 
+                 
+                function fileBrowser(field_name, url, type, win) {
+                    var cmsURL = "{{ path('file_manager', {module:'tiny', conf:'tiny'}) }}";
+                    if (cmsURL.indexOf("?") < 0) {
+                        cmsURL = cmsURL + "?type=" + type;
+                    }
+                    else {
+                        cmsURL = cmsURL + "&type=" + type;
+                    }
+
+                    tinyMCE.activeEditor.windowManager.open({
+                        file: cmsURL,
+                        title: 'File Manager',
+                        width: 1024,
+                        height: 500
+                    }, {
+                        window: win,
+                        input: field_name
+                    });
+
+                    return false;
+                }                 
             </script>           
             <script src="{{ asset('bundles/sonataadmin/Admin.js') }}"></script>           
             <script src="{{ asset('/js/timepicker.js') }}"></script>
