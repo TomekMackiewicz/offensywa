@@ -20,85 +20,9 @@
 </head>
 <body>
     <div class="container-fluid ">
+        
         {% block admin_body %}{% endblock %}
-{#        <div class="well-sm top-bar" id="top-bar">
-            <a type="button" title="{{ 'button.tree'|trans }}"
-               href="{{ path('file_manager', fileManager.queryParameters|merge({'tree': fileManager.tree == true ? 0 : 1 })) }}"
-               class="btn btn-sm btn-default {{ fileManager.tree ? 'active' }}">
-                <span class="fa fa-navicon"></span>
-            </a>
-            {% if fileManager.parent %}
-                <a class="btn btn-default btn-sm"
-                   title="{{ 'button.parent'|trans }}"
-                   href="{{ fileManager.parent }}">
-                    <span class="fa fa-level-up"></span></a>
-            {% endif %}
-            <button type="button" title="{{ 'button.refresh'|trans }}" class="btn btn-default btn-sm "
-                    onClick="window.location.reload()">
-                <i class="glyphicon glyphicon-refresh"></i>
-            </button>
 
-            <span class="btn btn-success btn-sm fileinput-button">
-            <i class="glyphicon glyphicon-plus"></i>
-            <span>{{ 'button.add.files'|trans }}</span>
-            <input id="fileupload" type="file"
-                   data-url="{{ path('file_manager_upload', fileManager.queryParameters) }}"
-                   name="files[]" multiple=""
-                   accept="{{ fileManager.configuration.accept is defined ? fileManager.configuration.accept : (fileManager.type ? accept(fileManager.type)) }}">
-            </span>
-
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addFolder">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>{{ 'button.add.folder'|trans }}</span>
-            </button>
-            {% if fileManager.parent %}
-                <button type="button"
-                        class="btn btn-sm btn-danger js-delete-modal"
-                        data-trigger="click"
-                        data-container="body"
-                        data-toggle="modal"
-                        data-target="#js-confirm-delete"
-                        data-placement="left"
-                        data-html="true"
-                        data-href='{{ path('file_manager_delete', fileManager.queryParameters) }}'>
-                    <i class="glyphicon glyphicon-remove"></i>
-                    <span>{{ 'button.delete.current'|trans }}</span>
-                </button>
-            {% endif %}
-            <div class="btn-group pull-right">
-                {% if fileManager.view != "list" %}
-                    {{ order(fileManager, 'name') }}
-                    {{ order(fileManager, 'date') }}
-                    {{ order(fileManager, 'size') }}
-                    {{ order(fileManager, 'dimension') }}
-                {% endif %}
-                <a type="button" href="{{ path('file_manager', fileManager.queryParameters|merge({'view':"list"})) }}"
-                   class="btn btn-sm btn-default {{ fileManager.view == 'list' ? 'active' }}">
-                    <span class="fa fa-th-list"></span>
-                </a>
-                <a type="button" href="{{ path('file_manager', fileManager.queryParameters|merge({'view':'thumbnail'})) }}"
-                   class="btn btn-sm btn-default {{ fileManager.view == 'thumbnail' ? 'active' }}">
-                    <span class="fa fa-th"></span>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            {% if fileManager.tree %}
-            <div class="col-xs-12  col-sm-4 col-md-3 col-lg-2">
-                <div class="table-responsive">
-                    <div id="tree"></div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-8 col-md-9 col-lg-10 no-tree-blk">
-                {% else %}
-                <div class="col-lg-12">
-                    {% endif %}
-                    <form id="form-multiple-delete">
-                        {% include '@ArtgrisFileManager/views/_manager_view.html.twig' with {'fileManager' :fileManager,  'fileArray' : fileArray, 'formDelete' : formDelete} only %}
-                    </form>
-                </div>
-            </div>
-        </div>#}
         {% include '@ArtgrisFileManager/views/_modals.html.twig' %}
     </div>
 <script src="{{ asset('bundles/artgrisfilemanager/libs/jquery/dist/jquery.min.js') }}"></script>

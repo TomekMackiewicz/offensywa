@@ -16,10 +16,11 @@
 /vendor/
 /web/bundles/
 /web/uploads/
-/nbproject/
+/nbproject/*
 .htaccess
 .htpasswd
 /app/.htaccess
 /web/.htaccess
 /src/.htaccess
+/web/files/
 todo.txt
