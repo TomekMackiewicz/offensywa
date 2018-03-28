@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: pl
+    brochures_directory: '%kernel.project_dir%/web/files'
 
 framework:
     #esi: ~
@@ -38,8 +39,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
-        - 'bootstrap_3_layout.html.twig'    
-        - 'SonataMediaBundle:Form:media_widgets.html.twig'
+        - 'bootstrap_3_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -51,20 +51,12 @@ doctrine:
         user: '%database_user%'
         password: '%database_password%'
         charset: UTF8
-        types:
-            json: Sonata\Doctrine\Types\JsonType
-        #options:
-            # PDO::MYSQL_ATTR_INIT_COMMAND
-            #1002: "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))"
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         entity_managers:           
             default:
                 naming_strategy: doctrine.orm.naming_strategy.underscore
                 auto_mapping: true                 
-                mappings:
-                    ApplicationSonataMediaBundle: ~
-                    SonataMediaBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -100,136 +92,13 @@ exercise_html_purifier:
         #URI.SafeIframeRegexp: '%^http://www.youtube.com/embed/%'
         #'/<iframe.*src=\"(.*)\".*><\/iframe>/isU'
         Filter.YouTube: true
-
-sonata_admin:
-    title: Sonata Admin Area           
-    templates:
-        layout:                         ::standard_layout.html.twig
-        ajax:                           ::ajax_layout.html.twig
-        list:                           CRUD/list.html.twig
-        show:                           CRUD/show.html.twig
-        show_compare:                   CRUD/show_compare.html.twig
-        edit:                           CRUD/edit.html.twig
-        history:                        CRUD/history.html.twig
-        preview:                        CRUD/preview.html.twig
-        delete:                         CRUD/delete.html.twig
-        batch:                          CRUD/list__batch.html.twig
-        acl:                            CRUD/acl.html.twig
-        action:                         CRUD/action.html.twig
-        select:                         CRUD/list__select.html.twig
-        filter:                         Form/filter_admin_fields.html.twig
-        dashboard:                      Core/dashboard.html.twig
-        search:                         Core/search.html.twig
-        batch_confirmation:             CRUD/batch_confirmation.html.twig
-        inner_list_row:                 CRUD/list_inner_row.html.twig
-        base_list_field:                CRUD/base_list_field.html.twig
-        list_block:                     Block/block_admin_list.html.twig
-        user_block:                     Core/user_block.html.twig
-        add_block:                      Core/add_block.html.twig
-        pager_links:                    Pager/links.html.twig
-        pager_results:                  Pager/results.html.twig
-        tab_menu_template:              Core/tab_menu_template.html.twig
-        history_revision_timestamp:     CRUD/history_revision_timestamp.html.twig
-        short_object_description:       Helper/short-object-description.html.twig
-        search_result_block:            Block/block_search_result.html.twig
-        action_create:                  CRUD/dashboard__action_create.html.twig
-        button_acl:                     Button/acl_button.html.twig
-        button_create:                  Button/create_button.html.twig
-        button_edit:                    Button/edit_button.html.twig
-        button_history:                 Button/history_button.html.twig
-        button_list:                    Button/list_button.html.twig
-        button_show:                    Button/show_button.html.twig        
-        
-sonata_media:
-    db_driver: doctrine_orm
-    default_context: default
-    contexts:
-        default:
-            providers:
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-            formats:
-                small: { width: 100, quality: 70}
-                big:   { width: 500, quality: 70}
-                
-        post:
-            providers:
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-            formats:
-                small: { width: 200, quality: 70 }
-                big:   { width: 760, quality: 70 }
-
-        user:
-            providers:
-                - sonata.media.provider.youtube
-                - sonata.media.provider.image
-            formats:
-                small: { width: 150 , quality: 70 }
-                big:   { width: 300 , quality: 70 }
-
-        team:
-            providers:
-                - sonata.media.provider.image
-            formats:
-                logo: { width: 30, quality: 70 }
-                #big:   { width: 900, quality: 70 }
-
-        files:
-            providers:
-                - sonata.media.provider.file
-#            formats:
-#                small: { width: 200 , quality: 70 }
-#                big:   { width: 500 , quality: 70 }
-
-    cdn:
-        server:
-            path: /uploads/media
-
-    filesystem:
-        local:
-            directory:  "%kernel.root_dir%/../web/uploads/media"
-            create:     false  
-
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.admin.block.admin_list:
-            contexts: [admin]            
-            
-ivory_ck_editor:
-    default_config: default
-    configs:
-        default:
-            filebrowserBrowseRoute: admin_sonata_media_media_browser
-            filebrowserImageBrowseRoute: admin_sonata_media_media_browser
-            # Display images by default when clicking the image dialog browse button
-            filebrowserImageBrowseRouteParameters:
-                provider: sonata.media.provider.image
-            filebrowserUploadRoute: admin_sonata_media_media_upload
-            filebrowserUploadRouteParameters:
-                provider: sonata.media.provider.file
-            # Upload file as image when sending a file from the image dialog
-            filebrowserImageUploadRoute: admin_sonata_media_media_upload
-            filebrowserImageUploadRouteParameters:
-                provider: sonata.media.provider.image
-                context: post
-            extraPlugins: "youtube,htmlbuttons"
-            youtube_responsive: true
-    plugins:
-        youtube:
-            path:     "/bundles/ivoryckeditor/plugins/youtube/"
-            filename: "plugin.js"
-        htmlbuttons:
-            path:     "/bundles/ivoryckeditor/plugins/htmlbuttons/"
-            filename: "plugin.js"  
-            
+          
 artgris_file_manager:
     conf:
         default:
-            dir: "../web/rfm"
+            dir: "../web/files"
         tiny:
-            dir: "../web/rfm" 
+            dir: "../web/files" 
             upload:
                 image_versions: {'medium': {crop: true, max_width: 200, max_height: 600}, 'thumbnail': {max_width: 80, max_height: 80}}            
         public:
