@@ -16,9 +16,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new FileManagerBundle\FileManagerBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
-            //new JMS\SerializerBundle\JMSSerializerBundle(),
             new Artgris\Bundle\FileManagerBundle\ArtgrisFileManagerBundle(),
         ];
 

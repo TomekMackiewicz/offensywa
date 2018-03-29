@@ -48,6 +48,7 @@
             <script>
                 tinymce.init({
                     selector: "textarea",theme: "modern",width: 680,height: 300,
+                    extended_valid_elements : 'iframe[class|src]',
                     file_browser_callback: fileBrowser,
                     plugins: [
                         "advlist autolink link image lists charmap print preview hr anchor pagebreak",
@@ -80,27 +81,13 @@
 
                     return false;
                 }                 
-            </script>           
-            <script src="{{ asset('bundles/sonataadmin/Admin.js') }}"></script>           
+            </script>                      
             <script src="{{ asset('/js/timepicker.js') }}"></script>
             <script src="{{ asset('/js/moment.min.js') }}"></script>
             <script src="{{ asset('/js/fullcalendar.min.js') }}"></script>
             <script src="{{ asset('/js/fullcalendar-pl.js') }}"></script>
             <script src="{{ asset('/js/data-tables.js') }}"></script>
             <script src="{{ asset('/js/scripts.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonatacore/vendor/moment/min/moment.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/vendor/jquery-form/jquery.form.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/jquery/jquery.confirmExit.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonatacore/vendor/select2/select2.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/vendor/admin-lte/dist/js/app.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/vendor/iCheck/icheck.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/vendor/slimScroll/jquery.slimscroll.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/vendor/waypoints/lib/jquery.waypoints.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.min.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/Admin.js') }}"></script>
-            <script src="{{ asset('bundles/sonataadmin/treeview.js') }}"></script>
             {% if is_granted('ROLE_ADMIN') %}
             <script>
                 $(document).ready(function() {
@@ -137,25 +124,21 @@
                             });
                         }
                     });                     
-                    
-{#                    $('#calendar').fullCalendar({
-                        timeFormat: 'HH:mm',
-                        minTime: '08:00:00',
-                        maxTime: '21:00:00',
-                        defaultTimedEventDuration: '01:00:00',
-                        header: {
-                            left: 'prev,next',
-                            center: 'title',
-                            right: 'month, agendaWeek, agendaDay'
-                        }, 
-                        events: {% if calendarData is defined %}
-                                    {{ calendarData|json_encode|raw }}
-                                {% else %}
-                                    null
-                                {% endif %}
-                    });#}
                 });
             </script>
+            <script>
+                // File button
+                $('#image').parent().hide();
+                $('#buttonframe').on('load', function () {
+                    $(this).contents().on('click','.select',function () {
+                        var path = $(this).attr('data-path');
+                        $('#image').parent().show();
+                        $('#appbundle_post_images').val(path);
+                        $('#image').attr('src', path);
+                        $('#fileButtonModal').modal('hide');
+                    });
+                });
+            </script>            
             {% endif %}
         {% endblock %}              
     </body>
