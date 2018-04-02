@@ -52,28 +52,8 @@ class Post
      * @Assert\NotBlank(message = "field.not_blank")
      * @ORM\Column(name="body", type="text")
      */
-    private $body;
-
-    /**
-     * @var Media
-     *
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"})
-     * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="image", referencedColumnName="id")
-     * })
-     */
-    private $image;    
-
-    /**
-     * @var Gallery
-     *
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery")
-     * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="gallery", referencedColumnName="id")
-     * })
-     */
-    private $gallery;   
-   
+    private $body;   
+    
     /**
      * @var \DateTime
      *
@@ -94,8 +74,26 @@ class Post
      */
     private $categories;
 
+    /**
+     * @var File
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\File")
+     * @ORM\JoinColumn(name="mainImage", referencedColumnName="id")
+     */
+    private $mainImage;     
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="File")
+     * @ORM\JoinTable(name="posts_images",
+     *   joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="file_id", referencedColumnName="id")}
+     * )
+     */
+    private $images;     
+    
     public function __construct() {
         $this->categories = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }    
 
     /**
@@ -164,7 +162,7 @@ class Post
      * @return Post
      */
     public function setBody($body)
-    {
+    {       
         $this->body = $body;
 
         return $this;
@@ -178,55 +176,7 @@ class Post
     public function getBody()
     {
         return $this->body;
-    }
-
-    /**
-     * Set image
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $image
-     *
-     * @return Player
-     */
-    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getImage()
-    {
-        return $this->image;
     }    
-
-    /**
-     * Set gallery
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Gallery $gallery
-     *
-     * @return Player
-     */
-    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
-    {
-        $this->gallery = $gallery;
-
-        return $this;
-    }
-
-    /**
-     * Get gallery
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Gallery
-     */
-    public function getGallery()
-    {
-        return $this->gallery;
-    } 
     
     /**
      * Set publishDate
@@ -287,13 +237,58 @@ class Post
     }
     
     public function addCategory(Category $category)
-    {
+    {        
         $this->categories->add($category);
     }
 
     public function removeCategory(Category $category)
     {
         $this->categories->removeElement($category);
-    }    
+    } 
+
+    /**
+     * Set main image
+     *
+     * @param \AppBundle\Entity\File $mainImage
+     *
+     * @return Player
+     */
+    public function setMainImage(\AppBundle\Entity\File $mainImage = null)
+    {
+        $this->mainImage = $mainImage;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \AppBundle\Entity\File
+     */
+    public function getMainImage()
+    {
+        return $this->mainImage;
+    }
+    
+    /**
+     * Get images
+     *
+     * @return Image
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+    
+    public function addImage(File $image)
+    {
+        $this->images->add($image);
+    }
+
+    public function removeImage(File $image)
+    {
+        $this->images->removeElement($image);
+    }
+    
 }
 

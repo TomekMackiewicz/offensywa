@@ -6,7 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class PostType extends AbstractType
 {
@@ -22,10 +23,7 @@ class PostType extends AbstractType
             ->add('slug', null, array(
                 'label' => 'url'
             ))
-            ->add('body', CKEditorType::class, array(
-                'config' => array(
-                    'uiColor' => '#ffffff',
-                ),
+            ->add('body', TextareaType::class, array(
                 'label' => 'body'
             ))               
             ->add('categories', EntityType::class, array(
@@ -35,15 +33,12 @@ class PostType extends AbstractType
                 'expanded' => true,
                 'label' => 'categories'
             ))
-            ->add('image', 'sonata_media_type', array(
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'post',
-                'label' => 'image'
-            ))
-            ->add('gallery', null, array(
-                'label' => 'gallery',
-                'placeholder' => 'choose'
-            ));
+            ->add('images', HiddenType::class, array( 
+                'data_class' => null,
+                'mapped' => false,
+                'label' => 'image',
+                'attr' => array('data-toggle' => 'modal', 'data-target' => '#fileButtonModal')
+            ));                
     }
     
     /**

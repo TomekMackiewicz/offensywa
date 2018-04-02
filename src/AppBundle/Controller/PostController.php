@@ -3,10 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\File;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Post controller.
@@ -60,18 +62,25 @@ class PostController extends Controller
     public function newAction(Request $request)
     {
         $post = new Post();
+        $em = $this->getDoctrine()->getManager();        
         $form = $this->createForm('AppBundle\Form\PostType', $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setPublishDate(new \DateTime());
-            $em = $this->getDoctrine()->getManager();
+            $imageName = $request->request->get('appbundle_post')['images'];
+            
+            if ($imageName) {
+                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                $post->addImage($image);                
+            }            
+            
             $em->persist($post);
             $em->flush();
             
             $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
-            return $this->redirectToRoute('admin_post_index');
+            return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
         } else if($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
@@ -111,12 +120,20 @@ class PostController extends Controller
      */
     public function editAction(Request $request, Post $post)
     {
+        $em = $this->getDoctrine()->getManager();       
         $editForm = $this->createForm('AppBundle\Form\PostType', $post);
         $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+    
+        if ($editForm->isSubmitted() && $editForm->isValid()) {            
             $post->setModifyDate(new \DateTime());
-            $this->getDoctrine()->getManager()->flush();
+            $imageName = $request->request->get('appbundle_post')['images'];
+           
+            if ($imageName) {
+                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                $post->addImage($image);                
+            }
+            $em->persist($post);
+            $em->flush(); 
             
             $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
             
@@ -151,22 +168,65 @@ class PostController extends Controller
         $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
 
         return $this->redirectToRoute('admin_post_index');
+    }    
+    
+    /**
+     * Unset post - image relation.
+     *
+     * @Route("/admin/post/unset_image/{image_id}/{post_id}", name="unset_image")
+     * @ParamConverter("image", options={"mapping": {"image_id" : "id"}})
+     * @ParamConverter("post", options={"mapping": {"post_id" : "id"}})
+     * @Method("POST")
+     */
+    public function unsetImageAction(Request $request, File $image, Post $post)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $post->removeImage($image);
+        $em->flush();            
+        
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
+
+        return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
     }
 
     /**
-     * Creates a form to delete a post entity.
+     * Set main image.
      *
-     * @param Post $post The post entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @Route("/admin/post/set-main-image/{post_id}/{image_id}", name="set_main_image")
+     * @ParamConverter("post", options={"mapping": {"post_id" : "id"}})
+     * @ParamConverter("image", options={"mapping": {"image_id" : "id"}})
+     * @Method("POST")
      */
-    private function createDeleteForm(Post $post)
+    public function setMainImageAction(Request $request, Post $post, File $image = null)
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('post_delete', array('id' => $post->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }    
+        $em = $this->getDoctrine()->getManager();
+        $post->setMainImage($image);
+        $em->flush();            
+        
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
+
+        return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
+    }
+
+    /**
+     * Set image description.
+     *
+     * @Route("/admin/post/set-image-description/{image_id}/{post_id}", name="set_image_desc")
+     * @ParamConverter("image", options={"mapping": {"image_id" : "id"}})
+     * @ParamConverter("post", options={"mapping": {"post_id" : "id"}})
+     * @Method("POST")
+     */
+    public function setImageDescriptionAction(Request $request, File $image, Post $post)
+    {      
+        $em = $this->getDoctrine()->getManager();
+        $description = $request->request->get('image-description');
+        $image->setDescription($description);
+        $em->persist($image);
+        $em->flush();            
+        
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
+
+        return $this->redirectToRoute('post_edit', array('id' => $post->getId()));
+    }
     
 }

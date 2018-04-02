@@ -21,8 +21,8 @@
                         <i class="fa fa-clock-o" aria-hidden="true"></i> 
                         {{ article.publishDate|date('Y-m-d H:i') }}{% endif %}
                     </small>               
-                    {% if article.image %}
-                        {% thumbnail article.image, 'small' with {'class': 'img-pull-left'} %}
+                    {% if article.mainImage %}
+                        <img src="{{ article.mainImage.url }}" class="img-responsive" alt="{{ article.mainImage.name }}">
                     {% endif %} 
                     {{ article.body | purify }}
                 {% endfor %}

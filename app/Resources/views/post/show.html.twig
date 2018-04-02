@@ -12,10 +12,7 @@
 
 {% block content %}
     {% if post %}       
-        <h1>{{ post.title }}</h1>
-        {% if post.image %}
-            {% thumbnail post.image, 'big' %}
-        {% endif %}    
+        <h1>{{ post.title }}</h1>    
         <p>
             <small class="text-muted"> 
                 {% if post.publishDate %}
@@ -29,14 +26,17 @@
                 {% endif %}
             </small>
         </p>
+        {% if post.mainImage %}
+            <img src="{{ post.mainImage.url }}" class="img-responsive img-pull-left" alt="{{ post.mainImage.name }}">            
+        {% endif %}        
         {{ post.body | purify }}
-        {% if post.gallery %}
+        {% if post.images %}
             <div class="gal-container">
-            {% for img in post.gallery.galleryHasMedias %}
+            {% for image in post.images %}
                 <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
                     <div class="box">
                         <a href="#" data-toggle="modal" data-target="#{{ loop.index }}">
-                            {% thumbnail img.media, 'small' %}                            
+                            <img src="{{ image.url }}" class="img-responsive" alt="{{ image.name }}">                            
                         </a>
                         <div class="modal fade" id="{{ loop.index }}" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
@@ -45,18 +45,18 @@
                                         <span aria-hidden="true">×</span>
                                     </button>
                                     <div class="modal-body">
-                                        {% thumbnail img.media, 'big' %}
+                                        <img src="{{ image.url }}" class="img-responsive" alt="{{ image.name }}">
                                     </div>
-                                    {% if img.media.description %}
-                                    <div class="col-md-12 description">
-                                        <h4>{{ img.media.description }}</h4>
-                                    </div>
+                                    {% if image.description %}
+                                        <div class="col-md-12 description">
+                                            <h4>{{ image.description }}</h4>
+                                        </div>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>            
+                </div>
             {% endfor %}
             </div>
         {% endif %}

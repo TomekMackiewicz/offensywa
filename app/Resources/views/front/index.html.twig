@@ -23,9 +23,8 @@
                             {% else %}
                                 <div class="item">
                             {% endif %}
-                            {% if post.image %}
-                                {#<img src="{% path post.image, 'big' %}">#}
-                                {% thumbnail post.image, 'big' %}
+                            {% if post.mainImage %}
+                                <img src="{{ post.mainImage.url }}" class="img-responsive" alt="{{ post.mainImage.name }}">
                             {% else %}
                                 <img src="http://placehold.it/760x400/cccccc/ffffff">
                             {% endif %}                                                                     
@@ -86,7 +85,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                         <div class="thumbnail">
                             {% if player.image %}
-                                {% thumbnail player.image, 'small' with {'class': 'img-responsive'} %}
+                                <img src="{{ player.image.url }}" class="img-responsive" alt="{{ player.image.name }}">
                             {% else %}
                                 <img src="http://placehold.it/150x200/cccccc/ffffff">
                             {% endif %}

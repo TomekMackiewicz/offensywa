@@ -5,11 +5,101 @@
     {% include 'partials/gritter.html.twig' %}
     <div class="admin-box">
         {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
-            {{ form_widget(edit_form) }}
+            {{ form_row(edit_form.title) }}
+            {{ form_row(edit_form.slug) }}
+            {{ form_row(edit_form.body) }}
+            {{ form_row(edit_form.categories) }}
+            {{ form_row(edit_form.images) }}
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileButtonModal">
+                    <span class="glyphicon glyphicon-folder-open"></span> Dodaj zdjęcie
+                </button>
+            </div>            
             <input type="submit" class="btn btn-primary" value="Edytuj" />
             <a href="{{ path('admin_post_index') }}" class="btn btn-default admin-form-btn-margin">
                 Wróć do listy
             </a>            
         {{ form_end(edit_form) }}
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+                <img src="" class="img-responsive" id="uploadedImage">
+            </div>
+        </div>
+        {% if post.mainImage %}            
+            <div class="row">
+                <div class="col-xs-12 img-holder">
+                    <h3>Zdjęcie główne</h3>
+                    <img src="{{ post.mainImage.url }}" class="img-responsive">
+                    <form action="{{ path('set_main_image', { 'post_id': post.id, 'image_id': 'null' }) }}" 
+                          method="post" 
+                          class="overlaping-form-left">
+                        <input type="submit" class="btn btn-danger btn-xs" value="Usuń">
+                    </form>                            
+                </div>
+            </div>
+        {% endif %}         
+        {% if post.images is not empty %}            
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Galeria</h3>
+                </div>
+            </div>
+            {% for image in post.images %}  {#if image.id != mainImage.id#}              
+                {% if loop.index is divisible by(4) %}
+                <div class="row">
+                {% endif %}
+                    <div class="col-xs-6 col-md-3 img-holder">
+                        <div class="thumbnail">
+                            <img src="{{ image.url }}" class="img-responsive">
+                            <form action="{{ path('set_main_image', { 'post_id': post.id, 'image_id': image.id }) }}" 
+                                  method="post" 
+                                  class="overlaping-form-top">
+                                <input type="submit" class="btn btn-default btn-xs" value="Ustaw jako główne">
+                            </form>
+                            <form action="{{ path('unset_image', { 'image_id': image.id, 'post_id': post.id }) }}" 
+                                  method="post" 
+                                  class="overlaping-form-bottom">
+                                <input type="submit" class="btn btn-danger btn-xs" value="Usuń">
+                            </form> 
+                            <div class="caption">
+                                <form action="{{ path('set_image_desc', { 'image_id': image.id, 'post_id': post.id }) }}" 
+                                      method="post">                            
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="image-description" value="{{ image.description }}">                                    
+                                    </div>
+                                    <input type="submit" class="btn btn-default btn-xs" value="Edytuj opis">                                                                       
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                {% if loop.index is divisible by(4) %}              
+                </div>
+                {% endif %}                
+            {% endfor %}                       
+        {% endif %}
     </div>
+ 
+    <!-- Image Modal -->
+    <div class="modal fade" id="fileButtonModal" tabindex="-1" role="dialog" aria-labelledby="fileButtonModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="fileButtonModalLabel">File Manager</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe id="buttonframe" 
+                            src="{{ path('file_manager', {module:1, conf:'button'}) }}" 
+                            width="100%" 
+                            height="500" 
+                            frameborder="0"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>   
+                         
 {% endblock %}

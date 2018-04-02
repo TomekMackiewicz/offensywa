@@ -128,13 +128,14 @@
             </script>
             <script>
                 // File button
-                $('#image').parent().hide();
+                $('#uploadedImage').parent().hide();
                 $('#buttonframe').on('load', function () {
                     $(this).contents().on('click','.select',function () {
                         var path = $(this).attr('data-path');
-                        $('#image').parent().show();
+                        $('#uploadedImage').parent().show();
                         $('#appbundle_post_images').val(path);
-                        $('#image').attr('src', path);
+                        $('#appbundle_player_image').val(path);
+                        $('#uploadedImage').attr('src', path);
                         $('#fileButtonModal').modal('hide');
                     });
                 });

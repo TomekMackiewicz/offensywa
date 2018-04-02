@@ -997,3 +997,20 @@ img {
 .monthDatePicker .ui-datepicker-year {
     display: none;   
 }
+
+.img-holder {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.img-holder .overlaping-form-bottom {
+    position: absolute;
+    top: 40px;
+    left: 25px;
+}
+
+.img-holder .overlaping-form-top {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+}
