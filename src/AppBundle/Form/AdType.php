@@ -5,7 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AdType extends AbstractType
 {
@@ -18,10 +18,7 @@ class AdType extends AbstractType
             ->add('title', null, array(
                 'label' => 'title'
             ))
-            ->add('body', CKEditorType::class, array(
-                'config' => array(
-                    'uiColor' => '#ffffff',
-                ),
+            ->add('body', TextareaType::class, array(
                 'label' => 'body'
             ))
             ->add('active', null, array(
