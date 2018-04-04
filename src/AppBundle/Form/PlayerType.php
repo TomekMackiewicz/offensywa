@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class PlayerType extends AbstractType
 {
@@ -32,12 +33,7 @@ class PlayerType extends AbstractType
                     'data-date-format' => 'dd-MM-yyyy'
                 ],
                 'label' => 'birthDate'
-            ])
-            ->add('image', 'sonata_media_type', array(
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'user',
-                'label' => 'image'
-            ))                
+            ])               
             ->add('position', ChoiceType::class, array(
                 'choices'  => array(
                     'goalkeeper' => 'goalkeeper',
@@ -62,7 +58,13 @@ class PlayerType extends AbstractType
             ))
             ->add('parentPhone', null, array(
                 'label' => 'parentPhone'
-            ));                
+            )) 
+            ->add('image', HiddenType::class, array( 
+                'data_class' => null,
+                'mapped' => false,
+                'label' => 'image',
+                'attr' => array('data-toggle' => 'modal', 'data-target' => '#fileButtonModal')
+            ));                 
     }
 
     /**

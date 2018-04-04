@@ -6,7 +6,7 @@
             <div class="admin-box">      
                 <h1>{{ player.firstName }} {{ player.lastName }}</h1>
                 {% if player.image %}
-                    <img src="{% path player.image, 'big' %}">
+                    <img src="{{ player.image.url }}">
                 {% endif %}
                 <table class="table">
                     <tbody>
@@ -64,12 +64,9 @@
                     Wróć do listy
                 </a>                    
                 {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('player_edit', { 'id': player.id }) }}" class="btn btn-primary pull-left admin-form-btn-margin">
-                    Edytuj
-                </a>
-                {{ form_start(delete_form) }}
-                    <input type="submit" class="btn btn-danger" value="Usuń">
-                {{ form_end(delete_form) }}
+                    <a href="{{ path('player_edit', { 'id': player.id }) }}" class="btn btn-primary pull-left admin-form-btn-margin">
+                        Edytuj
+                    </a>
                 {% endif %}
             </div>
         </div>

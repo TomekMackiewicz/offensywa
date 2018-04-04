@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Player controller.
@@ -61,17 +62,22 @@ class PlayerController extends Controller
     public function newAction(Request $request)
     {
         $player = new Player();
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm('AppBundle\Form\PlayerType', $player);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $imageName = $request->request->get('appbundle_player')['image'];          
+            if ($imageName) {
+                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                $player->setImage($image);                
+            }             
             $em->persist($player);
             $em->flush();
             
             $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
-            return $this->redirectToRoute('admin_player_index');
+            return $this->redirectToRoute('player_edit', array('id' => $player->getId()));
             
         } else if($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
@@ -112,11 +118,8 @@ class PlayerController extends Controller
      */
     public function adminShowAction(Player $player)
     {
-        $deleteForm = $this->createDeleteForm($player);
-
         return $this->render('player/admin-show.html.twig', array(
-            'player' => $player,
-            'delete_form' => $deleteForm->createView(),
+            'player' => $player
         ));
     }
 
@@ -128,11 +131,19 @@ class PlayerController extends Controller
      */
     public function editAction(Request $request, Player $player)
     {
+        $em = $this->getDoctrine()->getManager();
         $editForm = $this->createForm('AppBundle\Form\PlayerType', $player);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $imageName = $request->request->get('appbundle_player')['image'];
+           
+            if ($imageName) {
+                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                $player->setImage($image);                
+            } 
+            $em->persist($player);
+            $em->flush();
             
             $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
@@ -215,5 +226,23 @@ class PlayerController extends Controller
 
         return $this->redirectToRoute('admin_player_index');
     }    
+
+    /**
+     * Unset player - image relation.
+     *
+     * @Route("/admin/player/unset_image/{player_id}", name="unset_player_image")
+     * @ParamConverter("player", options={"mapping": {"player_id" : "id"}})
+     * @Method("POST")
+     */
+    public function unsetImageAction(Request $request, Player $player)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $player->nullImage();
+        $em->flush();            
+        
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
+
+        return $this->redirectToRoute('player_edit', array('id' => $player->getId()));
+    }
     
 }
