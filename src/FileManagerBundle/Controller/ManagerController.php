@@ -276,18 +276,65 @@ class ManagerController extends BaseController
             if (!$fileManager->getImagePath()) {
                 $file->url = $this->generateUrl('file_manager_file', array_merge($fileManager->getQueryParameters(), ['fileName' => $file->url]));
             }
-            
-            // Save file to DB
-            $oFile = new UploadedFile();
-            $oFile->setName($file->name);
-            $oFile->setUrl($file->url);
-            $oFile->setSize($file->size);
-            $oFile->setType($file->type);
-            $oFile->setDate(new \DateTime());
+           
+            // @FIXME - zrobić to bardziej elegencko
+            // rozmiary wygenerowanych plików
             
             $em = $this->getDoctrine()->getManager();
-            $em->persist($oFile);
-            $em->flush();             
+            
+            // In case of images
+            if (strpos($file->type, 'image') !== false) { 
+                $lgUrl = $fileManager->getImagePath()."large/".$file->name;
+                $tUrl = $fileManager->getImagePath()."thumbnail/".$file->name;
+                $lUrl = $fileManager->getImagePath()."logo/".$file->name;
+
+                // Save original file to DB
+                $oFile = new UploadedFile();
+                $oFile->setName($file->name);
+                $oFile->setUrl($file->url);
+                $oFile->setSize($file->size);
+                $oFile->setType($file->type);
+                $oFile->setDate(new \DateTime());
+
+                // Save large file to DB
+                $lgFile = new UploadedFile();
+                $lgFile->setName($file->name);
+                $lgFile->setUrl($lgUrl);
+                ///$mFile->setSize($file->size);
+                $lgFile->setType($file->type);
+                $lgFile->setDate(new \DateTime());
+
+                // Save thumbnail file to DB
+                $tFile = new UploadedFile();
+                $tFile->setName($file->name);
+                $tFile->setUrl($tUrl);
+                ///$tFile->setSize($file->size);
+                $tFile->setType($file->type);
+                $tFile->setDate(new \DateTime());
+
+                // Save logo file to DB
+                $lFile = new UploadedFile();
+                $lFile->setName($file->name);
+                $lFile->setUrl($lUrl);
+                ///$lFile->setSize($file->size);
+                $lFile->setType($file->type);
+                $lFile->setDate(new \DateTime());            
+               
+                $em->persist($oFile);
+                $em->persist($lgFile);
+                $em->persist($tFile);
+                $em->persist($lFile);                                 
+            } elseif (strpos($file->type, 'application') !== false) {
+                $oFile = new UploadedFile();
+                $oFile->setName($file->name);
+                $oFile->setUrl($file->url);
+                $oFile->setSize($file->size);
+                $oFile->setType($file->type);
+                $oFile->setDate(new \DateTime()); 
+                $em->persist($oFile);
+            }
+            
+            $em->flush();
             
         }
 
@@ -333,13 +380,21 @@ class ManagerController extends BaseController
             $fs = new Filesystem();
             if (isset($queryParameters['delete'])) {
                 $is_delete = false;
-                foreach ($queryParameters['delete'] as $fileName) {
+                foreach ($queryParameters['delete'] as $fileName) {                    
                     $filePath = realpath($fileManager->getCurrentPath() . DIRECTORY_SEPARATOR . $fileName);
                     if (strpos($filePath, $fileManager->getCurrentPath()) !== 0) {
                         $this->addFlash('danger', $translator->trans('file.deleted.danger'));
                     } else {
                         $this->dispatch(FileManagerEvents::PRE_DELETE_FILE);
-                        try {
+                        try {                             
+                            // delete file from DB
+                            $em = $this->getDoctrine()->getManager();
+                            $to_delete = $em
+                                ->getRepository('AppBundle:File')
+                                ->findOneBy(array('url' => $fileManager->getImagePath().$fileName));                               
+                            $em->remove($to_delete);                            
+                            $em->flush(); 
+                            
                             $fs->remove($filePath);
                             $is_delete = true;
                         } catch (IOException $exception) {
