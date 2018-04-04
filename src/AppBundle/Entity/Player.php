@@ -72,18 +72,10 @@ class Player
     /**
      * @var Media
      *
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="image", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\File")
+     * @ORM\JoinColumn(name="image", referencedColumnName="id", onDelete="SET NULL")
      */
-    private $image;    
-
-    /**
-     * @var Gallery
-     *
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="gallery", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $gallery;   
+    private $image;      
    
     /**
      * @ORM\ManyToOne(targetEntity="Team", inversedBy="players")
@@ -180,31 +172,7 @@ class Player
     public function getBirthDate()
     {
         return $this->birthDate;
-    }
-
-//    /**
-//     * Set year
-//     *
-//     * @param string $year
-//     *
-//     * @return Player
-//     */
-//    public function setYear($year)
-//    {
-//        $this->year = $year;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get year
-//     *
-//     * @return string
-//     */
-//    public function getYear()
-//    {
-//        return $this->year;
-//    }    
+    }   
     
     /**
      * Set position
@@ -305,11 +273,11 @@ class Player
     /**
      * Set image
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $image
+     * @param \AppBundle\Entity\File $image
      *
      * @return Player
      */
-    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
+    public function setImage(\AppBundle\Entity\File $image = null)
     {
         $this->image = $image;
 
@@ -319,37 +287,18 @@ class Player
     /**
      * Get image
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
+     * @return \AppBundle\Entity\File
      */
     public function getImage()
     {
         return $this->image;
     }
 
-    /**
-     * Set gallery
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Gallery $gallery
-     *
-     * @return Player
-     */
-    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
+    public function nullImage()
     {
-        $this->gallery = $gallery;
-
-        return $this;
-    }
-
-    /**
-     * Get gallery
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Gallery
-     */
-    public function getGallery()
-    {
-        return $this->gallery;
-    }
-
+        $this->image = null;
+    }    
+    
     /**
      * Get payments
      *
