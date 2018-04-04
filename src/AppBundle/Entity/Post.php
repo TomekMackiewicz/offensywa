@@ -78,15 +78,15 @@ class Post
      * @var File
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\File")
-     * @ORM\JoinColumn(name="mainImage", referencedColumnName="id")
+     * @ORM\JoinColumn(name="mainImage", referencedColumnName="id", onDelete="SET NULL")
      */
     private $mainImage;     
     
     /**
      * @ORM\ManyToMany(targetEntity="File")
      * @ORM\JoinTable(name="posts_images",
-     *   joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
-     *   inverseJoinColumns={@ORM\JoinColumn(name="file_id", referencedColumnName="id")}
+     *   joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id", onDelete="cascade")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="file_id", referencedColumnName="id", onDelete="cascade")}
      * )
      */
     private $images;     
