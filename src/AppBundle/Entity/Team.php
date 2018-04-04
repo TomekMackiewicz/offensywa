@@ -69,7 +69,7 @@ class Team
      *     @ORM\JoinColumn(name="logo", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
-   private $logo; 
+    private $logo; 
     
     /**
      * @ORM\OneToMany(targetEntity="Player", mappedBy="team")
@@ -221,7 +221,7 @@ class Team
      *
      * @param \AppBundle\Entity\File $logo
      *
-     * @return Player
+     * @return Team
      */
     public function setLogo(\AppBundle\Entity\File $logo = null)
     {
@@ -239,6 +239,11 @@ class Team
     {
         return $this->logo;
     }
+
+    public function nullLogo()
+    {
+        $this->logo = null;
+    } 
     
     /**
      * Get players

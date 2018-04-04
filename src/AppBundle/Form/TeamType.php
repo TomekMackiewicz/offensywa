@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class TeamType extends AbstractType
 {
@@ -29,10 +30,11 @@ class TeamType extends AbstractType
                 'label'    => 'playsLeague',
                 'required' => false,
             ))                
-            ->add('logo', 'sonata_media_type', array(
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'team',
-                'label' => 'logo'
+            ->add('logo', HiddenType::class, array( 
+                'data_class' => null,
+                'mapped' => false,
+                'label' => 'logo',
+                'attr' => array('data-toggle' => 'modal', 'data-target' => '#fileButtonModal')
             ));                
     }
     

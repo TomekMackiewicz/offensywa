@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Team controller
@@ -39,17 +40,23 @@ class TeamController extends Controller
     public function newAction(Request $request)
     {
         $team = new Team();
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm('AppBundle\Form\TeamType', $team);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $imageName = $request->request->get('appbundle_team')['logo'];          
+            if ($imageName) {
+                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                $team->setLogo($image);                
+            }             
             $em->persist($team);
             $em->flush();
             
             $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.new.success')));
 
-            return $this->redirectToRoute('admin_team_index');
+            return $this->redirectToRoute('team_edit', array('id' => $team->getId()));
+            
         } else if($form->isSubmitted() && !$form->isValid()) {
             $this->addFlash("danger", ucfirst($this->get('translator')->trans('crud.new.error')));
         }
@@ -89,11 +96,19 @@ class TeamController extends Controller
      */
     public function editAction(Request $request, Team $team)
     {
+        $em = $this->getDoctrine()->getManager();
         $editForm = $this->createForm('AppBundle\Form\TeamType', $team);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $imageName = $request->request->get('appbundle_team')['logo'];
+           
+            if ($imageName) {
+                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                $team->setLogo($image);                
+            } 
+            $em->persist($team);
+            $em->flush();
             
             $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.edit.success')));
 
@@ -180,6 +195,24 @@ class TeamController extends Controller
             
             return $response;
         } 
+    }
+
+    /**
+     * Unset team - image relation.
+     *
+     * @Route("/admin/team/unset_image/{team_id}", name="unset_team_image")
+     * @ParamConverter("team", options={"mapping": {"team_id" : "id"}})
+     * @Method("POST")
+     */
+    public function unsetImageAction(Request $request, Team $team)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $team->nullLogo();
+        $em->flush();            
+        
+        $this->addFlash("success", ucfirst($this->get('translator')->trans('crud.delete.success')));
+
+        return $this->redirectToRoute('team_edit', array('id' => $team->getId()));
     }
     
 }

@@ -7,7 +7,6 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: pl
-    brochures_directory: '%kernel.project_dir%/web/files'
 
 framework:
     #esi: ~
@@ -89,21 +88,33 @@ exercise_html_purifier:
     default:
         Cache.SerializerPath: '%kernel.cache_dir%/htmlpurifier'
         HTML.SafeIframe: true
-        #URI.SafeIframeRegexp: '%^http://www.youtube.com/embed/%'
+        #URI.SafeIframeRegexp: '%^https://www.youtube.com/embed/%'
         #'/<iframe.*src=\"(.*)\".*><\/iframe>/isU'
         Filter.YouTube: true
           
 artgris_file_manager:
     conf:
         default:
-            dir: "../web/files"
-        tiny:
-            dir: "../web/files" 
-            upload:
-                image_versions: {'medium': {crop: true, max_width: 200, max_height: 600}, 'thumbnail': {max_width: 80, max_height: 80}}            
-        public:
+            dir: "%upload_folder%"
             upload:
                 max_file_size: 1048576
-                image_versions: {'medium': {crop: true, max_width: 200, max_height: 600}, 'thumbnail': {max_width: 80, max_height: 80}}
+                image_versions: {
+                    'large': { crop: true, max_width: 760, max_height: 400 }, 
+                    'thumbnail': { max_width: 150, max_height: 200 }, 
+                    'logo': { max_width: 32, max_height: 32 }}            
+        tiny:
+            dir: "%upload_folder%" 
+            upload:
+                max_file_size: 1048576
+                image_versions: {
+                    'large': { crop: true, max_width: 760, max_height: 400 }, 
+                    'thumbnail': { max_width: 150, max_height: 200 },
+                    'logo': { max_width: 32, max_height: 32 }}            
         button:
-            dir: "../web/files"                
+            dir: "%upload_folder%"
+            upload:
+                max_file_size: 1048576
+                image_versions: {
+                    'large': { crop: true, max_width: 760, max_height: 400 }, 
+                    'thumbnail': { max_width: 150, max_height: 200 },
+                    'logo': { max_width: 32, max_height: 32 }}           
