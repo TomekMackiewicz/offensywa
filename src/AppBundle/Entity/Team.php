@@ -64,7 +64,7 @@ class Team
     /**
      * @var Media
      *
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\File", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
      *     @ORM\JoinColumn(name="logo", referencedColumnName="id", onDelete="CASCADE")
      * })
@@ -219,11 +219,11 @@ class Team
     /**
      * Set logo
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $logo
+     * @param \AppBundle\Entity\File $logo
      *
      * @return Player
      */
-    public function setLogo(\Application\Sonata\MediaBundle\Entity\Media $logo = null)
+    public function setLogo(\AppBundle\Entity\File $logo = null)
     {
         $this->logo = $logo;
 
@@ -233,7 +233,7 @@ class Team
     /**
      * Get logo
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
+     * @return \AppBundle\Entity\File
      */
     public function getLogo()
     {
