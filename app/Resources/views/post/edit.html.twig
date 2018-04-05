@@ -25,16 +25,20 @@
                 <img src="" class="img-responsive" id="uploadedImage">
             </div>
         </div>
-        {% if post.mainImage %}            
+        {% if post.mainImage %} 
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Zdjęcie główne</h3>
+                </div>
+            </div>            
             <div class="row">
                 <div class="col-xs-12 img-holder">
-                    <h3>Zdjęcie główne</h3>
-                    <img src="{{ post.mainImage.url }}" class="img-responsive">
+                    <img src="{{ post.mainImage.url }}" class="img-responsive">                    
                     <form action="{{ path('set_main_image', { 'post_id': post.id, 'image_id': 'null' }) }}" 
                           method="post" 
-                          class="overlaping-form-left">
+                          class="overlaping-form-top">
                         <input type="submit" class="btn btn-danger btn-xs" value="Usuń">
-                    </form>                            
+                    </form>                    
                 </div>
             </div>
         {% endif %}         

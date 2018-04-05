@@ -30,14 +30,18 @@
                         <img src="" class="img-responsive" id="uploadedImage">
                     </div>
                 </div>  
-                {% if player.image %}            
+                {% if player.image %}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3>Zdjęcie</h3>
+                        </div>
+                    </div>                    
                     <div class="row">
                         <div class="col-xs-12 img-holder">
-                            <h3>Zdjęcie</h3>
                             <img src="{{ player.image.url }}" class="img-responsive">
                             <form action="{{ path('unset_player_image', { 'player_id': player.id }) }}" 
                                   method="post" 
-                                  class="overlaping-form-left">
+                                  class="overlaping-form-top">
                                 <input type="submit" class="btn btn-danger btn-xs" value="Usuń">
                             </form>                            
                         </div>
