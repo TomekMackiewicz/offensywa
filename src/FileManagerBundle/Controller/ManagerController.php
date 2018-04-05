@@ -225,8 +225,16 @@ class ManagerController extends BaseController
                     $this->addFlash('danger', $translator->trans('file.renamed.unauthorized'));
                 } else {
                     $fs = new Filesystem();
+                    $em = $this->getDoctrine()->getManager();                     
                     try {
-                        $fs->rename($OldfilePath, $NewfilePath);
+                        $fs->rename($OldfilePath, $NewfilePath);                       
+                        // Rename file in DB
+                        $oFile = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $fileManager->getImagePath().$fileName));
+                        $oFile->setName($NewfileName);
+                        $oFile->setUrl($fileManager->getImagePath().$NewfileName);
+                        $em->persist($oFile);                        
+                        $em->flush();
+                        
                         $this->addFlash('success', $translator->trans('file.renamed.success'));
                         //File has been renamed successfully
                     } catch (IOException $exception) {
