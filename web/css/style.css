@@ -1014,3 +1014,7 @@ img {
     top: 10px;
     left: 25px;
 }
+
+.img-centered {
+    margin: 0 auto;
+}

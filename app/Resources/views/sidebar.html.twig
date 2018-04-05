@@ -10,7 +10,9 @@
                         <td class="col-md-6">
                             {% if nextMatch.homeTeam %}
                                 {% if nextMatch.homeTeam.logo %}
-                                    <img src="{% path nextMatch.homeTeam.logo, 'small' %}">
+                                    <img src="{{ nextMatch.homeTeam.logo.url }}" 
+                                         class="img-responsive img-centered" 
+                                         alt="{{ nextMatch.homeTeam.logo.name }}">
                                 {% endif %}
                             {% endif %}
                         </td>
@@ -18,7 +20,9 @@
                         <td class="col-md-6">
                             {% if nextMatch.awayTeam %}
                                 {% if nextMatch.awayTeam.logo %}
-                                    <img src="{% path nextMatch.awayTeam.logo, 'small' %}">
+                                    <img src="{{ nextMatch.awayTeam.logo.url }}" 
+                                         class="img-responsive img-centered" 
+                                         alt="{{ nextMatch.awayTeam.logo.name }}">
                                 {% endif %}
                             {% endif %}                                        
                         </td>
@@ -69,7 +73,9 @@
                         <td class="col-md-5">
                             {% if lastMatch.homeTeam %}
                                 {% if lastMatch.homeTeam.logo %}
-                                    <img src="{% path lastMatch.homeTeam.logo, 'small' %}">
+                                    <img src="{{ lastMatch.homeTeam.logo.url }}" 
+                                         class="img-responsive img-centered" 
+                                         alt="{{ lastMatch.homeTeam.logo.name }}">
                                 {% endif %} 
                             {% endif %}                                
                         </td>
@@ -77,7 +83,9 @@
                         <td class="col-md-5">
                             {% if lastMatch.awayTeam %}
                                 {% if lastMatch.awayTeam.logo %}
-                                    <img src="{% path lastMatch.awayTeam.logo, 'small' %}">
+                                    <img src="{{ lastMatch.awayTeam.logo.url }}" 
+                                         class="img-responsive img-centered" 
+                                         alt="{{ lastMatch.awayTeam.logo.name }}">
                                 {% endif %}
                             {% endif %} 
                         </td>
