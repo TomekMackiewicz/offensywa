@@ -15,7 +15,7 @@
         <div class="col-xs-12">
             <h1>Pliki do pobrania</h1>
             {% for file in files %}
-                <p><a href="{{file.path}}">{{ file.name }}</a></p>
+                <p><a href="{{file.url}}">{{ file.name }}</a></p>
             {% endfor %}            
         </div>
     </div>

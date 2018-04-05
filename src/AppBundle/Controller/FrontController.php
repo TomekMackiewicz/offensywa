@@ -78,18 +78,7 @@ class FrontController extends Controller
     public function filesAction(Request $request)
     {               
         $em = $this->getDoctrine()->getManager();
-        
-        $files = [];        
-        $mm = $this->container->get('sonata.media.manager.media');
-        $pr = $this->container->get('sonata.media.provider.file');
-        $media = $mm->findBy(array('contentType' => ['application/pdf', 'application/msword']));
-
-        foreach($media as $file) {
-            $format = $pr->getFormatName($file, 'reference');
-            $files[$file->getId()]['name'] = $file->getName();
-            $files[$file->getId()]['path'] = $pr->generatePublicUrl($file, $format);    
-        }        
-        
+        $files = $em->getRepository('AppBundle:File')->findBy(array('type' => array('application/msword', 'application/pdf')));               
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();

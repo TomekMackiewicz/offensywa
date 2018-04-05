@@ -102,29 +102,7 @@
                     <li><a href="{{ path('category_index') }}">{{ 'categories'|trans|capitalize }}</a></li>
                 </ul>
             </div>            
-        </li>          
-{#        {% if app.request.attributes.get('_route') == 'admin_sonata_media_media_list' 
-           or app.request.attributes.get('_route') == 'admin_sonata_media_gallery_list' 
-        %}
-        <li class="active">
-        {% else %}
-        <li>
-        {% endif %}
-            <a href="#!" 
-               data-toggle="collapse" 
-               data-target="#media" 
-               aria-expanded="false" 
-               aria-controls="media">
-                <i class="fa fa-file-image-o admin-list-icon" aria-hidden="true"></i>
-                {{ 'media'|trans|capitalize }}
-            </a>
-            <div class="collapse" id="media">
-                <ul class="list-unstyled admin-list">
-                    <li><a href="{{ path('admin_sonata_media_media_list') }}">{{ 'media'|trans|capitalize }}</a></li>
-                    <li><a href="{{ path('admin_sonata_media_gallery_list') }}">{{ 'gallery'|trans|capitalize }}</a></li>
-                </ul>
-            </div>            
-        </li>#} 
+        </li>           
         {% if app.request.attributes.get('_route') == 'file_manager' %}
         <li class="active">
         {% else %}
