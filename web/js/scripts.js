@@ -81,7 +81,7 @@ $(document).ready(function() {
      
     ***************************************************************************/
    
-    $('.btn-danger').on('click', function(e) {
+    $('.btn-danger-custom').on('click', function(e) {
         e.preventDefault();
         confirmDelete(this.closest("form"));
     });
