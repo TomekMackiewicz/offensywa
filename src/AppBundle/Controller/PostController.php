@@ -72,6 +72,19 @@ class PostController extends Controller
             
             if ($imageName) {
                 $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+
+                // Validate image
+                $validation = $this->get('validation');
+                $errors = $validation->validateImage($image);
+                
+                if ($errors !== null) {
+                    return $this->render('post/edit.html.twig', array(
+                        'post' => $post,
+                        'errors' => $errors, 
+                        'edit_form' => $form->createView()                        
+                    ));                    
+                } 
+                
                 $post->addImage($image);                
             }            
             
@@ -130,6 +143,19 @@ class PostController extends Controller
            
             if ($imageName) {
                 $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                
+                // Validate image
+                $validation = $this->get('validation');
+                $errors = $validation->validateImage($image);
+                
+                if ($errors !== null) {
+                    return $this->render('post/edit.html.twig', array(
+                        'post' => $post,
+                        'errors' => $errors, 
+                        'edit_form' => $editForm->createView()                        
+                    ));                    
+                }                 
+                
                 $post->addImage($image);                
             }
             $em->persist($post);
