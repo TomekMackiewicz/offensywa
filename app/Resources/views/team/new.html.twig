@@ -11,6 +11,20 @@
                     {{ form_row(form.year) }}
                     {{ form_row(form.isMy) }}
                     {{ form_row(form.playsLeague) }}
+                    {% if errors is defined %}                    
+                        {% if errors|length > 0 %}
+                        <span class="help-block file-error">    
+                            <ul class="list-unstyled">
+                                {% for error in errors %}
+                                <li>
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span> 
+                                    {{ error.message }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </span>
+                        {% endif %}
+                    {% endif %}                     
                     {{ form_row(form.logo) }}
                     <div class="form-group">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileButtonModal">

@@ -47,7 +47,20 @@ class TeamController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $imageName = $request->request->get('appbundle_team')['logo'];          
             if ($imageName) {
-                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName));
+
+                // Validate image
+                $validation = $this->get('validation');
+                $errors = $validation->validateImage($image);
+                
+                if ($errors !== null) {
+                    return $this->render('team/edit.html.twig', array(
+                        'team' => $team,
+                        'errors' => $errors, 
+                        'edit_form' => $form->createView()                        
+                    ));                    
+                }
+                
                 $team->setLogo($image);                
             }             
             $em->persist($team);
@@ -99,12 +112,25 @@ class TeamController extends Controller
         $em = $this->getDoctrine()->getManager();
         $editForm = $this->createForm('AppBundle\Form\TeamType', $team);
         $editForm->handleRequest($request);
-
+       
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $imageName = $request->request->get('appbundle_team')['logo'];
            
             if ($imageName) {
-                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName));
+
+                // Validate image
+                $validation = $this->get('validation');
+                $errors = $validation->validateImage($image);
+                
+                if ($errors !== null) {
+                    return $this->render('team/edit.html.twig', array(
+                        'team' => $team,
+                        'errors' => $errors, 
+                        'edit_form' => $editForm->createView()                        
+                    ));                    
+                }
+                              
                 $team->setLogo($image);                
             } 
             $em->persist($team);
@@ -123,7 +149,7 @@ class TeamController extends Controller
             'edit_form' => $editForm->createView()
         ));
     }
-
+    
     /**
      * Deletes a team entity.
      *
@@ -214,5 +240,32 @@ class TeamController extends Controller
 
         return $this->redirectToRoute('team_edit', array('id' => $team->getId()));
     }
+
+//    /**
+//     * Validate image
+//     * 
+//     * @param object $image
+//     * @return FormError
+//     */
+//    private function validateImage($image) {
+//        $errors = [];
+//         
+//        // validate mime type
+//        if ($image->getType() != "image/jpeg" && $image->getType() != "image/png" && $image->getType() != "image/bmp") {
+//            $errors[] = new FormError("Not valid file type");                    
+//        }
+//
+//        // validate size
+//        if ($image->getSize() > 100) {
+//            $errors[] = new FormError("Image is to big");                    
+//        }
+//       
+//        if (!empty($errors)) {
+//            return $errors;
+//        } else {
+//            return null;
+//        }
+//       
+//    }
     
 }

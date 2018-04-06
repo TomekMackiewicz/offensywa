@@ -6,11 +6,25 @@
             <h1>Edytuj drużynę</h1>
             {% include 'partials/gritter.html.twig' %}           
             <div class="admin-box">                    
-                {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}
+                {{ form_start(edit_form, { 'attr': {'class': 'admin-form', 'novalidate': 'novalidate'} }) }}                
                     {{ form_row(edit_form.name) }}
                     {{ form_row(edit_form.year) }}
                     {{ form_row(edit_form.isMy) }}
-                    {{ form_row(edit_form.playsLeague) }}
+                    {{ form_row(edit_form.playsLeague) }} 
+                    {% if errors is defined %}                    
+                        {% if errors|length > 0 %}
+                        <span class="help-block file-error">    
+                            <ul class="list-unstyled">
+                                {% for error in errors %}
+                                <li>
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span> 
+                                    {{ error.message }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </span>
+                        {% endif %}
+                    {% endif %}     
                     {{ form_row(edit_form.logo) }}
                     <div class="form-group">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileButtonModal">
