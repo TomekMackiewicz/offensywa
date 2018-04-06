@@ -14,6 +14,20 @@
                     {{ form_row(edit_form.team) }}
                     {{ form_row(edit_form.parentEmail) }}
                     {{ form_row(edit_form.parentPhone) }}
+                    {% if errors is defined %}                    
+                        {% if errors|length > 0 %}
+                        <span class="help-block file-error">    
+                            <ul class="list-unstyled">
+                                {% for error in errors %}
+                                <li>
+                                    <span class="glyphicon glyphicon-exclamation-sign"></span> 
+                                    {{ error.message }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </span>
+                        {% endif %}
+                    {% endif %}                     
                     {{ form_row(edit_form.image) }}
                     <div class="form-group">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileButtonModal">

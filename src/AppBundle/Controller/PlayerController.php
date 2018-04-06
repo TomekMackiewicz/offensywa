@@ -70,6 +70,19 @@ class PlayerController extends Controller
             $imageName = $request->request->get('appbundle_player')['image'];          
             if ($imageName) {
                 $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                
+                // Validate image
+                $validation = $this->get('validation');
+                $errors = $validation->validateImage($image);
+                
+                if ($errors !== null) {
+                    return $this->render('player/edit.html.twig', array(
+                        'player' => $player,
+                        'errors' => $errors, 
+                        'edit_form' => $form->createView()                        
+                    ));                    
+                }                
+                
                 $player->setImage($image);                
             }             
             $em->persist($player);
@@ -140,6 +153,19 @@ class PlayerController extends Controller
            
             if ($imageName) {
                 $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+                
+                // Validate image
+                $validation = $this->get('validation');
+                $errors = $validation->validateImage($image);
+                
+                if ($errors !== null) {
+                    return $this->render('player/edit.html.twig', array(
+                        'player' => $player,
+                        'errors' => $errors, 
+                        'edit_form' => $editForm->createView()                        
+                    ));                    
+                }                
+                
                 $player->setImage($image);                
             } 
             $em->persist($player);
