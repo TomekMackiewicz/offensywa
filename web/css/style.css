@@ -1018,3 +1018,7 @@ img {
 .img-centered {
     margin: 0 auto;
 }
+
+.file-error {
+    color: #a94442;    
+}

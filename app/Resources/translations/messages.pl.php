@@ -138,5 +138,7 @@ return array(
     'tournament.game' => 'mecz turniejowy',
     'edit' => 'edytuj',
     'files' => 'pliki',
-    'file.max_size' => 'maksymalny rozmiar'
+    'file.max_size' => 'maksymalny rozmiar',
+    'file.not_valid_type' => 'niepoprawny typ pliku',
+    'file.not_valid_size' => 'zbyt duży plik'
 );

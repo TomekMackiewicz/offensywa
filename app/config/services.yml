@@ -47,6 +47,10 @@ services:
         class: AppBundle\Service\NotificationService 
         public: true
 
+    validation:
+        class: AppBundle\Service\ValidationService 
+        public: true
+
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:
