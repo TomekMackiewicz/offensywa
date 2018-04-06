@@ -12,6 +12,8 @@
                     {{ form_row(edit_form.useSeason) }}
                     {{ form_row(edit_form.seasonStart) }}
                     {{ form_row(edit_form.seasonEnd) }}
+                    <h3>{{ 'files'|trans|capitalize }}</h3>
+                    {{ form_row(edit_form.maxFileSize) }}
                     <input type="submit" class="btn btn-primary" value="{{ 'edit'|trans|capitalize }}" />
                 {{ form_end(edit_form) }}
             </div>

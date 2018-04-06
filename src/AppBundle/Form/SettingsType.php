@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SettingsType extends AbstractType
 {
@@ -39,7 +40,15 @@ class SettingsType extends AbstractType
                     'data-date-format' => 'dd-MM'
                 ],
                 'label' => 'season.end'
-            ]);                
+            ])
+            ->add('maxFileSize', ChoiceType::class, array(
+                'choices'  => array(
+                    '256 KB' => 262144,
+                    '512 KB' => 524288,
+                    '1 MB' => 1048576
+                ),
+                'label' => 'file.max_size'
+            ));                
     }
     
     /**

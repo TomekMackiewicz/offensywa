@@ -136,5 +136,7 @@ return array(
     'league.game' => 'mecz ligowy',
     'sparring.game' => 'sparing',
     'tournament.game' => 'mecz turniejowy',
-    'edit' => 'edytuj'
+    'edit' => 'edytuj',
+    'files' => 'pliki',
+    'file.max_size' => 'maksymalny rozmiar'
 );

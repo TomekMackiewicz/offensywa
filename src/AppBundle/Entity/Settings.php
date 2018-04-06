@@ -43,6 +43,13 @@ class Settings
     private $seasonEnd;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="maxFileSize", type="integer")
+     */
+    private $maxFileSize;    
+    
+    /**
      * Get id
      *
      * @return int
@@ -123,5 +130,30 @@ class Settings
     {
         return $this->seasonEnd;
     }
+    
+    /**
+     * Set maxFileSize
+     *
+     * @param integer $maxFileSize
+     *
+     * @return Settings
+     */
+    public function setMaxFileSize($maxFileSize)
+    {
+        $this->maxFileSize = $maxFileSize;
+
+        return $this;
+    }
+
+    /**
+     * Get maxFileSize
+     *
+     * @return integer
+     */
+    public function getMaxFileSize()
+    {
+        return $this->maxFileSize;
+    }    
+    
 }
 
