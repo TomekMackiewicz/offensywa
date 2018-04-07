@@ -88,9 +88,8 @@ exercise_html_purifier:
     default:
         Cache.SerializerPath: '%kernel.cache_dir%/htmlpurifier'
         HTML.SafeIframe: true
-        #URI.SafeIframeRegexp: '%^https://www.youtube.com/embed/%'
-        #'/<iframe.*src=\"(.*)\".*><\/iframe>/isU'
-        Filter.YouTube: true
+        URI.SafeIframeRegexp: '^(https?:)?(\/\/www\.youtube(?:-nocookie)?\.com\/embed\/|\/\/player\.vimeo\.com\/)^'
+        #Filter.YouTube: true
           
 artgris_file_manager:
     conf:
