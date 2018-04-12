@@ -5,7 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PageType extends AbstractType
 {
@@ -21,10 +21,7 @@ class PageType extends AbstractType
             ->add('slug', null, array(
                 'label' => 'url'
             ))                
-            ->add('body', CKEditorType::class, array(
-                'config' => array(
-                    'uiColor' => '#ffffff',
-                ),
+            ->add('body', TextareaType::class, array(
                 'label' => 'body'
             ));
     }

@@ -40,7 +40,7 @@
                         </a>
                         <form action="{{ path('ad_delete', { 'id': ad.id }) }}" method="post">
                             {{ form_widget(deleteForms[ad.id]) }}
-                            <input type="submit" class="btn btn-danger btn-sm" value="Usuń">
+                            <input type="submit" class="btn btn-danger btn-sm btn-delete" value="Usuń">
                         </form>
                     {% endif %}
                     </td>                    

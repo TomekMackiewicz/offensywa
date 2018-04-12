@@ -140,5 +140,6 @@ return array(
     'files' => 'pliki',
     'file.max_size' => 'maksymalny rozmiar',
     'file.not_valid_type' => 'niepoprawny typ pliku',
-    'file.not_valid_size' => 'zbyt duży plik'
+    'file.not_valid_size' => 'zbyt duży plik',
+    'confirm.delete' => 'jesteś pewny?x'
 );
