@@ -24,28 +24,28 @@ class Settings
     /**
      * @var bool
      *
-     * @ORM\Column(name="useSeason", type="boolean")
+     * @ORM\Column(name="useSeason", type="boolean", nullable=true)
      */
     private $useSeason;    
     
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="seasonStart", type="date")
+     * @ORM\Column(name="seasonStart", type="date", nullable=true)
      */
     private $seasonStart;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="seasonEnd", type="date")
+     * @ORM\Column(name="seasonEnd", type="date", nullable=true)
      */
     private $seasonEnd;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="maxFileSize", type="integer")
+     * @ORM\Column(name="maxFileSize", type="integer", nullable=true)
      */
     private $maxFileSize;    
     
