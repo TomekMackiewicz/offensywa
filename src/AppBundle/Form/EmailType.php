@@ -5,10 +5,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
-//use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-//use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\Email AS email;
 
 class EmailType extends AbstractType
@@ -34,16 +33,13 @@ class EmailType extends AbstractType
                 'placeholder' => 'choose',
                 'label' => 'write.to'
             ))
-            ->add('recipients', null, array(
+            ->add('recipients', TextType::class, array(
                 'label' => 'recipients'
             ))                                
             ->add('subject', null, array(
                 'label' => 'subject'
             ))
-            ->add('body', CKEditorType::class, array(
-                'config' => array(
-                    'uiColor' => '#ffffff',
-                ),
+            ->add('body', TextareaType::class, array(
                 'label' => 'body'
             ));
     }
