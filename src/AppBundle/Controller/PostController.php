@@ -18,28 +18,6 @@ class PostController extends Controller
     /**
      * Lists all post entities.
      *
-     * @Route("/posty", name="post_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->findAll();
-        $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
-        $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
-        $leagueTables = $this->get('league_table')->getleagueTables();
-
-        return $this->render('post/index.html.twig', array(
-            'posts' => $posts,
-            'lastMatch' => $lastMatch,
-            'nextMatch' => $nextMatch,
-            'leagueTables' => $leagueTables,            
-        ));
-    }
-
-    /**
-     * Lists all post entities.
-     *
      * @Route("/admin/posts", name="admin_post_index")
      * @Method("GET")
      */

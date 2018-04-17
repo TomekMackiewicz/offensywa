@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/tomek/Workspace/offensywa/src/FileManagerBundle/Controller/ManagerController.php</file>
+            <file>file:/home/tomek/Workspace/offensywa/web/js/scripts.js</file>
+            <file>file:/home/tomek/Workspace/offensywa/app/Resources/views/Emails/default.html.twig</file>
+            <file>file:/home/tomek/Workspace/offensywa/app/config/config.yml</file>
+            <file>file:/home/tomek/Workspace/offensywa/app/config/parameters.yml</file>
+            <file>file:/home/tomek/Workspace/offensywa/app/config/parameters.yml.dist</file>
+            <file>file:/home/tomek/Workspace/offensywa/src/AppBundle/Form/EmailType.php</file>
+            <file>file:/home/tomek/Workspace/offensywa/src/AppBundle/Form/PostType.php</file>
         </group>
     </open-files>
 </project-private>
