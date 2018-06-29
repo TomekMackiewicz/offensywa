@@ -98,7 +98,7 @@ artgris_file_manager:
             upload:
                 max_file_size: 1048576
                 image_versions: {
-                    'large': { crop: true, max_width: 760, max_height: 400 }, 
+                    'large': { crop: true, max_width: 565, max_height: 400 }, 
                     'thumbnail': { max_width: 150, max_height: 200 }, 
                     'logo': { max_width: 32, max_height: 32 }}            
         tiny:
@@ -106,7 +106,7 @@ artgris_file_manager:
             upload:
                 max_file_size: 1048576
                 image_versions: {
-                    'large': { crop: true, max_width: 760, max_height: 400 }, 
+                    'large': { crop: true, max_width: 565, max_height: 400 }, 
                     'thumbnail': { max_width: 150, max_height: 200 },
                     'logo': { max_width: 32, max_height: 32 }}            
         button:
@@ -114,6 +114,6 @@ artgris_file_manager:
             upload:
                 max_file_size: 1048576
                 image_versions: {
-                    'large': { crop: true, max_width: 760, max_height: 400 }, 
+                    'large': { crop: true, max_width: 565, max_height: 400 }, 
                     'thumbnail': { max_width: 150, max_height: 200 },
                     'logo': { max_width: 32, max_height: 32 }}           

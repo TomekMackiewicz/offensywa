@@ -19,9 +19,9 @@
                     {% if recentPosts %}
                         {% for post in recentPosts %}
                             {% if loop.index0 == 0 %}
-                                <div class="item active">
+                                <div class="item active" id="news-item">
                             {% else %}
-                                <div class="item">
+                                <div class="item" id="news-item">
                             {% endif %}
                             {% if post.mainImage %}
                                 <img src="{{ post.mainImage.url }}" class="img-responsive" alt="{{ post.mainImage.name }}">

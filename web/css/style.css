@@ -327,6 +327,15 @@ img {
     color: red;
 }
 
+#news-item {    
+    height:400px;
+}
+
+#news-item img {
+    height:100% !important;
+
+}
+
 @media (min-width: 992px) { 
     #newsCarousel { padding-right: 33.3333%; }
     #newsCarousel .carousel-controls { display: none; } 	
@@ -336,7 +345,7 @@ img {
     #newsCarousel .list-group { display: none; } 
 }
 
-/* News thumbnail */
+/* Wrap text around image */
 
 .img-pull-left {
     float: left;
