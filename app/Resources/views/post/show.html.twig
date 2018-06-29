@@ -27,8 +27,9 @@
             </small>
         </p>
         {% if post.mainImage %}
-            <img src="{{ post.mainImage.url }}" class="img-responsive img-pull-left" alt="{{ post.mainImage.name }}">            
-        {% endif %}        
+            <img src="{{ post.mainImage.url }}" class="img-responsive" alt="{{ post.mainImage.name }}">            
+        {% endif %}
+        <br>
         {{ post.body | purify }}
         {% if post.images %}
             <div class="gal-container">
