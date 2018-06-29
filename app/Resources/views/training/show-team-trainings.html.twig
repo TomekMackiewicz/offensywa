@@ -12,33 +12,34 @@
 
 {% block content %}
     {% if trainings %}
-        <h1>Terminy treningów</h1>
+        <h1>{{ 'trainings.terms' | trans | capitalize }}</h1>
         {% for training in trainings %}
             <div class="list-group">
                 <a href="#" class="list-group-item">
                     <h4 class="list-group-item-heading">
                         {% if training.day == 1 %}
-                            poniedziałek
+                            {{ 'Monday' | trans }}
                         {% elseif training.day == 2 %}
-                            wtorek
+                            {{ 'Tuesday' | trans }}
                         {% elseif training.day == 3 %}
-                            środa
+                            {{ 'Wendesday' | trans }}
                         {% elseif training.day == 4 %}
-                            czwartek
+                            {{ 'Thursday' | trans }}
                         {% elseif training.day == 5 %}
-                            piątek
+                            {{ 'Friday' | trans }}
                         {% elseif training.day == 6 %}
-                            sobota    
+                            {{ 'Saturday' | trans }}    
                         {% else %}
-                            niedziela
+                            {{ 'Sunday' | trans }}
                         {% endif %}                    
                     </h4>
                     <p class="list-group-item-text">{{ training.startHour|date('H:i') }} - {{ training.endHour|date('H:i') }}</p>
+                    <p class="list-group-item-text">{{ 'trainer' | trans | capitalize }}: {{ training.trainer.firstName }} {{ training.trainer.lastName }}</p>
                     <p class="list-group-item-text">{{ training.location }}</p>
                 </a>
             </div>        
         {% endfor %}
     {% else %}
-        <h2>Brak zaplanowanych treningów</h2>
+        <h2>{{ 'trainings.none' | trans | capitalize }}</h2>
     {% endif %}
 {% endblock %}
