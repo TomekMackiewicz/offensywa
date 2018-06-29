@@ -78,7 +78,15 @@ class FrontController extends Controller
     public function filesAction(Request $request)
     {               
         $em = $this->getDoctrine()->getManager();
-        $files = $em->getRepository('AppBundle:File')->findBy(array('type' => array('application/msword', 'application/pdf')));               
+        $files = $em->getRepository('AppBundle:File')->findBy(
+            array(
+                'type' => array(
+                    'application/msword',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                    'application/pdf'
+                )
+            )
+        );               
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();

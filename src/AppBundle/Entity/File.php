@@ -58,7 +58,7 @@ class File
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=64)
+     * @ORM\Column(name="type", type="string", length=255)
      */
     private $type;       
     
