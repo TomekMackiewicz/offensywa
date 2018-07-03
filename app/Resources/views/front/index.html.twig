@@ -37,7 +37,7 @@
                                     {% if post.body | length > 160 %}
                                         {{ (post.body | slice(0, 161) | split(' ') | slice(0, -1) | join(' ') ~ '…') | purify }}
                                     {% else %}
-                                        {{ post.body | purify }}
+                                        {{ post.body | purify('text_only') }}
                                     {% endif %}
                                     <a class="label" href="{{ path('post_show', { 'slug': post.slug }) }}">
                                         Czytaj >>>
