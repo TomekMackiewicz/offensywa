@@ -38,9 +38,9 @@ class GameType extends AbstractType
             ))
             ->add('category', ChoiceType::class, array(
                 'choices'  => array(
-                    'league.game' => game::LEAGUE_GAME,
-                    'sparring.game' => game::SPARRING_GAME,
-                    'tournament.game' => game::TOURNAMENT_GAME
+                    'match.league' => game::LEAGUE_GAME,
+                    'match.sparring' => game::SPARRING_GAME,
+                    'match.tournament' => game::TOURNAMENT_GAME
                 ),
                 'placeholder' => 'choose',
                 'label' => 'categories'

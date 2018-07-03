@@ -11,17 +11,17 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Mecze</h1>
+    <h1>{{ 'games' | trans | capitalize }}</h1>
     {% if games is not empty %}
     <table class="table table-bordered table-striped simple-league-table">
         <thead>
             <tr>
-                <th>Data</th>
-                <th>Miejsce</th>
-                <th>Rodzaj</th>
-                <th>Gospodarze</th>
-                <th>Goście</th>
-                <th>Wynik</th>
+                <th>{{ 'date' | trans }}</th>
+                <th>{{ 'location' | trans }}</th>
+                <th>{{ 'match.type' | trans }}</th>
+                <th>{{ 'hosts' | trans }}</th>
+                <th>{{ 'guests' | trans }}</th>
+                <th>{{ 'match.score' | trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
             <tr>
                 <td>{{ game.date|date('Y-m-d H:i') }}</td>
                 <td>{{ game.location }}</td>
-                <td>{% if game.category %}{{ game.category }}{% else %}---{% endif %}</td>
+                <td>{% if game.category %}{{ game.category | trans }}{% else %}---{% endif %}</td>
                 <td>{% if game.homeTeam %}{{ game.homeTeam.name }}{% else %}Deleted team{% endif %}</td>
                 <td>{% if game.awayTeam %}{{ game.awayTeam.name }}{% else %}Deleted team{% endif %}</td>
                 <td>{% if game.homeTeamScore %}{{ game.homeTeamScore }}{% else %}---{% endif %} : {% if game.awayTeamScore %}{{ game.awayTeamScore }}{% else %}---{% endif %}</td>
@@ -38,7 +38,7 @@
         </tbody>
     </table>
     {% else %}
-        <h2>Brak meczów</h2>
+        <h2>{{ 'match.no' | trans | capitalize }}</h2>
     {% endif %}
 
 {% endblock %}
