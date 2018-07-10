@@ -225,23 +225,74 @@ $(document).ready(function() {
     }
 
     /**************************************************************************/
-
+    
+    function selectAwayTeams(all = false) {
+        if (!all) {
+            var $homeTeam = $('#appbundle_game_homeTeam');
+            var $form = $('#appbundle_game_homeTeam').closest('form');
+            var data = {};
+            data[$homeTeam.attr('name')] = $homeTeam.val();
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    $('#appbundle_game_awayTeam').replaceWith(
+                        $(html).find('#appbundle_game_awayTeam')
+                    );
+                }
+            });
+        } else {
+            var $homeTeam = $('#appbundle_game_homeTeam');
+            var $form = $('#appbundle_game_homeTeam').closest('form');
+            var data = {};
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    $('#appbundle_game_awayTeam').replaceWith(
+                        $(html).find('#appbundle_game_awayTeam')
+                    );
+                }
+            });            
+        }
+    }
+    
     var $homeTeam = $('#appbundle_game_homeTeam');
-    $homeTeam.change(function() {
-        var $form = $(this).closest('form');
-        var data = {};
-        data[$homeTeam.attr('name')] = $homeTeam.val();
-        $.ajax({
-            url : $form.attr('action'),
-            type: $form.attr('method'),
-            data : data,
-            success: function(html) {
-                $('#appbundle_game_awayTeam').replaceWith(
-                    $(html).find('#appbundle_game_awayTeam')
-                );
-            }
+    var $gameCategory = $('#appbundle_game_category');
+    
+    // If league game - filter results
+    if ($gameCategory.val() === 'match.league') {        
+        selectAwayTeams();       
+        $homeTeam.change(function() {           
+            selectAwayTeams();   
         });
-    });                                   
+    // If not league game - get all teams    
+    } else {        
+        selectAwayTeams(true);  
+    }
+    
+    // If game category changed...
+    $(document).on('change', '#appbundle_game_category', function() {
+        // If league game
+        if ($gameCategory.val() === 'match.league') {
+            // Imidiately filter results
+            selectAwayTeams(); 
+            // On home team change filter results or select all
+            $homeTeam.change(function() {
+                if ($gameCategory.val() === 'match.league') {
+                    selectAwayTeams();
+                } else {
+                    selectAwayTeams(true);
+                }
+            });             
+        } else {
+            selectAwayTeams(true);
+        }
+    });
+    
+                                  
 
     /***************************************************************************
     
@@ -341,8 +392,14 @@ $(document).ready(function() {
             var dateInput = $('#appbundle_game_date');
             var category = $('#appbundle_game_category').val();
             var dateArray = dateInput.val().split("-");
-            // month-day format
-            var formattedDate = dateArray[1] + "-" + dateArray[0];            
+            
+            // get year
+            var yearAndTime = dateArray[2];
+            var splitYear = yearAndTime.split(" ");
+            var year = splitYear[0];            
+            
+            // year-month-day format
+            var formattedDate = year + "-" + dateArray[1] + "-" + dateArray[0];            
             var errorMessage = 
                 "<span class=\"help-block season-range-error\">"
                     + "<ul class=\"list-unstyled\">"

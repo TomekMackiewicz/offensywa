@@ -70,14 +70,14 @@ class GameType extends AbstractType
             ))
             ->add('awayTeamScore', null, array(
                 'label' => 'guestsGoals'
-            ));
+            )); 
 
         $formModifier = function (FormInterface $form, Team $homeTeam = null, $em) {            
             if($homeTeam !== null) {
                 $awayTeam = $em
                     ->getRepository('AppBundle:Team')
                     ->getTeamsByYear($homeTeam->getId(), $homeTeam->getYear());
-            }
+            } 
             $choices = null === $homeTeam ? array() : $awayTeam;
             $form->add('awayTeam', EntityType::class, array(
                 'class' => 'AppBundle:Team',
@@ -86,19 +86,19 @@ class GameType extends AbstractType
                 'expanded' => false,
                 'placeholder' => 'choose',
                 'choices' => $choices,
-                'required'    => false,
-                'empty_data'  => 'string',
+                'required' => false,
+                'empty_data' => 'string',
                 'label' => 'guests'
             ));
         };
-       
+        
         $builder->get('homeTeam')->addEventListener(
             FormEvents::POST_SUBMIT,
             function (FormEvent $event) use ($formModifier, $em) {
                 $homeTeam = $event->getForm()->getData();
                 $formModifier($event->getForm()->getParent(), $homeTeam, $em);
             }
-        );              
+        );       
     }
     
     /**
