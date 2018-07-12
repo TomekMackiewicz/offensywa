@@ -90,6 +90,9 @@
                             <div class="caption">
                                 <h4>{{ player.firstName }} {{ player.lastName }}</h4>
                                 <p>{{ player.position | trans }}</p>
+                                {% if player.team %}
+                                    <p>{{ player.team.name }} {{ player.team.year }}</p>
+                                {% endif %}
                             </div>
                         </div>                        
                     </div>
