@@ -2,7 +2,7 @@
 
 {% block admin_body %}
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">    
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">    
             <h1>Strony</h1>
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('page_new') }}" class="btn btn-success">
@@ -19,6 +19,8 @@
                                 <th></th>
                                 <th><i class="fa fa-sort" aria-hidden="true"></i> Tytuł</th>
                                 <th>Url</th>
+                                <th>O klubie</th>
+                                <th>Kontakt</th>                                
                                 <th>Edycja</th>
                             </tr>
                         </thead>
@@ -28,7 +30,17 @@
                                 <td></td>
                                 <td>{{ page.title }}</td>
                                 <td>{{ page.slug }}</td>
-                                <td class="col-md-3">
+                                <td>
+                                    {% if page.isAboutPage %}
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if page.isContactPage %}
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    {% endif %}
+                                </td>
+                                <td>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <a href="{{ path('page_edit', { 'id': page.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
                                         Edytuj

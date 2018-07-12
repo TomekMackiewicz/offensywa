@@ -48,6 +48,20 @@ class Page
      */
     private $body;
 
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="contact_page", type="boolean", nullable=true)
+     */
+    private $isContactPage;
+
+    /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="about_page", type="boolean", nullable=true)
+     */
+    private $isAboutPage;    
+    
 
     /**
      * Get id
@@ -130,5 +144,53 @@ class Page
     {
         return $this->body;
     }
+    
+    /**
+     * Set about page
+     *
+     * @param bool $isAboutPage
+     *
+     * @return Page
+     */
+    public function setIsAboutPage($isAboutPage)
+    {
+        $this->isAboutPage = $isAboutPage;
+
+        return $this;
+    }
+
+    /**
+     * Get about page
+     *
+     * @return bool
+     */
+    public function getIsAboutPage()
+    {
+        return $this->isAboutPage;
+    }
+
+    /**
+     * Set contact page
+     *
+     * @param bool $isContactPage
+     *
+     * @return Page
+     */
+    public function setIsContactPage($isContactPage)
+    {
+        $this->isContactPage = $isContactPage;
+
+        return $this;
+    }
+
+    /**
+     * Get contact page
+     *
+     * @return bool
+     */
+    public function getIsContactPage()
+    {
+        return $this->isContactPage;
+    }     
 }
 

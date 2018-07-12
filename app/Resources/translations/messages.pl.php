@@ -147,5 +147,7 @@ return array(
     'file.max_size' => 'maksymalny rozmiar',
     'file.not_valid_type' => 'niepoprawny typ pliku',
     'file.not_valid_size' => 'zbyt duży plik',
-    'confirm.delete' => 'jesteś pewny?x'
+    'confirm.delete' => 'jesteś pewny?x',
+    'isAboutPage' => 'Strona O klubie',
+    'isContactPage' => 'Informacje kontaktowe'
 );

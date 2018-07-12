@@ -10,4 +10,19 @@ namespace AppBundle\Repository;
  */
 class PageRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getIsAboutPage() {
+        $query = $this->getEntityManager()->createQuery(
+            "SELECT p FROM AppBundle:Page p WHERE p.isAboutPage = 1"
+        )->getSingleResult();
+        
+        return $query;        
+    } 
+
+    public function getIsContactPage() {
+        $query = $this->getEntityManager()->createQuery(
+            "SELECT p FROM AppBundle:Page p WHERE p.isContactPage = 1"
+        )->getSingleResult();
+        
+        return $query;        
+    }     
 }

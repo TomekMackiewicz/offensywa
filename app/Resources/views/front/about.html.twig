@@ -13,76 +13,8 @@
 {% block content %}
     <div class="row">
         <div class="col-xs-12">
-            <h1>O klubie Offensywa</h1>
-            <blockquote>
-                Zapraszamy do świata wspaniałego jakim jest piłka nożna, 
-                gdzie każdy poprzez zabawę z piłką i techniczne zagrania indywidualne 
-                będzie szukał w grze przyjemności dla siebie, a co za tym idzie łatwiej 
-                zrozumie grę zespołową w późniejszym okresie. Naszym zadaniem jest stworzenie 
-                u Państwa dzieci miłości do piłki, pasji.
-            </blockquote>    
-            <div class="jumbotron">
-                <h2>„Poprzez Piłkę Nożną Wychowujemy”</h2>
-            </div>
-            <h1>UKS OFFENSYWA</h1>
-            <p>
-                Offensywa została oficjalnie założona w Książenicach w 2012 roku, 
-                ale początki jej powstania zaczęły się znacznie wcześniej. 
-                Dzięki udanej współpracy z grupą Zróbmy Coś Razem  organizowałem 
-                cotygodniowe spotkania piłkarskie dla dzieci w ramach projektu 
-                „Ksiażenice.Sąsiedzi sąsiadom”. Po zakończeniu projektu wielkim sukcesem, 
-                dzieci nadal chciały uczestniczyć w zajęciach, dlatego powstała nieformalna 
-                grupa Młodziki Książenickie. Nazwa została wówczas wyłoniona w drodze 
-                demokratycznego głosowania wśród dzieci, które same ją zaproponowały. 
-                Dzięki wsparciu fundacji Miasto-Ogród Książenice udało się kupić 
-                wspaniałe stroje piłkarskie z logo drużyny.
-            </p>
-            <p>
-                Pozytywny odzew ze strony małych adeptów piłki nożnej, a także ich rodziców, 
-                skłonił mnie do  sformalizowania grupy i przekształcenia jej w profesjonalną 
-                szkółkę dla dzieci. Tak powstała „UKS OFFENSYWA – włoska szkółka piłkarska”.
-            </p>
-            <p>
-                Słowo wyjaśnienie skąd taka dłuuugaśna nazwa
-            </p>
-            <p>
-                Brak efektów w profesjonalnej piłce nożnej w Polsce i wszelkie zawirowania 
-                negatywnie wpływają zarówno na wyniki, jak i na relacje wewnątrz drużyn kształtowanych 
-                w sztampowy sposób. Mam tu na myśli presję nastawienia na efektywność, a nie na zabawę 
-                najmłodszych, brak tradycyjnych zajęć z wf-u w szkołach, albo redukcję godzin tego przedmiotu. 
-                Tym, czego unikam w Offensywie jest presja, którą widziałem wielokrotnie na treningach 
-                innych drużyn. Wiele klubów piłkarskich, czy akademii ogłaszając nabór dumnie informuje, 
-                że piłkarzem może zostać każdy. W praktyce okazuje się jednak, że prowadzona jest ostra selekcja, 
-                i nawet jeśli dzieciom uda się dostać do wymarzonego klubu, okazuje się na miejscu, 
-                że faworyzowani są najlepsi, a pozostałe dzieci mogą tylko obserwować resztę z ławki 
-                rezerwowej czując się odtrącone. W efekcie zniechęcone dzieci same rezygnują z jakichkolwiek 
-                zajęć ruchowych i nigdy więcej nie chcą próbować swoich sił, albo kierowane są do zbyt 
-                dużych grup 30-40 osobowych, gdzie kryją się w cieniu innych dzieci.
-            </p>
-            <p>
-                Postanowiłem stworzyć grupę, w której każdy z uczestników ma równe szanse, 
-                gdzie każdy z młodych piłkarzy traktowany jest tak samo. Grupę, w której 
-                jest mnóstwo zabawy i radości z działania. Mam ambicje, aby Offensywa dawała 
-                poczucie bezpieczeństwa, a także budowała młodych piłkarzy. Chcemy każdemu 
-                dawać szanse na świetną zabawę i rozwój sportowy, a także możliwość rywalizacji na wysokim poziomie.
-            </p>
-            <p>
-                Po zapoznaniu się z wieloma metodami pracy szkółek europejskich, 
-                postanowiłem, że Offensywa będzie opierała się na włoskich metodach szkoleniowych. 
-                Włoska szkoła traktuje młodego piłkarza przez pryzmat dziecka, a nie „małego dorosłego”.
-            </p>
-            <p>
-                Miałem przyjemność brać udział w szkoleniu trenerskim prowadzonym przez 
-                profesora Mauro Burbello, głównego teoretyka i szkoleniowca  UEFA „A”, 
-                skauta młodzieżowego w Torino oraz Juventus F.C., dzięki któremu zaobserowałem 
-                różnicę w zainteresowaniu dzieci piłką nożną, kiedy nie mogą doczekać się kolejnych treningów, 
-                bo nie czują presji. Włoski akcent w nazwie Offensywy spowodowany jest właśnie 
-                wyborem tego rodzaju treningów i zaplanowania rozwoju dzieci poprzez zabawę. 
-                Pomimo wielkiego szacunku do naszej rodzimej myśli szkoleniowej, postanowiłem garściami 
-                czerpać z włoskich doświadczeń i wzorców. W końcu to sławna Italia jest aktualnym 
-                wicemistrzem ostatnich Mistrzostw Europy organizowanych przez Polskę i Ukrainę, 
-                co świadczy o bardzo wysokim poziomie szkoleń piłkarskich.            
-            </p>
+            <h1>{{ content.title }}</h1>
+            {{ content.body | purify }}
         </div>
     </div>
 {% endblock %} 

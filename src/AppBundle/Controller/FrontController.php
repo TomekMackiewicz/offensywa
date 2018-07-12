@@ -40,12 +40,13 @@ class FrontController extends Controller
     public function aboutAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        
+        $content = $em->getRepository('AppBundle:Page')->getIsAboutPage();
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
                
         return $this->render('front/about.html.twig', [
+            'content' => $content,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,
@@ -59,12 +60,13 @@ class FrontController extends Controller
     public function contactAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-               
+        $content = $em->getRepository('AppBundle:Page')->getIsContactPage();       
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
                
         return $this->render('front/contact.html.twig', [
+            'content' => $content,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables,

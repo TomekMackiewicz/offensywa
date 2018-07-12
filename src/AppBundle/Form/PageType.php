@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PageType extends AbstractType
 {
@@ -23,6 +24,14 @@ class PageType extends AbstractType
             ))                
             ->add('body', TextareaType::class, array(
                 'label' => 'body'
+            ))
+            ->add('isAboutPage', CheckboxType::class, array(
+                'label'    => 'isAboutPage',
+                'required' => false,
+            ))
+            ->add('isContactPage', CheckboxType::class, array(
+                'label'    => 'isContactPage',
+                'required' => false,
             ));
     }
     
