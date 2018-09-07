@@ -141,7 +141,7 @@
                     </sup>
                 </h2>                            
                 <div id="chart">
-                  {% if playersCount is not null and paymentsForLastMonths is not null %}
+                  {% if playersCount is not null and playersCount > 0 and paymentsForLastMonths is not null %}
                       {% set height = 100 / playersCount %}
 {#                  <ul id="numbers">
                         {% set height = 100 / playersCount %}
