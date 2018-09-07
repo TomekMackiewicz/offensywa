@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c1892a71074cda8c4f12a17dd0b14ae3",
-    "content-hash": "e4cd6e9f016095a6b46ea95c70381216",
+    "hash": "6868cf5235b0e8d14c60c99f809f47ee",
+    "content-hash": "384917165af436f558ba5b2e778eca03",
     "packages": [
         {
             "name": "artgris/filemanager-bundle",
@@ -2285,16 +2285,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.3.16",
+            "version": "v3.3.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "98e128ccee7afff6313dc3e9cce619f6e1caedbc"
+                "reference": "4639525c796227ec36652ad97192a5eb3de74f76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/98e128ccee7afff6313dc3e9cce619f6e1caedbc",
-                "reference": "98e128ccee7afff6313dc3e9cce619f6e1caedbc",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/4639525c796227ec36652ad97192a5eb3de74f76",
+                "reference": "4639525c796227ec36652ad97192a5eb3de74f76",
                 "shasum": ""
             },
             "require": {
@@ -2434,7 +2434,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2018-01-29 11:42:20"
+            "time": "2018-05-25 12:43:13"
         },
         {
             "name": "twig/extensions",

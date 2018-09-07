@@ -13,6 +13,8 @@ return array(
     'Invalid extensions' => 'Niedozwolony format pliku',
     'Invalid mime type : %type%' => 'Niedozwolony typ pliku : %type%',
     'category.already.assigned' => 'Inna kategoria została już przypisana do tej strony',
+    'page.about.already.assigned' => 'Strona o klubie została już przypisana',
+    'page.contakt.already.assigned' => 'Strona kontaktowa została już przypisana',
     'slug.already.assigned' => 'Zduplikowany url, wybierz inny',
     'user.password.short' => 'Hasło jest zbyt krótkie',
     'user.password.difficulty' => 'Hasło powinno zawierać co najmniej jedną wielką literę i co najmniej jedną cyfrę',
