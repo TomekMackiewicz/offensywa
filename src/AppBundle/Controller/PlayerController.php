@@ -238,7 +238,11 @@ class PlayerController extends Controller
             
             // Unset relations
             $user = $em->getRepository('AppBundle:User')->findOneBy(array('player' => $to_delete->getId()));
-            $user->setPlayer(null);
+            
+            if ($user) {
+                $user->removePlayer();
+            }
+            
             $payments = $to_delete->getPayments();
             foreach($payments as $payment) {
                 $em->remove($payment);

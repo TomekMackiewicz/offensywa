@@ -166,7 +166,7 @@ class User extends BaseUser
 
         return $this;
     }
-
+    
     /**
      * Get player
      *
@@ -177,6 +177,18 @@ class User extends BaseUser
         return $this->player;
     }    
 
+    /**
+     * Remove player
+     *
+     * @return User
+     */    
+    public function removePlayer()
+    {
+        $this->player = null;
+        
+        return $this;
+    }    
+    
     /**
      * Get requests
      *
