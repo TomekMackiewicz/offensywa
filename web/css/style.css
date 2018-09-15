@@ -677,6 +677,12 @@ img {
     background-size: cover;
 }
 
+@media screen and (max-width: 768px) {
+    #carousel-example-generic {
+        display:none;
+    }
+}
+
 /* GRITTER */
 
 /* the norm */
