@@ -35,8 +35,9 @@
                                 <input type="submit" class="btn btn-danger btn-sm btn-delete" value="Usuń">
                             </form>
                         {% else %}
-                            <p>Nie edytować!<br>
-                                Nie usuwac!</p>
+                            <a href="{{ path('paymentcategory_edit', { 'id': paymentCategory.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">
+                                Edytuj
+                            </a>
                         {% endif %}                    
                         </td>
                     </tr>
