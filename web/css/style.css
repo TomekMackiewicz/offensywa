@@ -612,11 +612,15 @@ img {
     background-image: none;
 }
 .carousel .item {
-    min-height: 800px; 
-    max-height: 800px;
+    min-height: 400px; 
+    max-height: 400px;
     overflow: hidden;
     height: 100%;
     width:100%;   
+}
+.carousel .main-item {
+    min-height: 800px; 
+    max-height: 800px;  
 }
 .carousel-caption h3,
 .carousel .icon-container,
