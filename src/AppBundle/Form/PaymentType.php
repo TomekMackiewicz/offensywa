@@ -54,7 +54,9 @@ class PaymentType extends AbstractType
             ]) 
             ->add('player', EntityType::class, array(
                 'class' => 'AppBundle:Player',
-                'choice_label' => 'lastName',
+                'choice_label' => function ($value) {
+                    return $value->getFirstName() . ' ' . $value->getLastName();
+                },
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => 'choose',
