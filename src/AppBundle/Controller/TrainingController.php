@@ -75,13 +75,13 @@ class TrainingController extends Controller
     public function showTeamTrainingsAction($year)
     {
         $em = $this->getDoctrine()->getManager();
-        $trainings = $em->getRepository('AppBundle:Training')->getTeamTrainings($year);
+        $team = $em->getRepository('AppBundle:Team')->getMyTeamByYear($year);
         $lastMatch = $em->getRepository('AppBundle:Game')->getLastMatch();
         $nextMatch = $em->getRepository('AppBundle:Game')->getNextMatch();
         $leagueTables = $this->get('league_table')->getleagueTables();
         
         return $this->render('training/show-team-trainings.html.twig', array(
-            'trainings' => $trainings,
+            'team' => $team,
             'lastMatch' => $lastMatch,
             'nextMatch' => $nextMatch,
             'leagueTables' => $leagueTables

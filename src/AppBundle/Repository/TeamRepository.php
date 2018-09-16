@@ -40,6 +40,18 @@ class TeamRepository extends \Doctrine\ORM\EntityRepository
         return $teams;        
     }
 
+    public function getMyTeamByYear($year) {
+        $query = $this->getEntityManager()->createQuery("
+            SELECT t 
+            FROM AppBundle:Team t 
+            WHERE t.year = :year
+            AND t.isMy=1
+        ")->setParameters(array('year' => $year));
+        $teams = $query->getSingleResult();
+        
+        return $teams;        
+    }    
+    
     public function getNavbarTeamsByYear() {
         $query = $this->getEntityManager()->createQuery(
             "SELECT t.id, t.year FROM AppBundle:Team t WHERE t.isMy = 1"

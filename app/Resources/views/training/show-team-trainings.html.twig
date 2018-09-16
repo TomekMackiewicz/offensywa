@@ -11,9 +11,9 @@
 {% endblock %}
 
 {% block content %}
-    {% if trainings %}
+    {% if team.trainings %}
         <h1>{{ 'trainings.terms' | trans | capitalize }}</h1>
-        {% for training in trainings %}
+        {% for training in team.trainings %}
             <div class="list-group">
                 <a href="#" class="list-group-item">
                     <h4 class="list-group-item-heading">
@@ -34,7 +34,14 @@
                         {% endif %}                    
                     </h4>
                     <p class="list-group-item-text">{{ training.startHour|date('H:i') }} - {{ training.endHour|date('H:i') }}</p>
-                    <p class="list-group-item-text">{{ 'trainer' | trans | capitalize }}: {{ training.trainer.firstName }} {{ training.trainer.lastName }}</p>
+                    <br>
+                    <p class="list-group-item-text">
+                        {{ 'trainers' | trans | capitalize }}:<br> 
+                        {% for trainer in training.trainers %}
+                            {{ trainer.firstName }} {{ trainer.lastName }}<br>
+                        {% endfor %}
+                    </p>
+                    <br>
                     <p class="list-group-item-text">{{ training.location }}</p>
                 </a>
             </div>        

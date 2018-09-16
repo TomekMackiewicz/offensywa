@@ -92,7 +92,7 @@ class Team
     private $awayGames;     
 
     /**
-     * @ORM\OneToMany(targetEntity="Training", mappedBy="team", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="Training", mappedBy="teams", cascade={"persist"})
      */
     private $trainings; 
 
@@ -254,16 +254,6 @@ class Team
     {
         return $this->players;
     }
-    
-//    public function addPlayer(Category $category)
-//    {
-//        $this->categories->add($category);
-//    }
-//
-//    public function removeCategory(Category $category)
-//    {
-//        $this->categories->removeElement($category);
-//    }
 
     /**
      * Get games
@@ -273,45 +263,7 @@ class Team
     public function getGames()
     {
         return $this->games;
-    }
-
-//    /**
-//     * Get trainer
-//     *
-//     * @return Trainer
-//     */
-//    public function getTrainer()
-//    {
-//        return $this->trainer;
-//    }
-//
-//    /**
-//     * Set Trainer
-//     *
-//     * @param Trainer $trainer
-//     *
-//     * @return Team
-//     */    
-//    public function setTrainer(Trainer $trainer)
-//    {
-//        $this->trainer = $trainer;
-//        
-//        return $this;
-//    }
-
-//    /**
-//     * Add Trainer
-//     *
-//     * @param Trainer $trainer
-//     *
-//     * @return Team
-//     */    
-//    public function addTrainer(Trainer $trainer)
-//    {
-//        $this->trainer = $trainer;
-//        
-//        return $this;
-//    }    
+    }   
 
     /**
      * Get trainings

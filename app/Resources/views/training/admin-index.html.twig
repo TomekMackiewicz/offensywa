@@ -16,7 +16,7 @@
                     <th></th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Data</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Miejsce</th>
-                    <th><i class="fa fa-sort" aria-hidden="true"></i> Drużyna</th>
+                    <th><i class="fa fa-sort" aria-hidden="true"></i> Drużyny</th>
                     <th><i class="fa fa-sort" aria-hidden="true"></i> Trener</th>
                     <th>Edycja</th>
                 </tr>
@@ -45,8 +45,18 @@
                         {{ training.startHour|date('H:i') }} - {{ training.endHour|date('H:i') }}
                     </td>
                     <td>{% if training.location %}{{ training.location }}{% else %}---{% endif %}</td>
-                    <td>{{ training.team.name }} {{ training.team.year }}</td>
-                    <td>{{ training.trainer.firstName }} {{ training.trainer.lastName }}</td>
+                    <td>
+                        {% for team in training.teams %}
+                            {{ team.name }} {{ team.year }}
+                            <br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for trainer in training.trainers %}
+                            {{ trainer.firstName }} {{ trainer.lastName }}
+                            <br>
+                        {% endfor %}
+                    </td>                    
                     <td class="col-md-2">
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('training_edit', { 'id': training.id }) }}" class="btn btn-primary btn-sm pull-left admin-form-btn-margin">

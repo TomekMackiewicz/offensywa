@@ -65,7 +65,7 @@ class Trainer
     private $teams;    
     
     /**
-     * @ORM\OneToMany(targetEntity="Training", mappedBy="trainer")
+     * @ORM\ManyToMany(targetEntity="Training", mappedBy="trainers", cascade={"persist"})
      */
     private $trainings;    
     

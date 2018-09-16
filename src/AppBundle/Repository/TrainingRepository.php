@@ -20,7 +20,7 @@ class TrainingRepository extends \Doctrine\ORM\EntityRepository
              ORDER BY t.day ASC"
         )->setParameter('year', $year);
         $trainings = $query->getResult();
-        
+       
         return $trainings;         
     }
 }    

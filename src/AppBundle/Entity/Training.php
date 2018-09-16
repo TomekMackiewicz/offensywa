@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Training
@@ -59,17 +60,24 @@ class Training
 
     /**
      * @Assert\NotBlank(message = "field.not_blank")
-     * @ORM\ManyToOne(targetEntity="Team", inversedBy="trainings")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     * 
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="trainings")
+     * @ORM\JoinTable(name="training_team")
      */
-    private $team;    
-
+    private $teams;    
+    
     /**
      * @Assert\NotBlank(message = "field.not_blank")
-     * @ORM\ManyToOne(targetEntity="Trainer", inversedBy="trainings")
-     * @ORM\JoinColumn(name="trainer_id", referencedColumnName="id")
+     * 
+     * @ORM\ManyToMany(targetEntity="Trainer", inversedBy="trainings")
+     * @ORM\JoinTable(name="training_trainer")
      */
-    private $trainer;    
+    private $trainers;    
+
+    public function __construct() {
+        $this->teams = new ArrayCollection();
+        $this->trainers = new ArrayCollection();
+    } 
     
     /**
      * Get id
@@ -178,52 +186,76 @@ class Training
     }
 
     /**
-     * Get team
+     * Get teams
      *
      * @return Team
      */
-    public function getTeam()
+    public function getTeams()
     {
-        return $this->team;
+        return $this->teams;
     }
 
     /**
-     * Set Team
+     * Add team
      *
      * @param Team $team
      *
      * @return Training
      */    
-    public function setTeam($team)
+    public function addTeam(Team $team)
     {
-        $this->team = $team;
+        $this->teams->add($team);
         
         return $this;
-    }    
-
-    /**
-     * Get trainer
-     *
-     * @return Trainer
-     */
-    public function getTrainer()
-    {
-        return $this->trainer;
     }
 
     /**
-     * Set Trainer
+     * Remove team
+     *
+     * @return Training
+     */    
+    public function removeTeam(Team $team)
+    {
+        $this->teams->removeElement($team);
+        
+        return $this;
+    }    
+    
+    /**
+     * Get trainers
+     *
+     * @return Trainer
+     */
+    public function getTrainers()
+    {
+        return $this->trainers;
+    }
+
+    /**
+     * Add Trainer
      *
      * @param Trainer $trainer
      *
      * @return Training
      */    
-    public function setTrainer($trainer)
+    public function addTrainer(Trainer $trainer)
     {
-        $this->trainer = $trainer;
+        $this->trainers->add($trainer);
         
         return $this;
     }
+ 
+    /**
+     * Remove trainer
+     *
+     * @return Trainer
+     */    
+    public function removeTrainer(Trainer $trainer)
+    {
+        $this->trainers->removeElement($trainer);
+        
+        return $this;
+    }     
     
 }
 

@@ -38,7 +38,9 @@ class AdminController extends Controller
         
         foreach ($games as $game) {            
             $calendarGames[] = [
-                'title' => $game->getCategory() . ': ' . $game->getHomeTeam()->getName() . ' vs ' . $game->getAwayTeam()->getName(),
+                'title' => ucfirst($this->get('translator')->trans($game->getCategory())) . 
+                    ":\n" . $game->getHomeTeam()->getName() . " (".$game->getHomeTeam()->getYear().") vs " . 
+                    $game->getAwayTeam()->getName() . " (".$game->getHomeTeam()->getYear().")",
                 'start' => $game->getDate()->format("Y-m-d H:i"),
                 //'end' => $game->getDate()->format("Y-m-d H:i"), // default = 1h
                 'allDay' => false,
@@ -66,9 +68,16 @@ class AdminController extends Controller
                     $start->setTime($training->getStartHour()->format('H'), $training->getStartHour()->format('i'));
                     $end = new \DateTime($counter->format("Y-m-d H:i"));
                     $end->setTime($training->getEndHour()->format('H'), $training->getStartHour()->format('i'));
+                    $teams = $training->getTeams();
+                    $teamsList = '';
+                    if ($teams) {                        
+                        foreach ($teams as $team) {
+                            $teamsList .= $team->getName()." (".$team->getYear().")\n";
+                        }
+                    }
                     
                     $calendarTrainings[] = [
-                        'title' => 'Trening: ' . $training->getTeam()->getName() . ' (' . $training->getLocation() . ')',
+                        'title' => "Trening:\n ".$teamsList . $training->getLocation(),
                         'start' => $start->format("Y-m-d H:i"),
                         'end' => $end->format("Y-m-d H:i"),
                         'allDay' => false,

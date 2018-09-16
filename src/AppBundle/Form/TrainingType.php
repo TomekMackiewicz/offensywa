@@ -50,30 +50,30 @@ class TrainingType extends AbstractType
             ->add('location', null, array(
                 'label' => 'location'
             ))
-            ->add('team', EntityType::class, array(
+            ->add('teams', EntityType::class, array(
                 'class' => 'AppBundle:Team',
                 'choice_label' => function ($value) {
                     return $value->getName() . ' ' . $value->getYear();
                 },
-                'multiple' => false,
-                'expanded' => false,
+                'multiple' => true,
+                'expanded' => true,
                 'placeholder' => 'choose',
-                'label' => 'team',
+                'label' => 'teams',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('t')
                         ->where('t.isMy = 1')    
                         ->orderBy('t.name', 'ASC');
                 },                
             ))
-            ->add('trainer', EntityType::class, array(
+            ->add('trainers', EntityType::class, array(
                 'class' => 'AppBundle:Trainer',
                 'choice_label' => function ($value) {
                     return $value->getFirstName() . ' ' . $value->getLastName();
                 },
-                'multiple' => false,
-                'expanded' => false,
+                'multiple' => true,
+                'expanded' => true,
                 'placeholder' => 'choose',
-                'label' => 'trainer'
+                'label' => 'trainers'
             ));
     }
     
