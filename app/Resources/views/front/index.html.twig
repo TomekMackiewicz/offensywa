@@ -7,7 +7,7 @@
     <meta property="og:description" content="Szkółka piłkarska Offensywa Książenice" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ app.request.uri }}" />
-    <meta property="og:image" content="http://placehold.it/760x400/cccccc/ffffff" />    
+    <meta property="og:image" content="{{ asset('images/main.jpg') }}" />    
 {% endblock %}
 
 {% block content %}
@@ -74,7 +74,7 @@
         </div>
     </div>
     {{ render(controller('AppBundle:Ad:index')) }}            
-    <div class="row">
+{#    <div class="row">
         <div class="col-xs-12">
             <h2>NASI ZAWODNICY</h2>
             {% if players %}
@@ -102,6 +102,6 @@
                 Brak zawodników
             {% endif %}             
         </div>                   
-    </div>
+    </div>#}
 {% endblock %}
 
