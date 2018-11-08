@@ -28,7 +28,7 @@ $(document).ready(function() {
         dateFormat : 'dd-mm-yy',
         changeMonth: true,
         changeYear: true,                        
-        stepMinute: 15
+        stepMinute: 5
     });                    
 
     $(".datepicker").datepicker({
@@ -72,7 +72,7 @@ $(document).ready(function() {
     
     $(".timepicker").timepicker({
         timeFormat: 'HH:mm',
-        stepMinute: 15
+        stepMinute: 5
     }); 
     
     /***************************************************************************

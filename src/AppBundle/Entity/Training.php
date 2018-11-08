@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="training")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TrainingRepository")
  * @UniqueEntity(
- *  fields={"startHour", "day"},
+ *  fields={"startHour", "day", "location"},
  *  message="duplicate.training.date"
  * )
  */
