@@ -50,13 +50,13 @@ class EmailRepository extends \Doctrine\ORM\EntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery('
-            SELECT p.parentEmail 
+            SELECT DISTINCT p.parentEmail 
             FROM AppBundle:Player p
             JOIN AppBundle:Team t
             WITH p.team = t.id
             WHERE t.year = :year
         ')->setParameter('year', $year);
-        $emails = $query->getScalarResult();        
+        $emails = $query->getScalarResult();       
         $array = array_column($emails, "parentEmail");
         $output = implode(", ", $array);
         
