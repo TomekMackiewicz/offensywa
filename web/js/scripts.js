@@ -221,7 +221,6 @@ $(document).ready(function() {
             $('body').append(customModal);
             $('#custom-modal').modal("show"); 
 
-            //$('body').on('click', '.select-all', function() {
             $('.select-all').each(function() {
                 $(this).on("click", function() {
                     checkboxes = $(this).closest('.group').find('.emails');
