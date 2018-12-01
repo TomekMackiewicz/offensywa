@@ -89,22 +89,72 @@ class EmailController extends Controller
 
         return $this->redirectToRoute('email_index');
     }
-    
+        
     /**
-     * Choose recipients list.
+     * Get all emails.
      *
-     * @Route("/get-type/{type}", name="email_get_type")
+     * @Route("/get-all", name="email_get_all")
      * @Method("GET")
      */
-    public function getType($type)
+    public function getAll()
     {
         $em = $this->getDoctrine()->getManager();
-        $emails = $em->getRepository('AppBundle:Email')->findByType($type);
-        $response = new JsonResponse($emails);
+        return $em->getRepository('AppBundle:Email')->getAll();
+    }     
 
-        return $response;
-    }    
+    /**
+     * Get all recipients.
+     *
+     * @Route("/get-all-recipients", name="email_get_all_recipients")
+     * @Method("GET")
+     */
+    public function getAllRecipients()
+    {
+        $emails = $this->getAll();
+        $output = implode(", ", array_column($emails, "parentEmail"));
+        
+        return new JsonResponse($output);
+    }
 
+    /**
+     * Get recipients by team.
+     *
+     * @Route("/get-recipients-by-team", name="email_get_recipients_by_year")
+     * @Method("GET")
+     */
+    public function getRecipientsByTeam()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $years = $em->getRepository('AppBundle:Email')->getByTeam();
+
+        return new JsonResponse(array_column($years, "year"));
+    }
+
+    /**
+     * Get custom recipients.
+     *
+     * @Route("/get-custom-recipients", name="email_get_custom_recipients")
+     * @Method("GET")
+     */
+    public function getCustomRecipients()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $years = $em->getRepository('AppBundle:Email')->getByTeam();
+        $emails = $em->getRepository('AppBundle:Email')->getEmailAndYear();
+        
+        $data = [];
+        
+        foreach ($years as $year) {
+          foreach ($emails as $email) {               
+              if ($email['year'] == $year['year']) {
+                  $data[$year['year']][] = $email['parentEmail'];
+              }
+          } 
+        }
+
+        return new JsonResponse($data);
+    }
+    
     /**
      * Get emails by team year.
      *

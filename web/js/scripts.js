@@ -115,30 +115,30 @@ $(document).ready(function() {
         var type = $('option:selected', this).val();
         
         if (type == 1) {
-            chooseAll(type);           
+            chooseAll();           
         } else if (type == 2) {
-            chooseGroup(type);
+            chooseGroup();
         } else if (type == 3) {
-            chooseCustom(type);
+            chooseCustom();
         } else {
             $('#appbundle_email_recipients').val('');
         }
 
     });
 
-    function chooseAll(type) {
+    function chooseAll() {
         $.ajax({
-            url : '/admin/email/get-type/' + type,
+            url : '/admin/email/get-all-recipients',
             type: 'GET',
-            success: function(response) {               
+            success: function(response) {
                 $('#appbundle_email_recipients').val(response);
             }
         }); 
     }
 
-    function chooseGroup(type) {
+    function chooseGroup() {
         $.ajax({
-            url : '/admin/email/get-type/' + type,
+            url : '/admin/email/get-recipients-by-team',
             type: 'GET',
             success: function(response) {
                 var options = '';
@@ -151,23 +151,31 @@ $(document).ready(function() {
         });         
     }
 
-    function chooseCustom(type) {
+    function chooseCustom() {
         $.ajax({
-            url : '/admin/email/get-type/' + type,
+            url : '/admin/email/get-custom-recipients',
             type: 'GET',
             success: function(response) {
-                var options = '';
-                for(var i=0; i<response.length; i++) {
-                    options += "<option value="+response[i]+">"+response[i]+"</option>";
+                var emails = '';
+                for(var key in response) {
+                    emails += "<div class='group'>";
+                    emails += "<div class='checkbox'><label><input type='checkbox' class='select-all' name='year' id='year_"+key+"' value='"+key+"'><strong>Rocznik "+key+"</strong></label></div>";
+                    emails += "<br>";
+                    for(var email in response[key]) {
+                        emails += "<label class='checkbox-inline'><input class='emails' type='checkbox' name='emails' value='"+response[key][email]+"'>"+response[key][email]+"</label>";                    
+                    } 
+                    emails += "</div>";
+                    emails += "<hr>";
                 }
-                showEmailsModal(options, 'custom');               
+
+                showEmailsModal(emails, 'custom');               
             }
         });
     }
 
-    function showEmailsModal(options, type) {        
-        if (type === 'group') {
-            
+    function showEmailsModal(options, type) {
+        
+        if (type === 'group') {            
             var groupModal = $(
                 '<div class="modal fade" id="group-modal" tabindex="-1" role="dialog">'
                 +'    <div class="modal-dialog" role="document">'
@@ -202,24 +210,40 @@ $(document).ready(function() {
                 '<div class="modal fade" id="custom-modal" tabindex="-1" role="dialog">'
                 +'    <div class="modal-dialog" role="document">'
                 +'        <div class="modal-content">'
-                +'            <div class="modal-body">'
-                +'                <select id="custom-select" class="form-control" multiple>'+options+'</select>'
-                +'            </div>'
+                +'            <div class="modal-body">'+options+'</div>'
                 +'            <div class="modal-footer">'
                 +'                <button type="button" class="btn btn-default" id="choose-custom" data-dismiss="modal">Wybierz</button>'
                 +'            </div>'        
                 +'        </div>'
                 +'    </div>'
                 +'</div>'   
-            ); 
+            );
             $('body').append(customModal);
             $('#custom-modal').modal("show"); 
+
+            //$('body').on('click', '.select-all', function() {
+            $('.select-all').each(function() {
+                $(this).on("click", function() {
+                    checkboxes = $(this).closest('.group').find('.emails');
+                    if (this.checked) {
+                        $(checkboxes).each(function() {
+                            this.checked = true;
+                        });
+                    } else {
+                        $(checkboxes).each(function() {
+                            this.checked = false;
+                        });
+                    }
+                });
+            });            
             
             $("body").on('click', '#choose-custom', function() {
-                var emails = $('#custom-select').val();
+                var names = [];
+                $('.modal-body input.emails:checked').each(function() {
+                    names.push(this.value);
+                });
                 $('#custom-modal').modal("hide");
-                $('#appbundle_email_recipients').val(emails);
-
+                $('#appbundle_email_recipients').val(names);
             });                        
         }       
     }

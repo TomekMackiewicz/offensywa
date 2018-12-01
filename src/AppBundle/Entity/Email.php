@@ -17,6 +17,7 @@ class Email
     const TO_ALL = 1;
     const TO_GROUP = 2;
     const TO_CUSTOM = 3;
+    const TO_NONE = 4;
     
     /**
      * @var int

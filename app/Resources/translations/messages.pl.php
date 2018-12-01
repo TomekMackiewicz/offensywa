@@ -83,6 +83,7 @@ return array(
     'to.all' => 'Do wszystkich',
     'to.group' => 'Do grupy',
     'to.custom' => 'Wybierz adresatów',
+    'to.none' => 'Kasuj listę',
     'gallery' => 'Galeria zdjęć',
     'prove.not.robot' => 'Udowodnij, że nie jesteś robotem ;)',
     'remove.selected' => 'Usuń zaznaczone',

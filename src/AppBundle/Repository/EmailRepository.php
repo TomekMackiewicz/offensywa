@@ -13,39 +13,42 @@ use AppBundle\Entity\Email AS email;
 class EmailRepository extends \Doctrine\ORM\EntityRepository
 {
     
-    public function findByType($type)
-    {               
+    public function getAll()
+    {
         $em = $this->getEntityManager();
+        $query = $em->createQuery('
+            SELECT DISTINCT p.parentEmail 
+            FROM AppBundle:Player p 
+            WHERE p.parentEmail is not null
+        ');
+        $emails = $query->getScalarResult();       
         
-        if ($type == email::TO_ALL) {
-            $query = $em->createQuery('
-                SELECT p.parentEmail FROM AppBundle:Player p WHERE p.parentEmail is not null 
-            ');
-            $emails = $query->getScalarResult();        
-            $array = array_column($emails, "parentEmail");        
-            $output = implode(", ", $array);
-        
-        } elseif ($type == email::TO_GROUP) {
-            $query = $em->createQuery('
-                SELECT t.year FROM AppBundle:Team t WHERE t.isMy = 1
-            ');            
-            $years = $query->getScalarResult();        
-            $output = array_column($years, "year");
-            
-        } elseif ($type == email::TO_CUSTOM) {
-            $query = $em->createQuery('
-                SELECT p.parentEmail FROM AppBundle:Player p WHERE p.parentEmail is not null 
-            ');
-            $emails = $query->getScalarResult();        
-            $output = array_column($emails, "parentEmail");
-            
-        } else {
-            return null;
-        }
-        
-        return $output;
-    }    
+        return $emails;        
+    }
 
+    public function getEmailAndYear()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+            SELECT DISTINCT p.parentEmail, t.year 
+            FROM AppBundle:Player p
+            JOIN p.team t
+            WHERE p.parentEmail is not null
+        ');
+        
+        return $query->getScalarResult();              
+    }    
+    
+    public function getByTeam()
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('
+            SELECT t.year FROM AppBundle:Team t WHERE t.isMy = 1
+        ');
+        
+        return $query->getScalarResult();              
+    }
+    
     public function getEmailsByYear($year)
     {
         $em = $this->getEntityManager();

@@ -26,6 +26,7 @@ class EmailType extends AbstractType
             )) 
             ->add('type', ChoiceType::class, array(
                 'choices'  => array(
+                    'to.none' => email::TO_NONE,
                     'to.all' => email::TO_ALL,
                     'to.group' => email::TO_GROUP,
                     'to.custom' => email::TO_CUSTOM
