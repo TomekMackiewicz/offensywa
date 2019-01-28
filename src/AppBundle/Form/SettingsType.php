@@ -45,7 +45,9 @@ class SettingsType extends AbstractType
                 'choices'  => array(
                     '256 KB' => 262144,
                     '512 KB' => 524288,
-                    '1 MB' => 1048576
+                    '1 MB' => 1048576,
+                    '2 MB' => 2097152,
+                    '4 MB' => 4194304
                 ),
                 'label' => 'file.max_size'
             ));                
