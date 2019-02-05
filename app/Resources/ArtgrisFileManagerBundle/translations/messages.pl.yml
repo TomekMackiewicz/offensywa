@@ -30,6 +30,8 @@ button:
     selected: Usuń wybrane pliki
     action: USUŃ
   tree: Drzewo
+  upload:
+    selected: Dodaj wybrane pliki  
 title:
   add:
     folder: Nowy folder

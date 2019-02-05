@@ -30,6 +30,8 @@ button:
     selected: Delete selected files
     action: DELETE
   tree: Tree
+  upload:
+    selected: Upload selected files
 title:
   add:
     folder: New folder

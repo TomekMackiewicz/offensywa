@@ -134,21 +134,66 @@
             </script>
             <script>
                 // File button
+                var rowCount = 0; 
                 $('#uploadedImage').parent().hide();
                 $('#buttonframe').on('load', function () {
-                    $(this).contents().on('click','.select',function () {
+                    var images = [];
+                    $(this).contents().on('click','.select',function () { // zamiast tego przycisk, ale jak połączyć value i data-path?
+                        
                         var path = $(this).attr('data-path');
+                        images.push(path);
+
                         $('#uploadedImage').parent().show();
-                        $('#appbundle_post_images').val(path);
+                        $('#appbundle_post_images').val(images);
                         $('#appbundle_player_image').val(path);
                         $('#appbundle_team_logo').val(path);
-                        $('#uploadedImage').attr('src', path);
+                        
+                        var content2 = '';  
+                        if (images.length % 5 === 0 || images.length === 1) {
+                            rowCount++;
+                            var content1 = '<div class="row" id="row_'+rowCount+'"></div>';
+                        }
+                        
+                        content2 += '<div class="col-xs-6 col-md-3"><img src="'+path+'" class="img-responsive"></div>';
+                        
+                        $("#images").append(content1);
+                        
+                        $(document).find("#row_"+rowCount).append(content2);
+                        
                         $('#fileButtonModal').modal('hide');
                     });
+                    
+{#                    $(this).contents().on('click','#form-multiple-delete :checkbox',function () {
+                        var anyBoxesChecked = false;
+                        var $jsUploadMultipleModal = $('#js-upload-multiple-modal', $('#buttonframe').contents());
+                        
+                        $(".checkbox", $('#buttonframe').contents()).each(function() {
+                            if ($(this).is(":checked")) {
+                                anyBoxesChecked = true;
+                            } 
+                        }); 
+                        
+                        if (anyBoxesChecked === false) {
+                            $jsUploadMultipleModal.addClass('disabled');
+                        } else {
+                            $jsUploadMultipleModal.removeClass('disabled');
+                        }
+                    });
+                    
+                    $(this).contents().on('click','#js-upload-multiple-modal',function () {
+                        //var multipleUpload = $('#form-multiple-delete', $('#buttonframe').contents()).serialize();
+                        if ($multipleUpload) {
+                            var href = urldelete + '&' + $multipleUpload;
+                            $('#js-confirm-delete').find('form').attr('action', href);
+                        }
+                        var value = $('#form-multiple-delete .select', $('#buttonframe').contents()).val();
+                        console.log(value);
+                    }); #}                   
+                    
                 });
-            </script>            
+            </script> 
+
             {% endif %}
         {% endblock %}              
     </body>
 </html>
-

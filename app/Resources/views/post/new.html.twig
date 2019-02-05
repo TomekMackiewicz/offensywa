@@ -22,7 +22,7 @@
                     </ul>
                 </span>
                 {% endif %}
-            {% endif %}             
+            {% endif %}
             {{ form_row(form.images) }}
             <div class="form-group">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fileButtonModal">
@@ -34,11 +34,7 @@
                 Wróć do listy
             </a>            
         {{ form_end(form) }}
-        <div class="row">
-            <div class="col-xs-6 col-md-3">
-                <img src="" class="img-responsive" id="uploadedImage">
-            </div>
-        </div>
+        <div id="images"></div>
     </div>
  
     <!-- Image Modal -->

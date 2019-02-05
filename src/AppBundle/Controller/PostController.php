@@ -46,24 +46,27 @@ class PostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setPublishDate(new \DateTime());
-            $imageName = $request->request->get('appbundle_post')['images'];
-            
-            if ($imageName) {
-                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+            $imagesData = $request->request->get('appbundle_post')['images'];
 
-                // Validate image
-                $validation = $this->get('validation');
-                $errors = $validation->validateImage($image);
-                
-                if ($errors !== null) {
-                    return $this->render('post/edit.html.twig', array(
-                        'post' => $post,
-                        'errors' => $errors, 
-                        'edit_form' => $form->createView()                        
-                    ));                    
-                } 
-                
-                $post->addImage($image);                
+            if ($imagesData) {
+                $imageNames = explode(',', $imagesData);
+                foreach ($imageNames as $imageName) {
+                    $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+
+                    // Validate image
+                    $validation = $this->get('validation');
+                    $errors = $validation->validateImage($image);
+
+                    if ($errors !== null) {
+                        return $this->render('post/edit.html.twig', array(
+                            'post' => $post,
+                            'errors' => $errors, 
+                            'edit_form' => $form->createView()                        
+                        ));                    
+                    } 
+
+                    $post->addImage($image);                    
+                }                
             }            
             
             $em->persist($post);
@@ -117,25 +120,29 @@ class PostController extends Controller
     
         if ($editForm->isSubmitted() && $editForm->isValid()) {            
             $post->setModifyDate(new \DateTime());
-            $imageName = $request->request->get('appbundle_post')['images'];
+            $imagesData = $request->request->get('appbundle_post')['images'];
            
-            if ($imageName) {
-                $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
-                
-                // Validate image
-                $validation = $this->get('validation');
-                $errors = $validation->validateImage($image);
-                
-                if ($errors !== null) {
-                    return $this->render('post/edit.html.twig', array(
-                        'post' => $post,
-                        'errors' => $errors, 
-                        'edit_form' => $editForm->createView()                        
-                    ));                    
-                }                 
-                
-                $post->addImage($image);                
+            if ($imagesData) {
+                $imageNames = explode(',', $imagesData);                
+                foreach ($imageNames as $imageName) {                
+                    $image = $em->getRepository('AppBundle:File')->findOneBy(array('url' => $imageName)); 
+
+                    // Validate image
+                    $validation = $this->get('validation');
+                    $errors = $validation->validateImage($image);
+
+                    if ($errors !== null) {
+                        return $this->render('post/edit.html.twig', array(
+                            'post' => $post,
+                            'errors' => $errors, 
+                            'edit_form' => $editForm->createView()                        
+                        ));                    
+                    }                 
+
+                    $post->addImage($image);
+                }
             }
+            
             $em->persist($post);
             $em->flush(); 
             
