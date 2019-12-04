@@ -620,8 +620,8 @@ img {
     width:100%;   
 }
 .carousel .main-item {
-    min-height: 800px; 
-    max-height: 800px;  
+    min-height: 400px; 
+    max-height: 400px;  
 }
 .carousel-caption h3,
 .carousel .icon-container,
@@ -657,21 +657,21 @@ img {
 }
 
 .main-item:nth-child(1) {
-    background: url(../images/offensywa1.jpg) no-repeat center center fixed;
+    background: url(../images/offensywa1.jpg) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 .main-item:nth-child(2) {
-    background: url(../images/offensywa2.jpg) no-repeat center center fixed;
+    background: url(../images/offensywa2.jpg) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 .main-item:nth-child(3) {
-    background: url(../images/offensywa3.jpg) no-repeat center center fixed;
+    background: url(../images/offensywa3.jpg) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
