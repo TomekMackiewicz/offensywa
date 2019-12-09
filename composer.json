@@ -24,8 +24,8 @@
     "require": {
         "php": ">=5.5.9",
         "artgris/filemanager-bundle": "^1.2",
-        "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-bundle": "^1.8.1",
+        "doctrine/orm": "^2.6",
         "exercise/htmlpurifier-bundle": "^0.2.4",
         "friendsofsymfony/user-bundle": "2.0.1",
         "incenteev/composer-parameter-handler": "^2.0",
