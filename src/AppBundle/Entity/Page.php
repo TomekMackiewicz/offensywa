@@ -11,10 +11,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="page")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PageRepository")
- * @UniqueEntity(
- *     fields={"isAboutPage", "isContactPage"},
- *     message="This field is already in use."
- * )
  * @UniqueEntity(fields = "isAboutPage")
  * @UniqueEntity(fields = "isContactPage")
  */
@@ -161,7 +157,7 @@ class Page
      */
     public function setIsAboutPage($isAboutPage)
     {
-        $this->isAboutPage = $isAboutPage;
+        $this->isAboutPage = !empty($isAboutPage) ? $isAboutPage : null;
 
         return $this;
     }
@@ -173,7 +169,7 @@ class Page
      */
     public function getIsAboutPage()
     {
-        return $this->isAboutPage;
+        return !empty($this->isAboutPage) ? $this->isAboutPage : null;
     }
 
     /**
@@ -185,7 +181,7 @@ class Page
      */
     public function setIsContactPage($isContactPage)
     {
-        $this->isContactPage = $isContactPage;
+        $this->isContactPage = !empty($isContactPage) ? $isContactPage : null;
 
         return $this;
     }
@@ -197,7 +193,7 @@ class Page
      */
     public function getIsContactPage()
     {
-        return $this->isContactPage;
+        return !empty($this->isContactPage) ? $this->isContactPage : null;
     }     
 }
 
